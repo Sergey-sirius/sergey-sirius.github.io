@@ -10,7 +10,6 @@ group :development do
   gem "jekyll-assets"
 
   gem "rake", "~> 10.0"
-  # ...snip
   gem "octopress", "~> 3.0.0.rc.12"
 end
 
