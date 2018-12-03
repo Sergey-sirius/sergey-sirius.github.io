@@ -215,7 +215,7 @@ $$ LANGUAGE plpythonu;
 SELECT return_arr();
 return_arr
 -------------
-{1,2,3,4,5}
+(1,2,3,4,5)
 (1 row)
 Многомерные массивы передаются в PL/Python в виде вложенных списков Python. Например, двух-
 мерный массив представляется как список списков. При передаче многомерного массива SQL из
@@ -229,7 +229,7 @@ SELECT * FROM test_type_conversion_array_int4(ARRAY[[1,2,3],[4,5,6]]);
 INFO: ([[1, 2, 3], [4, 5, 6]], <type 'list'>)
 test_type_conversion_array_int4
 ---------------------------------
-{{1,2,3},{4,5,6}}
+((1,2,3),(4,5,6))
 (1 row)
 Другие последовательности Python, например кортежи, тоже принимаются для обратной совме-
 стимости с PostgreSQL версии 9.6 и ниже (где многомерные массивы не поддерживались). Однако
@@ -246,7 +246,7 @@ $$ LANGUAGE plpythonu;
 SELECT return_str_arr();
 return_str_arr
 ----------------
-{h,e,l,l,o}
+(h,e,l,l,o)
 (1 row)
 46.3.4. Составные типы
 Аргументы составного типа передаются функции в виде сопоставлений Python. Именами элемен-
@@ -297,7 +297,7 @@ $$ LANGUAGE plpythonu;
 CREATE FUNCTION make_pair (name text, value integer)
 RETURNS named_value
 AS $$
-return { "name": name, "value": value }
+return ( "name": name, "value": value )
 $$ LANGUAGE plpythonu;
 Любые дополнительные пары ключ/значение в словаре игнорируются, а отсутствие нужных
 ключей считается ошибкой. Чтобы выдать SQL NULL для какого-нибудь столбца, вставьте None

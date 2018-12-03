@@ -1,0 +1,589 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Глава 40. Триггеры событий &#8211; Sirius Blog</title>
+<meta name="description" content="">
+<meta name="keywords" content="PostgreSQL">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-11.jpg">
+
+<meta name="twitter:title" content="Глава 40. Триггеры событий">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@2hotab2">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Глава 40. Триггеры событий">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-040/">
+<meta property="og:site_name" content="Sirius Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-040/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.jpg">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.jpg">
+<!-- 114x72 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x72" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.jpg">
+<!-- 144x72 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x72" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.jpg">
+
+
+
+</head>
+
+<body id="page" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://localhost:4000/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://localhost:4000/images/avatar.jpg" alt="Sergey Khatsiola photo" class="author-photo">
+					<h4>Sergey Khatsiola</h4>
+					<p>Кратко обо мне ...</p>
+				</li>
+				<li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="mailto:2hotab2@gmail.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/2hotab2"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				<li>
+					<a href="https://facebook.com/sergej.ha1"><i class="fa fa-fw fa-facebook"></i> Facebook</a>
+				</li>
+				
+				
+				<li>
+					<a href="https://github.com/Sergey-sirius"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://localhost:4000/posts/">All Posts</a></li>
+				<li><a href="http://localhost:4000/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
+	  
+	    
+	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
+	  
+	    
+	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 40. Триггеры событий">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Глава 40. Триггеры событий</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~8 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Глава 40. Триггеры событий</p>
+
+<p>В дополнение к триггерам, рассмотренным в Главе 39, PostgreSQL также предоставляет триггеры
+событий. В отличие от обычных триггеров, которые подключаются к конкретной таблице и рабо-
+тают только с командами DML, триггеры событий определяются на уровне базы данных и работа-
+ют с командами DDL.
+Как и обычные триггеры, триггеры событий можно создавать на любом процедурном языке, под-
+держивающим триггеры событий, а также на C, но не на чистом SQL.
+40.1. Обзор механизма работы триггеров событий
+Триггер события срабатывает всякий раз, когда в базе данных, в которой он определён, про-
+исходит связанное с ним событие. В настоящий момент поддерживаются следующие события:
+ddl_command_start, ddl_command_end, table_rewrite и sql_drop. Поддержка дополнительных со-
+бытий может быть добавлена в будущих выпусках.
+Событие ddl_command_start происходит непосредственно перед выполнением команд CREATE,
+ALTER, DROP, SECURITY LABEL, COMMENT, GRANT и REVOKE. Проверка на существование объекта пе-
+ред срабатыванием триггера не производится. В качестве исключения, однако, это событие не
+происходит для команд DDL, обращающихся к общим объектам кластера базы данных — ба-
+зам данных, табличным пространствам, ролям, а также к самим триггерам событий. Событие
+ddl_command_start также происходит непосредственно перед выполнением команды SELECT INTO,
+так как она равнозначна команде CREATE TABLE AS.
+Событие ddl_command_end происходит непосредственно после выполнения команд из того же на-
+бора. Чтобы получить дополнительную информацию об операциях DDL, повлёкших произошедшее
+событие, вызовите функцию pg_event_trigger_ddl_commands(), возвращающую множество, из ко-
+да обработчика события ddl_command_end (см. Раздел 9.28). Заметьте, что этот триггер срабатыва-
+ет после того, как эти действия имели место (но до фиксации транзакции), так что в системных
+каталогах можно увидеть уже изменённое состояние.
+Событие sql_drop происходит непосредственно перед событием ddl_command_end для команд, ко-
+торые удаляют объекты базы данных. Для получения списка удалённых объектов используйте
+возвращающую набор строк функцию pg_event_trigger_dropped_objects() в триггере события
+sql_drop (см. Раздел 9.28). Обратите внимание, что триггер выполняется после удаления объектов
+из таблиц системного каталога, поэтому их невозможно больше увидеть.
+Событие table_rewrite происходит только после того, как таблица будет перезаписана в резуль-
+тате определённых действий команд ALTER TABLE и ALTER TYPE. Хотя перезапись таблицы мо-
+жет быть вызвана и другими управляющими операторами, в частности CLUSTER и VACUUM, событие
+table_rewrite для них не вызывается.
+Триггеры событий (как и прочие функции) не могут выполняться в прерванной транзакции. Поэто-
+му, если команда DDL завершается ошибкой, соответствующие триггеры ddl_command_end не сра-
+ботают. И наоборот, если триггер ddl_command_end завершился с ошибкой, последующие триггеры
+событий не сработают, также как и сама команда не будет выполняться. Похожим образом, если
+триггер ddl_command_end завершится ошибкой, действие команды DDL будет отменено, также как
+это происходит при возникновении ошибки внутри транзакции.
+Полный список команд, которые поддерживаются триггерами событий, можно найти в Разде-
+ле 40.2.
+Для создания триггера события используется команда CREATE EVENT TRIGGER. Предварительно
+нужно создать функцию, со специальным возвращаемым типом event_trigger. Данная функция
+не обязана возвращать значение (и может не возвращать). Возвращаемый тип служит лишь ука-
+занием на то, что функция будет вызываться из триггера события.
+Если есть несколько триггеров на одно и то же событие, то они будут вызываться в алфавитном
+порядке по имени триггера.
+1087Триггеры событий
+В определении триггера можно использовать условие WHEN, чтобы, например, триггер
+ddl_command_start срабатывал только для отдельных команд, которые нужно перехватить. Триг-
+геры событий часто используются для ограничения диапазона DDL-команд, доступных пользова-
+телям.
+40.2. Матрица срабатывания триггеров событий
+В Таблице 40.1 перечислены команды, для которых поддерживаются триггеры событий.
+Таблица 40.1. Поддержка триггеров событий командами DDL
+Тег команды
+ddl_command_
+start
+ddl_command_
+end
+sql_drop
+table_
+rewrite
+Замечания
+ALTER
+AGGREGATE X X - -<br />
+ALTER
+COLLATION X X - -<br />
+ALTER
+CONVERSION X X - -<br />
+ALTER DOMAIN X X - -<br />
+ALTER
+EXTENSION X X - -<br />
+ALTER FOREIGN
+DATA WRAPPER X X - -<br />
+ALTER FOREIGN
+TABLE X X X -<br />
+ALTER
+FUNCTION X X - -<br />
+ALTER
+LANGUAGE X X - -<br />
+ALTER
+OPERATOR X X - -<br />
+ALTER
+OPERATOR
+CLASS X X - -<br />
+ALTER
+OPERATOR
+FAMILY X X - -<br />
+ALTER POLICY X X - -<br />
+ALTER SCHEMA X X - -<br />
+ALTER
+SEQUENCE X X - -<br />
+ALTER SERVER X X - -<br />
+ALTER TABLE X X X X<br />
+ALTER TEXT
+SEARCH
+CONFIGURATION X X - -<br />
+ALTER TEXT
+SEARCH
+DICTIONARY X X - -<br />
+1088Триггеры событий
+Тег команды
+ddl_command_
+start
+ddl_command_
+end
+sql_drop
+table_
+rewrite
+Замечания
+ALTER TEXT
+SEARCH PARSER X X - -<br />
+ALTER TEXT
+SEARCH
+TEMPLATE X X - -<br />
+ALTER TRIGGER X X - -<br />
+ALTER TYPE X X - X<br />
+ALTER USER
+MAPPING X X - -<br />
+ALTER VIEW X X - -<br />
+CREATE
+AGGREGATE X X - -<br />
+COMMENT X X - - Только для
+локальных
+объектов
+CREATE CAST X X - -<br />
+CREATE
+COLLATION X X - -<br />
+CREATE
+CONVERSION X X - -<br />
+CREATE DOMAIN X X - -<br />
+CREATE
+EXTENSION X X - -<br />
+CREATE
+FOREIGN DATA
+WRAPPER X X - -<br />
+CREATE
+FOREIGN TABLE X X - -<br />
+CREATE
+FUNCTION X X - -<br />
+CREATE INDEX X X - -<br />
+CREATE
+LANGUAGE X X - -<br />
+CREATE
+OPERATOR X X - -<br />
+CREATE
+OPERATOR
+CLASS X X - -<br />
+CREATE
+OPERATOR
+FAMILY X X - -<br />
+CREATE POLICY X X - -<br />
+CREATE RULE X X - -<br />
+CREATE SCHEMA X X - -<br />
+1089Триггеры событий
+Тег команды
+ddl_command_
+start
+ddl_command_
+end
+sql_drop
+table_
+rewrite
+Замечания
+CREATE
+SEQUENCE X X - -<br />
+CREATE SERVER X X - -<br />
+CREATE
+STATISTICS X X - -<br />
+CREATE TABLE X X - -<br />
+CREATE TABLE
+AS X X - -<br />
+CREATE
+TEXT SEARCH
+CONFIGURATION X X - -<br />
+CREATE
+TEXT SEARCH
+DICTIONARY X X - -<br />
+CREATE TEXT
+SEARCH PARSER X X - -<br />
+CREATE
+TEXT SEARCH
+TEMPLATE X X - -<br />
+CREATE
+TRIGGER X X - -<br />
+CREATE TYPE X X - -<br />
+CREATE USER
+MAPPING X X - -<br />
+CREATE VIEW X X - -<br />
+DROP
+AGGREGATE X X X -<br />
+DROP CAST X X X -<br />
+DROP
+COLLATION X X X -<br />
+DROP
+CONVERSION X X X -<br />
+DROP DOMAIN X X X -<br />
+DROP
+EXTENSION X X X -<br />
+DROP FOREIGN
+DATA WRAPPER X X X -<br />
+DROP FOREIGN
+TABLE X X X -<br />
+DROP FUNCTION X X X -<br />
+DROP INDEX X X X -<br />
+DROP LANGUAGE X X X -<br />
+DROP OPERATOR X X X -<br />
+1090Триггеры событий
+Тег команды
+ddl_command_
+start
+ddl_command_
+end
+sql_drop
+table_
+rewrite
+Замечания
+DROP OPERATOR
+CLASS X X X -<br />
+DROP OPERATOR
+FAMILY X X X -<br />
+DROP OWNED X X X -<br />
+DROP POLICY X X X -<br />
+DROP RULE X X X -<br />
+DROP SCHEMA X X X -<br />
+DROP SEQUENCE X X X -<br />
+DROP SERVER X X X -<br />
+DROP
+STATISTICS X X X -<br />
+DROP TABLE X X X -<br />
+DROP TEXT
+SEARCH
+CONFIGURATION X X X -<br />
+DROP TEXT
+SEARCH
+DICTIONARY X X X -<br />
+DROP TEXT
+SEARCH PARSER X X X -<br />
+DROP TEXT
+SEARCH
+TEMPLATE X X X -<br />
+DROP TRIGGER X X X -<br />
+DROP TYPE X X X -<br />
+DROP USER
+MAPPING X X X -<br />
+DROP VIEW X X X -<br />
+GRANT X X - - Только для
+локальных
+объектов
+IMPORT
+FOREIGN
+SCHEMA X X - -<br />
+REVOKE X X - - Только для
+локальных
+объектов
+SECURITY
+LABEL X X - - Только для
+локальных
+объектов
+SELECT INTO X X - -<br />
+40.3. Триггерные функции событий на языке C
+1091Триггеры событий
+Этот раздел описывает низкоуровневые детали интерфейса для триггерной функции. Эта инфор-
+мация необходима только при разработке триггерных функций событий на языке C. При исполь-
+зовании языка более высокого уровня, эти детали обрабатываются автоматически. В большинстве
+случаев необходимо рассмотреть использование процедурного языка прежде чем начать разраба-
+тывать триггеры событий на C. В документации по каждому процедурному языку объясняется как
+создавать триггеры событий на этом языке.
+Триггерные функции событий должны использовать «version 1» интерфейса диспетчера функций.
+Когда функция вызывается диспетчером триггеров событий, ей не передаются обычные аргумен-
+ты, но передаётся указатель «context», ссылающийся на структуру EventTriggerData. Функции на
+C могут проверить вызваны ли они диспетчером триггеров событий или нет выполнив макрос:
+CALLED_AS_EVENT_TRIGGER(fcinfo)
+который разворачивается в:
+EventTriggerData
+Если возвращается истина, то fcinfo-&gt;context можно безопасно привести к типу
+EventTriggerData * и использовать указатель на структуру EventTriggerData. Функция не должна
+изменять структуру EventTriggerData или любые данные, которые на неё указывают.
+struct EventTriggerData определена в commands/event_trigger.h:
+typedef struct EventTriggerData
+{
+NodeTag
+type;
+const char <em>event;
+/</em> имя события <em>/
+Node
+*parsetree; /</em> дерево разбора <em>/
+const char *tag;
+/</em> тег команды <em>/
+} EventTriggerData;
+со следующими членами структуры:
+type
+Всегда T_EventTriggerData.
+event
+Описывает
+событие,
+для
+которого
+вызывается
+функция.
+Возможные
+значения:
+“ddl_command_start”, “ddl_command_end”, “sql_drop”, “table_rewrite”. Суть этих событий
+описывается в Разделе 40.1.
+parsetree
+Указатель на дерево разбора команды. Детали можно посмотреть в исходном коде PostgreSQL.
+Структура дерева разбора может быть изменена без предупреждений.
+tag
+Тег команды, для которой сработал триггер события. Например “CREATE FUNCTION”.
+Функция триггера события должна возвращать указатель NULL (но не SQL значение null, то есть
+не нужно устанавливать isNull в истину).
+40.4. Полный пример триггера события
+Вот очень простой пример функции для триггера события, написанной на C. (Примеры триггеров
+для процедурных языков могут быть найдены в документации на процедурные языки.)
+Функция noddl выдаёт ошибку при каждом вызове. Триггер с этой функцией определяется для
+события ddl_command_start. Это предотвращает работу любых DDL-команд (за исключением тех,
+о которых говорилось в Разделе 40.1).
+Теперь исходный код триггерной функции:
+1092Триггеры событий
+#include “postgres.h”
+#include “commands/event_trigger.h”
+PG_MODULE_MAGIC;
+PG_FUNCTION_INFO_V1(noddl);
+Datum
+noddl(PG_FUNCTION_ARGS)
+{
+EventTriggerData *trigdata;
+if (!CALLED_AS_EVENT_TRIGGER(fcinfo)) /</em> internal error */
+elog(ERROR, “not fired by event trigger manager”);
+trigdata = (EventTriggerData *) fcinfo-&gt;context;
+ereport(ERROR,
+(errcode(ERRCODE_INSUFFICIENT_PRIVILEGE),
+errmsg(“command "%s" denied”, trigdata-&gt;tag)));
+PG_RETURN_NULL();
+}
+После компиляции исходного кода (см. Подраздел 38.10.5) объявляем функцию и триггеры:
+CREATE FUNCTION noddl() RETURNS event_trigger
+AS ‘noddl’ LANGUAGE C;
+CREATE EVENT TRIGGER noddl ON ddl_command_start
+EXECUTE FUNCTION noddl();
+Теперь проверим работу триггера:
+=# \dy
+List of event triggers
+Name |
+Event
+| Owner | Enabled | Function | Tags
+——-+——————-+——-+———+———-+——
+noddl | ddl_command_start | dim
+| enabled | noddl
+|
+(1 row)
+=# CREATE TABLE foo(id serial);
+ОШИБКА: command “CREATE TABLE” denied
+В этой ситуации, для запуска DDL-команд, нужно либо удалить триггер события, либо отключить
+его. Может быть удобным отключить триггер на время выполнения транзакции:
+BEGIN;
+ALTER EVENT TRIGGER noddl DISABLE;
+CREATE TABLE foo (id serial);
+ALTER EVENT TRIGGER noddl ENABLE;
+COMMIT;
+(Вспомним, что триггеры событий не обрабатывают DDL-команды для самих триггеров событий.)
+40.5. Пример событийного триггера, обрабатывающего
+перезапись таблицы
+Благодаря существованию события table_rewrite, можно реализовать политику перезаписи таб-
+лиц, допускающую перезапись только в определённое время обслуживания.
+1093Триггеры событий
+Следующий пример демонстрирует реализацию такой политики.
+CREATE OR REPLACE FUNCTION no_rewrite()
+RETURNS event_trigger
+LANGUAGE plpgsql AS
+<script type="math/tex">---
+--- Реализация локальной политики перезаписи таблиц:
+---
+перезапись public.foo не допускается,
+---
+другие таблицы могут перезаписываться между 1 часом ночи и 6 часами утра,
+---
+если только их размер не превышает 100 блоков
+---
+DECLARE
+table_oid oid := pg_event_trigger_table_rewrite_oid();
+current_hour integer := extract('hour' from current_time);
+pages integer;
+max_pages integer := 100;
+BEGIN
+IF pg_event_trigger_table_rewrite_oid() = 'public.foo'::regclass
+THEN
+RAISE EXCEPTION 'you''re not allowed to rewrite the table %',
+table_oid::regclass;
+END IF;
+SELECT INTO pages relpages FROM pg_class WHERE oid = table_oid;
+IF pages > max_pages
+THEN
+RAISE EXCEPTION 'rewrites only allowed for table with less than % pages',
+max_pages;
+END IF;
+IF current_hour NOT BETWEEN 1 AND 6
+THEN
+RAISE EXCEPTION 'rewrites only allowed between 1am and 6am';
+END IF;
+END;</script>;
+CREATE EVENT TRIGGER no_rewrite_allowed
+ON table_rewrite
+EXECUTE FUNCTION no_rewrite();
+1094</p>
+
+      <footer class="entry-meta">
+        <span>Updated on <span class="entry-date date published updated"><time datetime="2018-12-03 T15:14:43-04:00">December 03, 2018</time></span></span>
+        <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-040/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-040/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-040/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2018 Sergey Khatsiola. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+          
+
+</body>
+</html>

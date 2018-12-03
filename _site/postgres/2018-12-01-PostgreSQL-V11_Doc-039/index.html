@@ -1,0 +1,676 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Глава 39. Триггеры &#8211; Sirius Blog</title>
+<meta name="description" content="">
+<meta name="keywords" content="PostgreSQL">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-11.jpg">
+
+<meta name="twitter:title" content="Глава 39. Триггеры">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@2hotab2">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Глава 39. Триггеры">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-039/">
+<meta property="og:site_name" content="Sirius Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-039/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.jpg">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.jpg">
+<!-- 114x72 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x72" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.jpg">
+<!-- 144x72 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x72" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.jpg">
+
+
+
+</head>
+
+<body id="page" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://localhost:4000/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://localhost:4000/images/avatar.jpg" alt="Sergey Khatsiola photo" class="author-photo">
+					<h4>Sergey Khatsiola</h4>
+					<p>Кратко обо мне ...</p>
+				</li>
+				<li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="mailto:2hotab2@gmail.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/2hotab2"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				<li>
+					<a href="https://facebook.com/sergej.ha1"><i class="fa fa-fw fa-facebook"></i> Facebook</a>
+				</li>
+				
+				
+				<li>
+					<a href="https://github.com/Sergey-sirius"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://localhost:4000/posts/">All Posts</a></li>
+				<li><a href="http://localhost:4000/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
+	  
+	    
+	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
+	  
+	    
+	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 39. Триггеры">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Глава 39. Триггеры</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~17 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Глава 39. Триггеры</p>
+
+<p>В этой главе содержится общая информация о разработке триггерных функций. Триггерные функ-
+ции могут быть написаны на большинстве доступных процедурных языков, включая PL/pgSQL (Гла-
+ва 43), PL/Tcl (Глава 44), PL/Perl (Глава 45) и PL/Python (Глава 46). После прочтения этого раздела,
+следует обратиться к разделу, посвящённому любимому процедурному языку, чтобы узнать спе-
+цифические для него детали разработки триггеров.
+Триггерные функции можно писать и на C, хотя большинство людей находит, что проще использо-
+вать один из процедурных языков. В настоящее время невозможно написать триггерную функцию
+на чистом SQL.
+39.1. Обзор механизма работы триггеров
+Триггер является указанием, что база данных должна автоматически выполнить заданную функ-
+цию, всякий раз когда выполнен определённый тип операции. Триггеры можно использовать с
+таблицами (секционированными и обычными), с представлениями и с внешними таблицами.
+Для обычных и сторонних таблиц можно определять триггеры, которые будут срабатывать до
+или после любой из команд INSERT, UPDATE или DELETE; либо один раз для каждой модифицируе-
+мой строки, либо один раз для оператора SQL. Триггеры на UPDATE можно установить так, чтобы
+они срабатывали, только когда в предложении SET оператора UPDATE упоминаются определённые
+столбцы. Также триггеры могут срабатывать для операторов TRUNCATE. Если происходит событие
+триггера, для обработки этого события в установленный момент времени вызывается функция
+триггера.
+Для представлений триггеры могут быть определены для выполнения вместо операций INSERT,
+UPDATE и DELETE. Такие триггеры INSTEAD OF вызываются единожды для каждой строки, которая
+должна быть изменена в этом представлении. Именно функция триггера отвечает за то, чтобы
+произвести необходимые изменения в нижележащих базовых таблицах представления и должным
+образом возвращать изменённые строки, чтобы они появлялись в представлении. Триггеры для
+представлений тоже могут быть определены так, что они будут выполняться единожды для всего
+оператора SQL, до или после операций INSERT, UPDATE или DELETE. Однако такие триггеры сраба-
+тывают, только если для представления определён триггер INSTEAD OF. В противном случае все
+операторы, обращающиеся к представлению, должны быть переписаны в виде операторов, обра-
+щающихся к нижележащим базовым таблицам, и тогда будут срабатывать триггеры, установлен-
+ные для этих таблиц.
+Триггерная функция должна быть создана до триггера. Она должна быть объявлена без аргументов
+и возвращать тип trigger. (Триггерная функция получает данные на вход посредством специально
+переданной структуры TriggerData, а не в форме обычных аргументов.)
+После создания триггерной функции создаётся триггер с помощью CREATE TRIGGER. Одна и та
+же триггерная функция может быть использована для нескольких триггеров.
+PostgreSQL предлагает как построчные, так и операторные триггеры. В случае построчного триг-
+гера триггерная функция вызывается один раз для каждой строки, затронутой оператором, за-
+пустившим триггер. Операторный же триггер, напротив, вызывается только один раз при выпол-
+нении соответствующего оператора, независимо от количества строк, которые он затрагивает. В
+частности оператор, который не затрагивает никаких строк, всё равно приведёт к срабатыванию
+операторного триггера. Эти два типа триггеров также называют триггерами уровня строк и триг-
+герами уровня оператора, соответственно. Триггеры на TRUNCATE могут быть определены только
+на уровне оператора, а не на уровне строк.
+Триггеры также классифицируются в соответствии с тем, срабатывают ли они до, после или вме-
+сто операции. Они называются триггерами BEFORE, AFTER и INSTEAD OF, соответственно. Триггеры
+BEFORE уровня оператора срабатывают до того, как оператор начинает делать что-либо, тогда как
+триггеры AFTER уровня оператора срабатывают в самом конце работы оператора. Эти типы триг-
+1077Триггеры
+геров могут быть определены для таблиц, представлений или сторонних таблиц. Триггеры BEFORE
+уровня строки срабатывают непосредственно перед обработкой конкретной строки, в то время как
+триггеры AFTER уровня строки срабатывают в конце работы всего оператора (но до любого из триг-
+геров AFTER уровня оператора). Эти типы триггеров могут определяться только для несекциониро-
+ванных таблиц и сторонних таблиц, но не для представлений. Триггеры INSTEAD OF могут опреде-
+ляться только для представлений и только на уровне строк: они срабатывают для каждой строки
+сразу после того как строка представления идентифицирована как подлежащая обработке.
+Оператор, нацеленный на родительскую таблицу в иерархии наследования или секционирования,
+не вызывает срабатывания триггеров уровня оператора для задействованных дочерних таблиц;
+срабатывать будут только такие триггеры для родительской таблицы. Однако если для этих дочер-
+них таблиц установлены триггеры уровня строк, они будут срабатывать.
+Если запрос INSERT содержит предложение ON CONFLICT DO UPDATE, возможно совместное приме-
+нение и триггеров уровня строк BEFORE INSERT, и триггеров уровня строк BEFORE UPDATE, которое
+отразится в окончательном состоянии изменяемой строки, если в запросе задействуются столбцы
+EXCLUDED. При этом обращение к EXCLUDED не обязательно должно иметь место в обоих наборах
+триггеров BEFORE на уровне строк. Следует рассмотреть возможность получения неожиданного
+результата, когда имеются и триггеры BEFORE INSERT, и BEFORE UPDATE на уровне строки, и они вме-
+сте модифицируют добавляемую/изменяемую строку (проблемы возможны, даже если изменения
+более или менее равнозначные, но при этом не идемпотентные). Заметьте, что триггеры UPDATE
+уровня оператора вызываются при ON CONFLICT DO UPDATE независимо от того, будут ли изменены
+какие-либо строки в результате UPDATE (и даже в случае, когда альтернативный путь UPDATE вооб-
+ще не выбирается). При выполнении запроса INSERT с предложением ON CONFLICT DO UPDATE сна-
+чала выполняются триггеры BEFORE INSERT, затем триггеры BEFORE UPDATE, потом триггеры AFTER
+UPDATE и, наконец, AFTER INSERT (речь идёт о триггерах на уровне операторов).
+Если оператор UPDATE в секционированной таблице должен переместить строку в другую секцию,
+это перемещение реализуется в результате выполнения DELETE в исходной секции и последующе-
+го INSERT в новой секции. При этом в исходной секции срабатывают все триггеры BEFORE UPDATE
+и BEFORE DELETE уровня строк. Затем в целевой секции срабатывают все триггеры BEFORE INSERT
+уровня строк. Следует иметь в виду, что в случаях, когда все эти триггеры модифицируют переме-
+щаемую строку, полученный результат может быть неожиданным. Если рассматривать триггеры
+AFTER ROW, то применяться будут триггеры AFTER DELETE и AFTER INSERT, но не триггеры AFTER
+UPDATE, так как команда UPDATE заменяется на DELETE и INSERT. Если же рассматривать тригге-
+ры уровня операторов, ни триггеры DELETE, ни триггеры INSERT не будут срабатывать, даже если
+производится перемещение строк; сработают только триггеры UPDATE, установленные в целевой
+таблице оператора UPDATE.
+Триггерные функции, вызываемые триггерами операторов, должны всегда возвращать NULL. Триг-
+герные функции, вызываемые триггерами строк, могут вернуть строку таблицы (значение типа
+HeapTuple). У триггера уровня строки, срабатывающего до операции, есть следующий выбор:
+• Можно вернуть NULL, чтобы пропустить операцию для текущей строки. Это указывает испол-
+нителю запросов, что не нужно выполнять операцию со строкой вызвавшей триггер (вставку,
+изменение или удаление конкретной строки в таблице).
+• Возвращаемая строка для триггеров INSERT или UPDATE будет именно той, которая будет
+вставлена или обновлена в таблице. Это позволяет триггерной функции изменять вставляе-
+мую или обновляемую строку.
+Если в триггере BEFORE уровня строки не планируется использовать любой из этих вариантов, то
+нужно аккуратно вернуть в качестве результата ту же строку, которая была передана на вход (то
+есть строку NEW для триггеров INSERT и UPDATE, или строку OLD для триггеров DELETE).
+INSTEAD OF триггер уровня строки должен вернуть либо NULL, чтобы указать, что он не модифици-
+рует базовые таблицы представления, либо он должен вернуть строку представления, полученную
+на входе (строку NEW для операций INSERT и UPDATE или строку OLD для операций DELETE). Отлич-
+ное от NULL возвращаемое значение сигнализирует, что триггер выполнил необходимые измене-
+1078Триггеры
+ния данных в представлении. Это приведёт к увеличению счётчика количества строк, затронутых
+командой. Для операций INSERT и UPDATE триггер может изменить строку NEW перед тем как её
+вернуть. Это изменит данные, возвращаемые INSERT RETURNING или UPDATE RETURNING, и полезно
+для того, чтобы не показывать уже не актуальные первоначальные данные.
+Возвращаемое значение игнорируется для триггеров уровня строки, вызываемых после операции,
+поэтому они могут возвращать NULL.
+Если есть несколько триггеров на одно и то же событие для одной и той же таблицы, то они будут
+вызываться в алфавитном порядке по имени триггера. Для триггеров BEFORE и INSTEAD OF потен-
+циально изменённая строка, возвращаемая одним триггером, становится входящей строкой для
+следующего триггера. Если любой из триггеров BEFORE или INSTEAD OF возвращает NULL, операция
+для этой строки прекращается и последующие триггеры (для этой строки) не срабатывают.
+В определении триггера можно указать логическое условие WHEN, которое будет проверяться, что-
+бы посмотреть, нужно ли запускать триггер. В триггерах уровня строки в условии WHEN можно про-
+верять старые и/или новые значения столбцов строки. (В триггерах уровня оператора также мож-
+но использовать условие WHEN, хотя в этом случае это не так полезно.) В триггерах BEFORE условие
+WHEN вычисляется непосредственно перед тем, как триггерная функция будет выполнена, поэтому
+использование WHEN существенно не отличается от выполнения той же проверки в самом начале
+триггерной функции. Однако, в триггерах AFTER условие WHEN вычисляется сразу после обновления
+строки и от этого зависит, будет ли поставлено в очередь событие запуска триггера в конце опера-
+тора или нет. Поэтому, когда условие WHEN в триггере AFTER не возвращает истину, не требуется ни
+постановка события в очередь, ни повторная выборка этой строки в конце оператора. Это может
+существенно ускорить работу операторов, изменяющих большое количество строк, с триггером,
+который должен сработать только для нескольких. В триггерах INSTEAD OF не поддерживается
+использование условий WHEN.
+Как правило, триггеры BEFORE уровня строки используются для проверки или модификации дан-
+ных, которые будут вставлены или изменены. Например, триггер BEFORE можно использовать для
+вставки текущего времени в столбец timestamp или проверки, что два элемента строки согласова-
+ны между собой. Триггеры AFTER уровня строки наиболее разумно использовать для каскадного
+обновления данных в других таблицах или проверки согласованности сделанных изменений с дан-
+ными в других таблицах. Причина для такого разделения работы в том, что триггер AFTER видит
+окончательное значение строки, в то время как для триггера BEFORE это не так, ведь могут быть
+другие триггеры BEFORE, которые сработают позже. Если нет особых причин для выбора между
+триггерами BEFORE или AFTER, то триггер BEFORE предпочтительнее, так как не требует сохранения
+информации об операции до конца работы оператора.
+Если триггерная функция выполняет команды SQL, эти команды могут заново запускать триггеры.
+Это известно как каскадные триггеры. Прямых ограничений на количество каскадных уровней
+не существует. Вполне возможно, что каскадные вызовы приведут к рекурсивному срабатыванию
+одного и того же триггера. Например, в триггере INSERT может выполняться команда, которая
+добавляет строку в эту же таблицу, тем самым опять вызывая триггер на INSERT. Обязанность
+программиста не допускать бесконечную рекурсию в таких случаях.
+При определении триггера можно указывать аргументы. Цель включения аргументов в определе-
+ние триггера в том, чтобы позволить разным триггерам с аналогичными требованиями вызывать
+одну и ту же функцию. В качестве примера можно создать обобщенную триггерную функцию, ко-
+торая принимает два аргумента с именами столбцов и записывает текущего пользователя в пер-
+вый аргумент и текущий штамп времени во второй. При правильном написании такая триггерная
+функция будет независима от конкретной таблицы, для которой она будет запускаться. Таким об-
+разом, одна и та же функция может использоваться при выполнении INSERT в любую таблицу с
+соответствующими столбцами, чтобы, например, автоматически отслеживать создание записей в
+транзакционной таблице. Для триггеров UPDATE аргументы также могут использоваться для отсле-
+живания последних сделанных изменений.
+У каждого языка программирования, поддерживающего триггеры, есть свой собственный метод
+доступа из триггерной функции к входным данным триггера. Входные данные триггера включают
+1079Триггеры
+в себя тип события (например, INSERT или UPDATE), а также любые аргументы, перечисленные в
+CREATE TRIGGER. Для триггеров уровня строки входные данные также включают строку NEW для
+триггеров INSERT и UPDATE и/или строку OLD для триггеров UPDATE и DELETE.
+Триггеры уровня оператора по умолчанию не имеют возможностей для проверки отдельных строк,
+модифицированных оператором. Но триггер AFTER STATEMENT может запросить создание для него
+переходных таблиц, чтобы ему были доступны наборы затрагиваемых операцией строк. Тригге-
+рам AFTER ROW также могут предоставляться переходные таблицы, чтобы они могли видеть все
+изменения в таблице, а не только изменения в отдельных строках, для которых они срабатывают.
+Метод обращения к переходным таблицам определяется применяемым языком программирова-
+ния, но обычно переходные таблицы представляются как временные таблицы только для чтения,
+к которым в триггерной функции можно обращаться, выполняя SQL-команды.
+39.2. Видимость изменений в данных
+Если в триггерной функции выполняются SQL-команды и эти команды обращаются к таблице, на
+которую создан триггер, то необходимо знать правила видимости данных, потому что они опреде-
+ляют, будут ли видеть эти SQL-команды изменения в данных, для которых сработал триггер. Крат-
+ко:
+• Триггеры уровня оператора следуют простым правилам видимости: никакие из изменений,
+произведённых оператором, не видны в триггерах BEFORE, тогда как в триггерах AFTER видны
+все изменения.
+• Изменение данных (вставка, обновление или удаление), заставляющее сработать триггер, не
+видно для команд SQL, выполняемых в триггере BEFORE уровня строки, потому что это измене-
+ние ещё не произошло.
+• Тем не менее, команды SQL, выполняемые в триггере BEFORE уровня строки, будут видеть из-
+менения данных в строках, которые уже были обработаны в этом операторе. Это требует осто-
+рожности, так как порядок обработки строк в целом непредсказуемый; команда SQL, обраба-
+тывающая множество строк, может делать это в любом порядке.
+• Аналогично, триггер INSTEAD OF уровня строки увидит изменения данных, внесённые при
+предыдущих вызовах триггера INSTEAD OF для этой же внешней команды.
+• Когда срабатывает триггер AFTER уровня строки, все изменения сделанные оператором уже
+выполнены и видны в вызываемой триггерной функции.
+Если триггерная функция написана на одном из стандартных процедурных языков, вышеприве-
+дённые утверждения применимы, только если функция объявлена как VOLATILE. Функции объяв-
+ленные как STABLE или IMMUTABLE в любом случае не будут видеть изменений, сделанных вызыва-
+ющим оператором.
+Дополнительную информацию о правилах видимости данных можно найти в Разделе 47.5. Пример
+в Разделе 39.4 содержит демонстрацию этих правил.
+39.3. Триггерные функции на языке C
+Этот раздел описывает низкоуровневые детали интерфейса для триггерной функции. Эта инфор-
+мация необходима только при разработке триггерных функций на C. При использовании языка
+более высокого уровня эти детали обрабатываются автоматически. В большинстве случаев необ-
+ходимо рассмотреть использование процедурного языка, прежде чем начать разрабатывать триг-
+геры на C. В документации по каждому процедурному языку объясняется как создавать триггеры
+на этом языке.
+Триггерные функции должны использовать интерфейс функций «версии 1».
+Когда функция вызывается диспетчером триггеров, ей не передаются обычные аргументы, но пе-
+редаётся указатель «context», ссылающийся на структуру TriggerData. Функции на C могут про-
+верить, вызваны ли они диспетчером триггеров или нет, выполнив макрос:
+1080Триггеры
+CALLED_AS_TRIGGER(fcinfo)
+который разворачивается в:
+((fcinfo)-&gt;context != NULL &amp;&amp; IsA((fcinfo)-&gt;context, TriggerData))
+Если возвращается истина, то fcinfo-&gt;context можно безопасно привести к типу TriggerData</p>
+<ul>
+  <li>и использовать указатель на структуру TriggerData. Функция не должна изменять структуру
+TriggerData или любые данные, которые на неё указывают.
+struct TriggerData определяется в commands/trigger.h:
+typedef struct TriggerData
+{
+NodeTag
+type;
+TriggerEvent
+tg_event;
+Relation
+tg_relation;
+HeapTuple
+tg_trigtuple;
+HeapTuple
+tg_newtuple;
+Trigger
+<em>tg_trigger;
+Buffer
+tg_trigtuplebuf;
+Buffer
+tg_newtuplebuf;
+Tuplestorestate *tg_oldtable;
+Tuplestorestate *tg_newtable;
+} TriggerData;
+где элементы определяются следующим образом:
+type
+Всегда T_TriggerData.
+tg_event
+Описывает событие, для которого вызывается функция. Можно использовать следующие мак-
+росы для получения информации о tg_event:
+TRIGGER_FIRED_BEFORE(tg_event)
+Возвращает истину, если триггер сработал до операции.
+TRIGGER_FIRED_AFTER(tg_event)
+Возвращает истину, если триггер сработал после операции.
+TRIGGER_FIRED_INSTEAD(tg_event)
+Возвращает истину, если триггер сработал вместо операции.
+TRIGGER_FIRED_FOR_ROW(tg_event)
+Возвращает истину, если триггер сработал на уровне строки.
+TRIGGER_FIRED_FOR_STATEMENT(tg_event)
+Возвращает истину, если триггер сработал на уровне оператора.
+TRIGGER_FIRED_BY_INSERT(tg_event)
+Возвращает истину, если триггер сработал для операции INSERT.
+TRIGGER_FIRED_BY_UPDATE(tg_event)
+Возвращает истину, если триггер сработал для операции UPDATE.
+TRIGGER_FIRED_BY_DELETE(tg_event)
+Возвращает истину, если триггер сработал для операции DELETE.
+1081Триггеры
+TRIGGER_FIRED_BY_TRUNCATE(tg_event)
+Возвращает истину, если триггер сработал для операции TRUNCATE.
+tg_relation
+Указатель на структуру, описывающую таблицу, для которой сработал триггер. Подробнее об
+этой структуре в utils/rel.h. Самое интересное здесь это tg_relation-&gt;rd_att (дескриптор
+записей таблицы) и tg_relation-&gt;rd_rel-&gt;relname (имя таблицы; имеет тип NameData, а не
+char</em>; используйте SPI_getrelname(tg_relation), чтобы получить тип char* если потребуется
+копия имени).
+tg_trigtuple
+Указатель на строку, для которой сработал триггер. Это строка, которая вставляется, обновля-
+ется или удаляется. При срабатывании триггера для INSERT или DELETE это значение нужно
+вернуть из функции, только если не планируется изменять строку (в случае INSERT) или про-
+пускать операцию для этой строки.
+tg_newtuple
+Для триггера на UPDATE это указатель на новую версию строки либо NULL, если триггер на INSERT
+или DELETE. Это значение нужно вернуть из функции в случае UPDATE, если не планируется
+изменять строку или пропускать операцию для этой строки.
+tg_trigger
+Указатель на структуру с типом Trigger, определённую в utils/reltrigger.h:
+typedef struct Trigger
+{
+Oid
+tgoid;
+char
+<em>tgname;
+Oid
+tgfoid;
+int16
+tgtype;
+char
+tgenabled;
+bool
+tgisinternal;
+Oid
+tgconstrrelid;
+Oid
+tgconstrindid;
+Oid
+tgconstraint;
+bool
+tgdeferrable;
+bool
+tginitdeferred;
+int16
+tgnargs;
+int16
+tgnattr;
+int16
+*tgattr;
+char
+**tgargs;
+char
+*tgqual;
+char
+*tgoldtable;
+char
+*tgnewtable;
+} Trigger;
+где tgname — имя триггера, tgnargs — количество аргументов в tgargs, и tgargs — массив
+указателей на аргументы, указанные в команде CREATE TRIGGER. Остальные члены структуры
+предназначены для внутреннего использования.
+tg_trigtuplebuf
+Буфер, содержащий tg_trigtuple, или содержащий InvalidBuffer — если нет такой строки
+или она не хранится в дисковом буфере.
+tg_newtuplebuf
+Буфер, содержащий tg_newtuple, или содержащий InvalidBuffer — если нет такой строки или
+она не хранится в дисковом буфере.
+1082Триггеры
+tg_oldtable
+Указатель на структуру типа Tuplestorestate, содержащую ноль или несколько строк в фор-
+мате, определяемом содержимым tg_relation, или указатель NULL, если переходное отноше-
+ние OLD TABLE отсутствует.
+tg_newtable
+Указатель на структуру типа Tuplestorestate, содержащую ноль или несколько строк в фор-
+мате, определяемом содержимым tg_relation, или указатель NULL, если переходное отноше-
+ние NEW TABLE отсутствует.
+Чтобы обращаться к переходным таблицам в запросах, выполняемых через SPI, используйте
+SPI_register_trigger_data.
+Триггерная функция должна возвращать указатель HeapTuple или указатель NULL (но не SQL значе-
+ние null, то есть не нужно устанавливать isNull в истину). Не забудьте, что если не планируете ме-
+нять обрабатываемую триггером строку, то нужно вернуть либо tg_trigtuple, либо tg_newtuple.
+39.4. Полный пример триггера
+Вот очень простой пример триггерной функции, написанной на C. (Примеры триггеров для проце-
+дурных языков могут быть найдены в документации на процедурные языки.)
+Функция trigf сообщает количество строк в таблице ttest и пропускает операцию для строки при
+попытке вставить пустое значение в столбец x. (Таким образом, триггер действует как ограничение
+NOT NULL, но не прерывает транзакцию.)
+Вначале определение таблицы:
+CREATE TABLE ttest (
+x integer
+);
+Теперь исходный код триггерной функции:
+#include
+#include
+#include
+#include
+#include
+“postgres.h”
+“fmgr.h”
+“executor/spi.h”
+“commands/trigger.h”
+“utils/rel.h”
+/</em> this is what you need to work with SPI <em>/
+/</em> … triggers … <em>/
+/</em> … and relations <em>/
+PG_MODULE_MAGIC;
+PG_FUNCTION_INFO_V1(trigf);
+Datum
+trigf(PG_FUNCTION_ARGS)
+{
+TriggerData *trigdata = (TriggerData *) fcinfo-&gt;context;
+TupleDesc
+tupdesc;
+HeapTuple
+rettuple;
+char
+*when;
+bool
+checknull = false;
+bool
+isnull;
+int
+ret, i;
+/</em> make sure it’s called as a trigger at all <em>/
+if (!CALLED_AS_TRIGGER(fcinfo))
+elog(ERROR, “trigf: not called by trigger manager”);
+1083Триггеры
+/</em> tuple to return to executor <em>/
+if (TRIGGER_FIRED_BY_UPDATE(trigdata-&gt;tg_event))
+rettuple = trigdata-&gt;tg_newtuple;
+else
+rettuple = trigdata-&gt;tg_trigtuple;
+/</em> check for null values <em>/
+if (!TRIGGER_FIRED_BY_DELETE(trigdata-&gt;tg_event)
+&amp;&amp; TRIGGER_FIRED_BEFORE(trigdata-&gt;tg_event))
+checknull = true;
+if (TRIGGER_FIRED_BEFORE(trigdata-&gt;tg_event))
+when = “before”;
+else
+when = “after “;
+tupdesc = trigdata-&gt;tg_relation-&gt;rd_att;
+/</em> connect to SPI manager <em>/
+if ((ret = SPI_connect()) &lt; 0)
+elog(ERROR, “trigf (fired %s): SPI_connect returned %d”, when, ret);
+/</em> get number of rows in table <em>/
+ret = SPI_exec(“SELECT count(</em>) FROM ttest”, 0);
+if (ret &lt; 0)
+elog(ERROR, “trigf (fired %s): SPI_exec returned %d”, when, ret);
+/* count(*) returns int8, so be careful to convert */
+i = DatumGetInt64(SPI_getbinval(SPI_tuptable-&gt;vals[0],
+SPI_tuptable-&gt;tupdesc,
+1,
+&amp;isnull));
+elog (INFO, “trigf (fired %s): there are %d rows in ttest”, when, i);
+SPI_finish();
+if (checknull)
+{
+SPI_getbinval(rettuple, tupdesc, 1, &amp;isnull);
+if (isnull)
+rettuple = NULL;
+}
+return PointerGetDatum(rettuple);
+}
+После компиляции исходного кода (см. Подраздел 38.10.5) объявляем функцию и триггеры:
+CREATE FUNCTION trigf() RETURNS trigger
+AS ‘имя_файла’
+LANGUAGE C;
+CREATE TRIGGER tbefore BEFORE INSERT OR UPDATE OR DELETE ON ttest
+FOR EACH ROW EXECUTE FUNCTION trigf();
+CREATE TRIGGER tafter AFTER INSERT OR UPDATE OR DELETE ON ttest
+1084Триггеры
+FOR EACH ROW EXECUTE FUNCTION trigf();
+Теперь можно проверить работу триггера:
+=&gt; INSERT INTO ttest VALUES (NULL);
+INFO: trigf (fired before): there are 0 rows in ttest
+INSERT 0 0
+– Вставка записи пропущена (значение NULL), поэтому триггер AFTER не сработал
+=&gt; SELECT * FROM ttest;
+x
+—
+(0 rows)
+=&gt; INSERT INTO ttest VALUES (1);
+INFO: trigf (fired before): there are 0 rows in ttest
+INFO: trigf (fired after ): there are 1 rows in ttest
+^^^^^^^
+вспомните, что говорилось о видимости
+INSERT 167793 1
+vac=&gt; SELECT * FROM ttest;
+x
+—
+1
+(1 row)
+=&gt; INSERT INTO ttest SELECT x * 2 FROM ttest;
+INFO: trigf (fired before): there are 1 rows in ttest
+INFO: trigf (fired after ): there are 2 rows in ttest
+^^^^^^^
+вспомните, что говорилось о видимости
+INSERT 167794 1
+=&gt; SELECT * FROM ttest;
+x
+—
+1
+2
+(2 rows)
+=&gt; UPDATE ttest SET
+INFO: trigf (fired
+UPDATE 0
+=&gt; UPDATE ttest SET
+INFO: trigf (fired
+INFO: trigf (fired
+UPDATE 1
+vac=&gt; SELECT * FROM
+x
+—
+1
+4
+(2 rows)
+x = NULL WHERE x = 2;
+before): there are 2 rows in ttest
+x = 4 WHERE x = 2;
+before): there are 2 rows in ttest
+after ): there are 2 rows in ttest
+ttest;
+=&gt; DELETE FROM ttest;
+INFO: trigf (fired before): there are 2 rows in ttest
+INFO: trigf (fired before): there are 1 rows in ttest
+INFO: trigf (fired after ): there are 0 rows in ttest
+1085Триггеры
+INFO:
+trigf (fired after ): there are 0 rows in ttest
+^^^^^^^
+вспомните, что говорилось о видимости
+DELETE 2
+=&gt; SELECT * FROM ttest;
+x
+—
+(0 rows)
+Более сложные примеры можно найти в src/test/regress/regress.c и в spi.
+1086</li>
+</ul>
+
+      <footer class="entry-meta">
+        <span>Updated on <span class="entry-date date published updated"><time datetime="2018-12-03 T15:14:43-04:00">December 03, 2018</time></span></span>
+        <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-039/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-039/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-039/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2018 Sergey Khatsiola. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+          
+
+</body>
+</html>

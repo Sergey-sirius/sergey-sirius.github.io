@@ -1,0 +1,369 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Глава 48. Фоновые рабочие процессы &#8211; Sirius Blog</title>
+<meta name="description" content="">
+<meta name="keywords" content="PostgreSQL">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-11.jpg">
+
+<meta name="twitter:title" content="Глава 48. Фоновые рабочие процессы">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@2hotab2">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Глава 48. Фоновые рабочие процессы">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-048/">
+<meta property="og:site_name" content="Sirius Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-048/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.jpg">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.jpg">
+<!-- 114x72 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x72" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.jpg">
+<!-- 144x72 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x72" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.jpg">
+
+
+
+</head>
+
+<body id="page" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://localhost:4000/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://localhost:4000/images/avatar.jpg" alt="Sergey Khatsiola photo" class="author-photo">
+					<h4>Sergey Khatsiola</h4>
+					<p>Кратко обо мне ...</p>
+				</li>
+				<li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="mailto:2hotab2@gmail.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/2hotab2"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				<li>
+					<a href="https://facebook.com/sergej.ha1"><i class="fa fa-fw fa-facebook"></i> Facebook</a>
+				</li>
+				
+				
+				<li>
+					<a href="https://github.com/Sergey-sirius"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://localhost:4000/posts/">All Posts</a></li>
+				<li><a href="http://localhost:4000/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
+	  
+	    
+	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
+	  
+	    
+	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 48. Фоновые рабочие процессы">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Глава 48. Фоновые рабочие процессы</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~7 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Глава 48. Фоновые рабочие процессы</p>
+
+<p>PostgreSQL поддерживает расширенную возможность запускать пользовательский код в отдель-
+ных процессах. Такие процессы запускаются, останавливаются и контролируются главным про-
+цессом postgres, который позволяет тесно связать их жизненный цикл с состоянием сервера. Эти
+процессы могут получать доступ к области разделяемой памяти PostgreSQL и устанавливать внут-
+ренние подключения к базам данных; они также могут последовательно запускать транзакции,
+как и обычные серверные процессы, обслуживающие клиентов. Кроме того, используя libpq, они
+могут подключаться к серверу и работать как обычные клиентские приложения.
+Предупреждение
+С использованием фоновых рабочих процессов сопряжены угрозы стабильности и без-
+опасности, так как они реализуются на языке C, и значит имеют неограниченный до-
+ступ к данным. Администраторы, желающие использовать модули, в которых задей-
+ствованы фоновые рабочие процессы, должны быть крайне осторожными. Запускать
+рабочие процессы можно разрешать только модулям, прошедшим всесторонний аудит.
+Рабочие процессы могут инициализироваться во время запуска PostgreSQL, если имя соответ-
+ствующего модуля добавлено в shared_preload_libraries. Модуль, желающий запустить рабо-
+чий процесс, может зарегистрировать его, вызвав RegisterBackgroundWorker(BackgroundWorker
+<em>worker) из своей функции _PG_init(). Рабочие процессы также могут быть запущены по-
+сле запуска системы с помощью функции RegisterDynamicBackgroundWorker(BackgroundWorker
+*worker, BackgroundWorkerHandle **handle). В отличие от RegisterBackgroundWorker, которую
+можно вызывать только из главного управляющего процесса, RegisterDynamicBackgroundWorker
+должна вызываться из обычного обслуживающего процесса или другого рабочего процесса.
+Структура BackgroundWorker определяется так:
+typedef void (</em>bgworker_main_type)(Datum main_arg);
+typedef struct BackgroundWorker
+{
+char
+bgw_name[BGW_MAXLEN];
+char
+bgw_type[BGW_MAXLEN];
+int
+bgw_flags;
+BgWorkerStartTime bgw_start_time;
+int
+bgw_restart_time;
+/* время в секундах либо BGW_NEVER_RESTART */
+char
+bgw_library_name[BGW_MAXLEN];
+char
+bgw_function_name[BGW_MAXLEN];
+Datum
+bgw_main_arg;
+char
+bgw_extra[BGW_EXTRALEN];
+int
+bgw_notify_pid;
+} BackgroundWorker;
+Поля bgw_name и bgw_type содержат строки, выводимые в отладочных сообщениях, списках про-
+цессов и подобных контекстах. Строка bgw_type должна быть одинаковой для всех рабочих про-
+цессов одного типа, чтобы такие процессы можно было сгруппировать, например, в списке процес-
+сов. bgw_name, с другой стороны, может содержать дополнительную информацию об определённом
+процессе. (Обычно строка bgw_name содержит тип в некотором виде, но строго это не требуется.)
+Поле bgw_flags представляет битовую маску, обозначающую запрашиваемые модулем возможно-
+сти. Допустимые в нём флаги:
+BGWORKER_SHMEM_ACCESS
+Запрашивается доступ к общей памяти. Рабочие процессы без доступа к общей памяти не могут
+обращаться к общим структурам данных PostgreSQL, в частности, к обычным и лёгким блоки-
+1285Фоновые рабочие процессы
+ровкам, общим буферам, или каким-либо структурам данным, которые рабочий процесс может
+создавать для собственного пользования.
+BGWORKER_BACKEND_DATABASE_CONNECTION
+Запрашивается возможность устанавливать подключение к базе данных, через ко-
+торое можно запускать транзакции и запросы. Рабочий процесс, использующий
+BGWORKER_BACKEND_DATABASE_CONNECTION для подключения к базе данных, должен также запро-
+сить доступ к разделяемой памяти, установив BGWORKER_SHMEM_ACCESS; в противном случае про-
+цесс не запустится.
+В bgw_start_time определяется состояние сервера, в котором postgres должен запустить этот про-
+цесс; возможные варианты: BgWorkerStart_PostmasterStart (выполнить запуск сразу после того,
+как postgres завершит инициализацию; процессы, выбирающие такой режим, не могут подклю-
+чаться к базам данных), BgWorkerStart_ConsistentState (выполнить запуск, когда будет достиг-
+нуто согласованное состояние горячего резерва, и когда процессы могут подключаться к базам
+данных и выполнять запросы на чтение), и BgWorkerStart_RecoveryFinished (выполнить запуск,
+как только система перейдёт в обычный режим чтения-записи). Заметьте, что два последних ва-
+рианта различаются только для серверов горячего резерва. Заметьте также, что этот параметр
+указывает только, когда должны запускаться процессы; при переходе в другое состояние они не
+будут останавливаться.
+bgw_restart_time задаёт паузу (в секундах), которую должен сделать postgres, прежде чем пе-
+резапускать процесс в случае его отказа. Это может быть любое положительное значение, либо
+BGW_NEVER_RESTART, указывающее, что процесс не нужно перезапускать в случае сбоя.
+bgw_library_name определяет имя библиотеки, в которой следует искать точку входа для запуска
+рабочего процесса. Указанная библиотека будет динамически загружена рабочим процессом, а
+вызываемая функция будет выбрана по имени bgw_function_name. Для функции, загружаемой из
+кода ядра, в этом поле должно быть “postgres”.
+bgw_function_name определяет имя функции в динамически загружаемой библиотеке, которая бу-
+дет точкой входа в новый рабочий процесс.
+В bgw_main_arg задаётся аргумент Datum, передаваемый основной функции фонового процесса.
+Эта функция должна принимать один аргумент типа Datum и возвращать void. В качестве этого
+аргумента ей и передаётся bgw_main_arg. Кроме того, глобальная переменная MyBgworkerEntry
+указывает на копию структуры BackgroundWorker, переданной при регистрации; содержимое этой
+структуры может быть полезно рабочему процессу.
+В Windows (и везде, где определяется EXEC_BACKEND) или в динамических рабочих процессах пере-
+давать Datum по ссылке небезопасно, возможна только передача по значению. Поэтому если функ-
+ции требуется аргумент, наиболее безопасно будет передать int32 или другое небольшое значение,
+содержащее индекс в массиве, размещённом в разделяемой памяти. Если же попытаться передать
+значение cstring или text, этот указатель нельзя будет использовать в новом рабочем процессе.
+Поле bgw_extra может содержать дополнительные данные, передаваемые фоновому рабочему про-
+цессу. В отличие от bgw_main_arg, эти данные не передаются в качестве аргумента основной функ-
+ции рабочего процесса, но могут быть получены через MyBgworkerEntry, как описывалось выше.
+В bgw_notify_pid задаётся PID обслуживающего процесса PostgreSQL, которому главный процесс
+должен посылать сигнал SIGUSR1 при запуске и завершении нового рабочего процесса. Это поле
+должно содержать 0 для рабочих процессов, регистрируемых при запуске главного процесса, либо
+когда обслуживающий процесс не желает ждать окончания запуска рабочего процесса. Во всех
+остальных случаях в нём должно быть значение MyProcPid.
+Запущенный
+процесс
+может
+подключиться
+к
+базе
+данных,
+вызвав
+BackgroundWorkerInitializeConnection(char *dbname, char *username, uint32 flags) или
+BackgroundWorkerInitializeConnectionByOid(Oid dboid, Oid useroid, uint32 flags). Через это
+1286Фоновые рабочие процессы
+подключение процесс может выполнять транзакции и запросы, используя интерфейс SPI. Если в
+dbname передаётся NULL или dboid равен InvalidOid, сеанс не подключается ни к какой конкрет-
+ной базе данных, но может обращаться к общим каталогам. Если в username передаётся NULL или
+useroid равен InvalidOid, процесс будет действовать от имени суперпользователя, созданного во
+время initdb. Значение BGWORKER_BYPASS_ALLOWCONN в поле flags позволяет подключаться к ба-
+зам, не принимающим подключения пользователей. Рабочий процесс может вызвать только одну
+из этих двух функций и только один раз. Переключаться между базами данных он не может.
+Сигналы изначально блокируются при вызове основной функции рабочего процесса и долж-
+ны быть разблокированы ей: это позволяет процессу при необходимости настроить соб-
+ственные обработчики событий. Новый процесс может разблокировать сигналы, вызвав
+BackgroundWorkerUnblockSignals, и заблокировать их, вызвав BackgroundWorkerBlockSignals.
+Если bgw_restart_time для рабочего процесса имеет значение BGW_NEVER_RESTART, ли-
+бо он завершается с кодом выхода 0, либо если его работа заканчивается вызовом
+TerminateBackgroundWorker, он автоматически перестаёт контролироваться управляющим про-
+цессом при выходе. В противном случае он будет перезапущен через время, заданное в
+bgw_restart_time, либо немедленно, если управляющему серверу пришлось переинициализиро-
+вать кластер из-за сбоя обслуживающего процесса. Обслуживающие процессы, которым нужно
+только приостановить своё выполнение на время, должны переходить в состояние прерываемого
+ожидания, а не завершаться; для этого используется функция WaitLatch(). При вызове этой функ-
+ции обязательно установите флаг WL_POSTMASTER_DEATH и проверьте код возврата, чтобы корректно
+выйти в экстренном случае, когда был завершён сам postgres.
+Когда рабочий процесс регистрируется функцией RegisterDynamicBackgroundWorker, обслужива-
+ющий процесс, производящий эту регистрацию, может получить информацию о состоянии по-
+рождённого процесса. Обслуживающие процессы, желающие сделать это, должны передать адрес
+BackgroundWorkerHandle * во втором аргументе RegisterDynamicBackgroundWorker. Если рабочий
+процесс успешно зарегистрирован, по этому адресу будет записан указатель на скрытую струк-
+туру, который можно затем передать функции GetBackgroundWorkerPid(BackgroundWorkerHandle
+*,
+pid_t
+*) или TerminateBackgroundWorker(BackgroundWorkerHandle
+*). Вызывая
+GetBackgroundWorkerPid, можно опрашивать состояние рабочего процесса: значение резуль-
+тата BGWH_NOT_YET_STARTED показывает, что рабочий процесс ещё не запущен управляющим;
+BGWH_STOPPED показывает, что он был запущен, но сейчас не работает; и BGWH_STARTED показывает,
+что он работает в данный момент. В последнем случае через второй аргумент также возвращается
+PID этого процесса. Обрабатывая вызов TerminateBackgroundWorker, управляющий процесс посы-
+лает SIGTERM рабочему процессу, если он работает, и перестаёт его контролировать сразу по его
+завершении.
+В некоторых случаях процессу, регистрирующему рабочий процесс, может потребоваться до-
+ждаться завершения запуска этого процесса. Это можно реализовать, записав в bgw_notify_pid
+значение MyProcPid, а затем передав указатель BackgroundWorkerHandle *, полученный во вре-
+мя регистрации, функции WaitForBackgroundWorkerStartup(BackgroundWorkerHandle *handle,
+pid_t *). Эта функция заблокирует выполнение, пока управляющий процесс не попытается запу-
+стить рабочий процесс, либо пока сам управляющий процесс не завершится. Если рабочий про-
+цесс запущен, возвращается значение BGWH_STARTED и по переданному адресу записывается PID.
+В противном случае возвращается BGWH_STOPPED или BGWH_POSTMASTER_DIED.
+Процесс
+также
+может
+ожидать
+завершения
+рабочего
+процесса,
+вызвав
+функ-
+цию WaitForBackgroundWorkerShutdown(BackgroundWorkerHandle
+*handle) с указателем
+BackgroundWorkerHandle *, полученным при регистрации. Эта функция заблокирует выполне-
+ние, пока не завершится рабочий процесс либо управляющий процесс. При завершении ра-
+бочего процесса эта функция возвращает BGWH_STOPPED, а при завершении управляющего —
+BGWH_POSTMASTER_DIED.
+Если фоновый рабочий процесс передаёт асинхронные уведомления, вызывая команду NOTIFY че-
+рез SPI (Server Programming Interface, Интерфейс программирования сервера), он должен явно
+вызвать ProcessCompletedNotifies после фиксации окружающей транзакции, чтобы все эти уве-
+1287Фоновые рабочие процессы
+домления были доставлены. Если рабочий процесс зарегистрируется для получения асинхронных
+уведомлений, вызвав LISTEN через SPI, уведомления будут выводиться, но перехватить и обрабо-
+тать эти уведомления программным образом нет возможности.
+Рабочий пример, демонстрирующий некоторые полезные приёмы, можно найти в модуле src/
+test/modules/worker_spi.
+Максимальное число рабочих процессов, которые можно зарегистрировать, ограничивается зна-
+чением max_worker_processes.
+1288</p>
+
+      <footer class="entry-meta">
+        <span>Updated on <span class="entry-date date published updated"><time datetime="2018-12-03 T15:14:43-04:00">December 03, 2018</time></span></span>
+        <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-048/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-048/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/postgres/2018-12-01-PostgreSQL-V11_Doc-048/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2018 Sergey Khatsiola. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+          
+
+</body>
+</html>

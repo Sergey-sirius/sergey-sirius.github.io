@@ -97,11 +97,11 @@ OWNER
 ALTER AGGREGATE имя (
 сигнатура_агр_функции
 сигнатура_агр_функции
-TO { новый_владелец |
+TO ( новый_владелец |
 сигнатура_агр_функции
 ) RENAME TO новое_имя
 )
-CURRENT_USER | SESSION_USER }
+CURRENT_USER | SESSION_USER )
 ) SET SCHEMA новая_схема
 Здесь сигнатура_агр_функции:
 * |
@@ -164,7 +164,7 @@ ALTER COLLATION — изменить определение правила со�
 Синтаксис
 ALTER COLLATION имя REFRESH VERSION
 ALTER COLLATION имя RENAME TO новое_имя
-ALTER COLLATION имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER COLLATION имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER COLLATION имя SET SCHEMA новая_схема
 Описание
 ALTER COLLATION изменяет определение правила сортировки.
@@ -228,7 +228,7 @@ CREATE COLLATION, DROP COLLATION
 ALTER CONVERSION — изменить определение перекодировки
 Синтаксис
 ALTER CONVERSION имя RENAME TO новое_имя
-ALTER CONVERSION имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER CONVERSION имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER CONVERSION имя SET SCHEMA новая_схема
 Описание
 ALTER CONVERSION изменяет определение перекодировки.
@@ -265,7 +265,7 @@ ALLOW_CONNECTIONS разр_подключения
 CONNECTION LIMIT предел_подключений
 IS_TEMPLATE это_шаблон
 ALTER DATABASE имя RENAME TO новое_имя
-ALTER DATABASE имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER DATABASE имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER DATABASE имя SET TABLESPACE новое_табл_пространство
 ALTER
 ALTER
@@ -279,7 +279,7 @@ DATABASE
 имя
 имя
 имя
-SET параметр_конфигурации { TO | = } { значение | DEFAULT }
+SET параметр_конфигурации ( TO | = ) ( значение | DEFAULT )
 SET параметр_конфигурации FROM CURRENT
 RESET параметр_конфигурации
 RESET ALL
@@ -349,54 +349,54 @@ CREATE DATABASE, DROP DATABASE, SET, CREATE TABLESPACE
 ALTER DEFAULT PRIVILEGES — определить права доступа по умолчанию
 Синтаксис
 ALTER DEFAULT PRIVILEGES
-[ FOR { ROLE | USER } целевая_роль [, ...] ]
+[ FOR ( ROLE | USER ) целевая_роль [, ...] ]
 [ IN SCHEMA имя_схемы [, ...] ]
 предложение_GRANT_или_REVOKE
 Где предложение_GRANT_или_REVOKE может быть следующим:
-GRANT { { SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER }
-[, ...] | ALL [ PRIVILEGES ] }
+GRANT ( ( SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER )
+[, ...] | ALL [ PRIVILEGES ] )
 ON TABLES
-TO { [ GROUP ] имя_роли | PUBLIC } [, ...] [ WITH GRANT OPTION ]
-GRANT { { USAGE | SELECT | UPDATE }
-[, ...] | ALL [ PRIVILEGES ] }
+TO ( [ GROUP ] имя_роли | PUBLIC ) [, ...] [ WITH GRANT OPTION ]
+GRANT ( ( USAGE | SELECT | UPDATE )
+[, ...] | ALL [ PRIVILEGES ] )
 ON SEQUENCES
-TO { [ GROUP ] имя_роли | PUBLIC } [, ...] [ WITH GRANT OPTION ]
-GRANT { EXECUTE | ALL [ PRIVILEGES ] }
-ON { FUNCTIONS | ROUTINES }
-TO { [ GROUP ] имя_роли | PUBLIC } [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | ALL [ PRIVILEGES ] }
+TO ( [ GROUP ] имя_роли | PUBLIC ) [, ...] [ WITH GRANT OPTION ]
+GRANT ( EXECUTE | ALL [ PRIVILEGES ] )
+ON ( FUNCTIONS | ROUTINES )
+TO ( [ GROUP ] имя_роли | PUBLIC ) [, ...] [ WITH GRANT OPTION ]
+GRANT ( USAGE | ALL [ PRIVILEGES ] )
 ON TYPES
-TO { [ GROUP ] имя_роли | PUBLIC } [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | CREATE | ALL [ PRIVILEGES ] }
+TO ( [ GROUP ] имя_роли | PUBLIC ) [, ...] [ WITH GRANT OPTION ]
+GRANT ( USAGE | CREATE | ALL [ PRIVILEGES ] )
 ON SCHEMAS
-TO { [ GROUP ] имя_роли | PUBLIC } [, ...] [ WITH GRANT OPTION ]
+TO ( [ GROUP ] имя_роли | PUBLIC ) [, ...] [ WITH GRANT OPTION ]
 REVOKE [ GRANT OPTION FOR ]
-{ { SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER }
-[, ...] | ALL [ PRIVILEGES ] }
+( ( SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER )
+[, ...] | ALL [ PRIVILEGES ] )
 ON TABLES
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ { USAGE | SELECT | UPDATE }
-[, ...] | ALL [ PRIVILEGES ] }
+( ( USAGE | SELECT | UPDATE )
+[, ...] | ALL [ PRIVILEGES ] )
 ON SEQUENCES
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ EXECUTE | ALL [ PRIVILEGES ] }
-ON { FUNCTIONS | ROUTINES }
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+( EXECUTE | ALL [ PRIVILEGES ] )
+ON ( FUNCTIONS | ROUTINES )
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | ALL [ PRIVILEGES ] }
+( USAGE | ALL [ PRIVILEGES ] )
 1309ALTER DEFAULT PRIVILEGES
 ON TYPES
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | CREATE | ALL [ PRIVILEGES ] }
+( USAGE | CREATE | ALL [ PRIVILEGES ] )
 ON SCHEMAS
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 Описание
 ALTER DEFAULT PRIVILEGES позволяет задавать права, применяемые к объектам, которые будут
@@ -457,9 +457,9 @@ GRANT, REVOKE
 ALTER DOMAIN — изменить определение домена
 Синтаксис
 ALTER DOMAIN имя
-{ SET DEFAULT выражение | DROP DEFAULT }
+( SET DEFAULT выражение | DROP DEFAULT )
 ALTER DOMAIN имя
-{ SET | DROP } NOT NULL
+( SET | DROP ) NOT NULL
 ALTER DOMAIN имя
 ADD ограничение_домена [ NOT VALID ]
 ALTER DOMAIN имя
@@ -469,7 +469,7 @@ RENAME CONSTRAINT имя_ограничения TO имя_нового_огра�
 ALTER DOMAIN имя
 VALIDATE CONSTRAINT имя_ограничения
 ALTER DOMAIN имя
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER DOMAIN имя
 RENAME TO новое_имя
 ALTER DOMAIN имя
@@ -584,7 +584,7 @@ TRIGGER
 имя
 DISABLE
 ENABLE [ REPLICA | ALWAYS ]
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 RENAME TO новое_имя
 Описание
 ALTER EVENT TRIGGER изменяет свойства существующего событийного триггера.
@@ -745,8 +745,8 @@ ALTER FOREIGN DATA WRAPPER имя
 [ HANDLER функция_обработчик | NO HANDLER ]
 [ VALIDATOR функция_проверки | NO VALIDATOR ]
 [ OPTIONS ( [ ADD | SET | DROP ] параметр ['значение'] [, ... ]) ]
-ALTER FOREIGN DATA WRAPPER имя OWNER TO { новый_владелец | CURRENT_USER |
-SESSION_USER }
+ALTER FOREIGN DATA WRAPPER имя OWNER TO ( новый_владелец | CURRENT_USER |
+SESSION_USER )
 ALTER FOREIGN DATA WRAPPER имя RENAME TO новое_имя
 Описание
 ALTER FOREIGN DATA WRAPPER изменяет определение обёртки сторонних данных. Первая форма
@@ -819,11 +819,11 @@ ALTER [ COLUMN ] имя_столбца [ SET DATA ] TYPE тип_данных
 [ COLLATE правило_сортировки ]
 ALTER [ COLUMN ] имя_столбца SET DEFAULT выражение
 ALTER [ COLUMN ] имя_столбца DROP DEFAULT
-ALTER [ COLUMN ] имя_столбца { SET | DROP } NOT NULL
+ALTER [ COLUMN ] имя_столбца ( SET | DROP ) NOT NULL
 ALTER [ COLUMN ] имя_столбца SET STATISTICS integer
 ALTER [ COLUMN ] имя_столбца SET ( атрибут = значение [, ... ] )
 ALTER [ COLUMN ] имя_столбца RESET ( атрибут [, ... ] )
-ALTER [ COLUMN ] имя_столбца SET STORAGE { PLAIN | EXTERNAL | EXTENDED | MAIN }
+ALTER [ COLUMN ] имя_столбца SET STORAGE ( PLAIN | EXTERNAL | EXTENDED | MAIN )
 ALTER [ COLUMN ] имя_столбца OPTIONS ( [ ADD | SET | DROP ] параметр ['значение']
 [, ... ])
 ADD ограничение_таблицы [ NOT VALID ]
@@ -837,7 +837,7 @@ SET WITH OIDS
 SET WITHOUT OIDS
 INHERIT таблица_родитель
 NO INHERIT таблица_родитель
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 OPTIONS ( [ ADD | SET | DROP ] параметр ['значение'] [, ... ])
 Описание
 ALTER FOREIGN TABLE меняет определение существующей сторонней таблицы. Эта команда имеет
@@ -1014,7 +1014,7 @@ ALTER FUNCTION имя [ ( [ [ режим_аргумента ]
 RENAME TO новое_имя
 ALTER FUNCTION имя [ ( [ [ режим_аргумента ]
 [, ...] ] ) ]
-OWNER TO { новый_владелец | CURRENT_USER
+OWNER TO ( новый_владелец | CURRENT_USER
 ALTER FUNCTION имя [ ( [ [ режим_аргумента ]
 [, ...] ] ) ]
 SET SCHEMA новая_схема
@@ -1024,17 +1024,17 @@ DEPENDS ON EXTENSION имя_расширения
 [ имя_аргумента ] тип_аргумента
 [ имя_аргумента ] тип_аргумента
 [ имя_аргумента ] тип_аргумента
-| SESSION_USER }
+| SESSION_USER )
 [ имя_аргумента ] тип_аргумента
 [ имя_аргумента ] тип_аргумента
 Где действие может быть следующим:
 CALLED ON NULL INPUT | RETURNS NULL ON NULL INPUT | STRICT
 IMMUTABLE | STABLE | VOLATILE | [ NOT ] LEAKPROOF
 [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER
-PARALLEL { UNSAFE | RESTRICTED | SAFE }
+PARALLEL ( UNSAFE | RESTRICTED | SAFE )
 COST стоимость_выполнения
 ROWS строк_в_результате
-SET параметр_конфигурации { TO | = } { значение | DEFAULT }
+SET параметр_конфигурации ( TO | = ) ( значение | DEFAULT )
 SET параметр_конфигурации FROM CURRENT
 RESET параметр_конфигурации
 RESET ALL
@@ -1273,8 +1273,8 @@ CREATE INDEX, REINDEX
 ALTER LANGUAGE — изменить определение процедурного языка
 Синтаксис
 ALTER [ PROCEDURAL ] LANGUAGE имя RENAME TO новое_имя
-ALTER [ PROCEDURAL ] LANGUAGE имя OWNER TO { новый_владелец | CURRENT_USER |
-SESSION_USER }
+ALTER [ PROCEDURAL ] LANGUAGE имя OWNER TO ( новый_владелец | CURRENT_USER |
+SESSION_USER )
 Описание
 ALTER LANGUAGE изменяет определение процедурного языка. Единственное, что может это команда
 — переименовать язык или назначить нового владельца. Выполнить ALTER LANGUAGE может только
@@ -1293,8 +1293,8 @@ CREATE LANGUAGE, DROP LANGUAGE
 1333ALTER LARGE OBJECT
 ALTER LARGE OBJECT — изменить определение большого объекта
 Синтаксис
-ALTER LARGE OBJECT oid_большого_объекта OWNER TO { новый_владелец | CURRENT_USER |
-SESSION_USER }
+ALTER LARGE OBJECT oid_большого_объекта OWNER TO ( новый_владелец | CURRENT_USER |
+SESSION_USER )
 Описание
 ALTER LARGE OBJECT изменяет определение большого объекта. Единственное, что может сделать
 эта команда — назначить нового владельца. Выполнить ALTER LARGE OBJECT может только супер-
@@ -1327,12 +1327,12 @@ SET TABLESPACE новое_табл_пространство [ NOWAIT ]
 ALTER [ COLUMN ] имя_столбца SET STATISTICS integer
 ALTER [ COLUMN ] имя_столбца SET ( атрибут = значение [, ... ] )
 ALTER [ COLUMN ] имя_столбца RESET ( атрибут [, ... ] )
-ALTER [ COLUMN ] имя_столбца SET STORAGE { PLAIN | EXTERNAL | EXTENDED | MAIN }
+ALTER [ COLUMN ] имя_столбца SET STORAGE ( PLAIN | EXTERNAL | EXTENDED | MAIN )
 CLUSTER ON имя_индекса
 SET WITHOUT CLUSTER
 SET ( параметр_хранения = значение [, ... ] )
 RESET ( параметр_хранения [, ... ] )
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 Описание
 ALTER MATERIALIZED VIEW изменяет различные расширенные свойства существующего материа-
 лизованного представления.
@@ -1375,14 +1375,14 @@ CREATE MATERIALIZED VIEW, DROP MATERIALIZED VIEW, REFRESH MATERIALIZED VIEW
 1336ALTER OPERATOR
 ALTER OPERATOR — изменить определение оператора
 Синтаксис
-ALTER OPERATOR имя ( { тип_слева | NONE } , { тип_справа | NONE } )
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
-ALTER OPERATOR имя ( { тип_слева | NONE } , { тип_справа | NONE } )
+ALTER OPERATOR имя ( ( тип_слева | NONE ) , ( тип_справа | NONE ) )
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
+ALTER OPERATOR имя ( ( тип_слева | NONE ) , ( тип_справа | NONE ) )
 SET SCHEMA новая_схема
-ALTER OPERATOR имя ( { тип_слева | NONE } , { тип_справа | NONE } )
-SET ( { RESTRICT = { процедура_ограничения | NONE }
-| JOIN = { процедура_соединения | NONE }
-} [, ... ] )
+ALTER OPERATOR имя ( ( тип_слева | NONE ) , ( тип_справа | NONE ) )
+SET ( ( RESTRICT = ( процедура_ограничения | NONE )
+| JOIN = ( процедура_соединения | NONE )
+) [, ... ] )
 Описание
 ALTER OPERATOR изменяет определение оператора.
 Выполнить ALTER OPERATOR может только владелец соответствующего оператора. Чтобы сменить
@@ -1426,7 +1426,7 @@ ALTER OPERATOR CLASS — изменить определение класса о
 ALTER OPERATOR CLASS имя USING метод_индекса
 RENAME TO новое_имя
 ALTER OPERATOR CLASS имя USING метод_индекса
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER OPERATOR CLASS имя USING метод_индекса
 SET SCHEMA новая_схема
 Описание
@@ -1456,19 +1456,19 @@ CREATE OPERATOR CLASS, DROP OPERATOR CLASS, ALTER OPERATOR FAMILY
 ALTER OPERATOR FAMILY — изменить определение семейства операторов
 Синтаксис
 ALTER OPERATOR FAMILY имя USING метод_индекса ADD
-{ OPERATOR номер_стратегии имя_оператора ( тип_операнда, тип_операнда )
+( OPERATOR номер_стратегии имя_оператора ( тип_операнда, тип_операнда )
 [ FOR SEARCH | FOR ORDER BY семейство_сортировки ]
 | FUNCTION номер_опорной_функции [ ( тип_операнда [ , тип_операнда ] ) ]
 имя_функции [ ( тип_аргумента [, ...] ) ]
-} [, ... ]
+) [, ... ]
 ALTER OPERATOR FAMILY имя USING метод_индекса DROP
-{ OPERATOR номер_стратегии ( тип_операнда [ , тип_операнда ] )
+( OPERATOR номер_стратегии ( тип_операнда [ , тип_операнда ] )
 | FUNCTION номер_опорной_функции ( тип_операнда [ , тип_операнда ] )
-} [, ... ]
+) [, ... ]
 ALTER OPERATOR FAMILY имя USING метод_индекса
 RENAME TO новое_имя
 ALTER OPERATOR FAMILY имя USING метод_индекса
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER OPERATOR FAMILY имя USING метод_индекса
 SET SCHEMA новая_схема
 Описание
@@ -1638,7 +1638,7 @@ ALTER
 [
 [
 POLICY имя ON имя_таблицы
-TO { имя_роли | PUBLIC | CURRENT_USER | SESSION_USER } [, ...] ]
+TO ( имя_роли | PUBLIC | CURRENT_USER | SESSION_USER ) [, ...] ]
 USING ( выражение_использования ) ]
 WITH CHECK ( выражение_проверки ) ]
 Описание
@@ -1681,7 +1681,7 @@ ALTER PROCEDURE имя [ ( [ [ режим_аргумента ] [ имя_аргу
 RENAME TO новое_имя
 ALTER PROCEDURE имя [ ( [ [ режим_аргумента ] [ имя_аргумента
 [, ...] ] ) ]
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER PROCEDURE имя [ ( [ [ режим_аргумента ] [ имя_аргумента
 [, ...] ] ) ]
 SET SCHEMA новая_схема
@@ -1695,7 +1695,7 @@ DEPENDS ON EXTENSION имя_расширения
 ] тип_аргумента
 Где действие может быть следующим:
 [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER
-SET параметр_конфигурации { TO | = } { значение | DEFAULT }
+SET параметр_конфигурации ( TO | = ) ( значение | DEFAULT )
 SET параметр_конфигурации FROM CURRENT
 RESET параметр_конфигурации
 RESET ALL
@@ -1795,7 +1795,7 @@ ADD TABLE [ ONLY ] имя_таблицы [ * ] [, ...]
 SET TABLE [ ONLY ] имя_таблицы [ * ] [, ...]
 DROP TABLE [ ONLY ] имя_таблицы [ * ] [, ...]
 SET ( параметр_публикации [= значение] [, ... ] )
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 RENAME TO новое_имя
 Описание
 Команда ALTER PUBLICATION может изменять атрибуты публикации.
@@ -1864,22 +1864,22 @@ CONNECTION LIMIT предел_подключений
 VALID UNTIL 'дата_время'
 ALTER ROLE имя RENAME TO новое_имя
 ALTER
-{ TO
+( TO
 ALTER
 FROM
 ALTER
 ALTER
-ROLE { указание_роли | ALL
-| = } { значение | DEFAULT
-ROLE { указание_роли | ALL
+ROLE ( указание_роли | ALL
+| = ) ( значение | DEFAULT
+ROLE ( указание_роли | ALL
 CURRENT
-ROLE { указание_роли | ALL
-ROLE { указание_роли | ALL
-} [ IN DATABASE имя_бд ] SET параметр_конфигурации
-}
-} [ IN DATABASE имя_бд ] SET параметр_конфигурации
-} [ IN DATABASE имя_бд ] RESET параметр_конфигурации
-} [ IN DATABASE имя_бд ] RESET ALL
+ROLE ( указание_роли | ALL
+ROLE ( указание_роли | ALL
+) [ IN DATABASE имя_бд ] SET параметр_конфигурации
+)
+) [ IN DATABASE имя_бд ] SET параметр_конфигурации
+) [ IN DATABASE имя_бд ] RESET параметр_конфигурации
+) [ IN DATABASE имя_бд ] RESET ALL
 Здесь указание_роли:
 имя_роли
 | CURRENT_USER
@@ -2002,7 +2002,7 @@ ALTER ROUTINE имя [ ( [ [ режим_аргумента ] [ имя_аргум
 RENAME TO новое_имя
 ALTER ROUTINE имя [ ( [ [ режим_аргумента ] [ имя_аргумента
 [, ...] ] ) ]
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER
 ALTER ROUTINE имя [ ( [ [ режим_аргумента ] [ имя_аргумента
 [, ...] ] ) ]
 SET SCHEMA новая_схема
@@ -2012,16 +2012,16 @@ DEPENDS ON EXTENSION имя_расширения
 ] тип_аргумента
 ] тип_аргумента
 ] тип_аргумента
-}
+)
 ] тип_аргумента
 ] тип_аргумента
 Где действие может быть следующим:
 IMMUTABLE | STABLE | VOLATILE | [ NOT ] LEAKPROOF
 [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER
-PARALLEL { UNSAFE | RESTRICTED | SAFE }
+PARALLEL ( UNSAFE | RESTRICTED | SAFE )
 COST стоимость_выполнения
 ROWS строк_в_результате
-SET параметр_конфигурации { TO | = } { значение | DEFAULT }
+SET параметр_конфигурации ( TO | = ) ( значение | DEFAULT )
 SET параметр_конфигурации FROM CURRENT
 RESET параметр_конфигурации
 RESET ALL
@@ -2070,7 +2070,7 @@ CREATE RULE, DROP RULE
 ALTER SCHEMA — изменить определение схемы
 Синтаксис
 ALTER SCHEMA имя RENAME TO новое_имя
-ALTER SCHEMA имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER SCHEMA имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 Описание
 ALTER SCHEMA изменяет определение схемы.
 Выполнить ALTER SCHEMA может только владелец соответствующей схемы. Чтобы переименовать
@@ -2099,9 +2099,9 @@ ALTER SEQUENCE [ IF EXISTS ] имя
 [ START [ WITH ] начало ]
 [ RESTART [ [ WITH ] перезапуск ] ]
 [ CACHE кеш ] [ [ NO ] CYCLE ]
-[ OWNED BY { имя_таблицы.имя_столбца | NONE } ]
-ALTER SEQUENCE [ IF EXISTS ] имя OWNER TO { новый_владелец | CURRENT_USER |
-SESSION_USER }
+[ OWNED BY ( имя_таблицы.имя_столбца | NONE ) ]
+ALTER SEQUENCE [ IF EXISTS ] имя OWNER TO ( новый_владелец | CURRENT_USER |
+SESSION_USER )
 ALTER SEQUENCE [ IF EXISTS ] имя RENAME TO новое_имя
 ALTER SEQUENCE [ IF EXISTS ] имя SET SCHEMA новая_схема
 Описание
@@ -2220,7 +2220,7 @@ ALTER
 ALTER
 SERVER имя [ VERSION 'новая_версия' ]
 OPTIONS ( [ ADD | SET | DROP ] параметр ['значение'] [, ... ] ) ]
-SERVER имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+SERVER имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 SERVER имя RENAME TO новое_имя
 Описание
 ALTER SERVER изменяет определение стороннего сервера. Первая форма меняет строку версии
@@ -2258,7 +2258,7 @@ CREATE SERVER, DROP SERVER
 1360ALTER STATISTICS
 ALTER STATISTICS — изменить определение объекта расширенной статистики
 Синтаксис
-ALTER STATISTICS имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER STATISTICS имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER STATISTICS имя RENAME TO новое_имя
 ALTER STATISTICS имя SET SCHEMA новая_схема
 Описание
@@ -2295,7 +2295,7 @@ ALTER SUBSCRIPTION имя REFRESH PUBLICATION [ WITH ( параметр_обно
 ALTER SUBSCRIPTION имя ENABLE
 ALTER SUBSCRIPTION имя DISABLE
 ALTER SUBSCRIPTION имя SET ( параметр_подписки [= значение] [, ... ] )
-ALTER SUBSCRIPTION имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER SUBSCRIPTION имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER SUBSCRIPTION имя RENAME TO новое_имя
 Описание
 ALTER SUBSCRIPTION может менять многие свойства подписки, которые могут задаваться в CREATE
@@ -2358,7 +2358,7 @@ CREATE SUBSCRIPTION, DROP SUBSCRIPTION, CREATE PUBLICATION, ALTER PUBLICATION
 1363ALTER SYSTEM
 ALTER SYSTEM — изменить параметр конфигурации сервера
 Синтаксис
-ALTER SYSTEM SET параметр_конфигурации { TO | = } { значение | 'значение' | DEFAULT }
+ALTER SYSTEM SET параметр_конфигурации ( TO | = ) ( значение | 'значение' | DEFAULT )
 ALTER SYSTEM RESET параметр_конфигурации
 ALTER SYSTEM RESET ALL
 Описание
@@ -2416,7 +2416,7 @@ SET SCHEMA новая_схема
 ALTER TABLE ALL IN TABLESPACE имя [ OWNED BY имя_роли [, ... ] ]
 SET TABLESPACE новое_табл_пространство [ NOWAIT ]
 ALTER TABLE [ IF EXISTS ] имя
-ATTACH PARTITION имя_секции { FOR VALUES указание_границ_секции | DEFAULT }
+ATTACH PARTITION имя_секции ( FOR VALUES указание_границ_секции | DEFAULT )
 ALTER TABLE [ IF EXISTS ] имя
 DETACH PARTITION имя_секции
 Где действие может быть следующим:
@@ -2427,16 +2427,16 @@ ALTER [ COLUMN ] имя_столбца [ SET DATA ] TYPE тип_данных
 [ COLLATE правило_сортировки ] [ USING выражение ]
 ALTER [ COLUMN ] имя_столбца SET DEFAULT выражение
 ALTER [ COLUMN ] имя_столбца DROP DEFAULT
-ALTER [ COLUMN ] имя_столбца { SET | DROP } NOT NULL
-ALTER [ COLUMN ] имя_столбца ADD GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY
+ALTER [ COLUMN ] имя_столбца ( SET | DROP ) NOT NULL
+ALTER [ COLUMN ] имя_столбца ADD GENERATED ( ALWAYS | BY DEFAULT ) AS IDENTITY
 [ ( параметры_последовательности ) ]
-ALTER [ COLUMN ] имя_столбца { SET GENERATED { ALWAYS | BY DEFAULT } |
-SET параметр_последовательности | RESTART [ [ WITH ] перезапуск ] } [...]
+ALTER [ COLUMN ] имя_столбца ( SET GENERATED ( ALWAYS | BY DEFAULT ) |
+SET параметр_последовательности | RESTART [ [ WITH ] перезапуск ] ) [...]
 ALTER [ COLUMN ] имя_столбца DROP IDENTITY [ IF EXISTS ]
 ALTER [ COLUMN ] имя_столбца SET STATISTICS integer
 ALTER [ COLUMN ] имя_столбца SET ( атрибут = значение [, ... ] )
 ALTER [ COLUMN ] имя_столбца RESET ( атрибут [, ... ] )
-ALTER [ COLUMN ] имя_столбца SET STORAGE { PLAIN | EXTERNAL | EXTENDED | MAIN }
+ALTER [ COLUMN ] имя_столбца SET STORAGE ( PLAIN | EXTERNAL | EXTENDED | MAIN )
 ADD ограничение_таблицы [ NOT VALID ]
 ADD ограничение_таблицы_по_индексу
 ALTER CONSTRAINT имя_ограничения [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY
@@ -2461,38 +2461,38 @@ SET WITHOUT CLUSTER
 SET WITH OIDS
 SET WITHOUT OIDS
 SET TABLESPACE новое_табл_пространство
-SET { LOGGED | UNLOGGED }
+SET ( LOGGED | UNLOGGED )
 SET ( параметр_хранения = значение [, ... ] )
 RESET ( параметр_хранения [, ... ] )
 INHERIT таблица_родитель
 NO INHERIT таблица_родитель
 OF имя_типа
 NOT OF
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
-REPLICA IDENTITY { DEFAULT | USING INDEX имя_индекса | FULL | NOTHING }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
+REPLICA IDENTITY ( DEFAULT | USING INDEX имя_индекса | FULL | NOTHING )
 и указание_границ_секции:
-IN ( { числовая_константа | строковая_константа | TRUE | FALSE | NULL } [, ...] ) |
-FROM ( { числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
-MAXVALUE } [, ...] )
-TO ( { числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
-MAXVALUE } [, ...] ) |
+IN ( ( числовая_константа | строковая_константа | TRUE | FALSE | NULL ) [, ...] ) |
+FROM ( ( числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
+MAXVALUE ) [, ...] )
+TO ( ( числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
+MAXVALUE ) [, ...] ) |
 WITH ( MODULUS числовая_константа, REMAINDER числовая_константа )
 и ограничение_столбца:
 [ CONSTRAINT имя_ограничения ]
-{ NOT NULL |
+( NOT NULL |
 NULL |
 CHECK ( выражение ) [ NO INHERIT ] |
 DEFAULT выражение_по_умолчанию |
-GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( параметры_последовательности ) ] |
+GENERATED ( ALWAYS | BY DEFAULT ) AS IDENTITY [ ( параметры_последовательности ) ] |
 UNIQUE параметры_индекса |
 PRIMARY KEY параметры_индекса |
 REFERENCES целевая_таблица [ ( целевой_столбец ) ] [ MATCH FULL | MATCH PARTIAL |
 MATCH SIMPLE ]
-[ ON DELETE действие ] [ ON UPDATE действие ] }
+[ ON DELETE действие ] [ ON UPDATE действие ] )
 [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 и ограничение_таблицы:
 [ CONSTRAINT имя_ограничения ]
-{ CHECK ( выражение ) [ NO INHERIT ] |
+( CHECK ( выражение ) [ NO INHERIT ] |
 UNIQUE ( имя_столбца [, ... ] ) параметры_индекса |
 PRIMARY KEY ( имя_столбца [, ... ] ) параметры_индекса |
 EXCLUDE [ USING метод_индекса ] ( элемент_исключения WITH оператор
@@ -2500,20 +2500,20 @@ EXCLUDE [ USING метод_индекса ] ( элемент_исключени�
 FOREIGN KEY ( имя_столбца [, ... ] ) REFERENCES целевая_таблица [ ( целевой_столбец
 [, ... ] ) ]
 [ MATCH FULL | MATCH PARTIAL | MATCH SIMPLE ] [ ON DELETE действие ] [ ON
-UPDATE действие ] }
+UPDATE действие ] )
 [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 и ограничение_таблицы_по_индексу:
 1367ALTER TABLE
 [ CONSTRAINT имя_ограничения ]
-{ UNIQUE | PRIMARY KEY } USING INDEX имя_индекса
+( UNIQUE | PRIMARY KEY ) USING INDEX имя_индекса
 [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 параметры_индекса в ограничениях UNIQUE, PRIMARY KEY и EXCLUDE:
 [ INCLUDE ( имя_столбца [, ... ] ) ]
 [ WITH ( параметр_хранения [= значение] [, ... ] ) ]
 [ USING INDEX TABLESPACE табл_пространство ]
 элемент_исключения в ограничении EXCLUDE:
-{ имя_столбца | ( выражение ) } [ класс_операторов ] [ ASC | DESC ] [ NULLS { FIRST |
-LAST } ]
+( имя_столбца | ( выражение ) ) [ класс_операторов ] [ ASC | DESC ] [ NULLS ( FIRST |
+LAST ) ]
 Описание
 ALTER TABLE меняет определение существующей таблицы. Несколько её разновидностей описаны
 ниже. Заметьте, что для разных разновидностей могут требоваться разные уровни блокировок. Ес-
@@ -2554,8 +2554,8 @@ NULL можно, только если столбец не содержит зн
 если ограничение NOT NULL в родительской таблице отсутствует, при желании такое ограниче-
 ние может быть добавлено в отдельные секции. Другими словами, потомки могут запрещать
 значения NULL, даже если родитель их допускает, но не наоборот.
-ADD GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY
-SET GENERATED { ALWAYS | BY DEFAULT }
+ADD GENERATED ( ALWAYS | BY DEFAULT ) AS IDENTITY
+SET GENERATED ( ALWAYS | BY DEFAULT )
 DROP IDENTITY [ IF EXISTS ]
 Эти формы определяют, является ли столбец столбцом идентификации, и меняют свойства ге-
 нерирования значений уже существующего столбца идентификации. За подробностями обра-
@@ -2743,7 +2743,7 @@ SET TABLESPACE
 талоги эта форма не перемещает; если требуется переместить их, следует использовать ALTER
 DATABASE или явные вызовы ALTER TABLE. Отношения information_schema не считаются частью
 системных каталогов и подлежат перемещению. См. также CREATE TABLESPACE.
-SET { LOGGED | UNLOGGED }
+SET ( LOGGED | UNLOGGED )
 Эта форма меняет характеристику журналирования таблицы, делает таблицу журналируе-
 мой/нежурналируемой, соответственно (см. UNLOGGED). К временной таблице она неприменима.
 SET ( параметр_хранения = значение [, ... ] )
@@ -2812,7 +2812,7 @@ RENAME
 SET SCHEMA
 Эта форма перемещает таблицу в другую схему. Вместе с таблицей перемещаются связанные с
 ней индексы и ограничения, а также последовательности, принадлежащие столбцам таблицы.
-ATTACH PARTITION имя_секции { FOR VALUES указание_границ_секции | DEFAULT }
+ATTACH PARTITION имя_секции ( FOR VALUES указание_границ_секции | DEFAULT )
 Эта форма присоединяет существующую таблицу (которая тоже может быть секционирован-
 ной) в качестве секции к целевой таблице. С указанием FOR VALUES таблица станет секцией для
 определённых значений, а с указанием DEFAULT — секцией по умолчанию. Для каждого индек-
@@ -3107,7 +3107,7 @@ TABLESPACE
 имя
 имя
 RENAME TO новое_имя
-OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 SET ( параметр_табличного_пространства = значение [, ... ] )
 RESET ( параметр_табличного_пространства [, ... ] )
 Описание
@@ -3155,8 +3155,8 @@ ALTER MAPPING FOR тип_фрагмента [, ... ] REPLACE старый_сло
 ALTER TEXT SEARCH CONFIGURATION имя
 DROP MAPPING [ IF EXISTS ] FOR тип_фрагмента [, ... ]
 ALTER TEXT SEARCH CONFIGURATION имя RENAME TO новое_имя
-ALTER TEXT SEARCH CONFIGURATION имя OWNER TO { новый_владелец | CURRENT_USER |
-SESSION_USER }
+ALTER TEXT SEARCH CONFIGURATION имя OWNER TO ( новый_владелец | CURRENT_USER |
+SESSION_USER )
 ALTER TEXT SEARCH CONFIGURATION имя SET SCHEMA новая_схема
 Описание
 ALTER TEXT SEARCH CONFIGURATION изменяет определение конфигурации текстового поиска. Эта
@@ -3210,8 +3210,8 @@ ALTER TEXT SEARCH DICTIONARY имя (
 параметр [ = значение ] [, ... ]
 )
 ALTER TEXT SEARCH DICTIONARY имя RENAME TO новое_имя
-ALTER TEXT SEARCH DICTIONARY имя OWNER TO { новый_владелец | CURRENT_USER |
-SESSION_USER }
+ALTER TEXT SEARCH DICTIONARY имя OWNER TO ( новый_владелец | CURRENT_USER |
+SESSION_USER )
 ALTER TEXT SEARCH DICTIONARY имя SET SCHEMA новая_схема
 Описание
 ALTER TEXT SEARCH DICTIONARY изменяет определение словаря текстового поиска. Эта команда
@@ -3329,13 +3329,13 @@ ALTER TABLE
 ALTER TYPE — изменить определение типа
 Синтаксис
 ALTER TYPE имя действие [, ... ]
-ALTER TYPE имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER TYPE имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER TYPE имя RENAME ATTRIBUTE имя_атрибута TO новое_имя_атрибута [ CASCADE |
 RESTRICT ]
 ALTER TYPE имя RENAME TO новое_имя
 ALTER TYPE имя SET SCHEMA новая_схема
-ALTER TYPE имя ADD VALUE [ IF NOT EXISTS ] новое_значение_перечисления [ { BEFORE |
-AFTER } соседнее_значение_перечисления ]
+ALTER TYPE имя ADD VALUE [ IF NOT EXISTS ] новое_значение_перечисления [ ( BEFORE |
+AFTER ) соседнее_значение_перечисления ]
 ALTER TYPE имя RENAME VALUE существующее_значение_перечисления
 TO новое_значение_перечисления
 Где действие может быть следующим:
@@ -3469,22 +3469,22 @@ CONNECTION LIMIT предел_подключений
 VALID UNTIL 'дата_время'
 ALTER USER имя RENAME TO новое_имя
 ALTER
-{ TO
+( TO
 ALTER
 FROM
 ALTER
 ALTER
-USER { указание_роли | ALL
-| = } { значение | DEFAULT
-USER { указание_роли | ALL
+USER ( указание_роли | ALL
+| = ) ( значение | DEFAULT
+USER ( указание_роли | ALL
 CURRENT
-USER { указание_роли | ALL
-USER { указание_роли | ALL
-} [ IN DATABASE имя_бд ] SET параметр_конфигурации
-}
-} [ IN DATABASE имя_бд ] SET параметр_конфигурации
-} [ IN DATABASE имя_бд ] RESET параметр_конфигурации
-} [ IN DATABASE имя_бд ] RESET ALL
+USER ( указание_роли | ALL
+USER ( указание_роли | ALL
+) [ IN DATABASE имя_бд ] SET параметр_конфигурации
+)
+) [ IN DATABASE имя_бд ] SET параметр_конфигурации
+) [ IN DATABASE имя_бд ] RESET параметр_конфигурации
+) [ IN DATABASE имя_бд ] RESET ALL
 Здесь указание_роли:
 имя_роли
 | CURRENT_USER
@@ -3499,8 +3499,8 @@ ALTER ROLE
 1392ALTER USER MAPPING
 ALTER USER MAPPING — изменить определение сопоставления пользователей
 Синтаксис
-ALTER USER MAPPING FOR { имя_пользователя | USER | CURRENT_USER | SESSION_USER |
-PUBLIC }
+ALTER USER MAPPING FOR ( имя_пользователя | USER | CURRENT_USER | SESSION_USER |
+PUBLIC )
 SERVER имя_сервера
 OPTIONS ( [ ADD | SET | DROP ] параметр ['значение'] [, ... ] )
 Описание
@@ -3536,7 +3536,7 @@ ALTER VIEW — изменить определение представлени�
 Синтаксис
 ALTER VIEW [ IF EXISTS ] имя ALTER [ COLUMN ] имя_столбца SET DEFAULT выражение
 ALTER VIEW [ IF EXISTS ] имя ALTER [ COLUMN ] имя_столбца DROP DEFAULT
-ALTER VIEW [ IF EXISTS ] имя OWNER TO { новый_владелец | CURRENT_USER | SESSION_USER }
+ALTER VIEW [ IF EXISTS ] имя OWNER TO ( новый_владелец | CURRENT_USER | SESSION_USER )
 ALTER VIEW [ IF EXISTS ] имя RENAME TO новое_имя
 ALTER VIEW [ IF EXISTS ] имя SET SCHEMA новая_схема
 ALTER VIEW [ IF EXISTS ] имя SET ( имя_параметра_представления
@@ -3703,8 +3703,8 @@ BEGIN — начать блок транзакции
 Синтаксис
 BEGIN [ WORK | TRANSACTION ] [ режим_транзакции [, ...] ]
 Где режим_транзакции может быть следующим:
-ISOLATION LEVEL { SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ
-UNCOMMITTED }
+ISOLATION LEVEL ( SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ
+UNCOMMITTED )
 READ WRITE | READ ONLY
 [ NOT ] DEFERRABLE
 Описание
@@ -3795,7 +3795,7 @@ CHECKPOINT
 1402CLOSE
 CLOSE — закрыть курсор
 Синтаксис
-CLOSE { имя | ALL }
+CLOSE ( имя | ALL )
 Описание
 CLOSE освобождает ресурсы, связанные с открытым курсором. Когда курсор закрыт, никакие опе-
 рации с ним невозможны. Закрывать курсор следует, когда он становится ненужным.
@@ -3907,7 +3907,7 @@ clusterdb
 COMMENT — задать или изменить комментарий объекта
 Синтаксис
 COMMENT ON
-{
+(
 ACCESS METHOD имя_объекта |
 AGGREGATE имя_агрегатной_функции ( сигнатура_агр_функции ) |
 CAST (исходный_тип AS целевой_тип) |
@@ -3954,7 +3954,7 @@ TRANSFORM FOR имя_типа LANGUAGE имя_языка |
 TRIGGER имя_триггера ON имя_таблицы |
 TYPE имя_объекта |
 VIEW имя_объекта
-} IS 'текст'
+) IS 'текст'
 Здесь сигнатура_агр_функции:
 1406COMMENT
 * |
@@ -4141,10 +4141,10 @@ PREPARE TRANSACTION, ROLLBACK PREPARED
 COPY — копировать данные между файлом и таблицей
 Синтаксис
 COPY имя_таблицы [ ( имя_столбца [, ...] ) ]
-FROM { 'имя_файла' | PROGRAM 'команда' | STDIN }
+FROM ( 'имя_файла' | PROGRAM 'команда' | STDIN )
 [ [ WITH ] ( параметр [, ...] ) ]
-COPY { имя_таблицы [ ( имя_столбца [, ...] ) ] | ( запрос ) }
-TO { 'имя_файла' | PROGRAM 'команда' | STDOUT }
+COPY ( имя_таблицы [ ( имя_столбца [, ...] ) ] | ( запрос ) )
+TO ( 'имя_файла' | PROGRAM 'команда' | STDOUT )
 [ [ WITH ] ( параметр [, ...] ) ]
 Здесь допускается параметр:
 FORMAT имя_формата
@@ -4155,7 +4155,7 @@ NULL 'маркер_NULL'
 HEADER [ boolean ]
 QUOTE 'символ_кавычек'
 ESCAPE 'символ_экранирования'
-FORCE_QUOTE { ( имя_столбца [, ...] ) | * }
+FORCE_QUOTE ( ( имя_столбца [, ...] ) | * )
 FORCE_NOT_NULL ( имя_столбца [, ...] )
 FORCE_NULL ( имя_столбца [, ...] )
 ENCODING 'имя_кодировки'
@@ -4612,7 +4612,7 @@ E 377 377 377 377 377 377
 До версии PostgreSQL 9.0 использовался и по-прежнему поддерживается следующий синтаксис:
 1420COPY
 COPY имя_таблицы [ ( имя_столбца [, ...] ) ]
-FROM { 'имя_файла' | STDIN }
+FROM ( 'имя_файла' | STDIN )
 [ [ WITH ]
 [ BINARY ]
 [ OIDS ]
@@ -4622,8 +4622,8 @@ FROM { 'имя_файла' | STDIN }
 [ QUOTE [ AS ] 'кавычки' ]
 [ ESCAPE [ AS ] 'спецсимвол' ]
 [ FORCE NOT NULL имя_столбца [, ...] ] ] ]
-COPY { имя_таблицы [ ( имя_столбца [, ...] ) ] | ( запрос ) }
-TO { 'имя_файла' | STDOUT }
+COPY ( имя_таблицы [ ( имя_столбца [, ...] ) ] | ( запрос ) )
+TO ( 'имя_файла' | STDOUT )
 [ [ WITH ]
 [ BINARY ]
 [ OIDS ]
@@ -4632,16 +4632,16 @@ TO { 'имя_файла' | STDOUT }
 [ CSV [ HEADER ]
 [ QUOTE [ AS ] 'кавычки' ]
 [ ESCAPE [ AS ] 'спецсимвол' ]
-[ FORCE QUOTE { имя_столбца [, ...] | * } ] ] ]
+[ FORCE QUOTE ( имя_столбца [, ...] | * ) ] ] ]
 Заметьте, что в этом синтаксисе ключевые слова BINARY и CSV обрабатываются как независимые,
 а не как аргументы параметра FORMAT.
 До версии PostgreSQL 7.3 использовался и по-прежнему поддерживается следующий синтаксис:
 COPY [ BINARY ] table_name [ WITH OIDS ]
-FROM { 'имя_файла' | STDIN }
+FROM ( 'имя_файла' | STDIN )
 [ [USING] DELIMITERS 'разделитель' ]
 [ WITH NULL AS 'маркер_null' ]
 COPY [ BINARY ] имя_таблицы [ WITH OIDS ]
-TO { 'имя_файла' | STDOUT }
+TO ( 'имя_файла' | STDOUT )
 [ [USING] DELIMITERS 'разделитель' ]
 [ WITH NULL AS 'маркер_null' ]
 1421CREATE ACCESS METHOD
@@ -4684,7 +4684,7 @@ STYPE = тип_данных_состояния
 [ , SSPACE = размер_данных_состояния ]
 [ , FINALFUNC = функция_завершения ]
 [ , FINALFUNC_EXTRA ]
-[ , FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE } ]
+[ , FINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE ) ]
 [ , COMBINEFUNC = комбинирующая_функция ]
 [ , SERIALFUNC = функция_сериализации ]
 [ , DESERIALFUNC = функция_десериализации ]
@@ -4695,10 +4695,10 @@ STYPE = тип_данных_состояния
 [ , MSSPACE = размер_данных_состояния_движ ]
 [ , MFINALFUNC = функция_завершения_движ ]
 [ , MFINALFUNC_EXTRA ]
-[ , MFINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE } ]
+[ , MFINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE ) ]
 [ , MINITCOND = начальное_условие_движ ]
 [ , SORTOP = оператор_сортировки ]
-[ , PARALLEL = { SAFE | RESTRICTED | UNSAFE } ]
+[ , PARALLEL = ( SAFE | RESTRICTED | UNSAFE ) ]
 )
 CREATE AGGREGATE имя ( [ [ режим_аргумента ] [ имя_аргумента ] тип_данных_аргумента
 [ , ... ] ]
@@ -4709,9 +4709,9 @@ STYPE = тип_данных_состояния
 [ , SSPACE = размер_данных_состояния ]
 [ , FINALFUNC = функция_завершения ]
 [ , FINALFUNC_EXTRA ]
-[ , FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE } ]
+[ , FINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE ) ]
 [ , INITCOND = начальное_условие ]
-[ , PARALLEL = { SAFE | RESTRICTED | UNSAFE } ]
+[ , PARALLEL = ( SAFE | RESTRICTED | UNSAFE ) ]
 [ , HYPOTHETICAL ]
 )
 или старый синтаксис
@@ -4722,7 +4722,7 @@ STYPE = тип_данных_состояния
 [ , SSPACE = размер_данных_состояния ]
 [ , FINALFUNC = функция_завершения ]
 [ , FINALFUNC_EXTRA ]
-[ , FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE } ]
+[ , FINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE ) ]
 [ , COMBINEFUNC = комбинирующая_функция ]
 [ , SERIALFUNC = функция_сериализации ]
 1423CREATE AGGREGATE
@@ -4756,7 +4756,7 @@ MSTYPE = тип_данных_состояния_движ ]
 MSSPACE = размер_данных_состояния_движ ]
 MFINALFUNC = функция_завершения_движ ]
 MFINALFUNC_EXTRA ]
-MFINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE } ]
+MFINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE ) ]
 MINITCOND = начальное_условие_движ ]
 SORTOP = оператор_сортировки ]
 )
@@ -4908,7 +4908,7 @@ basetype нужно указать "ANY" (не *). Создать сортиру
 чения NULL, соответствующие обычным (агрегируемым) аргументам агрегата. Это в основном
 полезно для правильного определения типа результата при создании полиморфной агрегатной
 функции.
-FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }
+FINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE )
 Этот параметр указывает, является ли функция завершения чистой функцией, которая не из-
 меняет свои аргументы. Это свойство функции передаёт значение READ_ONLY; два других значе-
 ния показывают, что она может менять значение переходного состояния. Подробнее это рас-
@@ -4971,7 +4971,7 @@ FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }
 тельными пустыми аргументами управляет параметр MFINALFUNC_EXTRA. Тип результата, кото-
 рый определяет функция_завершения_движ, или тип_данных_состояния_движ, должен совпадать
 с типом результата обычной реализации агрегата.
-MFINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }
+MFINALFUNC_MODIFY = ( READ_ONLY | SHAREABLE | READ_WRITE )
 Этот параметр подобен FINALFUNC_MODIFY, но описывает поведение функции завершения для
 движущегося агрегата.
 начальное_условие_движ
@@ -4982,7 +4982,7 @@ MFINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }
 зывается просто имя оператора (возможно, дополненное схемой). Предполагается, что опера-
 тор поддерживает те же типы входных данных, что и агрегат (который должен быть обычным
 и иметь один аргумент).
-PARALLEL = { SAFE | RESTRICTED | UNSAFE }
+PARALLEL = ( SAFE | RESTRICTED | UNSAFE )
 Указания PARALLEL SAFE, PARALLEL RESTRICTED и PARALLEL UNSAFE имеют те же значения, что и
 в CREATE FUNCTION. Агрегатная функция не будет считаться распараллеливаемой, если она
 имеет характеристику PARALLEL UNSAFE (она подразумевается по умолчанию!) или PARALLEL
@@ -5515,7 +5515,7 @@ CREATE DOMAIN имя [ AS ] тип_данных
 [ ограничение [ ... ] ]
 Здесь ограничение:
 [ CONSTRAINT имя_ограничения ]
-{ NOT NULL | NULL | CHECK (выражение) }
+( NOT NULL | NULL | CHECK (выражение) )
 Описание
 CREATE DOMAIN создаёт новый домен. Домен по сути представляет собой тип данных с дополнитель-
 ными условиями (ограничивающими допустимый набор значений). Владельцем домена становит-
@@ -5588,8 +5588,8 @@ INSERT INTO tab (domcol) VALUES ((SELECT domcol FROM tab WHERE false));
 индексов США применяется проверка с регулярными выражениями:
 CREATE DOMAIN us_postal_code AS TEXT
 CHECK(
-VALUE ~ '^\d{5}$'
-OR VALUE ~ '^\d{5}-\d{4}$'
+VALUE ~ '^\d(5)$'
+OR VALUE ~ '^\d(5)-\d(4)$'
 );
 1443CREATE DOMAIN
 CREATE TABLE us_snail_addy (
@@ -5610,7 +5610,7 @@ CREATE EVENT TRIGGER — создать событийный триггер
 CREATE EVENT TRIGGER имя
 ON событие
 [ WHEN переменная_фильтра IN (filter_value [, ... ]) [ AND ... ] ]
-EXECUTE { FUNCTION | PROCEDURE } имя_функции()
+EXECUTE ( FUNCTION | PROCEDURE ) имя_функции()
 Описание
 CREATE EVENT TRIGGER создаёт новый событийный триггер. Функция триггера выполняется, когда
 происходит указанное событие и удовлетворяется связанное с триггером условие WHEN (если такое
@@ -5803,9 +5803,9 @@ MAPPING, CREATE FOREIGN TABLE
 CREATE FOREIGN TABLE — создать стороннюю таблицу
 Синтаксис
 CREATE FOREIGN TABLE [ IF NOT EXISTS ] имя_таблицы ( [
-{ имя_столбца тип_данных [ OPTIONS ( параметр 'значение' [, ... ] ) ]
+( имя_столбца тип_данных [ OPTIONS ( параметр 'значение' [, ... ] ) ]
 [ COLLATE правило_сортировки ] [ ограничение_столбца [ ... ] ]
-| ограничение_таблицы }
+| ограничение_таблицы )
 [, ... ]
 ] )
 [ INHERITS ( таблица_родитель [, ... ] ) ]
@@ -5813,18 +5813,18 @@ SERVER имя_сервера
 [ OPTIONS ( параметр 'значение' [, ... ] ) ]
 CREATE FOREIGN TABLE [ IF NOT EXISTS ] имя_таблицы
 PARTITION OF таблица_родитель [ (
-{ имя_столбца [ WITH OPTIONS ] [ ограничение_столбца [ ... ] ]
-| ограничение_таблицы }
+( имя_столбца [ WITH OPTIONS ] [ ограничение_столбца [ ... ] ]
+| ограничение_таблицы )
 [, ... ]
 ) ] указание_границ_секции
 SERVER имя_сервера
 [ OPTIONS ( параметр 'значение' [, ... ] ) ]
 Здесь ограничение_столбца:
 [ CONSTRAINT имя_ограничения ]
-{ NOT NULL |
+( NOT NULL |
 NULL |
 CHECK ( выражение ) [ NO INHERIT ] |
-DEFAULT выражение_по_умолчанию }
+DEFAULT выражение_по_умолчанию )
 и ограничение_таблицы:
 [ CONSTRAINT имя_ограничения ]
 CHECK ( выражение ) [ NO INHERIT ]
@@ -5956,23 +5956,23 @@ FOREIGN SCHEMA
 CREATE FUNCTION — создать функцию
 Синтаксис
 CREATE [ OR REPLACE ] FUNCTION
-имя ( [ [ режим_аргумента ] [ имя_аргумента ] тип_аргумента [ { DEFAULT |
-= } выражение_по_умолчанию ] [, ...] ] )
+имя ( [ [ режим_аргумента ] [ имя_аргумента ] тип_аргумента [ ( DEFAULT |
+= ) выражение_по_умолчанию ] [, ...] ] )
 [ RETURNS тип_результата
 | RETURNS TABLE ( имя_столбца тип_столбца [, ...] ) ]
-{ LANGUAGE имя_языка
-| TRANSFORM { FOR TYPE имя_типа } [, ... ]
+( LANGUAGE имя_языка
+| TRANSFORM ( FOR TYPE имя_типа ) [, ... ]
 | WINDOW
 | IMMUTABLE | STABLE | VOLATILE | [ NOT ] LEAKPROOF
 | CALLED ON NULL INPUT | RETURNS NULL ON NULL INPUT | STRICT
 | [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER
-| PARALLEL { UNSAFE | RESTRICTED | SAFE }
+| PARALLEL ( UNSAFE | RESTRICTED | SAFE )
 | COST стоимость_выполнения
 | ROWS строк_в_результате
-| SET параметр_конфигурации { TO значение | = значение | FROM CURRENT }
+| SET параметр_конфигурации ( TO значение | = значение | FROM CURRENT )
 | AS 'определение'
 | AS 'объектный_файл', 'объектный_символ'
-} ...
+) ...
 Описание
 Команда CREATE FUNCTION определяет новую функцию. CREATE OR REPLACE FUNCTION создаёт новую
 функцию, либо заменяет определение уже существующей. Чтобы определить функцию, необходи-
@@ -6053,7 +6053,7 @@ FUNCTION.
 Имя языка, на котором реализована функция. Это может быть sql, c, internal, либо имя про-
 цедурного языка, определённого пользователем, например, plpgsql. Стиль написания этого
 имени в апострофах считается устаревшим и требует точного совпадения регистра.
-TRANSFORM { FOR TYPE имя_типа } [, ... ] }
+TRANSFORM ( FOR TYPE имя_типа ) [, ... ] )
 Устанавливает список трансформаций, которые должны применяться при вызове функции.
 Трансформации выполняют преобразования между типами SQL и типами данных, специфич-
 ными для языков; см. CREATE TRANSFORM. Преобразования встроенных типов обычно жёстко
@@ -6354,8 +6354,8 @@ CREATE INDEX — создать индекс
 Синтаксис
 CREATE [ UNIQUE ] INDEX [ CONCURRENTLY ] [ [ IF NOT EXISTS ] имя ] ON
 [ ONLY ] имя_таблицы [ USING метод ]
-( { имя_столбца | ( выражение ) } [ COLLATE правило_сортировки ] [ класс_операторов
-] [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] )
+( ( имя_столбца | ( выражение ) ) [ COLLATE правило_сортировки ] [ класс_операторов
+] [ ASC | DESC ] [ NULLS ( FIRST | LAST ) ] [, ...] )
 [ INCLUDE ( имя_столбца [, ...] ) ]
 [ WITH ( параметр_хранения = значение [, ... ] ) ]
 [ TABLESPACE табл_пространство ]
@@ -6870,7 +6870,7 @@ REFRESH MATERIALIZED VIEW
 CREATE OPERATOR — создать оператор
 Синтаксис
 CREATE OPERATOR имя (
-{FUNCTION|PROCEDURE} = имя_функции
+(FUNCTION|PROCEDURE) = имя_функции
 [, LEFTARG = тип_слева ] [, RIGHTARG = тип_справа ]
 [, COMMUTATOR = коммут_оператор ] [, NEGATOR = обратный_оператор ]
 [, RESTRICT = процедура_ограничения ] [, JOIN = процедура_соединения ]
@@ -6971,12 +6971,12 @@ CREATE OPERATOR CLASS — создать класс операторов
 Синтаксис
 CREATE OPERATOR CLASS имя [ DEFAULT ] FOR TYPE тип_данных
 USING метод_индекса [ FAMILY имя_семейства ] AS
-{ OPERATOR номер_стратегии имя_оператора [ ( тип_операнда, тип_операнда ) ] [ FOR
+( OPERATOR номер_стратегии имя_оператора [ ( тип_операнда, тип_операнда ) ] [ FOR
 SEARCH | FOR ORDER BY семейство_сортировки ]
 | FUNCTION номер_опорной_функции [ ( тип_операнда [ , тип_операнда ] ) ] имя_функции
 ( тип_аргумента [, ...] )
 | STORAGE тип_хранения
-} [, ... ]
+) [, ... ]
 Описание
 CREATE OPERATOR CLASS создаёт класс операторов. Класс операторов устанавливает, как данный
 тип будет использоваться в индексе, определяя, какие операторы исполняют конкретные роли или
@@ -7150,9 +7150,9 @@ CLASS, DROP OPERATOR CLASS
 CREATE POLICY — создать новую политику защиты на уровне строк для таблицы
 Синтаксис
 CREATE POLICY имя ON имя_таблицы
-[ AS { PERMISSIVE | RESTRICTIVE } ]
-[ FOR { ALL | SELECT | INSERT | UPDATE | DELETE } ]
-[ TO { имя_роли | PUBLIC | CURRENT_USER | SESSION_USER } [, ...] ]
+[ AS ( PERMISSIVE | RESTRICTIVE ) ]
+[ FOR ( ALL | SELECT | INSERT | UPDATE | DELETE ) ]
+[ TO ( имя_роли | PUBLIC | CURRENT_USER | SESSION_USER ) [, ...] ]
 [ USING ( выражение_USING ) ]
 [ WITH CHECK ( выражение_CHECK ) ]
 Описание
@@ -7439,15 +7439,15 @@ ALTER POLICY, DROP POLICY, ALTER TABLE
 CREATE PROCEDURE — создать процедуру
 Синтаксис
 CREATE [ OR REPLACE ] PROCEDURE
-имя ( [ [ режим_аргумента ] [ имя_аргумента ] тип_аргумента [ { DEFAULT |
-= } выражение_по_умолчанию ] [, ...] ] )
-{ LANGUAGE имя_языка
-| TRANSFORM { FOR TYPE имя_типа } [, ... ]
+имя ( [ [ режим_аргумента ] [ имя_аргумента ] тип_аргумента [ ( DEFAULT |
+= ) выражение_по_умолчанию ] [, ...] ] )
+( LANGUAGE имя_языка
+| TRANSFORM ( FOR TYPE имя_типа ) [, ... ]
 | [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER
-| SET параметр_конфигурации { TO значение | = значение | FROM CURRENT }
+| SET параметр_конфигурации ( TO значение | = значение | FROM CURRENT )
 | AS 'определение'
 | AS 'объектный_файл', 'объектный_символ'
-} ...
+) ...
 Описание
 Команда CREATE PROCEDURE определяет новую процедуру. CREATE OR REPLACE PROCEDURE создаёт
 новую процедуру либо заменяет определение уже существующей. Чтобы определить процедуру,
@@ -7493,7 +7493,7 @@ CREATE [ OR REPLACE ] PROCEDURE
 Имя языка, на котором реализована функция. Это может быть sql, c, internal либо имя про-
 цедурного языка, определённого пользователем, например, plpgsql. Стиль написания этого
 имени в апострофах считается устаревшим и требует точного совпадения регистра.
-TRANSFORM { FOR TYPE имя_типа } [, ... ] }
+TRANSFORM ( FOR TYPE имя_типа ) [, ... ] )
 Устанавливает список трансформаций, которые должны применяться при вызове процедуры.
 Трансформации выполняют преобразования между типами SQL и типами данных, специфич-
 ными для языков; см. CREATE TRANSFORM. Преобразования встроенных типов обычно жёстко
@@ -7838,7 +7838,7 @@ CREATE RULE — создать правило перезаписи
 Синтаксис
 CREATE [ OR REPLACE ] RULE имя AS ON событие
 TO имя_таблицы [ WHERE условие ]
-DO [ ALSO | INSTEAD ] { NOTHING | команда | ( команда ; команда ... ) }
+DO [ ALSO | INSTEAD ] ( NOTHING | команда | ( команда ; команда ... ) )
 Здесь допускается событие:
 SELECT | INSERT | UPDATE | DELETE
 Описание
@@ -8045,7 +8045,7 @@ CREATE [ TEMPORARY | TEMP ] SEQUENCE [ IF NOT EXISTS ] имя
 [ INCREMENT [ BY ] шаг ]
 [ MINVALUE мин_значение | NO MINVALUE ] [ MAXVALUE макс_значение | NO MAXVALUE ]
 [ START [ WITH ] начало ] [ CACHE кеш ] [ [ NO ] CYCLE ]
-[ OWNED BY { имя_таблицы.имя_столбца | NONE } ]
+[ OWNED BY ( имя_таблицы.имя_столбца | NONE ) ]
 Описание
 CREATE SEQUENCE создаёт генератор последовательности. Эта операция включает создание и ини-
 циализацию специальной таблицы имя, содержащей одну строку. Владельцем генератора будет
@@ -8395,61 +8395,61 @@ ALTER SUBSCRIPTION, DROP SUBSCRIPTION, CREATE PUBLICATION, ALTER PUBLICATION
 1515CREATE TABLE
 CREATE TABLE — создать таблицу
 Синтаксис
-CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT
+CREATE [ [ GLOBAL | LOCAL ] ( TEMPORARY | TEMP ) | UNLOGGED ] TABLE [ IF NOT
 EXISTS ] имя_таблицы ( [
-{ имя_столбца тип_данных [ COLLATE правило_сортировки ] [ ограничение_столбца
+( имя_столбца тип_данных [ COLLATE правило_сортировки ] [ ограничение_столбца
 [ ... ] ]
 | ограничение_таблицы
-| LIKE исходная_таблица [ вариант_копирования ... ] }
+| LIKE исходная_таблица [ вариант_копирования ... ] )
 [, ... ]
 ] )
 [ INHERITS ( таблица_родитель [, ... ] ) ]
-[ PARTITION BY { RANGE | LIST | HASH } ( { имя_столбца | ( выражение ) }
+[ PARTITION BY ( RANGE | LIST | HASH ) ( ( имя_столбца | ( выражение ) )
 [ COLLATE правило_сортировки ] [ класс_операторов ] [, ... ] ) ]
 [ WITH ( параметр_хранения [= значение] [, ... ] ) | WITH OIDS | WITHOUT OIDS ]
-[ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
+[ ON COMMIT ( PRESERVE ROWS | DELETE ROWS | DROP ) ]
 [ TABLESPACE табл_пространство ]
-CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT
+CREATE [ [ GLOBAL | LOCAL ] ( TEMPORARY | TEMP ) | UNLOGGED ] TABLE [ IF NOT
 EXISTS ] имя_таблицы
 OF имя_типа [ (
-{ имя_столбца [ WITH OPTIONS ] [ ограничение_столбца [ ... ] ]
-| ограничение_таблицы }
+( имя_столбца [ WITH OPTIONS ] [ ограничение_столбца [ ... ] ]
+| ограничение_таблицы )
 [, ... ]
 ) ]
-[ PARTITION BY { RANGE | LIST | HASH } ( { имя_столбца | ( выражение ) }
+[ PARTITION BY ( RANGE | LIST | HASH ) ( ( имя_столбца | ( выражение ) )
 [ COLLATE правило_сортировки ] [ класс_операторов ] [, ... ] ) ]
 [ WITH ( параметр_хранения [= значение] [, ... ] ) | WITH OIDS | WITHOUT OIDS ]
-[ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
+[ ON COMMIT ( PRESERVE ROWS | DELETE ROWS | DROP ) ]
 [ TABLESPACE табл_пространство ]
-CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT
+CREATE [ [ GLOBAL | LOCAL ] ( TEMPORARY | TEMP ) | UNLOGGED ] TABLE [ IF NOT
 EXISTS ] имя_таблицы
 PARTITION OF таблица_родитель [ (
-{ имя_столбца [ WITH OPTIONS ] [ ограничение_столбца [ ... ] ]
-| ограничение_таблицы }
+( имя_столбца [ WITH OPTIONS ] [ ограничение_столбца [ ... ] ]
+| ограничение_таблицы )
 [, ... ]
-) ] { FOR VALUES указание_границ_секции | DEFAULT }
-[ PARTITION BY { RANGE | LIST | HASH } ( { имя_столбца | ( выражение ) }
+) ] ( FOR VALUES указание_границ_секции | DEFAULT )
+[ PARTITION BY ( RANGE | LIST | HASH ) ( ( имя_столбца | ( выражение ) )
 [ COLLATE правило_сортировки ] [ класс_операторов ] [, ... ] ) ]
 [ WITH ( параметр_хранения [= значение] [, ... ] ) | WITH OIDS | WITHOUT OIDS ]
-[ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
+[ ON COMMIT ( PRESERVE ROWS | DELETE ROWS | DROP ) ]
 [ TABLESPACE табл_пространство ]
 Здесь ограничение_столбца:
 [ CONSTRAINT имя_ограничения ]
-{ NOT NULL |
+( NOT NULL |
 NULL |
 CHECK ( выражение ) [ NO INHERIT ] |
 DEFAULT выражение_по_умолчанию |
-GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( параметры_последовательности ) ] |
+GENERATED ( ALWAYS | BY DEFAULT ) AS IDENTITY [ ( параметры_последовательности ) ] |
 UNIQUE параметры_индекса |
 1516CREATE TABLE
 PRIMARY KEY параметры_индекса |
 REFERENCES целевая_таблица [ ( целевой_столбец ) ] [ MATCH FULL | MATCH PARTIAL |
 MATCH SIMPLE ]
-[ ON DELETE действие ] [ ON UPDATE действие ] }
+[ ON DELETE действие ] [ ON UPDATE действие ] )
 [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 и ограничение_таблицы:
 [ CONSTRAINT имя_ограничения ]
-{ CHECK ( выражение ) [ NO INHERIT ] |
+( CHECK ( выражение ) [ NO INHERIT ] |
 UNIQUE ( имя_столбца [, ... ] ) параметры_индекса |
 PRIMARY KEY ( имя_столбца [, ... ] ) параметры_индекса |
 EXCLUDE [ USING метод_индекса ] ( элемент_исключения WITH оператор
@@ -8457,25 +8457,25 @@ EXCLUDE [ USING метод_индекса ] ( элемент_исключени�
 FOREIGN KEY ( имя_столбца [, ... ] ) REFERENCES целевая_таблица [ ( целевой_столбец
 [, ... ] ) ]
 [ MATCH FULL | MATCH PARTIAL | MATCH SIMPLE ] [ ON DELETE действие ] [ ON
-UPDATE действие ] }
+UPDATE действие ] )
 [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 и вариант_копирования:
-{ INCLUDING | EXCLUDING } { COMMENTS | CONSTRAINTS | DEFAULTS | IDENTITY | INDEXES |
-STATISTICS | STORAGE | ALL }
+( INCLUDING | EXCLUDING ) ( COMMENTS | CONSTRAINTS | DEFAULTS | IDENTITY | INDEXES |
+STATISTICS | STORAGE | ALL )
 и указание_границ_секции:
-IN ( { числовая_константа | строковая_константа | TRUE | FALSE | NULL } [, ...] ) |
-FROM ( { числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
-MAXVALUE } [, ...] )
-TO ( { числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
-MAXVALUE } [, ...] ) |
+IN ( ( числовая_константа | строковая_константа | TRUE | FALSE | NULL ) [, ...] ) |
+FROM ( ( числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
+MAXVALUE ) [, ...] )
+TO ( ( числовая_константа | строковая_константа | TRUE | FALSE | MINVALUE |
+MAXVALUE ) [, ...] ) |
 WITH ( MODULUS числовая_константа, REMAINDER числовая_константа )
 параметры_индекса в ограничениях UNIQUE, PRIMARY KEY и EXCLUDE:
 [ INCLUDE ( имя_столбца [, ... ] ) ]
 [ WITH ( параметр_хранения [= значение] [, ... ] ) ]
 [ USING INDEX TABLESPACE табл_пространство ]
 элемент_исключения в ограничении EXCLUDE:
-{ имя_столбца | ( выражение ) } [ класс_операторов ] [ ASC | DESC ] [ NULLS { FIRST |
-LAST } ]
+( имя_столбца | ( выражение ) ) [ класс_операторов ] [ ASC | DESC ] [ NULLS ( FIRST |
+LAST ) ]
 Описание
 CREATE TABLE создаёт новую, изначально пустую таблицу в текущей базе данных. Владельцем таб-
 лицы будет пользователь, выполнивший эту команду.
@@ -8574,7 +8574,7 @@ INHERITS ( таблица_родитель [, ... ] )
 Если столбец в родительской таблице является столбцом идентификации, это свойство не на-
 следуется. Если требуется, в дочерней таблице этот столбец можно объявить столбцом иден-
 тификации.
-PARTITION BY { RANGE | LIST | HASH } ( { имя_столбца | ( выражение ) } [ класс_операторов
+PARTITION BY ( RANGE | LIST | HASH ) ( ( имя_столбца | ( выражение ) ) [ класс_операторов
 ] [, ...] )
 Необязательное предложение PARTITION BY задаёт стратегию секционирования таблицы. Таб-
 лица, созданная с этим указанием, называется секционируемой таблицей. Задаваемый в скоб-
@@ -8598,7 +8598,7 @@ PARTITION BY { RANGE | LIST | HASH } ( { имя_столбца | ( выраже�
 ется создание внешних ключей, ссылающихся на секционированные таблицы, хотя в секцио-
 нированных таблицах можно создать ограничения PRIMARY KEY.
 Узнать больше о секционировании таблиц можно в Разделе 5.10.
-PARTITION OF таблица_родитель { FOR VALUES указание_границ_секции | DEFAULT }
+PARTITION OF таблица_родитель ( FOR VALUES указание_границ_секции | DEFAULT )
 Создаёт таблицу в виде секции указанной родительской таблицы. Таблицу можно создать либо
 как секцию для определённых значений (используя FOR VALUES), либо как секцию по умолча-
 нию (используя DEFAULT). Это указание неприемлемо для таблиц, секционируемых по хешу.
@@ -8768,7 +8768,7 @@ DEFAULT выражение_по_умолчанию
 Это выражение будет использоваться во всех операциях добавления данных, в которых не за-
 даётся значение данного столбца. Если значение по умолчанию не определено, таким значе-
 нием будет NULL.
-GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( параметры_последовательности ) ]
+GENERATED ( ALWAYS | BY DEFAULT ) AS IDENTITY [ ( параметры_последовательности ) ]
 С этим предложением столбец создаётся как столбец идентификации. С ним будет связана
 неявная последовательность, из которой этот столбец будет автоматически получать значения
 в новых строках.
@@ -9422,11 +9422,11 @@ ALTER TABLE, DROP TABLE, CREATE TABLE AS, CREATE TABLESPACE, CREATE TYPE
 1536CREATE TABLE AS
 CREATE TABLE AS — создать таблицу из результатов запроса
 Синтаксис
-CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT
+CREATE [ [ GLOBAL | LOCAL ] ( TEMPORARY | TEMP ) | UNLOGGED ] TABLE [ IF NOT
 EXISTS ] имя_таблицы
 [ (имя_столбца [, ...] ) ]
 [ WITH ( параметр_хранения [= значение] [, ... ] ) | WITH OIDS | WITHOUT OIDS ]
-[ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
+[ ON COMMIT ( PRESERVE ROWS | DELETE ROWS | DROP ) ]
 [ TABLESPACE табл_пространство ]
 AS запрос
 [ WITH [ NO ] DATA ]
@@ -9531,7 +9531,7 @@ CREATE MATERIALIZED VIEW, CREATE TABLE, EXECUTE, SELECT, SELECT INTO, VALUES
 CREATE TABLESPACE — создать табличное пространство
 Синтаксис
 CREATE TABLESPACE табл_пространство
-[ OWNER { новый_владелец | CURRENT_USER | SESSION_USER } ]
+[ OWNER ( новый_владелец | CURRENT_USER | SESSION_USER ) ]
 LOCATION 'каталог'
 [ WITH ( параметр_табличного_пространства = значение [, ... ] ) ]
 Описание
@@ -9818,15 +9818,15 @@ CREATE FUNCTION, CREATE LANGUAGE, CREATE TYPE, DROP TRANSFORM
 1549CREATE TRIGGER
 CREATE TRIGGER — создать триггер
 Синтаксис
-CREATE [ CONSTRAINT ] TRIGGER имя { BEFORE | AFTER | INSTEAD OF } { событие
-[ OR ... ] }
+CREATE [ CONSTRAINT ] TRIGGER имя ( BEFORE | AFTER | INSTEAD OF ) ( событие
+[ OR ... ] )
 ON имя_таблицы
 [ FROM ссылающаяся_таблица ]
 [ NOT DEFERRABLE | [ DEFERRABLE ] [ INITIALLY IMMEDIATE | INITIALLY DEFERRED ] ]
-[ REFERENCING { { OLD | NEW } TABLE [ AS ] имя_переходного_отношения } [ ... ] ]
-[ FOR [ EACH ] { ROW | STATEMENT } ]
+[ REFERENCING ( ( OLD | NEW ) TABLE [ AS ] имя_переходного_отношения ) [ ... ] ]
+[ FOR [ EACH ] ( ROW | STATEMENT ) ]
 [ WHEN ( условие ) ]
-EXECUTE { FUNCTION | PROCEDURE } имя_функции ( аргументы )
+EXECUTE ( FUNCTION | PROCEDURE ) имя_функции ( аргументы )
 Здесь допускается событие:
 INSERT
 UPDATE [ OF имя_столбца [, ... ] ]
@@ -10158,7 +10158,7 @@ OUTPUT = функция_вывода
 [ , TYPMOD_IN = функция_ввода_модификатора_типа ]
 [ , TYPMOD_OUT = функция_вывода_модификатора_типа ]
 [ , ANALYZE = функция_анализа ]
-[ , INTERNALLENGTH = { внутр_длина | VARIABLE } ]
+[ , INTERNALLENGTH = ( внутр_длина | VARIABLE ) ]
 [ , PASSEDBYVALUE ]
 [ , ALIGNMENT = выравнивание ]
 [ , STORAGE = хранение ]
@@ -10598,8 +10598,8 @@ CREATE ROLE
 1566CREATE USER MAPPING
 CREATE USER MAPPING — создать сопоставление пользователя для стороннего сервера
 Синтаксис
-CREATE USER MAPPING [ IF NOT EXISTS ] FOR { имя_пользователя | USER | CURRENT_USER |
-PUBLIC }
+CREATE USER MAPPING [ IF NOT EXISTS ] FOR ( имя_пользователя | USER | CURRENT_USER |
+PUBLIC )
 SERVER имя_сервера
 [ OPTIONS ( параметр 'значение' [ , ... ] ) ]
 Описание
@@ -10847,7 +10847,7 @@ ALTER VIEW, DROP VIEW, CREATE MATERIALIZED VIEW
 1572DEALLOCATE
 DEALLOCATE — освободить подготовленный оператор
 Синтаксис
-DEALLOCATE [ PREPARE ] { имя | ALL }
+DEALLOCATE [ PREPARE ] ( имя | ALL )
 Описание
 DEALLOCATE применяется для освобождения ранее подготовленного оператора SQL. Если не осво-
 бодить подготовленный оператор явно, он будет освобождён при завершении сеанса.
@@ -10868,7 +10868,7 @@ EXECUTE, PREPARE
 DECLARE — определить курсор
 Синтаксис
 DECLARE имя [ BINARY ] [ INSENSITIVE ] [ [ NO ] SCROLL ]
-CURSOR [ { WITH | WITHOUT } HOLD ] FOR запрос
+CURSOR [ ( WITH | WITHOUT ) HOLD ] FOR запрос
 Описание
 Оператор DECLARE позволяет пользователю создавать курсоры, с помощью которых можно выби-
 рать по очереди некоторое количество строк из результата большого запроса. Когда курсор со-
@@ -11102,7 +11102,7 @@ TRUNCATE
 1580DISCARD
 DISCARD — очистить состояние сеанса
 Синтаксис
-DISCARD { ALL | PLANS | SEQUENCES | TEMPORARY | TEMP }
+DISCARD ( ALL | PLANS | SEQUENCES | TEMPORARY | TEMP )
 Описание
 DISCARD высвобождает внутренние ресурсы, связанные с сеансом использования базы данных. Эта
 команда полезна для частичного или полного сброса состояния сеанса. Для освобождения различ-
@@ -11653,7 +11653,7 @@ CREATE MATERIALIZED VIEW, ALTER MATERIALIZED VIEW, REFRESH MATERIALIZED VIEW
 1601DROP OPERATOR
 DROP OPERATOR — удалить оператор
 Синтаксис
-DROP OPERATOR [ IF EXISTS ] имя ( { тип_слева | NONE } , { тип_справа | NONE } )
+DROP OPERATOR [ IF EXISTS ] имя ( ( тип_слева | NONE ) , ( тип_справа | NONE ) )
 [, ...] [ CASCADE | RESTRICT ]
 Описание
 DROP OPERATOR удаляет существующий оператор из базы данных. Выполнить эту команду может
@@ -11766,7 +11766,7 @@ OPERATOR CLASS, DROP OPERATOR CLASS
 1606DROP OWNED
 DROP OWNED — удалить объекты базы данных, принадлежащие роли
 Синтаксис
-DROP OWNED BY { имя | CURRENT_USER | SESSION_USER } [, ...] [ CASCADE | RESTRICT ]
+DROP OWNED BY ( имя | CURRENT_USER | SESSION_USER ) [, ...] [ CASCADE | RESTRICT ]
 Описание
 DROP OWNED удаляет в текущей базе данных все объекты, принадлежащие любой из указанных
 ролей. Кроме того, эти роли лишаются всех прав, которые они имели для объектов текущей базы
@@ -12385,7 +12385,7 @@ DROP ROLE
 1629DROP USER MAPPING
 DROP USER MAPPING — удалить сопоставление пользователя для стороннего сервера
 Синтаксис
-DROP USER MAPPING [ IF EXISTS ] FOR { имя_пользователя | USER | CURRENT_USER | PUBLIC }
+DROP USER MAPPING [ IF EXISTS ] FOR ( имя_пользователя | USER | CURRENT_USER | PUBLIC )
 SERVER имя_сервера
 Описание
 DROP USER MAPPING удаляет существующее сопоставление пользователя для стороннего сервера.
@@ -12505,7 +12505,7 @@ COSTS [ boolean ]
 BUFFERS [ boolean ]
 TIMING [ boolean ]
 SUMMARY [ boolean ]
-FORMAT { TEXT | XML | JSON | YAML }
+FORMAT ( TEXT | XML | JSON | YAML )
 Описание
 Эта команда выводит план выполнения, генерируемый планировщиком PostgreSQL для заданного
 оператора. План выполнения показывает, как будут сканироваться таблицы, затрагиваемые опе-
@@ -12618,9 +12618,9 @@ QUERY PLAN
 --------------------------------
 [
 +
-{
+(
 +
-"Plan": {
+"Plan": (
 +
 "Node Type": "Seq Scan",+
 "Relation Name": "foo", +
@@ -12634,9 +12634,9 @@ QUERY PLAN
 +
 "Plan Width": 4
 +
-}
+)
 +
-}
+)
 +
 ]
 (1 row)
@@ -12870,51 +12870,51 @@ CLOSE, DECLARE, MOVE
 1642GRANT
 GRANT — определить права доступа
 Синтаксис
-GRANT { { SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER }
-[, ...] | ALL [ PRIVILEGES ] }
-ON { [ TABLE ] имя_таблицы [, ...]
-| ALL TABLES IN SCHEMA имя_схемы [, ...] }
+GRANT ( ( SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER )
+[, ...] | ALL [ PRIVILEGES ] )
+ON ( [ TABLE ] имя_таблицы [, ...]
+| ALL TABLES IN SCHEMA имя_схемы [, ...] )
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { { SELECT | INSERT | UPDATE | REFERENCES } ( имя_столбца [, ...] )
-[, ...] | ALL [ PRIVILEGES ] ( имя_столбца [, ...] ) }
+GRANT ( ( SELECT | INSERT | UPDATE | REFERENCES ) ( имя_столбца [, ...] )
+[, ...] | ALL [ PRIVILEGES ] ( имя_столбца [, ...] ) )
 ON [ TABLE ] имя_таблицы [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { { USAGE | SELECT | UPDATE }
-[, ...] | ALL [ PRIVILEGES ] }
-ON { SEQUENCE имя_последовательности [, ...]
-| ALL SEQUENCES IN SCHEMA имя_схемы [, ...] }
+GRANT ( ( USAGE | SELECT | UPDATE )
+[, ...] | ALL [ PRIVILEGES ] )
+ON ( SEQUENCE имя_последовательности [, ...]
+| ALL SEQUENCES IN SCHEMA имя_схемы [, ...] )
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { { CREATE | CONNECT | TEMPORARY | TEMP } [, ...] | ALL [ PRIVILEGES ] }
+GRANT ( ( CREATE | CONNECT | TEMPORARY | TEMP ) [, ...] | ALL [ PRIVILEGES ] )
 ON DATABASE имя_бд [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | ALL [ PRIVILEGES ] }
+GRANT ( USAGE | ALL [ PRIVILEGES ] )
 ON DOMAIN имя_домена [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | ALL [ PRIVILEGES ] }
+GRANT ( USAGE | ALL [ PRIVILEGES ] )
 ON FOREIGN DATA WRAPPER имя_обёртки_сторонних_данных [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | ALL [ PRIVILEGES ] }
+GRANT ( USAGE | ALL [ PRIVILEGES ] )
 ON FOREIGN SERVER имя_сервера [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { EXECUTE | ALL [ PRIVILEGES ] }
-ON { { FUNCTION | PROCEDURE | ROUTINE } имя_подпрограммы [ ( [ [ режим_аргумента ]
+GRANT ( EXECUTE | ALL [ PRIVILEGES ] )
+ON ( ( FUNCTION | PROCEDURE | ROUTINE ) имя_подпрограммы [ ( [ [ режим_аргумента ]
 [ имя_аргумента ] тип_аргумента [, ...] ] ) ] [, ...]
-| ALL { FUNCTIONS | PROCEDURES | ROUTINES } IN SCHEMA имя_схемы [, ...] }
+| ALL ( FUNCTIONS | PROCEDURES | ROUTINES ) IN SCHEMA имя_схемы [, ...] )
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | ALL [ PRIVILEGES ] }
+GRANT ( USAGE | ALL [ PRIVILEGES ] )
 ON LANGUAGE имя_языка [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { { SELECT | UPDATE } [, ...] | ALL [ PRIVILEGES ] }
+GRANT ( ( SELECT | UPDATE ) [, ...] | ALL [ PRIVILEGES ] )
 ON LARGE OBJECT oid_БО [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { { CREATE | USAGE } [, ...] | ALL [ PRIVILEGES ] }
+GRANT ( ( CREATE | USAGE ) [, ...] | ALL [ PRIVILEGES ] )
 ON SCHEMA имя_схемы [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
 1643GRANT
-GRANT { CREATE | ALL [ PRIVILEGES ] }
+GRANT ( CREATE | ALL [ PRIVILEGES ] )
 ON TABLESPACE табл_пространство [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
-GRANT { USAGE | ALL [ PRIVILEGES ] }
+GRANT ( USAGE | ALL [ PRIVILEGES ] )
 ON TYPE имя_типа [, ...]
 TO указание_роли [, ...] [ WITH GRANT OPTION ]
 Здесь указание_роли:
@@ -13176,7 +13176,7 @@ GRANT SELECT (col1), UPDATE (col1) ON mytable TO miriam_rw;
 стандартные права (то есть столбец прав содержит NULL). Права по умолчанию всегда включают
 все права для владельца и могут также включать некоторые права для PUBLIC в зависимости от
 типа объекта, как разъяснялось выше. Первая команда GRANT или REVOKE для объекта приводит к
-проявлению записи прав по умолчанию (например, {miriam=arwdDxt/miriam}), а затем изменяет
+проявлению записи прав по умолчанию (например, (miriam=arwdDxt/miriam)), а затем изменяет
 эту запись в соответствии с заданным запросом. Подобным образом, строки, показанные в столбце
 «Права доступа к столбцам», выводятся только для столбцов с нестандартными правами доступа.
 (Заметьте, что в данном контексте под «стандартными правами» всегда подразумевается встро-
@@ -13223,7 +13223,7 @@ REVOKE, ALTER DEFAULT PRIVILEGES
 IMPORT FOREIGN SCHEMA — импортировать определения таблиц со стороннего сервера
 Синтаксис
 IMPORT FOREIGN SCHEMA удалённая_схема
-[ { LIMIT TO | EXCEPT } ( имя_таблицы [, ...] ) ]
+[ ( LIMIT TO | EXCEPT ) ( имя_таблицы [, ...] ) ]
 FROM SERVER имя_сервера
 INTO локальная_схема
 [ OPTIONS ( параметр 'значение' [, ... ] ) ]
@@ -13274,21 +13274,21 @@ INSERT — добавить строки в таблицу
 Синтаксис
 [ WITH [ RECURSIVE ] запрос_WITH [, ...] ]
 INSERT INTO имя_таблицы [ AS псевдоним ] [ ( имя_столбца [, ...] ) ]
-[ OVERRIDING { SYSTEM | USER} VALUE ]
-{ DEFAULT VALUES | VALUES ( { выражение | DEFAULT } [, ...] ) [, ...] | запрос }
+[ OVERRIDING ( SYSTEM | USER) VALUE ]
+( DEFAULT VALUES | VALUES ( ( выражение | DEFAULT ) [, ...] ) [, ...] | запрос )
 [ ON CONFLICT [ объект_конфликта ] действие_при_конфликте ]
 [ RETURNING * | выражение_результата [ [ AS ] имя_результата ] [, ...] ]
 Здесь допускается объект_конфликта:
-( { имя_столбца_индекса | ( выражение_индекса ) } [ COLLATE правило_сортировки ]
+( ( имя_столбца_индекса | ( выражение_индекса ) ) [ COLLATE правило_сортировки ]
 [ класс_операторов ] [, ...] ) [ WHERE предикат_индекса ]
 ON CONSTRAINT имя_ограничения
 и действие_при_конфликте может быть следующим:
 DO NOTHING
-DO UPDATE SET { имя_столбца = { выражение | DEFAULT } |
-( имя_столбца [, ...] ) = [ ROW ] ( { выражение | DEFAULT }
+DO UPDATE SET ( имя_столбца = ( выражение | DEFAULT ) |
+( имя_столбца [, ...] ) = [ ROW ] ( ( выражение | DEFAULT )
 [, ...] ) |
 ( имя_столбца [, ...] ) = ( вложенный_SELECT )
-} [, ...]
+) [, ...]
 [ WHERE условие ]
 Описание
 INSERT добавляет строки в таблицу. Эта команда может добавить одну или несколько строк, сфор-
@@ -13510,10 +13510,10 @@ INSERT INTO films SELECT * FROM tmp_films WHERE date_prod < '2004-05-07';
 Этот пример демонстрирует добавление данных в столбцы с типом массива:
 -- Создание пустого поля 3x3 для игры в крестики-нолики
 INSERT INTO tictactoe (game, board[1:3][1:3])
-VALUES (1, '{{" "," "," "},{" "," "," "},{" "," "," "}}');
+VALUES (1, '((" "," "," "),(" "," "," "),(" "," "," "))');
 -- Указания индексов в предыдущей команда могут быть опущены
 INSERT INTO tictactoe (game, board)
-VALUES (2, '{{X," "," "},{" ",O," "},{" ",X," "}}');
+VALUES (2, '((X," "," "),(" ",O," "),(" ",X," "))');
 Добавление одной строки в таблицу distributors и получение последовательного номера, сгене-
 рированного благодаря указанию DEFAULT:
 INSERT INTO distributors (did, dname) VALUES (DEFAULT, 'XYZ Widgets')
@@ -14064,8 +14064,8 @@ COMMIT PREPARED, ROLLBACK PREPARED
 1674REASSIGN OWNED
 REASSIGN OWNED — сменить владельца объектов базы данных, принадлежащих заданной роли
 Синтаксис
-REASSIGN OWNED BY { старая_роль | CURRENT_USER | SESSION_USER } [, ...]
-TO { новая_роль | CURRENT_USER | SESSION_USER }
+REASSIGN OWNED BY ( старая_роль | CURRENT_USER | SESSION_USER ) [, ...]
+TO ( новая_роль | CURRENT_USER | SESSION_USER )
 Описание
 REASSIGN OWNED указывает системе сменить владельца объектов баз данных, принадлежащих одной
 из старых_ролей, на новую_роль.
@@ -14139,7 +14139,7 @@ CREATE MATERIALIZED VIEW, ALTER MATERIALIZED VIEW, DROP MATERIALIZED VIEW
 1677REINDEX
 REINDEX — перестроить индексы
 Синтаксис
-REINDEX [ ( VERBOSE ) ] { INDEX | TABLE | SCHEMA | DATABASE | SYSTEM } имя
+REINDEX [ ( VERBOSE ) ] ( INDEX | TABLE | SCHEMA | DATABASE | SYSTEM ) имя
 Описание
 REINDEX перестраивает индекс, обрабатывая данные таблицы, к которой относится индекс, и в ре-
 зультате заменяет старую копию индекса. Команда REINDEX применяется в следующих ситуациях:
@@ -14307,77 +14307,77 @@ SET, SHOW
 REVOKE — отозвать права доступа
 Синтаксис
 REVOKE [ GRANT OPTION FOR ]
-{ { SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER }
-[, ...] | ALL [ PRIVILEGES ] }
-ON { [ TABLE ] имя_таблицы [, ...]
-| ALL TABLES IN SCHEMA имя_схемы [, ...] }
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+( ( SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER )
+[, ...] | ALL [ PRIVILEGES ] )
+ON ( [ TABLE ] имя_таблицы [, ...]
+| ALL TABLES IN SCHEMA имя_схемы [, ...] )
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ { SELECT | INSERT | UPDATE | REFERENCES } ( имя_столбца [, ...] )
-[, ...] | ALL [ PRIVILEGES ] ( имя_столбца [, ...] ) }
+( ( SELECT | INSERT | UPDATE | REFERENCES ) ( имя_столбца [, ...] )
+[, ...] | ALL [ PRIVILEGES ] ( имя_столбца [, ...] ) )
 ON [ TABLE ] имя_таблицы [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ { USAGE | SELECT | UPDATE }
-[, ...] | ALL [ PRIVILEGES ] }
-ON { SEQUENCE имя_последовательности [, ...]
-| ALL SEQUENCES IN SCHEMA имя_схемы [, ...] }
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+( ( USAGE | SELECT | UPDATE )
+[, ...] | ALL [ PRIVILEGES ] )
+ON ( SEQUENCE имя_последовательности [, ...]
+| ALL SEQUENCES IN SCHEMA имя_схемы [, ...] )
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ { CREATE | CONNECT | TEMPORARY | TEMP } [, ...] | ALL [ PRIVILEGES ] }
+( ( CREATE | CONNECT | TEMPORARY | TEMP ) [, ...] | ALL [ PRIVILEGES ] )
 ON DATABASE имя_бд [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | ALL [ PRIVILEGES ] }
+( USAGE | ALL [ PRIVILEGES ] )
 ON DOMAIN имя_домена [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | ALL [ PRIVILEGES ] }
+( USAGE | ALL [ PRIVILEGES ] )
 ON FOREIGN DATA WRAPPER имя_обёртки_сторонних_данных [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | ALL [ PRIVILEGES ] }
+( USAGE | ALL [ PRIVILEGES ] )
 ON FOREIGN SERVER имя_сервера [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ EXECUTE | ALL [ PRIVILEGES ] }
-ON { { FUNCTION | PROCEDURE | ROUTINE } имя_функции [ ( [ [ режим_аргумента ]
+( EXECUTE | ALL [ PRIVILEGES ] )
+ON ( ( FUNCTION | PROCEDURE | ROUTINE ) имя_функции [ ( [ [ режим_аргумента ]
 [ имя_аргумента ] тип_аргумента [, ...] ] ) ] [, ...]
 1683REVOKE
-| ALL { FUNCTIONS | PROCEDURES | ROUTINES } IN SCHEMA имя_схемы [, ...] }
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+| ALL ( FUNCTIONS | PROCEDURES | ROUTINES ) IN SCHEMA имя_схемы [, ...] )
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | ALL [ PRIVILEGES ] }
+( USAGE | ALL [ PRIVILEGES ] )
 ON LANGUAGE имя_языка [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ { SELECT | UPDATE } [, ...] | ALL [ PRIVILEGES ] }
+( ( SELECT | UPDATE ) [, ...] | ALL [ PRIVILEGES ] )
 ON LARGE OBJECT oid_БО [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ { CREATE | USAGE } [, ...] | ALL [ PRIVILEGES ] }
+( ( CREATE | USAGE ) [, ...] | ALL [ PRIVILEGES ] )
 ON SCHEMA имя_схемы [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ CREATE | ALL [ PRIVILEGES ] }
+( CREATE | ALL [ PRIVILEGES ] )
 ON TABLESPACE табл_пространство [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ GRANT OPTION FOR ]
-{ USAGE | ALL [ PRIVILEGES ] }
+( USAGE | ALL [ PRIVILEGES ] )
 ON TYPE имя_типа [, ...]
-FROM { [ GROUP ] имя_роли | PUBLIC } [, ...]
+FROM ( [ GROUP ] имя_роли | PUBLIC ) [, ...]
 [ CASCADE | RESTRICT ]
 REVOKE [ ADMIN OPTION FOR ]
 имя_роли [, ...] FROM имя_роли [, ...]
@@ -14617,7 +14617,7 @@ BEGIN, COMMIT, RELEASE SAVEPOINT, ROLLBACK, ROLLBACK TO SAVEPOINT
 SECURITY LABEL — определить или изменить метку безопасности, применённую к объекту
 Синтаксис
 SECURITY LABEL [ FOR провайдер ] ON
-{
+(
 TABLE имя_объекта |
 COLUMN имя_таблицы.имя_столбца |
 AGGREGATE имя_агрегатной_функции ( сигнатура_агр_функции ) |
@@ -14642,7 +14642,7 @@ SUBSCRIPTION имя_объекта |
 TABLESPACE имя_объекта |
 TYPE имя_объекта |
 VIEW имя_объекта
-} IS 'метка'
+) IS 'метка'
 Здесь сигнатура_агр_функции:
 * |
 [ режим_аргумента ] [ имя_аргумента ] тип_аргумента [ , ... ] |
@@ -14716,13 +14716,13 @@ SELECT [ ALL | DISTINCT [ ON ( выражение [, ...] ) ] ]
 [ GROUP BY элемент_группирования [, ...] ]
 [ HAVING условие [, ...] ]
 [ WINDOW имя_окна AS ( определение_окна ) [, ...] ]
-[ { UNION | INTERSECT | EXCEPT } [ ALL | DISTINCT ] выборка ]
-[ ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS { FIRST | LAST } ]
+[ ( UNION | INTERSECT | EXCEPT ) [ ALL | DISTINCT ] выборка ]
+[ ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS ( FIRST | LAST ) ]
 [, ...] ]
-[ LIMIT { число | ALL } ]
+[ LIMIT ( число | ALL ) ]
 [ OFFSET начало [ ROW | ROWS ] ]
-[ FETCH { FIRST | NEXT } [ число ] { ROW | ROWS } ONLY ]
-[ FOR { UPDATE | NO KEY UPDATE | SHARE | KEY SHARE } [ OF имя_таблицы [, ...] ]
+[ FETCH ( FIRST | NEXT ) [ число ] ( ROW | ROWS ) ONLY ]
+[ FOR ( UPDATE | NO KEY UPDATE | SHARE | KEY SHARE ) [ OF имя_таблицы [, ...] ]
 [ NOWAIT | SKIP LOCKED ] [...] ]
 Здесь допускается элемент_FROM:
 [ ONLY ] имя_таблицы [ * ] [ [ AS ] псевдоним [ ( псевдоним_столбца [, ...] ) ] ]
@@ -14746,8 +14746,8 @@ USING ( столбец_соединения [, ...] ) ]
 ( )
 выражение
 ( выражение [, ...] )
-ROLLUP ( { выражение | ( выражение [, ...] ) } [, ...] )
-CUBE ( { выражение | ( выражение [, ...] ) } [, ...] )
+ROLLUP ( ( выражение | ( выражение [, ...] ) ) [, ...] )
+CUBE ( ( выражение | ( выражение [, ...] ) ) [, ...] )
 GROUPING SETS ( элемент_группирования [, ...] )
 и запрос_WITH:
 имя_запроса_WITH [ ( имя_столбца [, ...] ) ] AS ( выборка | values | insert
@@ -15052,7 +15052,7 @@ WINDOW имя_окна AS ( определение_окна ) [, ...]
 определений окон, а определение_окна имеет следующий вид:
 [ имя_существующего_окна ]
 [ PARTITION BY выражение [, ...] ]
-[ ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS { FIRST | LAST } ]
+[ ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS ( FIRST | LAST ) ]
 [, ...] ]
 [ предложение_рамки ]
 Если указано имя_существующего_окна, оно должно ссылаться на предшествующую запись в спис-
@@ -15072,8 +15072,8 @@ WINDOW имя_окна AS ( определение_окна ) [, ...]
 Необязательное предложение_рамки определяет рамку окна для оконных функций, которые зави-
 сят от рамки (не все функции таковы). Рамка окна — это набор связанных строк для каждой строки
 запроса (называемой текущей строкой). В качестве предложения_рамки может задаваться
-{ RANGE | ROWS | GROUPS } начало_рамки [ исключение_рамки ]
-{ RANGE | ROWS | GROUPS } BETWEEN начало_рамки AND конец_рамки [ исключение_рамки ]
+( RANGE | ROWS | GROUPS ) начало_рамки [ исключение_рамки ]
+( RANGE | ROWS | GROUPS ) BETWEEN начало_рамки AND конец_рамки [ исключение_рамки ]
 Здесь начало_рамки и конец_рамки может задаваться как
 UNBOUNDED PRECEDING
 смещение PRECEDING
@@ -15258,7 +15258,7 @@ SELECT, но отсутствуют в результате правого.
 задать ни для результата EXCEPT, ни для любого из подзапросов EXCEPT.
 Предложение ORDER BY
 Необязательное предложение ORDER BY имеет следующую общую форму:
-ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS { FIRST | LAST } ] [, ...]
+ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS ( FIRST | LAST ) ] [, ...]
 Предложение ORDER BY указывает, что строки результата должны сортироваться согласно задан-
 ным выражениям. Если две строки дают равные значения для самого левого выражения, прове-
 ряется следующее выражение и т. д. Если их значения оказываются равными для всех заданных
@@ -15302,7 +15302,7 @@ COLLATE в выражение, например так: ORDER BY mycolumn COLLAT
 сведениями обратитесь к Подразделу 4.2.10 и Разделу 23.2.
 Предложение LIMIT
 Предложение LIMIT состоит из двух независимых вложенных предложений:
-LIMIT { число | ALL }
+LIMIT ( число | ALL )
 OFFSET начало
 Здесь число определяет максимальное количество строк, которое должно быть выдано, тогда как
 начало определяет, сколько строк нужно пропустить, прежде чем начать выдавать строки. Когда
@@ -15313,8 +15313,8 @@ ALL, т. е. число строк не ограничивается. Если �
 воспринимается как OFFSET 0.
 SQL:2008 вводит другой синтаксис для получения того же результата, и его так же поддерживает
 PostgreSQL. Он выглядит так:
-OFFSET начало { ROW | ROWS }
-FETCH { FIRST | NEXT } [ число ] { ROW | ROWS } ONLY
+OFFSET начало ( ROW | ROWS )
+FETCH ( FIRST | NEXT ) [ число ] ( ROW | ROWS ) ONLY
 В этом синтаксисе значение начало или число в соответствии со стандартом должно быть букваль-
 ной константой, параметром или именем переменной; PostgreSQL позволяет использовать и дру-
 гие выражения, но их обычно нужно заключать в скобки во избежание неоднозначности. Если
@@ -15683,7 +15683,7 @@ PostgreSQL распознаёт функциональную зависимос�
 LIMIT и OFFSET
 Предложения LIMIT и OFFSET относятся к специфическим особенностям PostgreSQL и поддержи-
 ваются также в MySQL. В стандарте SQL:2008 для той же цели вводятся предложения OFFSET ...
-FETCH {FIRST|NEXT} ..., рассмотренные ранее в Подразделе «Предложение LIMIT». Этот синтак-
+FETCH (FIRST|NEXT) ..., рассмотренные ранее в Подразделе «Предложение LIMIT». Этот синтак-
 сис также используется в IBM DB2. (Приложения, написанные для Oracle, часто применяют об-
 ходной способ и получают эффект этих предложений, задействуя автоматически генерируемый
 столбец rownum, который отсутствует в PostgreSQL.)
@@ -15710,13 +15710,13 @@ INTO [ TEMPORARY | TEMP | UNLOGGED ] [ TABLE ] новая_таблица
 [ GROUP BY выражение [, ...] ]
 [ HAVING условие [, ...] ]
 [ WINDOW имя_окна AS ( определение_окна ) [, ...] ]
-[ { UNION | INTERSECT | EXCEPT } [ ALL | DISTINCT ] выборка ]
-[ ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS { FIRST | LAST } ]
+[ ( UNION | INTERSECT | EXCEPT ) [ ALL | DISTINCT ] выборка ]
+[ ORDER BY выражение [ ASC | DESC | USING оператор ] [ NULLS ( FIRST | LAST ) ]
 [, ...] ]
-[ LIMIT { число | ALL } ]
+[ LIMIT ( число | ALL ) ]
 [ OFFSET начало [ ROW | ROWS ] ]
-[ FETCH { FIRST | NEXT } [ число ] { ROW | ROWS } ONLY ]
-[ FOR { UPDATE | SHARE } [ OF имя_таблицы [, ...] ] [ NOWAIT ] [...] ]
+[ FETCH ( FIRST | NEXT ) [ число ] ( ROW | ROWS ) ONLY ]
+[ FOR ( UPDATE | SHARE ) [ OF имя_таблицы [, ...] ] [ NOWAIT ] [...] ]
 Описание
 SELECT INTO создаёт новую таблицу и заполняет её данными, полученными из запроса. Данные не
 передаются клиенту, как с обычной командой SELECT. Столбцы новой таблицы получают имена и
@@ -15754,9 +15754,9 @@ CREATE TABLE AS
 1717SET
 SET — изменить параметр времени выполнения
 Синтаксис
-SET [ SESSION | LOCAL ] параметр_конфигурации { TO | = } { значение | 'значение' |
-DEFAULT }
-SET [ SESSION | LOCAL ] TIME ZONE { часовой_пояс | LOCAL | DEFAULT }
+SET [ SESSION | LOCAL ] параметр_конфигурации ( TO | = ) ( значение | 'значение' |
+DEFAULT )
+SET [ SESSION | LOCAL ] TIME ZONE ( часовой_пояс | LOCAL | DEFAULT )
 Описание
 Команда SET изменяет конфигурационные параметры времени выполнения. С помощью SET можно
 «на лету» изменить многие из параметров, перечисленных в Главе 19. (Но для изменения некото-
@@ -15861,7 +15861,7 @@ RESET, SHOW
 1720SET CONSTRAINTS
 SET CONSTRAINTS — установить время проверки ограничений для текущей транзакции
 Синтаксис
-SET CONSTRAINTS { ALL | имя [, ...] } { DEFERRED | IMMEDIATE }
+SET CONSTRAINTS ( ALL | имя [, ...] ) ( DEFERRED | IMMEDIATE )
 Описание
 SET CONSTRAINTS определяет, когда будут проверяться ограничения в текущей транзакции. Огра-
 ничения IMMEDIATE проверяются в конце каждого оператора, а ограничения DEFERRED откладыва-
@@ -16016,8 +16016,8 @@ SET TRANSACTION режим_транзакции [, ...]
 SET TRANSACTION SNAPSHOT id_снимка
 SET SESSION CHARACTERISTICS AS TRANSACTION режим_транзакции [, ...]
 Где режим_транзакции может быть следующим:
-ISOLATION LEVEL { SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ
-UNCOMMITTED }
+ISOLATION LEVEL ( SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ
+UNCOMMITTED )
 READ WRITE | READ ONLY
 [ NOT ] DEFERRABLE
 Описание
@@ -16190,8 +16190,8 @@ START TRANSACTION — начать блок транзакции
 Синтаксис
 START TRANSACTION [ режим_транзакции [, ...] ]
 Где режим_транзакции может быть следующим:
-ISOLATION LEVEL { SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ
-UNCOMMITTED }
+ISOLATION LEVEL ( SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ
+UNCOMMITTED )
 READ WRITE | READ ONLY
 [ NOT ] DEFERRABLE
 Описание
@@ -16295,7 +16295,7 @@ DELETE
 1734UNLISTEN
 UNLISTEN — прекратить ожидание уведомления
 Синтаксис
-UNLISTEN { канал | * }
+UNLISTEN ( канал | * )
 Описание
 UNLISTEN применяется для отмены существующей подписки на получение событий NOTIFY.
 UNLISTEN отменяет существующую подписку в текущем сеансе PostgreSQL на канал уведомлений
@@ -16329,10 +16329,10 @@ UPDATE — изменить строки таблицы
 Синтаксис
 [ WITH [ RECURSIVE ] запрос_WITH [, ...] ]
 UPDATE [ ONLY ] имя_таблицы [ * ] [ [ AS ] псевдоним ]
-SET { имя_столбца = { выражение | DEFAULT } |
-( имя_столбца [, ...] ) = [ ROW ] ( { выражение | DEFAULT } [, ...] ) |
+SET ( имя_столбца = ( выражение | DEFAULT ) |
+( имя_столбца [, ...] ) = [ ROW ] ( ( выражение | DEFAULT ) [, ...] ) |
 ( имя_столбца [, ...] ) = ( вложенный_SELECT )
-} [, ...]
+) [, ...]
 [ FROM список_FROM ]
 [ WHERE условие | WHERE CURRENT OF имя_курсора ]
 [ RETURNING * | выражение_результата [ [ AS ] имя_результата ] [, ...] ]
@@ -16615,9 +16615,9 @@ VALUES — вычислить набор строк
 Синтаксис
 VALUES ( выражение [, ...] ) [, ...]
 [ ORDER BY выражение_сортировки [ ASC | DESC | USING оператор ] [, ...] ]
-[ LIMIT { число | ALL } ]
+[ LIMIT ( число | ALL ) ]
 [ OFFSET начало [ ROW | ROWS ] ]
-[ FETCH { FIRST | NEXT } [ число ] { ROW | ROWS } ONLY ]
+[ FETCH ( FIRST | NEXT ) [ число ] ( ROW | ROWS ) ONLY ]
 Описание
 VALUES вычисляет значение строки или множество значений строк, заданное выражениями. Чаще
 всего эта команда используется для формирования «таблицы констант» в большой команде, но её
@@ -20399,7 +20399,7 @@ false) перед другими командами SQL. Это касается
 Если внутри аргумента не в кавычках встречается имя переменной psql с предшествующим двоето-
 чием (:), оно заменяется значением переменной, как описано в Подразделе «Интерполяция SQL».
 Также будут работать описанные там формы :'имя_переменной' и :"имя_переменной". Конструк-
-ция :{?имя_переменной} позволяет проверить, определена ли переменная. Она заменяется значе-
+ция :(?имя_переменной) позволяет проверить, определена ли переменная. Она заменяется значе-
 нием TRUE или FALSE. Экранирование обратной косой чертой защищает двоеточие от замены.
 Текст аргумента, заключённый в обратные кавычки (`), считается командной строкой, которая
 передаётся в командную оболочку ОС. Вывод от этой команды (с удалёнными в конце символами
@@ -20480,8 +20480,8 @@ postgresql://tom@localhost/mydb?application_name=myapp
 для печати текущего рабочего каталога используйте \! pwd.
 \conninfo
 Выводит информацию о текущем подключении к базе данных.
-\copy { таблица [ ( список_столбцов ) ] | ( запрос ) } { from | to } { 'имя_файла' |
-program 'команда' | stdin | stdout | pstdin | pstdout } [ [ with ] ( параметр [, ...] ) ]
+\copy ( таблица [ ( список_столбцов ) ] | ( запрос ) ) ( from | to ) ( 'имя_файла' |
+program 'команда' | stdin | stdout | pstdin | pstdout ) [ [ with ] ( параметр [, ...] ) ]
 Производит копирование данных с участием клиента. При этом выполняется SQL-команда
 COPY, но вместо чтения или записи в файл на сервере, psql читает или записывает файл и
 пересылает данные между сервером и локальной файловой системой. Это означает, что для
@@ -21606,7 +21606,7 @@ testdb=> INSERT INTO my_table VALUES (:'content');
 мер для :name, :'name' или :"name") не выполняется, если переменная не установлена. В любом
 случае, можно экранировать двоеточие с помощью обратной косой черты, чтобы предотвратить
 подстановку.
-Специальная конструкция :{?имя} возвращает TRUE или FALSE в зависимости от того, существует
+Специальная конструкция :(?имя) возвращает TRUE или FALSE в зависимости от того, существует
 ли переменная, и таким образом всегда подменяется значением, если только двоеточие не экра-
 нировано обратной косой чертой.
 Использование двоеточия для переменных является стандартом SQL для встраиваемых языков за-
@@ -22800,8 +22800,8 @@ pg_controldata
 pg_rewind — синхронизировать каталог данных PostgreSQL с другим каталогом, ответвлённым от
 него
 Синтаксис
-pg_rewind [параметр...] { -D | --target-pgdata }каталог { --source-pgdata=каталог | --source-
-server=строка_подключения }
+pg_rewind [параметр...] ( -D | --target-pgdata )каталог ( --source-pgdata=каталог | --source-
+server=строка_подключения )
 Описание
 Утилита pg_rewind представляет собой средство синхронизации кластера PostgreSQL с другой ко-
 пией того же кластера после расхождения линий времени этих кластеров. Обычный сценарий её
@@ -23694,7 +23694,7 @@ initdb. Флаг работает аналогично конфигурацио�
 Далее описанные параметры, в основном, применяются в целях отладки, а в некоторых случаях
 при восстановлении сильно повреждённых баз данных. Их описание приведено для системных раз-
 работчиков PostgreSQL, поэтому они могут быть изменены без уведомления.
--f { s | i | o | b | t | n | m | h }
+-f ( s | i | o | b | t | n | m | h )
 Запрещает использование специфических методов сканирования и объединения: s и i выклю-
 чают последовательное сканирование и по индексу соответственно, а o, b и t выключает ска-
 нирование только по индексу, сканирование по битовым векторам, и сканирование по ID кор-
