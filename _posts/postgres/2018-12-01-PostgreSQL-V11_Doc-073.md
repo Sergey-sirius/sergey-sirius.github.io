@@ -1,3 +1,15 @@
+---
+layout: post
+title: Приложение C. Ключевые слова SQL
+description: ""
+tags: [PostgreSQL, PostgreSQL_Book_11]
+image:
+  feature: abstract-11.jpg
+  #credit: dargadgetz
+  #creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+share: true
+modified: 2018-12-03 T15:14:43-04:00
+---
 Приложение C. Ключевые слова SQL
 
 

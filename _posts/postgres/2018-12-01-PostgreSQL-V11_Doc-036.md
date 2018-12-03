@@ -2,7 +2,7 @@
 layout: post
 title: Глава 36. ECPG — встраиваемый SQL в C
 description: ""
-tags: [PostgreSQL]
+tags: [PostgreSQL, PostgreSQL_Book_11]
 image:
   feature: abstract-11.jpg
   #credit: dargadgetz

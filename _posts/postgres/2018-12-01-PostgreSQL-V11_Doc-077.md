@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: post
 title: Приложение G. Дополнительно поставляемые программы
 description: ""
-tags: [PostgreSQL]
+tags: [PostgreSQL, PostgreSQL_Book_11]
 image:
   feature: abstract-11.jpg
   #credit: dargadgetz
