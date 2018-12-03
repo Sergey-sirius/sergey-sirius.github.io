@@ -143,80 +143,259 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_2_4/" title="102.4 Управление пакетами ПО в Debian"><img src="http://localhost:4000/images/matrix.jpg" alt="102.4 Управление пакетами ПО в Debian"></a>
+        <a href="http://localhost:4000/PostgreSQL-V11_Doc-059/" title="Глава 59. Написание провайдера нестандартного сканирования"><img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 59. Написание провайдера нестандартного сканирования"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_2_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-12-01T00:00:00+02:00"><a href="http://localhost:4000/PostgreSQL-V11_Doc-059/">December 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~7 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_2_4/" rel="bookmark" title="102.4 Управление пакетами ПО в Debian" itemprop="url">102.4 Управление пакетами ПО в Debian</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/PostgreSQL-V11_Doc-059/" rel="bookmark" title="Глава 59. Написание провайдера нестандартного сканирования" itemprop="url">Глава 59. Написание провайдера нестандартного сканирования</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь управлять ПО в Debian системах.</p>
+    <p>Глава 59. Написание провайдера нестандартного сканирования</p>
 
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>установку, обновление и удаление пакетов ПО;</li>
-  <li>получение информации о пакете ПО;</li>
-  <li>состав и расположение файлов в пакетах ПО.</li>
-</ul>
-
-<p><strong>Термины и утилиты:</strong>**        **</p>
-
-<ul>
-  <li>/etc/apt/sources.list</li>
-  <li>dpkg</li>
-  <li>dpkg-reconfigure</li>
-  <li>apt-get</li>
-  <li>apt-cache</li>
-  <li>aptitude</li>
-</ul>
-
-<p>Семейство Debian обладает своими инструментами для работы с пакетами программного обеспечения (и свой формат этих пакетов: deb). Как и у прочих Linux систем, Debian предлагает мощный инструмент для работы с пакетами и несколько облегченных, предлагающих простые варианты решения наиболее частых задач.</p>
-
-<p>Для работы с пакетами ПО в Debian системах предназначена утилита <strong>dpkg</strong> , являющая громоздким инструментом автоматизации работы с пакетами. Файл конфигурации менеджера пакетов располагается в файле <strong>/</strong>** etc <strong>**/</strong>** dpkg <strong>**/</strong>** dpkg <strong>**.</strong>** cfg**. Примеры использования:</p>
-
-<p>**dpkg –l                 ** <em>(вывести информацию об установленных пакетах);</em></p>
-
-<p>**dpkg –s firefox       ** <em>( <strong>статус</strong> пакета</em> <em>firefox);</em></p>
-
-<p><strong>dpkg</strong>  <strong>–</strong>** i <strong>**webmin</strong>**        ** <em>(установить пакет</em> <em>webmin__);</em></p>
-
-<p><strong>dpkg</strong>  <strong>–</strong>** r <strong>**webmin</strong>**        ** <em>(удалить пакет</em> <em>webmin__);</em></p>
-
-<p><strong>dpkg</strong>** - <strong>**reconfigure</strong>** webmin <em>**</em>       ** <em>(переустановить пакет</em> <em>webmin__);</em></p>
-
-<p>Большей популярностью, чем dpkg, при работе с пакетами ПО в Debian пользуется <strong>apt</strong>. Он умеет автоматически разрешать зависимости и работать с сетевыми репозиториями, в отличии от низкоуровневого dpkg. Примеры ее использования:</p>
-
-<p><strong>apt</strong>** - <strong>**get</strong>** update** <em>(обновить информацию о репозиториях);</em></p>
-
-<p><strong>apt</strong>** - <strong>**get</strong>** upgrade**<em>(обновить пакеты);</em></p>
-
-<p><strong>apt-get install webmin</strong>  <em>( <strong>установить</strong> пакет</em> <em>webmin);</em></p>
-
-<p><strong>apt-get remove webmin</strong> <em>( <strong>удалить</strong> пакет</em> <em>webmin);</em></p>
-
-<p>Для поиска пакетов используется команда apt-cache, например:</p>
-
-<p>**apt-cache search webmin       ** <em>( <strong>найти</strong> пакет</em> <em>webmin);</em></p>
-
-<p><strong>apt</strong>** - <strong>**cache</strong>** show <strong>**webmin</strong>  **               ** <em>(показать информацию о пакете</em> <em>webmin__);</em></p>
-
-<p><strong>apt</strong>** - <strong>**cache</strong>** depends <strong>**webmin</strong>**        ** <em>(показать зависимости пакета</em> <em>webmin__);</em></p>
-
-<p>Настройки менеджера пакетов apt находятся в файле <strong>/</strong>** etc <strong>**/</strong>** apt <strong>**/</strong>** apt <strong>**.</strong>** conf <strong>, а перечень репозиториев в файле</strong> / <strong>**etc</strong>** / <strong>**apt</strong>** / <strong>**sources</strong><strong>. **</strong>list<strong>**.</strong></p>
-
-<p>Также для работы с пакетами в Debian системах можно использовать менеджер <strong>aptitude</strong> , имеющий диалоговой псевдографический интерфейс.</p>
+<p>PostgreSQL поддерживает набор экспериментальных средств, предназначенных для того, чтобы
+модули расширения могли добавлять в систему новые типы сканирования. В отличие от обёртки
+сторонних данных, которая должна знать, как сканировать только собственные таблицы, провай-
+дер сканирования может реализовать нестандартный вариант сканирования любого отношения в
+системе. Обычно к написанию провайдера нестандартного сканирования подталкивает желание
+реализовать какую-то оптимизацию, не поддерживаемую основной системой, например, кеширо-
+вание или аппаратное ускорение некоторого рода. В этой главе рассказывается, как написать свой
+провайдер нестандартного сканирования.
+Процесс реализации нестандартного сканирования нового типа состоит из трёх этапов. Во-пер-
+вых, во время планирования необходимо построить пути доступа, представляющие сканирование
+с предлагаемой стратегией. Во-вторых, если один из этих путей доступа выбирается планировщи-
+ком как оптимальная стратегия сканирования определённого отношения, этот путь доступа дол-
+жен быть преобразован в план. Наконец, должно быть возможно выполнить этот план, получив
+при этом те же результаты, что были бы получены с любым другим путём доступа, выбранным для
+того же отношения.
+59.1. Создание нестандартных путей сканирования
+Провайдер нестандартного сканирования обычно добавляет пути для базового отношения, уста-
+новив следующий обработчик, который вызывается после того, как ядро системы построит, по её
+мнению, полный и корректный набор путей доступа для отношения.
+typedef void (<em>set_rel_pathlist_hook_type) (PlannerInfo *root,
+RelOptInfo *rel,
+Index rti,
+RangeTblEntry *rte);
+extern PGDLLIMPORT set_rel_pathlist_hook_type set_rel_pathlist_hook;
+Хотя эта функция-обработчик может изучать, изменять или удалять пути, сформированные основ-
+ной системой, провайдер нестандартного сканирования обычно ограничивается созданием объек-
+тов CustomPath и добавлением их в rel (с помощью add_path). Провайдер нестандартного скани-
+рования отвечает за инициализацию объекта CustomPath, который описан так:
+typedef struct CustomPath
+{
+Path
+path;
+uint32
+flags;
+List
+*custom_paths;
+List
+*custom_private;
+const CustomPathMethods *methods;
+} CustomPath;
+Поле path должно инициализироваться как для любого другого пути и включать оцен-
+ку числа строк, стоимость запуска и общую, а также порядок сортировки, устанавли-
+ваемый этим путём. Поле flags задаёт битовую маску, которая должна включать флаг
+CUSTOMPATH_SUPPORT_BACKWARD_SCAN, если нестандартный путь поддерживает сканирование назад,
+и CUSTOMPATH_SUPPORT_MARK_RESTORE, если он поддерживает пометку позиции и её восстановление.
+Обе эти возможности являются факультативными. В необязательном поле custom_paths задаётся
+список узлов Path, используемых данным узлом; они будут преобразованы планировщиком в узлы
+Plan. В поле custom_private могут быть сохранены внутренние данные нестандартного пути. Со-
+хранять их нужно в форме, которую может принять nodeToString, чтобы отладочные процедуры,
+пытающиеся вывести нестандартный путь, работали ожидаемым образом. Поле methods должно
+указывать на объект (обычно статически размещённый), реализующий требуемые методы нестан-
+дартного пути (на данный момент это один метод). В этом объекте также должны быть инициа-
+2110Написание провайдера нестан-
+дартного сканирования
+лизированы поля LibraryName и SymbolName, чтобы динамический загрузчик мог разрешить их и
+загрузить таблицу методов.
+Провайдер нестандартного сканирования может также реализовать пути соединений. Как и для
+базовых отношений, такой путь должен выдавать тот же результат, какой был бы получен обычным
+соединением, которое он заменяет. Для этого провайдер соединения должен установить следую-
+щий обработчик, а затем внутри функции-обработчика создать пути CustomPath для отношения
+соединения.
+typedef void (</em>set_join_pathlist_hook_type) (PlannerInfo <em>root,
+RelOptInfo *joinrel,
+RelOptInfo *outerrel,
+RelOptInfo *innerrel,
+JoinType jointype,
+JoinPathExtraData *extra);
+extern PGDLLIMPORT set_join_pathlist_hook_type set_join_pathlist_hook;
+Этот обработчик будет вызываться многократно для одного отношения соединения с разными со-
+четаниями внутренних и внешних отношений; задача обработчика — минимизировать при этом
+дублирующиеся операции.
+59.1.1. Обработчики пути нестандартного сканирования
+Plan *(</em>PlanCustomPath) (PlannerInfo <em>root,
+RelOptInfo *rel,
+CustomPath *best_path,
+List *tlist,
+List *clauses,
+List *custom_plans);
+Преобразует нестандартный путь в законченный план. Возвращаемым значением обычно будет
+объект CustomScan, который этот обработчик должен разместить в памяти и инициализировать. За
+подробностями обратитесь к Разделу 59.2.
+59.2. Создание нестандартных планов сканирования
+Нестандартное сканирование представляется в окончательном дереве плана в виде следующей
+структуры:
+typedef struct CustomScan
+{
+Scan
+scan;
+uint32
+flags;
+List
+*custom_plans;
+List
+*custom_exprs;
+List
+*custom_private;
+List
+*custom_scan_tlist;
+Bitmapset *custom_relids;
+const CustomScanMethods *methods;
+} CustomScan;
+Объект в поле scan должен быть инициализирован, как и для любого другого сканирования, и
+включать оценки стоимости, целевые списки, условия и т. д. Поле flags содержит битовую мас-
+ку с тем же значением, что и в CustomPath. В поле custom_plans могут быть сохранены дочерние
+узлы Plan. В custom_exprs могут быть сохранены деревья выражений, которые будут исправлять-
+ся кодом в setrefs.c и subselect.c, а в custom_private следует сохранить другие внутренние
+данные, которые будут использоваться только самим провайдером нестандартного сканирования.
+Поле custom_scan_tlist может содержать NIL при сканировании базового отношения, что будет
+показывать, что нестандартное сканирование возвращает кортежи, соответствующие типу строк
+базового отношения. В противном случае оно должно указывать на целевой список, описывающий
+2111Написание провайдера нестан-
+дартного сканирования
+фактические кортежи. Список custom_scan_tlist должен устанавливаться при соединениях и мо-
+жет задаваться при сканировании, если провайдер сканирования может вычислять какие-либо вы-
+ражения без переменных. Поле custom_relids заполняется ядром и задаёт набор отношений (ин-
+дексов в списке отношений), которые обрабатывает данный узел сканирования; когда имеет место
+сканирование, а не соединение, в этом списке будет всего один элемент. Поле methods должно
+указывать на объект (обычно статически размещённый), реализующий требуемые методы нестан-
+дартного сканирования, которые подробнее описываются ниже.
+Когда CustomScan сканирует одно отношение, в scan.scanrelid должен задаваться индекс скани-
+руемой таблицы в списке отношений. Когда он заменяет соединение, поле scan.scanrelid должно
+быть нулевым.
+Деревья планов должны поддерживать возможность копирования функцией copyObject, так что
+все данные, сохранённые в «дополнительных» полях, должны быть узлами, которые может об-
+работать эта функция. Более того, провайдеры нестандартного сканирования не могут заменять
+структуру CustomScan расширенной структурой, её содержащей, что возможно с CustomPath или
+CustomScanState.
+59.2.1. Обработчики плана нестандартного сканирования
+Node *(</em>CreateCustomScanState) (CustomScan <em>cscan);
+Выделяет структуру CustomScanState для заданного объекта CustomScan. Фактически выделенная
+область будет обычно больше, чем требуется для самой структуры CustomScanState, так как мно-
+гие провайдеры могут включать её в расширенную структуру в качестве первого поля. В возвра-
+щаемом значении должны быть подходящим образом заполнены тег узла и поле methods, но дру-
+гие поля на данном этапе должны быть обнулены; после того как ExecInitCustomScan произведёт
+базовую инициализацию, будет вызван обработчик BeginCustomScan, в котором провайдер нестан-
+дартного сканирования может выполнить все остальные требуемые действия.
+59.3. Выполнение нестандартного сканирования
+Когда выполняется узел CustomScan, его состояние представляется структурой CustomScanState,
+объявленной следующим образом:
+typedef struct CustomScanState
+{
+ScanState ss;
+uint32
+flags;
+const CustomExecMethods *methods;
+} CustomScanState;
+Поле ss инициализируется как и для состояния любого другого сканирования, за исключе-
+нием того, что когда это сканирование для соединения, а не для базового отношения, в
+ss.ss_currentRelation остаётся NULL. Поле flags содержит битовую маску с тем же значени-
+ем, что и в CustomPath и CustomScan. Поле methods должно указывать на объект (обычно стати-
+чески размещённый), реализующий требуемые методы состояния нестандартного сканирования,
+подробнее описанные ниже. Обычно структура CustomScanState, которой не нужно поддерживать
+copyObject, фактически включается в расширенную структуру в качестве её первого члена.
+59.3.1. Обработчики выполнения нестандартного сканирования
+void (</em>BeginCustomScan) (CustomScanState <em>node,
+EState *estate,
+int eflags);
+Завершает инициализацию переданного объекта CustomScanState. Стандартные поля инициали-
+зируются в ExecInitCustomScan, но все внутренние поля должны инициализироваться здесь.
+TupleTableSlot *(</em>ExecCustomScan) (CustomScanState <em>node);
+2112Написание провайдера нестан-
+дартного сканирования
+Считывает следующий кортеж. В случае наличия кортежей эта функция должна записать в
+ps_ResultTupleSlot следующий кортеж в текущем направлении сканирования и вернуть слот с
+кортежем. Если же кортежей больше нет, она должна вернуть NULL или пустой слот.
+void (</em>EndCustomScan) (CustomScanState <em>node);
+Очищает все внутренние данные, связанные с CustomScanState. Этот метод является обязатель-
+ным, но он может ничего не делать, если такие данные отсутствуют или они будут очищены авто-
+матически.
+void (</em>ReScanCustomScan) (CustomScanState <em>node);
+Возвращает позицию текущего сканирования в начало и подготавливает повторное сканирование
+отношения.
+void (</em>MarkPosCustomScan) (CustomScanState <em>node);
+Сохраняет текущую позицию сканирования, чтобы к ней впоследствии можно было вернуться,
+вызвав обработчик RestrPosCustomScan. Данный обработчик является необязательным и должен
+присутствовать, только если установлен флаг CUSTOMPATH_SUPPORT_MARK_RESTORE.
+void (</em>RestrPosCustomScan) (CustomScanState <em>node);
+Восстанавливает
+предыдущую
+позицию
+сканирования,
+сохранённую
+обработчиком
+MarkPosCustomScan. Данный обработчик является необязательным и должен присутствовать, толь-
+ко если установлен флаг CUSTOMPATH_SUPPORT_MARK_RESTORE.
+Size (</em>EstimateDSMCustomScan) (CustomScanState <em>node,
+ParallelContext *pcxt);
+Оценивает объём динамической разделяемой памяти, которая потребуется для параллельной опе-
+рации. Это значение может превышать объём, который будет занят фактически, но не должно быть
+меньше. Возвращаемое значение задаётся в байтах. Этот обработчик не является обязательным
+и должен устанавливаться, только если провайдер нестандартного сканирования поддерживает
+параллельное выполнение.
+void (</em>InitializeDSMCustomScan) (CustomScanState <em>node,
+ParallelContext *pcxt,
+void *coordinate);
+Инициализирует динамическую разделяемую память, которая потребуется для параллельной опе-
+рации; coordinate указывает на область разделяемой памяти размера, равного возвращаемому
+значению EstimateDSMCustomScan. Этот обработчик является необязательным и должен устанав-
+ливаться, только если провайдер нестандартного сканирования поддерживает параллельное вы-
+полнение.
+void (</em>ReInitializeDSMCustomScan) (CustomScanState <em>node,
+ParallelContext *pcxt,
+void *coordinate);
+Заново инициализирует динамическую разделяемую память, требуемую для параллельной опера-
+ции, перед тем как будет повторно просканирован узел нестандартного сканирования. Этот обра-
+ботчик является необязательным и должен устанавливаться, только если провайдер нестандарт-
+ного сканирования поддерживает параллельное выполнение. В этом обработчике рекомендуется
+сбрасывать только общее состояние, а в обработчике ReScanCustomScan сбрасывать только локаль-
+ное. В настоящее время этот обработчик будет вызываться перед ReScanCustomScan, но лучше на
+этот порядок не рассчитывать.
+void (</em>InitializeWorkerCustomScan) (CustomScanState <em>node,
+shm_toc *toc,
+void *coordinate);
+Инициализирует локальное состояние параллельного исполнителя на основе общего состояния,
+заданного ведущим исполнителем во время InitializeDSMCustomScan. Этот обработчик является
+2113Написание провайдера нестан-
+дартного сканирования
+необязательным и должен устанавливаться, только если провайдер нестандартного сканирования
+поддерживает параллельное выполнение.
+void (</em>ShutdownCustomScan) (CustomScanState <em>node);
+Освобождает ресурсы, когда становится понятно, что этот узел больше не будет выполняться. Этот
+обработчик вызывается не во всех случаях; иногда может вызываться только EndCustomScan. Так
+как сегмент DSM, используемый параллельным запросом, освобождается сразу после вызова это-
+го обработчика, провайдеры нестандартного сканирования, которым нужно выполнять некоторые
+действия до ликвидации сегмента DSM, должны реализовывать этот метод.
+void (</em>ExplainCustomScan) (CustomScanState *node,
+List *ancestors,
+ExplainState *es);
+Выводит дополнительную информацию для EXPLAIN об узле нестандартного сканирования. Этот
+обработчик является необязательным. Общие данные, сохранённые в ScanState, такие как целе-
+вой список и сканируемое отношение, будут выводиться и без этого обработчика, но с помощью
+этого обработчика можно выдать дополнительные, внутренние сведения.
+2114</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -225,62 +404,173 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_2_3/" title="102.3 Управление библиотеками"><img src="http://localhost:4000/images/matrix.jpg" alt="102.3 Управление библиотеками"></a>
+        <a href="http://localhost:4000/PostgreSQL-V11_Doc-058/" title="Глава 58. Написание метода извлечения выборки таблицы"><img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 58. Написание метода извлечения выборки таблицы"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_2_3/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-12-01T00:00:00+02:00"><a href="http://localhost:4000/PostgreSQL-V11_Doc-058/">December 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~6 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_2_3/" rel="bookmark" title="102.3 Управление библиотеками" itemprop="url">102.3 Управление библиотеками</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/PostgreSQL-V11_Doc-058/" rel="bookmark" title="Глава 58. Написание метода извлечения выборки таблицы" itemprop="url">Глава 58. Написание метода извлечения выборки таблицы</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь управлять определять необходимые для работы библиотеки и устанавливать их.</p>
+    <p>Глава 58. Написание метода извлечения выборки таблицы</p>
 
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>типы библиотек;</li>
-  <li>месторасположение библиотек;</li>
-  <li>загрузку библиотек.</li>
-</ul>
-
-<p><strong>Термины и утилиты:</strong>**        **</p>
-
-<ul>
-  <li>ldd</li>
-  <li>ldconfig</li>
-  <li>/etc/ld.so.conf</li>
-  <li>LD_LIBRARY_PATH</li>
-</ul>
-
-<p>Библиотеки — это набор функций, используемый ПО при работе. Библиотеки могут входить в состав программного обеспечения, а могут храниться отдельно,
-загружаясь в оперативную память по мере необходимости. Как правило процесс установки библиотеки - это обычный процесс установки пакета ПО.
-Но иногда бывает нужно прописать путь к библиотеке, посмотреть используемые файлы и т.д.</p>
-
-<p>В Linux библиотеки располагаются тут:</p>
-
-<ul>
-  <li><strong>/lib</strong>     - библиотеки для ПО, располагаемого в /bin;</li>
-  <li><strong>/usr/lib</strong> - библиотеки для ПО, располагаемого в /usr/bin;</li>
-  <li>прочие пути, указанные в файле <strong>/etc/ld.so.conf</strong><em>(по умолчанию это</em> <strong>/etc/ld.s.conf.d</strong><em>)</em>;</li>
-</ul>
-
-<p>Кроме того, набор возможных расположений библиотек определяется значением переменной <strong>LD_LIBRARY_PATH</strong>.</p>
-
-<p>Активные библиотеки располагаются в кэше (<em>файл</em> <strong>/</strong>** etc <strong>**/</strong>** ld <strong>**.</strong>** so <strong>**.</strong>** cache<strong>), для обновления которого необходимо выполнить команду</strong>ldconfig** (заново загрузит библиотеки в кэш).</p>
-
-<p>Для определения используемых двоичным файлов программы библиотек необходимо выполнение команды ldd, например:</p>
-
-<p><strong>ldd</strong>  <strong>/</strong>** bin <strong>**/</strong>** ls <em>**</em>       ** <em>(показать библиотеки, используемые командой / <strong>bin</strong> / <strong>ls</strong> );</em></p>
+<p>Реализация предложения TABLESAMPLE в PostgreSQL поддерживает подключение собственных ме-
+тодов извлечения выборки таблицы, в дополнение к методам BERNOULLI и SYSTEM, которые требу-
+ются стандартом SQL. Метод выборки определяет, какие строки таблицы будут выбираться, когда
+используется предложение TABLESAMPLE.
+На уровне SQL метод извлечения выборки таблицы представляется одной функцией SQL, обычно
+реализуемой на C, имеющей сигнатуру
+method_name(internal) RETURNS tsm_handler
+Имя функции будет совпадать с именем метода, указываемым в предложении TABLESAMPLE. Аргу-
+мент internal является фиктивным (в нём всегда передаётся ноль) и введён только для того, что-
+бы эту функцию нельзя было вызывать напрямую из команд SQL. Возвращать эта функция должна
+структуру типа TsmRoutine (выделенную вызовом palloc), содержащую указатели на опорные функ-
+ции для метода извлечения выборки. Эти опорные функции представляют собой простые функции
+на C, которые не видны и не могут вызываться на уровне SQL. Эти опорные функции описаны в
+Разделе 58.1.
+В дополнение к указателям на функции в структуре TsmRoutine должны задаваться следующие
+дополнительные поля:
+List *parameterTypes
+Это список OID, содержащий OID типов данных параметров, которые будут приниматься пред-
+ложением TABLESAMPLE при использовании этого метода извлечения выборки. Например, для
+встроенных методов этот список содержит один элемент со значением FLOAT4OID, представля-
+ющий процент выборки. Другие методы могут иметь дополнительные или иные параметры.
+bool repeatable_across_queries
+Если это поле равно true, данный метод извлечения выборки может выдавать одинаковые вы-
+борки при последовательных запросах с одними и теми же параметрами и значением затравки
+REPEATABLE при условии неизменности содержимого таблицы. Если равно false, предложение
+REPEATABLE не будет приниматься с этим методом извлечения выборки.
+bool repeatable_across_scans
+Если это поле равно true, метод извлечения выборки может выдавать одинаковые выборки при
+последовательном сканировании в рамках одного запроса (предполагается неизменность па-
+раметров, значения затравки и снимка данных). Если равно false, планировщик не будет вы-
+бирать планы, требующие неоднократного сканирования выборки, так как это может привести
+к несогласованному результату запроса.
+Тип структуры TsmRoutine объявлен в src/include/access/tsmapi.h, где можно найти дополни-
+тельную информацию.
+Методы извлечения выборки, включённые в стандартный дистрибутив, могут послужить хорошим
+примером, если вы хотите написать свой метод. Код встроенных методов вы можете найти в под-
+каталоге src/backend/access/tablesample дерева исходного кода, а код дополнительных методов
+— в подкаталоге contrib.
+58.1. Опорные функции метода извлечения выборки
+Функция-обработчик TSM возвращает структуру TsmRoutine (выделенную вызовом palloc) с указа-
+телями на опорные функции, описанные ниже. Большинство этих функций обязательные, но неко-
+торые — нет, и их указатели могут быть равны NULL.
+2107Написание метода извле-
+чения выборки таблицы
+void
+SampleScanGetSampleSize (PlannerInfo *root,
+RelOptInfo *baserel,
+List *paramexprs,
+BlockNumber *pages,
+double *tuples);
+Эта функция вызывается во время планирования. Она должна рассчитать число страниц отно-
+шения, которые будут прочитаны при простом сканировании, и число кортежей, выбираемых
+при сканировании. (Например, эти числа можно получить, оценив процент выбираемых дан-
+ных, а затем умножив baserel-&gt;pages и baserel-&gt;tuples на это значение и округлив резуль-
+тат до целых.) Список paramexprs содержит выражения, переданные в параметрах предложению
+TABLESAMPLE. Если для целей оценивания нужны их значения, рекомендуется воспользоваться
+estimate_expression_value(), чтобы попытаться свести эти выражения к константам; но данная
+функция должна выдавать оценку размера, даже если это не удастся, и не должна выдавать ошиб-
+ку, даже если считает переданные значения неверными (помните, что это только приблизитель-
+ные оценки чисел, которые будут получены во время выполнения). Параметры pages и tuples яв-
+ляются выходными.
+void
+InitSampleScan (SampleScanState *node,
+int eflags);
+Выполняет инициализацию перед выполнением узла плана SampleScan. Эта функция вызывается
+при запуске исполнителя. Она должна выполнить все подготовительные действия, необходимые
+для начала обработки. Узел SampleScanState уже был создан, но его поле tsm_state содержит
+NULL. Функция InitSampleScan может выделить через palloc область для любых внутренних дан-
+ных, нужных методу извлечения выборки, и сохранить указатель на неё в node-&gt;tsm_state. Инфор-
+мацию о сканируемой таблице можно получить через другие поля узла SampleScanState (но за-
+метьте, что дескриптор сканирования node-&gt;ss.ss_currentScanDesc ещё не настроен). Параметр
+eflags содержит битовые флаги, описывающие режим работы исполнителя для этого узла плана.
+Когда (eflags &amp; EXEC_FLAG_EXPLAIN_ONLY) не равно нулю, собственно сканирование не будет вы-
+полняться, поэтому эта функция должна сделать только то, что необходимо для получения состо-
+яния узла, подходящего для EXPLAIN и EndSampleScan.
+Эту функцию можно опустить (присвоить указателю NULL), тогда вся инициализация, необходи-
+мая для метода извлечения выборки, должна иметь место в BeginSampleScan.
+void
+BeginSampleScan (SampleScanState *node,
+Datum *params,
+int nparams,
+uint32 seed);
+Начинает выполнение сканирования выборки. Эта функция вызывается непосредственно пе-
+ред первой попыткой выбрать кортеж и может вызываться повторно, если потребуется переза-
+пустить сканирование. Информацию о сканируемой таблице можно получить через поля узла
+SampleScanState (но заметьте, что дескриптор сканирования node-&gt;ss.ss_currentScanDesc ещё
+не настроен). Массив params, длины nparams, содержит значения параметров, переданных в пред-
+ложении TABLESAMPLE. Их количество и типы задаются в списке parameterTypes метода выборки,
+и они гарантированно не равны NULL. Параметр seed содержит значение затравки, которое этот
+метод должен учитывать при генерации любых случайных чисел; это либо хеш, полученный из
+значения REPEATABLE, если оно было передано, либо результат random() в противном случае.
+Эта функция может скорректировать поля node-&gt;use_bulkread и node-&gt;use_pagemode. Если поле
+node-&gt;use_bulkread равно true (это значение по умолчанию), при сканировании будет использо-
+ваться стратегия доступа к буферу, ориентированная на переработку буферов после использова-
+ния. Может быть разумным присвоить ему false, если при сканировании будет просматриваться
+только небольшой процент страниц. Если поле node-&gt;use_pagemode равно true (это значение по
+2108Написание метода извле-
+чения выборки таблицы
+умолчанию), при сканировании проверка видимости будет выполняться в один проход для всех
+кортежей на каждой просматриваемой странице. Может иметь смысл присвоить ему false, если
+при сканировании выбирается только небольшой процент кортежей на странице. В результате бу-
+дет выполняться меньше проверок видимости кортежей, хотя каждая проверка будет дороже, так
+как потребует расширенную блокировку.
+Если метод выборки помечен как repeatable_across_scans, он должен быть способен выбирать
+при повторном сканировании тот же набор кортежей, что был выбран в первый раз, то есть новый
+вызов BeginSampleScan должен приводить к выборке тех же кортежей, что и предыдущий (если
+параметры TABLESAMPLE и значение затравки не меняются).
+BlockNumber
+NextSampleBlock (SampleScanState *node);
+Возвращает номер блока следующей сканируемой страницы либо InvalidBlockNumber, если стра-
+ниц для сканирования не осталось.
+Эту функцию можно опустить (присвоить её указателю NULL), в этом случае код ядра произведёт
+последовательное сканирование всего отношения. Такое сканирование может быть синхронизи-
+рованным, так что метод выборки не должен полагать, что страницы отношения каждый раз про-
+сматриваются в одном и том же порядке.
+OffsetNumber
+NextSampleTuple (SampleScanState *node,
+BlockNumber blockno,
+OffsetNumber maxoffset);
+Возвращает номер смещения следующего кортежа, выбираемого с указанной страницы, либо
+InvalidOffsetNumber, если кортежей для выборки не осталось. В maxoffset задаётся максималь-
+ный номер смещения, допустимый на этой странице.
+Примечание
+NextSampleTuple не говорит явно, для каких из номеров смещений в диапазоне 1 ..
+maxoffset действительно содержатся актуальные кортежи. Это обычно не проблема,
+так как код ядра игнорирует запросы на выборку несуществующих или невидимых кор-
+тежей; это не должно приводить к отклонениям в выборке. Однако при необходимо-
+сти функция может проверить node-&gt;ss.ss_currentScanDesc-&gt;rs_vistuples[] и по-
+нять, какие кортежи актуальны и видимы. (Для этого требуется, чтобы признак node-</p>
+<blockquote>
+  <p>use_pagemode равнялся true.)
+Примечание
+Функция NextSampleTuple не должна полагать, что в blockno будет получен тот же
+номер страницы, что был выдан при последнем вызове NextSampleBlock. Этот номер
+определённо был выдан при каком-то предыдущем вызове NextSampleBlock, но код яд-
+ра может вызывать NextSampleBlock перед тем, как собственно сканировать страни-
+цы, для поддержки упреждающего чтения. Однако можно рассчитывать на то, что как
+только начнётся выборка кортежей с одной данной страницы, все последующие вызо-
+вы NextSampleTuple будут обращаться к этой странице, пока не будет возвращено зна-
+чение InvalidOffsetNumber.
+void
+EndSampleScan (SampleScanState *node);
+Завершает сканирование и освобождает ресурсы. Обычно при этом не нужно освобождать память,
+выделенную через palloc, но все видимые извне ресурсы должны быть очищены. Эту функцию чаще
+всего можно опустить (присвоить её указателю NULL), если таких ресурсов нет.
+2109</p>
+</blockquote>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -289,65 +579,982 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_2_2/" title="102.2 Установка загрузчика"><img src="http://localhost:4000/images/matrix.jpg" alt="102.2 Установка загрузчика"></a>
+        <a href="http://localhost:4000/PostgreSQL-V11_Doc-057/" title="Глава 57. Написание обёртки сторонних данных"><img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 57. Написание обёртки сторонних данных"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_2_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-12-01T00:00:00+02:00"><a href="http://localhost:4000/PostgreSQL-V11_Doc-057/">December 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~40 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_2_2/" rel="bookmark" title="102.2 Установка загрузчика" itemprop="url">102.2 Установка загрузчика</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/PostgreSQL-V11_Doc-057/" rel="bookmark" title="Глава 57. Написание обёртки сторонних данных" itemprop="url">Глава 57. Написание обёртки сторонних данных</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь выбирать, устанавливать и настраивать загрузчик ОС.</p>
+    <p>Глава 57. Написание обёртки сторонних данных</p>
 
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>доступные загрузочные разделы;</li>
-  <li>установку и настройку GRUB;</li>
-  <li>настройку GRUB 2;</li>
-  <li>взаимодействие с загрузчиком.</li>
-</ul>
-
-<p><strong>Термины и утилиты:</strong>**        **</p>
-
-<ul>
-  <li>menu.lst, grub.cfg и grub.conf</li>
-  <li>grub-install</li>
-  <li>grub-mkconfig</li>
-  <li>MBR</li>
-</ul>
-
-<p>При включении ПК инициализируется ПО материнской платы, которое после всех проверок передает управление первым секторам основного жесткого диска. В этих секторах находятся файлы загрузчика – специального ПО, позволяющего загрузить ядро ОС в оперативную память.</p>
-
-<p>При первичной инициализации жесткого диска происходит выбор формата таблицы разделов: MBR (с ним работает BIOS) или более современный GUID (с ним работает UEFI).</p>
-
-<p><img src="data:image/*;base64,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" alt="" /></p>
-
-<p>Рисунок 1. MBR и GPT</p>
-
-<p>Существует три самых популярных загрузчика Linux систем: LiLo, Grub и Grub2. Большинство современных дистрибутивов Linux используют Grub2.</p>
-
-<p>Для настройки загрузчика Lilo используется команда <strong>liloconfig</strong>. Текущую конфигурацию можно увидеть в файле <strong>/</strong>** etc <strong>**/</strong>** lilo <strong>**.</strong>** conf**. Конфигурационный файл прост для понимания, в нем указаны дисковые устройства, образы ядер, выводимый на экран при загрузке текст и т.д.</p>
-
-<p>Настройки Grub хранятся в файле / <strong>boot</strong>** / <strong>**grub</strong>** / <strong>**grub</strong><strong>. **</strong>conf** или / <strong>boot</strong>** / <strong>**grub</strong>** / <strong>**menu</strong><strong>. **</strong>lst<strong>**.</strong> В нем, помимо основных опций загрузки, указаны все доступные для загрузки ОС и порядок обращения к ним.</p>
-
-<p>Grub2 является отдельным проектом, полностью созданным с ноля. Для его установки можно воспользоваться командой <strong>grub</strong>** - <strong>**install</strong> , например:</p>
-
-<p><strong>grub</strong>** - <strong>**install</strong>  <strong>/</strong>** dev <strong>**/</strong>** sda**_        (установить загрузчик на устройство / <strong>dev</strong> / <strong>sda</strong> );_</p>
-
-<p>Основным файлом конфигурации выбора ОС является файл <strong>/</strong>** boot <strong>**/</strong>** grub <strong>**/</strong>** grub <strong>**.</strong>** cfg <strong>, генерируемый автоматически.  Общие настройки загрузчика можно увидеть в файле</strong> /etc/default/grub <strong>. Скрипты, используемые загрузчиком находятся в директории</strong> /etc/grub.d**.</p>
-
-<p>Изменения, внесенные в настройки загрузчика можно загрузить в файл конфигурации командой <strong>update</strong>** - <strong>**grub</strong><strong>.</strong>Для автоматического создания файла конфигурации <em>(/ <strong>boot</strong> / <strong>grub</strong> / <strong>grub</strong>. <strong>cfg</strong> )</em> с типовым меню можно воспользоваться утилитой<strong>grub **</strong>-<strong>** mkconfig **</strong>.**</p>
+<p>Все операции со сторонней таблицей производятся через созданную для неё обёртку сторонних
+данных, представляющую собой набор подпрограмм, которые вызывает ядро сервера. Обёртка сто-
+ронних данных отвечает за получение данных из удалённого источника данных и передачу их ис-
+полнителю запросов PostgreSQL. Чтобы поддерживалось изменение данных в сторонних таблицах,
+эту операцию также должна выполнять обёртка. В данной главе освещается написание обёртки
+сторонних данных.
+Реализация обёрток сторонних данных, включённых в стандартный дистрибутив, может послу-
+жить хорошим примером при написании собственных обёрток. Её вы можете найти в подкатало-
+ге contrib дерева исходного кода. Некоторые полезные детали также можно узнать на странице
+справки CREATE FOREIGN DATA WRAPPER.
+Примечание
+В стандарте SQL описан интерфейс для написания обёрток сторонних данных, но
+PostgreSQL не реализует его, так как это потребовало бы больших усилий, а данный
+стандартизированный API всё равно не получил широкого распространения.
+57.1. Функции обёрток сторонних данных
+Автор FDW (Foreign Data Wrapper, Обёртки сторонних данных) должен реализовать функцию-обра-
+ботчик и может дополнительно добавить функцию проверки. Обе функции должны быть написаны
+на компилируемом языке, таком как C, и использовать интерфейс версии 1. Подробнее соглаше-
+ние о вызовах и динамическая загрузка кода на C описывается в Разделе 38.10.
+Функция-обработчик просто возвращает структуру с указателями на реализующие подпрограммы,
+которые будут вызываться планировщиком, исполнителем и различными служебными командами.
+Основная часть разработки FDW заключается в написании этих реализующих подпрограмм. Функ-
+ция-обработчик должна быть зарегистрирована в PostgreSQL как функция без аргументов, возвра-
+щающая специальный псевдотип fdw_handler. Реализующие подпрограммы представляют собой
+обычные функции на C, которые не видны и не могут вызываться на уровне SQL. Они описаны в
+Разделе 57.2.
+Функция проверки отвечает за проверку параметров, передаваемых с командами CREATE и ALTER
+для этой обёртки сторонних данных, а также параметров сторонних серверов, сопоставлений
+пользователей и сторонних таблиц, доступных через эту обёртку. Эта функция должна быть за-
+регистрирована как принимающая два аргумента: текстовый массив, содержащий параметры
+для проверки, и OID, представляющий тип объекта, с которым связаны эти параметры (в виде
+OID системного каталога, в котором будет сохраняться объект: ForeignDataWrapperRelationId,
+ForeignServerRelationId, UserMappingRelationId или ForeignTableRelationId). Если функция
+проверки отсутствует, параметры не проверяются ни при создании, ни при изменении объекта.
+57.2. Подпрограммы обёртки сторонних данных
+Функция-обработчик FDW возвращает структуру FdwRoutine (выделенную с помощью palloc), со-
+держащую указатели на подпрограммы, которые реализуют описанные ниже функции. Из всех
+функций обязательными являются только те, что касаются сканирования, а остальные могут от-
+сутствовать.
+Тип структуры FdwRoutine объявлен в src/include/foreign/fdwapi.h, там же можно узнать до-
+полнительные подробности.
+2088Написание обёрт-
+ки сторонних данных
+57.2.1. Подпрограммы FDW для сканирования сторонних таблиц
+void
+GetForeignRelSize(PlannerInfo *root,
+RelOptInfo *baserel,
+Oid foreigntableid);
+Выдаёт оценку размера отношения для сторонней таблицы. Она вызывается в начале планирова-
+ния запроса, в котором сканируется сторонняя таблица. В параметре root передаётся общая ин-
+формация планировщика о запросе, в baserel — информация о данной таблице, а в foreigntableid
+— OID записи в pg_class для данной таблицы. (Значение foreigntableid можно получить и из
+структуры данных планировщика, но простоты ради оно передаётся явно.)
+Эта функция должна записать в baserel-&gt;rows ожидаемое число строк, которое будет получено
+при сканировании таблицы, с учётом фильтра, заданного ограничением выборки. Изначально в
+baserel-&gt;rows содержится просто постоянная оценка по умолчанию, которую следует заменить,
+если это вообще возможно. Функция также может поменять значение baserel-&gt;width, если она
+может дать лучшую оценку средней ширины строки результата.
+За дополнительными сведениями обратитесь к Разделу 57.4.
+void
+GetForeignPaths(PlannerInfo *root,
+RelOptInfo *baserel,
+Oid foreigntableid);
+Формирует возможные пути доступа для сканирования сторонней таблицы. Эта функция вызывает-
+ся при планировании запроса. Ей передаются те же параметры, что и функции GetForeignRelSize,
+которая к этому времени уже будет вызвана.
+Эта функция должна выдать минимум один путь доступа (узел ForeignPath) для скани-
+рования сторонней таблицы и должна вызвать add_path, чтобы добавить каждый такой
+путь в baserel-&gt;pathlist. Для формирования узлов ForeignPath рекомендуется вызывать
+create_foreignscan_path. Данная функция может выдавать несколько путей доступа, то есть пу-
+тей, для которых по заданным pathkeys можно получить уже отсортированный результат. Каждый
+путь доступа должен содержать оценки стоимости и может содержать любую частную информа-
+цию FDW, необходимую для выбора целевого метода сканирования.
+За дополнительными сведениями обратитесь к Разделу 57.4.
+ForeignScan *
+GetForeignPlan(PlannerInfo *root,
+RelOptInfo *baserel,
+Oid foreigntableid,
+ForeignPath *best_path,
+List *tlist,
+List *scan_clauses,
+Plan *outer_plan);
+Создаёт узел плана ForeignScan из выбранного пути доступа к сторонней таблице. Эта функ-
+ция вызывается в конце планирования запроса. Ей передаются те же параметры, что и
+GetForeignRelSize, плюс выбранный путь ForeignPath (до этого сформированный функциями
+GetForeignPaths, GetForeignJoinPaths или GetForeignUpperPaths), целевой список, который дол-
+жен быть выдан этим узлом плана, условия ограничения, которые должны применяться для дан-
+ного узла, и внешний вложенный подплан ForeignScan, применяемый для перепроверок, выпол-
+няемых функцией RecheckForeignScan. (Если путь задаётся для соединения, а не для базового от-
+ношения, в foreigntableid передаётся InvalidOid.)
+Эта функция должна создать и выдать узел плана ForeignScan; для формирования этого узла ре-
+комендуется использовать make_foreignscan.
+2089Написание обёрт-
+ки сторонних данных
+За дополнительными сведениями обратитесь к Разделу 57.4.
+void
+BeginForeignScan(ForeignScanState *node,
+int eflags);
+Начинает сканирование сторонней таблицы. Эта функция вызывается при запуске исполнителя.
+Она должна выполнить все подготовительные действия, необходимые для осуществления сканиро-
+вания, но не должна собственно производить сканирование (оно должно начаться с первым вызо-
+вом IterateForeignScan). Узел ForeignScanState уже был создан, но его поле fdw_state по-преж-
+нему NULL. Информацию о сканируемой таблице можно получить через узел ForeignScanState (в
+частности, из нижележащего узла ForeignScan, содержащего частную информацию FDW, задан-
+ную функцией GetForeignPlan). Параметр eflags содержит битовые флаги, описывающие режим
+работы исполнителя для этого узла плана.
+Заметьте, что когда (eflags &amp; EXEC_FLAG_EXPLAIN_ONLY) не равно нулю, эта функция не должна
+выполнять какие-либо внешне проявляющиеся действия; она должна сделать только то, что необ-
+ходимо для получения состояния узла, подходящего для ExplainForeignScan и EndForeignScan.
+TupleTableSlot *
+IterateForeignScan(ForeignScanState *node);
+Выбирает одну строку из стороннего источника и возвращает её в слоте таблицы кортежей (для
+этой цели следует использовать ScanTupleSlot, переданный с узлом). Когда строки заканчива-
+ются, возвращает NULL. Инфраструктура слотов таблицы кортежей позволяет возвращать как
+физические, так и виртуальные кортежи; в большинстве случаев второй вариант предпочтитель-
+нее с точки зрения производительности. Заметьте, что эта функция вызывается в контексте крат-
+ковременной памяти, который будет сбрасываться между вызовами. Если вам нужна более дол-
+гоживущая память, создайте соответствующий контекст в BeginForeignScan либо используйте
+es_query_cxt из структуры EState, переданной с узлом.
+Возвращаемые строки должны соответствовать целевому списку fdw_scan_tlist, если он переда-
+ётся, а в противном случае — типу строки сканируемой сторонней таблицы. Если вы решите для
+оптимизации не возвращать ненужные столбцы, в их позиции нужно вставить NULL, либо сформи-
+ровать список fdw_scan_tlist без этих столбцов.
+Заметьте, что для исполнителя PostgreSQL не важно, удовлетворяют ли возвращаемые строки ка-
+ким-либо ограничениям, определённым для сторонней таблицы — но это важно для планировщи-
+ка, так что запросы могут оптимизироваться некорректно, если в сторонней таблице будут видны
+строки, не удовлетворяющие объявленному ограничению. Если ограничение нарушается, тогда
+как пользователь объявил, что оно должно выполняться, может быть уместно сообщить об ошибке
+(точно так же, как и при несовпадении типов данных).
+void
+ReScanForeignScan(ForeignScanState *node);
+Перезапускает сканирование с начала. Заметьте, что значения параметров, от которых зависит
+сканирование, могли измениться, так что новое сканирование не обязательно вернёт те же строки.
+void
+EndForeignScan(ForeignScanState *node);
+Завершает сканирование и освобождает ресурсы. Обычно при этом не нужно освобождать память,
+выделенную через palloc, но например, открытые файлы и подключения к удалённым серверам
+следует закрыть.
+57.2.2. Подпрограммы FDW для сканирования сторонних соедине-
+ний
+Если FDW поддерживает соединения на удалённой стороне (вместо того, чтобы считывать данные
+обеих таблиц и выполнять соединения локально), она должна предоставить эту реализующую под-
+программу:
+2090Написание обёрт-
+ки сторонних данных
+void
+GetForeignJoinPaths(PlannerInfo *root,
+RelOptInfo *joinrel,
+RelOptInfo *outerrel,
+RelOptInfo *innerrel,
+JoinType jointype,
+JoinPathExtraData *extra);
+Формирует возможные пути доступа для соединения двух (и более) сторонних таблиц, принадле-
+жащих одному стороннему серверу. Эта необязательная функция вызывается во время планирова-
+ния запроса. Как и GetForeignPaths, эта функция должна построить путь(и) ForeignPath для пе-
+реданного joinrel и вызвать add_path, чтобы добавить эти пути в набор путей, подходящих для со-
+единения. Но, в отличие от GetForeignPaths, эта функция не обязательно должна возвращать ми-
+нимум один путь, так как всегда возможен альтернативный путь с локальным соединением таблиц.
+Заметьте, что эта функция будет вызываться неоднократно для одного и того же соединения с раз-
+ными комбинациями внутреннего и внешнего отношений; минимизировать двойную работу долж-
+на сама FDW.
+Если для соединения выбирается путь ForeignPath, он будет представлять весь процесс соедине-
+ния; пути, сформированные для задействованных таблиц и подчинённых соединений, в нём при-
+меняться не будут. Далее этот путь соединения обрабатывается во многом так же, как и путь ска-
+нирования одной сторонней таблицы. Одно различие состоит в том, что scanrelid результирую-
+щего плана узла ForeignScan должно быть равно нулю, так как он не представляет какое-либо
+одно отношение; вместо этого набор соединяемых отношений представляется в поле fs_relids
+узла ForeignScan. (Это поле заполняется автоматически кодом ядра планировщика, так что FDW
+делать это не нужно.) Ещё одно отличие в том, что список столбцов для удалённого соединения
+нельзя получить из системных каталогов и поэтому FDW должна выдать в fdw_scan_tlist требу-
+емый список узлов TargetEntry, представляющий набор столбцов, которые будут выдаваться во
+время выполнения в возвращаемых кортежах.
+За дополнительными сведениями обратитесь к Разделу 57.4.
+57.2.3. Подпрограммы FDW для планирования обработки после
+сканирования/соединения
+Если FDW поддерживает удалённое выполнение операций после сканирования/соединения, на-
+пример, удалённое агрегирование, она должна предоставить эту реализующую подпрограмму:
+void
+GetForeignUpperPaths(PlannerInfo *root,
+UpperRelationKind stage,
+RelOptInfo *input_rel,
+RelOptInfo *output_rel,
+void *extra);
+Формирует возможные пути доступа для обработки верхнего отношения. Этот термин планиров-
+щика подразумевает любую обработку запросов после сканирования/соединения, в частности, аг-
+регирование, вычисление оконных функций, сортировку и изменение таблиц. Эта необязательная
+функция вызывается во время планирования запроса. В настоящее время она вызывается, только
+если все базовые отношения, задействованные в запросе, относятся к одной FDW. Эта функция
+должна построить путь(и) ForeignPath для любых действий после сканирования/соединения, ко-
+торые FDW умеет выполнять удалённо, и вызвать add_path, чтобы добавить эти пути к указанному
+верхнему отношению. Как и GetForeignJoinPaths, эта функция не обязательно должна возвращать
+какие-либо пути, так как всегда возможны пути с локальной обработкой.
+Параметр stage определяет, какой шаг после сканирования/соединения рассматривается в дан-
+ный момент. Параметр output_rel указывает на верхнее отношение, которое должно получить пу-
+ти, представляющие вычисление этого шага, а input_rel — на отношение, представляющее вход-
+ные данные для этого шага. В параметре extra передаётся дополнительная информация; в настоя-
+2091Написание обёрт-
+ки сторонних данных
+щее время он устанавливается только для UPPERREL_PARTIAL_GROUP_AGG и UPPERREL_GROUP_AGG, и в
+этом случае указывает на структуру GroupPathExtraData. (Заметьте, что пути ForeignPath, добав-
+ляемые в output_rel, обычно не будут напрямую зависеть от путей input_rel, так как ожидается,
+что они будут обрабатываться снаружи. Однако изучить пути, построенные для предыдущего шага
+обработки, может быть полезно для исключения лишних операций при планировании.)
+За дополнительными сведениями обратитесь к Разделу 57.4.
+57.2.4. Подпрограммы FDW для изменения данных в сторонних
+таблицах
+Если FDW поддерживает запись в сторонние таблицы, она должна предоставить некоторые или
+все подпрограммы, реализующие следующие функции, в зависимости от потребностей и возмож-
+ностей FDW:
+void
+AddForeignUpdateTargets(Query *parsetree,
+RangeTblEntry *target_rte,
+Relation target_relation);
+Операции UPDATE и DELETE выполняются со строками, ранее выбранными функциями сканирова-
+ния таблицы. FDW может потребоваться дополнительная информация, например, ID строки или
+значения столбцов первичного ключа, чтобы точно знать, какую именно строку нужно изменить
+или удалить. Для этого данная функция может добавить дополнительные скрытые или «отбросо-
+вые» целевые столбцы в список столбцов, которые должны быть получены из сторонней таблицы
+во время UPDATE или DELETE.
+Для этого добавьте в parsetree-&gt;targetList элементы TargetEntry, содержащие выражения для
+дополнительных выбираемых значений. У каждой такой записи должен быть признак resjunk
+= true и должно быть отдельное собственное имя resname, по которому она будет иденти-
+фицироваться во время выполнения. Избегайте использования имён вида ctidN, wholerow или
+wholerowN, так как столбцы с такими именами может генерировать ядро системы. Если допол-
+нительные выражения сложнее, чем просто переменные, их нужно пропустить через функцию
+eval_const_expressions прежде чем добавлять в целевой список.
+Хотя эта функция вызывается во время планирования, передаваемая ей информация несколько
+отличается от той, что получают другие подпрограммы планирования. В parsetree передаётся
+дерево разбора команды UPDATE или DELETE, а параметры target_rte и target_relation описывают
+целевую стороннюю таблицу.
+Если указатель AddForeignUpdateTargets равен NULL, дополнительные целевые выражения не до-
+бавляются. (Это делает невозможным реализацию операций DELETE, хотя операция UPDATE может
+быть всё же возможна, если FDW идентифицирует строки, полагаясь на то, что первичный ключ
+не меняется.)
+List *
+PlanForeignModify(PlannerInfo *root,
+ModifyTable *plan,
+Index resultRelation,
+int subplan_index);
+Выполняет любые дополнительные действия планирования, необходимые для добавления, изме-
+нения или удаления в сторонней таблице. Эта функция формирует частную информацию FDW, ко-
+торая будет добавлена в узел плана ModifyTable, осуществляющий изменение. Эта информация
+должна возвращаться в списке (List); она будет доставлена в функцию BeginForeignModify на
+стадии выполнения.
+В root передаётся общая информация планировщика о запросе, а в plan — узел плана ModifyTable,
+заполненный, не считая поля fdwPrivLists. Параметр resultRelation указывает на целевую сто-
+роннюю таблицу по номеру в списке отношений, а subplan_index определяет целевое отношение
+2092Написание обёрт-
+ки сторонних данных
+в данном узле ModifyTable, начиная с нуля; воспользуйтесь этим индексом, обращаясь к plan-</p>
+<blockquote>
+  <p>plans или другой вложенной структуре узла plan.
+За дополнительными сведениями обратитесь к Разделу 57.4.
+Если указатель PlanForeignModify равен NULL, дополнительные действия во время планирования
+не предпринимаются, и в качестве fdw_private в BeginForeignModify поступит NULL.
+void
+BeginForeignModify(ModifyTableState *mtstate,
+ResultRelInfo *rinfo,
+List *fdw_private,
+int subplan_index,
+int eflags);
+Начинает выполнение операции изменения данных в сторонней таблице. Эта подпрограмма
+выполняется при запуске исполнителя. Она должна выполнять любые подготовительные дей-
+ствия, необходимые для того, чтобы собственно произвести изменения в таблице. Впоследствии
+для каждого кортежа, который будет вставляться, изменяться или удаляться, будет вызываться
+ExecForeignInsert, ExecForeignUpdate или ExecForeignDelete.
+В параметре mtstate передаётся общее состояние выполняемого плана узла ModifyTable; через
+эту структуру доступны глобальные сведения о плане и состояние выполнения. В rinfo переда-
+ётся структура ResultRelInfo, описывающая целевую стороннюю таблицу. (Если FDW нужно со-
+хранить частное состояние, необходимое для этой операции, она может воспользоваться полем
+ri_FdwState структуры ResultRelInfo.) В fdw_private передаются частные данные, если они были
+сформированы процедурой PlanForeignModify. Параметр subplan_index определяет целевое от-
+ношение в данном узле ModifyTable, а в eflags передаются битовые флаги, описывающие режим
+работы исполнителя для этого узла плана.
+Заметьте, что когда (eflags &amp; EXEC_FLAG_EXPLAIN_ONLY) не равно нулю, эта функция не должна вы-
+полнять какие-либо внешне проявляющиеся действия; она должна сделать только то, что необхо-
+димо для получения состояния узла, подходящего для ExplainForeignModify и EndForeignModify.
+Если указатель на BeginForeignModify равен NULL, никакое действие при запуске исполнителя не
+выполняется.
+TupleTableSlot *
+ExecForeignInsert(EState *estate,
+ResultRelInfo *rinfo,
+TupleTableSlot *slot,
+TupleTableSlot *planSlot);
+Вставляет один кортеж в стороннюю таблицу. В estate передаётся глобальное состояние выпол-
+нения запроса, а в rinfo — структура ResultRelInfo, описывающая целевую стороннюю таблицу.
+Параметр slot содержит кортеж, который должен быть вставлен; он будет соответствовать опре-
+делению типа строки сторонней таблицы. Параметр planSlot содержит кортеж, сформированный
+вложенным планом узла ModifyTable; он отличается от slot тем, что может содержать допол-
+нительные «отбросовые» столбцы. (Значение planSlot обычно не очень интересно для операций
+INSERT, но оно представлено для полноты.)
+Возвращаемым значением будет либо слот, содержащий данные, которые были фактически встав-
+лены (они могут отличаться от переданных данных, например, в результате действий триггеров),
+либо NULL, если никакая строка фактически не была вставлена (опять же, обычно в результате
+действий триггеров). Чтобы вернуть результат, также можно использовать передаваемый на вход
+slot.
+Данные в возвращаемом слоте используются, только если запрос INSERT содержит предложение
+RETURNING или для сторонней таблицы определён триггер AFTER ROW. Триггерам нужны все столб-
+цы, но для предложения RETURNING FDW может ради оптимизации не возвращать некоторые или
+2093Написание обёрт-
+ки сторонних данных
+все столбцы, в зависимости от его содержания. Так или иначе, какой-либо слот необходимо вер-
+нуть, чтобы отметить, что операция успешна, иначе возвращённое число строк будет неверным.
+Если указатель на ExecForeignInsert равен NULL, вставить данные в стороннюю таблицу не удаст-
+ся, в ответ будет выдаваться сообщение об ошибке.
+TupleTableSlot *
+ExecForeignUpdate(EState *estate,
+ResultRelInfo *rinfo,
+TupleTableSlot *slot,
+TupleTableSlot *planSlot);
+Изменяет один кортеж в сторонней таблице. В estate передаётся глобальное состояние выполне-
+ния запроса, а в rinfo — структура ResultRelInfo, описывающая целевую стороннюю таблицу.
+Параметр slot содержит новые данные для кортежа; он будет соответствовать определению типа
+строки сторонней таблицы. Параметр planSlot содержит кортеж, сформированный вложенным
+планом узла ModifyTable; он отличается от slot тем, что может содержать дополнительные «от-
+бросовые» столбцы. В частности, в этом слоте можно получить любые отбросовые столбцы, запро-
+шенные в AddForeignUpdateTargets.
+Возвращаемым значением будет либо слот, содержащий строку в состоянии после изменения (её
+содержимое может отличаться от переданного, например, в результате действий триггеров), либо
+NULL, если никакая строка фактически не была изменена (опять же, обычно в результате действий
+триггеров). Чтобы вернуть результат, также можно использовать передаваемый на вход slot.
+Данные в возвращаемом слоте используются, только если запрос UPDATE содержит предложение
+RETURNING или для сторонней таблицы определён триггер AFTER ROW. Триггерам нужны все столб-
+цы, но для предложения RETURNING FDW может ради оптимизации не возвращать некоторые или
+все столбцы, в зависимости от его содержания. Так или иначе, какой-либо слот необходимо вер-
+нуть, чтобы отметить, что операция успешна, иначе возвращённое число строк будет неверным.
+Если указатель на ExecForeignUpdate равен NULL, изменить данные в сторонней таблице не удаст-
+ся, а в ответ будет выдаваться сообщение об ошибке.
+TupleTableSlot *
+ExecForeignDelete(EState *estate,
+ResultRelInfo *rinfo,
+TupleTableSlot *slot,
+TupleTableSlot *planSlot);
+Удаляет один кортеж из сторонней таблицы. В estate передаётся глобальное состояние выполне-
+ния запроса, а в rinfo — структура ResultRelInfo, описывающая целевую стороннюю таблицу.
+Параметр slot при вызове не содержит ничего полезного, но в эту структуру можно поместить
+возвращаемый кортеж. Параметр planSlot содержит кортеж, сформированный вложенным пла-
+ном узла ModifyTable; в частности, в нём могут содержаться отбросовые столбцы, запрошенные
+в AddForeignUpdateTargets. Отбросовые столбцы необходимы, чтобы определить, какой именно
+кортеж удалять.
+Возвращаемым значением будет либо слот, содержащий строку, которая была удалена, либо NULL,
+если не удалена никакая строка (обычно в результате действия триггеров). Для размещения воз-
+вращаемого кортежа можно использовать передаваемый на вход slot.
+Данные в возвращаемом слоте используются, только если запрос DELETE содержит предложение
+RETURNING или для сторонней таблицы определён триггер AFTER ROW. Триггерам нужны все столб-
+цы, но для предложения RETURNING FDW может ради оптимизации не возвращать некоторые или
+все столбцы, в зависимости от его содержания. Так или иначе, какой-либо слот необходимо вер-
+нуть, чтобы отметить, что операция успешна, иначе возвращённое число строк будет неверным.
+Если указатель на ExecForeignDelete равен NULL, удалить данные из сторонней таблицы не удаст-
+ся, а в ответ будет выдаваться сообщение об ошибке.
+2094Написание обёрт-
+ки сторонних данных
+void
+EndForeignModify(EState *estate,
+ResultRelInfo *rinfo);
+Завершает изменение данных в таблице и освобождает ресурсы. Обычно при этом не нужно осво-
+бождать память, выделенную через palloc, но например, открытые файлы и подключения к уда-
+лённым серверам следует закрыть.
+Если указатель на EndForeignModify равен NULL, никакое действие при завершении исполнителя
+не выполняется.
+Кортежи, вставляемые в секционированную таблицу командами INSERT и COPY FROM, направляют-
+ся в соответствующие секции. Если обёртка сторонних данных поддерживает перенаправление в
+секции в сторонних таблицах, она также должна предоставить описанные ниже обработчики. Эти
+функции также вызываются, когда результат COPY FROM помещается в стороннюю таблицу.
+void
+BeginForeignInsert(ModifyTableState *mtstate,
+ResultRelInfo *rinfo);
+Начинает выполнение операции добавления данных в сторонней таблице. Эта подпрограмма вы-
+зывается непосредственно перед тем, как первый кортеж будет вставлен в стороннюю таблицу
+— и когда это секция, выбранная для размещения кортежа, и когда это целевое отношение ко-
+манды COPY FROM. Она должна выполнять любые подготовительные действия, необходимые перед
+собственно добавлением данных. Впоследствии для каждого кортежа, добавляемого в стороннюю
+таблицу, будет вызываться обработчик ExecForeignInsert.
+В параметре mtstate передаётся общее состояние выполняемого плана узла ModifyTable; через
+эту структуру доступна глобальная информация о плане и состоянии выполнения. В rinfo пере-
+даётся структура ResultRelInfo, описывающая целевую стороннюю таблицу. (Если FDW нужно
+сохранить частное состояние, необходимое для этой операции, она может воспользоваться полем
+ri_FdwState структуры ResultRelInfo.)
+Когда этот обработчик вызывается командой COPY FROM, связанные с планом глобальные данные
+в mtstate не передаются. При этом параметр planSlot обработчика ExecForeignInsert, впослед-
+ствии вызываемого для каждого вставляемого кортежа, равен NULL — и когда сторонняя таблица
+является секцией, выбранной для помещения кортежа, и когда это целевое отношение данной ко-
+манды.
+Если указатель на BeginForeignInsert равен NULL, никакое действие при инициализации не вы-
+полняется.
+void
+EndForeignInsert(EState *estate,
+ResultRelInfo *rinfo);
+Завершает операцию добавления и освобождает ресурсы. Обычно при этом не нужно освобождать
+память, выделенную через palloc, но например, открытые файлы и подключения к удалённым сер-
+верам следует закрыть.
+Если указатель на EndForeignInsert равен NULL, никакое действие при завершении не выполня-
+ется.
+int
+IsForeignRelUpdatable(Relation rel);
+Сообщает, какие операции изменения данных поддерживает указанная сторонняя таблица. Воз-
+вращаемое значение должно быть битовой маской кодов событий, обозначающих операции, под-
+держиваемые таблицей, и заданных в перечислении CmdType; то есть, (1 « CMD_UPDATE) = 4 для
+UPDATE, (1 « CMD_INSERT) = 8 для INSERT и (1 « CMD_DELETE) = 16 для DELETE.
+2095Написание обёрт-
+ки сторонних данных
+Если указатель на IsForeignRelUpdatable равен NULL, предполагается, что сторонние таблицы
+позволяют добавлять, изменять и удалять строки, если FDW предоставляет процедуры для функ-
+ций ExecForeignInsert, ExecForeignUpdate или ExecForeignDelete, соответственно. Данная функ-
+ция необходима, только если FDW поддерживает операции изменения для одних таблиц и не под-
+держивает для других. (Хотя для этого можно выдать ошибку в подпрограмме, выполняющей опе-
+рацию, а не задействовать эту функцию. Однако данная функция позволяет корректно отражать
+поддержку изменений в представлениях information_schema.)
+Некоторые операции добавления, изменений и удаления данных в сторонних таблицах можно соп-
+тимизировать, применив альтернативный набор интерфейсов. Обычные интерфейсы для операций
+добавления, изменения и удаления выбирают строки с удалённого сервера, а затем модифицируют
+их по одной. В некоторых случаях такой подход «строка-за-строкой» необходим, но он может быть
+не самым эффективным. Если есть возможность определить на стороннем сервере, какие строки
+должны модифицироваться, собственно не считывая их, и если никакие локальные триггеры этой
+операцией не затрагиваются, то возможно организовать операцию так, чтобы она выполнялась це-
+ликом на удалённом сервере. Это становится возможным благодаря описанным ниже интерфей-
+сам.
+bool
+PlanDirectModify(PlannerInfo *root,
+ModifyTable *plan,
+Index resultRelation,
+int subplan_index);
+Определяет, возможно ли безопасно выполнить прямую модификацию на удалённом сервере. Ес-
+ли да, возвращает true, произведя требуемые для этого операции планирования. В противном
+случае возвращает false. Эта необязательная функция вызывается во время планирования за-
+проса. Если результат этой функции положительный, на стадии выполнения будут вызываться
+BeginDirectModify, IterateDirectModify и EndDirectModify. Иначе модификация таблиц будет
+осуществляться посредством функций изменения, описанных выше. Данная функция принимает
+те же параметры, что и PlanForeignModify.
+Для осуществления прямой модификации на удалённом сервере эта функция должна подставить
+в целевой подплан узел ForeignScan, выполняющий прямую модификацию на удалённом сервере.
+В поле operation структуры ForeignScan должно быть установлено соответствующее значение
+перечисления CmdType: то есть, CMD_UPDATE для UPDATE, CMD_INSERT для INSERT и CMD_DELETE для
+DELETE.
+За дополнительными сведениями обратитесь к Разделу 57.4.
+Если указатель на PlanDirectModify равен NULL, сервер не будет пытаться произвести прямую
+модификацию.
+void
+BeginDirectModify(ForeignScanState *node,
+int eflags);
+Подготавливает прямую модификацию на удалённом сервере. Эта функция вызывается при
+запуске исполнителя. Она должна выполнить все подготовительные действия, необходимые
+для осуществления прямой модификации (модификация должна начаться с первым вызовом
+IterateDirectModify). Узел ForeignScanState уже был создан, но его поле fdw_state по-прежне-
+му NULL. Информацию о модифицируемой таблице можно получить через узел ForeignScanState
+(в частности, из нижележащего узла ForeignScan, содержащего частную информацию FDW, за-
+данную функцией PlanDirectModify). Параметр eflags содержит битовые флаги, описывающие
+режим работы исполнителя для этого узла плана.
+Заметьте, что когда (eflags &amp; EXEC_FLAG_EXPLAIN_ONLY) не равно нулю, эта функция не должна
+выполнять какие-либо внешне проявляющиеся действия; она должна сделать только то, что необ-
+ходимо для получения состояния узла, подходящего для ExplainDirectModify и EndDirectModify.
+2096Написание обёрт-
+ки сторонних данных
+Если указатель на BeginDirectModify равен NULL, сервер не будет пытаться произвести прямую
+модификацию.
+TupleTableSlot *
+IterateDirectModify(ForeignScanState *node);
+Когда в запросе INSERT, UPDATE или DELETE отсутствует предложение RETURNING, просто возвраща-
+ет NULL после прямой модификации на удалённом сервере. Когда в запросе есть это предложе-
+ние, выбирает одну строку результата с данными, требующимися для вычисления RETURNING, и
+возвращает её в слоте таблицы кортежей (для этой цели следует использовать ScanTupleSlot, пе-
+реданный с узлом). Данные, которые были фактически добавлены, изменены или удалены, нужно
+сохранить в es_result_relation_info-&gt;ri_projectReturning-&gt;pi_exprContext-&gt;ecxt_scantuple
+в структуре EState, переданной с узлом. Возвращает NULL, если строк больше нет. Заметьте, что
+эта функция вызывается в контексте кратковременной памяти, который будет сбрасываться меж-
+ду вызовами. Если вам нужна более долгоживущая память, создайте соответствующий контекст в
+BeginDirectModify либо используйте es_query_cxt из переданной с узлом структуры EState.
+Возвращаемые строки должны соответствовать целевому списку fdw_scan_tlist, если он переда-
+ётся, а в противном случае — типу строки изменяемой сторонней таблицы. Если вы решите для
+оптимизации не возвращать ненужные столбцы, не требующиеся для получения RETURNING, в их
+позиции нужно вставить NULL, либо сформировать список fdw_scan_tlist без этих столбцов.
+Независимо от того, есть ли в запросе это предложение или нет, число строк, возвращаемых за-
+просом, должно увеличиваться самой FDW. Когда этого предложения в запросе нет, FDW должна
+также увеличивать число строк для узла ForeignScanState в случае EXPLAIN ANALYZE.
+Если указатель на IterateDirectModify равен NULL, сервер не будет пытаться произвести прямую
+модификацию.
+void
+EndDirectModify(ForeignScanState *node);
+Очищает ресурсы после непосредственной модификации на удалённом сервере. Обычно при этом
+не нужно освобождать память, выделенную через palloc, но например, открытые файлы и подклю-
+чения к удалённому серверу следует закрыть.
+Если указатель на EndDirectModify равен NULL, сервер не будет пытаться произвести прямую мо-
+дификацию.
+57.2.5. Подпрограммы FDW для блокировки строк
+Если FDW желает поддержать функцию поздней блокировки строк (описанную в Разделе 57.5),
+она должна предоставить следующие реализующие подпрограммы:
+RowMarkType
+GetForeignRowMarkType(RangeTblEntry *rte,
+LockClauseStrength strength);
+Сообщает, какой вариант пометки строк будет использоваться для сторонней таблицы. Здесь rte
+представляет узел RangeTblEntry для таблицы, а strength описывает силу блокировки, запрошен-
+ную соответствующим предложением FOR UPDATE/SHARE, если оно имеется. Результатом должно
+быть значение перечисления RowMarkType.
+Эта функция вызывается в процессе планирования запроса для каждой сторонней таблицы, кото-
+рая участвует в запросе UPDATE, DELETE или SELECT FOR UPDATE/SHARE, и не является целевой в
+запросе UPDATE или DELETE.
+Если указатель GetForeignRowMarkType равен NULL, всегда выбирается вариант ROW_MARK_COPY.
+(Вследствие этого, функция RefetchForeignRow никогда не будет вызываться, так что и её задавать
+не нужно.)
+2097Написание обёрт-
+ки сторонних данных
+За подробностями обратитесь к Разделу 57.5.
+HeapTuple
+RefetchForeignRow(EState *estate,
+ExecRowMark *erm,
+Datum rowid,
+bool *updated);
+Повторно считывает один кортеж из сторонней таблицы после блокировки, если она требует-
+ся. В estate передаётся глобальное состояние выполнения запроса. В erm передаётся структура
+ExecRowMark, описывающая целевую стороннюю таблицу и тип запрашиваемой блокировки (если
+требуется блокировка). Параметр rowid идентифицирует считываемый кортеж. Параметр updated
+используется как выходной.
+Эта функция должна вернуть копию выбранного кортежа (размещённую в памяти palloc) или NULL,
+если получить блокировку строки не удаётся. Тип запрашиваемой блокировки строки определяет-
+ся значением erm-&gt;markType, которое было до этого возвращено функцией GetForeignRowMarkType.
+(Вариант ROW_MARK_REFERENCE означает, что нужно просто повторно выбрать кортеж, не запраши-
+вая никакую блокировку, а ROW_MARK_COPY никогда не поступает в эту подпрограмму.)
+Кроме того, переменной *updated следует присвоить true, если была считана изменённая версия
+кортежа, а не версия, полученная ранее. (Если FDW не знает этого наверняка, рекомендуется
+всегда возвращать true.)
+Заметьте, что по умолчанию в случае неудачи при попытке получить блокировку строки должна
+выдаваться ошибка; значение NULL может возвращаться, только если в erm-&gt;waitPolicy выбран
+вариант SKIP LOCKED.
+В rowid передаётся значение ctid, полученное ранее для строки, которую нужно считать повтор-
+но. Хотя значение rowid передаётся в виде Datum, в настоящее время это может быть только tid.
+Такой интерфейс функции выбран с расчётом на то, чтобы в будущем в качестве идентификаторов
+строк могли приниматься и другие типы данных.
+Если указатель на RefetchForeignRow равен NULL, повторно выбрать данные не удастся, в ответ
+будет выдаваться сообщение об ошибке.
+За подробностями обратитесь к Разделу 57.5.
+bool
+RecheckForeignScan(ForeignScanState *node,
+TupleTableSlot *slot);
+Перепроверяет, соответствует ли по-прежнему ранее возвращённый кортеж применимым услови-
+ям сканирования и соединения, и возможно выдаёт изменённую версию кортежа. Для обёрток
+сторонних данных, которые не выносят соединение наружу, обычно удобнее присвоить этому ука-
+зателю NULL и задать fdw_recheck_quals. Однако, когда внешние соединения выносятся наружу,
+недостаточно повторно применить к результирующему кортежу проверки, относящиеся ко всем
+базовым таблицам, даже если присутствуют все атрибуты, так как невыполнение некоторого усло-
+вия может приводить и к обнулению некоторых атрибутов, а не только исключению этого кортежа.
+RecheckForeignScan может перепроверить условия и возвратить true, если они по-прежнему вы-
+полняются, или false в противном случае, но также она может записать в переданный слот кортеж
+на замену предыдущему.
+Чтобы вынести соединение наружу, обёртка сторонних данных обычно конструирует альтернатив-
+ный план локального соединения, применяемый только для перепроверок; он становится внеш-
+ним подпланом узла ForeignScan. Когда требуется перепроверка, может быть выполнен этот под-
+план и результирующий кортеж сохранён в слоте. Этот план может не быть эффективным, так
+как ни одна базовая таблица не выдаст больше одной строки; например, он может реализовы-
+вать все соединения в виде вложенных циклов. Для поиска подходящего локального пути соедине-
+ния в существующих путях можно воспользоваться функцией GetExistingLocalJoinPath. Функция
+2098Написание обёрт-
+ки сторонних данных
+GetExistingLocalJoinPath ищет непараметризованный путь в списке путей заданного отношения
+соединения. (Если такой путь не находится, она возвращает NULL, и в этом случае обёртка сто-
+ронних данных может построить локальный путь сама или решить не создавать пути доступа для
+этого соединения.)
+57.2.6. Подпрограммы FDW для EXPLAIN
+void
+ExplainForeignScan(ForeignScanState *node,
+ExplainState *es);
+Дополняет вывод EXPLAIN для сканирования сторонней таблицы. Эта функция может вызывать
+ExplainPropertyText и связанные функции и добавлять поля в вывод EXPLAIN. Поля флагов в es
+позволяют определить, что именно выводить, а для выдачи статистики времени выполнения в слу-
+чае с EXPLAIN ANALYZE можно проанализировать состояние узла ForeignScanState.
+Если указатель ExplainForeignScan равен NULL, никакая дополнительная информация при EXPLAIN
+не выводится.
+void
+ExplainForeignModify(ModifyTableState *mtstate,
+ResultRelInfo *rinfo,
+List *fdw_private,
+int subplan_index,
+struct ExplainState *es);
+Дополняет вывод EXPLAIN для изменений в сторонней таблице. Эта функция может вызывать
+ExplainPropertyText и связанные функции и добавлять поля в вывод EXPLAIN. Поля флагов в es
+позволяют определить, что именно выводить, а для выдачи статистики времени выполнения в слу-
+чае с EXPLAIN ANALYZE можно проанализировать состояние узла ModifyTableState. Первые четыре
+аргумента у этой функции те же, что и у BeginForeignModify.
+Если указатель ExplainForeignModify равен NULL, никакая дополнительная информация при
+EXPLAIN не выводится.
+void
+ExplainDirectModify(ForeignScanState *node,
+ExplainState *es);
+Дополняет вывод EXPLAIN для прямой модификации данных на удалённом сервере. Эта функция
+может вызывать ExplainPropertyText и связанные функции и добавлять поля в вывод EXPLAIN.
+Поля флагов в es позволяют определить, что именно выводить, а для выдачи статистики времени
+выполнения в случае EXPLAIN ANALYZE можно проанализировать состояние узла ForeignScanState.
+Если указатель ExplainDirectModify равен NULL, никакая дополнительная информация при
+EXPLAIN не выводится.
+57.2.7. Подпрограммы FDW для ANALYZE
+bool
+AnalyzeForeignTable(Relation relation,
+AcquireSampleRowsFunc *func,
+BlockNumber *totalpages);
+Эта функция вызывается, когда для сторонней таблицы выполняется ANALYZE. Если FDW может
+собрать статистику для этой сторонней таблицы, эта функция должна вернуть true и передать в
+func указатель на функцию, которая будет выдавать строки выборки из таблицы, а в totalpages
+ожидаемый размер таблицы в страницах. В противном случае эта функция должна вернуть false.
+Если FDW не поддерживает сбор статистики ни для каких таблиц, в AnalyzeForeignTable можно
+установить значение NULL.
+2099Написание обёрт-
+ки сторонних данных
+Функция выдачи выборки, если она предоставляется, должна иметь следующую сигнатуру:
+int
+AcquireSampleRowsFunc(Relation relation,
+int elevel,
+HeapTuple *rows,
+int targrows,
+double *totalrows,
+double *totaldeadrows);
+Она должна выбирать из таблицы максимум targrows строк и помещать их в переданный вызыва-
+ющим кодом массив rows. Возвращать она должна фактическое число выбранных строк. Кроме
+того, эта функция должна сохранить общее количество актуальных и «мёртвых»строк в таблице
+в выходных параметрах totalrows и totaldeadrows, соответственно. (Если для данной FDW нет
+понятия «мёртвых» строк, в totaldeadrows нужно записать 0.)
+57.2.8. Подпрограммы FDW для IMPORT FOREIGN SCHEMA
+List *
+ImportForeignSchema(ImportForeignSchemaStmt *stmt, Oid serverOid);
+Получает список команд, создающих сторонние таблицы. Эта функция вызывается при выполне-
+нии команды IMPORT FOREIGN SCHEMA; ей передаётся дерево разбора этого оператора и OID
+целевого стороннего сервера. Она должна вернуть набор строк C, в каждой из которых должна
+содержаться команда CREATE FOREIGN TABLE. Эти строки будут разобраны и выполнены ядром
+сервера.
+В структуре ImportForeignSchemaStmt поле remote_schema задаёт имя удалённой схемы, из кото-
+рой импортируются таблицы. Поле list_type устанавливает, как фильтровать имена таблиц: ва-
+риант FDW_IMPORT_SCHEMA_ALL означает, что нужно импортировать все таблицы в удалённой схе-
+ме (в этом случае поле table_list пустое), FDW_IMPORT_SCHEMA_LIMIT_TO означает, что нужно им-
+портировать только таблицы, перечисленные в table_list, и FDW_IMPORT_SCHEMA_EXCEPT означает,
+что нужно исключить таблицы, перечисленные в списке table_list. В поле options передаётся
+список параметров для процесса импорта. Значение этих параметров определяется самой FDW.
+Например, у FDW может быть параметр, определяющий, нужно ли сохранять у импортируемых
+столбцов атрибут NOT NULL. Эти параметры могут не иметь ничего общего с параметрами, которые
+принимает FDW в качестве параметров объектов базы.
+FDW может игнорировать поле local_schema в ImportForeignSchemaStmt, так как ядро сервера
+само вставит это имя в разобранные команды CREATE FOREIGN TABLE.
+Также, FDW может не выполнять сама фильтрацию по полям list_type и table_list, так как ядро
+сервера автоматически пропустит все возвращённые команды для таблиц, исключённых по задан-
+ным критериям. Однако часто лучше сразу избежать лишней работы, не формируя команды для
+исключаемых таблиц. Для проверки, удовлетворяет ли фильтру заданное имя сторонней таблицы,
+может быть полезна функция IsImportableForeignTable().
+Если FDW не поддерживает импорт определений таблиц, указателю ImportForeignSchema можно
+присвоить NULL.
+57.2.9. Подпрограммы FDW для параллельного выполнения
+Узел ForeignScan может, хотя это не требуется, поддерживать параллельное выполнение. Парал-
+лельный ForeignScan будет выполняться в нескольких процессах и должен возвращать одну строку
+только единожды. Для этого взаимодействующие процессы могут координировать свои действия
+через фиксированного размера блоки в динамической разделяемой памяти. Эта разделяемая па-
+мять не будет гарантированно отображаться по одному адресу в разных процессах, так что она
+не может содержать указатели. Все следующие функции являются необязательными, но большин-
+ство из них необходимы при реализации поддержки параллельного выполнения.
+bool
+2100Написание обёрт-
+ки сторонних данных
+IsForeignScanParallelSafe(PlannerInfo *root, RelOptInfo *rel,
+RangeTblEntry *rte);
+Проверяет, будет ли сканирование выполняться параллельным исполнителем. Эта функция будет
+вызываться, только когда планировщик считает, что параллельный план принципиально возмо-
+жен, и должна возвращать true, если такое сканирование может безопасно выполняться парал-
+лельным исполнителем. Обычно это не так, если удалённый источник данных является транзак-
+ционным. Но возможно исключение, когда в подключении рабочего процесса к этому источнику
+каким-то образом используется тот же транзакционный контекст, что и в ведущем процессе.
+Если эта функция не определена, считается, что сканирование должно происходить в ведущем
+процессе. Заметьте, что возвращённое значение true не означает, что само сканирование может
+выполняться в параллельном режиме, а только то, что сканирование будет производится в парал-
+лельном исполнителе. Таким образом, может быть полезно определить этот обработчик, даже ес-
+ли параллельное выполнение не поддерживается.
+Size
+EstimateDSMForeignScan(ForeignScanState *node, ParallelContext *pcxt);
+Оценивает объём динамической разделяемой памяти, которая потребуется для параллельной опе-
+рации. Это значение может превышать объём, который будет занят фактически, но не должно быть
+меньше. Возвращаемое значение задаётся в байтах. Эта функция является необязательной и мо-
+жет быть опущена, если не требуется; но в этом случае должны быть также опущены следующие
+три функции, так как для FDW не будет выделена разделяемая память.
+void
+InitializeDSMForeignScan(ForeignScanState *node, ParallelContext *pcxt,
+void *coordinate);
+Инициализирует динамическую разделяемую память, которая потребуется для параллельной опе-
+рации. coordinate указывает на область разделяемой памяти размера, равного возвращаемому
+значению EstimateDSMForeignScan. Эта функция является необязательной и может быть опущена,
+если не требуется.
+void
+ReInitializeDSMForeignScan(ForeignScanState *node, ParallelContext *pcxt,
+void *coordinate);
+Заново инициализирует динамическую разделяемую память, требуемую для параллельной опера-
+ции, перед тем как будет повторно просканирован узел чтения сторонних данных. Эта функция
+является необязательной и может быть опущена, если не требуется. В этой функции рекоменду-
+ется сбрасывать только общее состояние, а в функции ReScanForeignScan сбрасывать только ло-
+кальное. В настоящее время эта функция будет вызываться перед ReScanForeignScan, но лучше
+на этот порядок не рассчитывать.
+void
+InitializeWorkerForeignScan(ForeignScanState *node, shm_toc *toc,
+void *coordinate);
+Инициализирует локальное состояние параллельного исполнителя на основе общего состояния,
+заданного ведущим исполнителем во время InitializeDSMForeignScan. Эта функция является
+необязательной и может быть опущена, если не требуется.
+void
+ShutdownForeignScan(ForeignScanState *node);
+Освобождает ресурсы, когда становится понятно, что этот узел больше не будет выполняться. Этот
+обработчик вызывается не во всех случаях; иногда может вызываться только EndForeignScan. Так
+как сегмент DSM, используемый параллельным запросом, освобождается сразу после вызова этого
+обработчика, обёртки сторонних данных, которым нужно выполнять некоторые действия до лик-
+видации сегмента DSM, должны реализовывать этот метод.
+2101Написание обёрт-
+ки сторонних данных
+57.2.10. Подпрограммы FDW для изменения параметризации пу-
+тей
+List *
+ReparameterizeForeignPathByChild(PlannerInfo *root, List *fdw_private,
+RelOptInfo *child_rel);
+Эта функция вызывается при преобразовании пути, параметризованного самым верхним родите-
+лем данного дочернего отношения child_rel, в путь, параметризованный дочерним отношением.
+Она используется для изменения параметров любых путей или трансляции любых узлов выраже-
+ний, сохранённых в поле fdw_private переданной структуры ForeignPath. Этот обработчик может
+по мере необходимости использовать reparameterize_path_by_child, adjust_appendrel_attrs
+или adjust_appendrel_attrs_multilevel.
+57.3. Вспомогательные функции для обёрток сторон-
+них данных
+Ядро сервера экспортирует набор полезных вспомогательных функций, которые позволяют разра-
+ботчикам обёрток сторонних данных легко обращаться к атрибутам объектов, связанных с FDW,
+например, к параметрам FDW. Чтобы использовать эти функции, необходимо включить в исходный
+файл заголовочный файл foreign/foreign.h. В этом заголовочном файле также определяются ти-
+пы структур, возвращаемых этими функциями.
+ForeignDataWrapper *
+GetForeignDataWrapper(Oid fdwid);
+Эта функция возвращает объект ForeignDataWrapper для обёртки сторонних данных с указанным
+OID. Объект ForeignDataWrapper содержит свойства FDW (они описаны в foreign/foreign.h).
+ForeignServer *
+GetForeignServer(Oid serverid);
+Эта функция возвращает объект ForeignServer для стороннего сервера с указанным OID. Объект
+ForeignServer содержит свойства сервера (они описаны в foreign/foreign.h).
+UserMapping *
+GetUserMapping(Oid userid, Oid serverid);
+Эта функция возвращает объект UserMapping для сопоставления пользователя, которое опреде-
+лено для указанной роли на указанном сервере. (Если сопоставление для указанной роли от-
+сутствует, она возвращает сопоставление для PUBLIC или выдаёт ошибку, если его нет.) Объект
+UserMapping содержит свойства сопоставления пользователя (они описаны в foreign/foreign.h).
+ForeignTable *
+GetForeignTable(Oid relid);
+Эта функция возвращает объект ForeignTable для сторонней таблицы с указанным OID. Объект
+ForeignTable содержит свойства сторонней таблицы (они описаны в foreign/foreign.h).
+List *
+GetForeignColumnOptions(Oid relid, AttrNumber attnum);
+Эта функция возвращает параметры FDW уровня столбцов для столбца из таблицы с указанным
+OID сторонней таблицы и указанным номером, в виде списка DefElem. Если для столбца не опре-
+делены параметры, возвращается NULL.
+В дополнение к функциям, выбирающим объекты по OID, для некоторых объектов добавлены функ-
+ции поиска по именам:
+ForeignDataWrapper *
+GetForeignDataWrapperByName(const char *name, bool missing_ok);
+2102Написание обёрт-
+ки сторонних данных
+Эта функция возвращает объект ForeignDataWrapper для обёртки сторонних данных с указанным
+именем. В случае отсутствия такой обёртки возвращается NULL, если missing_ok равно true, а
+иначе выдаётся ошибка.
+ForeignServer *
+GetForeignServerByName(const char *name, bool missing_ok);
+Эта функция возвращает объект ForeignServer для стороннего сервера с указанным именем. В
+случае отсутствия такого сервера возвращается NULL, если missing_ok равно true, а иначе выда-
+ётся ошибка.
+57.4. Планирование запросов с обёртками сторонних
+данных
+Процедуры в FDW, реализующие функции GetForeignRelSize, GetForeignPaths, GetForeignPlan,
+PlanForeignModify, GetForeignJoinPaths, GetForeignUpperPaths и PlanDirectModify, должны
+вписываться в работу планировщика PostgreSQL. Здесь даётся несколько замечаний о том, как это
+должно происходить.
+Для уменьшения объёма выбираемых из сторонней таблицы данных (и как следствие, сокращения
+стоимости) может использоваться информация, поступающая в root и baserel. Особый интерес
+представляет поле baserel-&gt;baserestrictinfo, так как оно содержит ограничивающие условия
+(предложение WHERE), по которым можно отфильтровать выбираемые строки. (Сама FDW не обя-
+зательно должна применять эти ограничения, так как их может проверить и ядро исполнителя.)
+Список baserel-&gt;reltarget-&gt;exprs позволяет определить, какие именно столбцы требуется вы-
+брать; но учтите, что в нём перечисляются только те столбцы, которые выдаются узлом плана
+ForeignScan, но не столбцы, которые задействованы в ограничивающих условиях и при этом не
+выводятся запросом.
+Когда функциям планирования FDW требуется сохранять свою информацию, они могут использо-
+вать различные частные поля. Вообще, все структуры, которые FDW помещает в закрытые поля,
+должны выделяться функцией palloc, чтобы они автоматически освобождались при завершении
+планирования.
+Для хранения информации, относящейся к определённой сторонней таблице, функции планиро-
+вания FDW могут использовать поле baserel-&gt;fdw_private, которое может содержать указатель
+на void. Ядро планировщика никак не касается его, кроме того, что записывает в него NULL
+при создании узла RelOptInfo. Оно полезно для передачи информации из GetForeignRelSize в
+GetForeignPaths и/или из GetForeignPaths в GetForeignPlan и позволяет избежать повторных вы-
+числений.
+GetForeignPaths может обозначить свойства различных путей доступа, сохранив частную инфор-
+мацию в поле fdw_private узлов ForeignPath. Это поле fdw_private объявлено как указатель
+на список (List), но в принципе может содержать всё, что угодно, так как ядро планировщика
+его не касается. Однако лучше поместить в него данные, которые сможет представить функция
+nodeToString, для применения средств отладки, имеющихся на сервере.
+GetForeignPlan может изучить поле fdw_private выбранного узла ForeignPath и сформировать
+списки fdw_exprs и fdw_private, которые будут помещены в узел ForeignScan, где они будут на-
+ходиться во время выполнения запроса. Оба эти списка должны быть представлены в форме, кото-
+рую способна копировать функция copyObject. Список fdw_private не имеет других ограничений
+и никаким образом не интерпретируется ядром сервера. Список fdw_exprs, если этот указатель
+не NULL, предположительно содержит деревья выражений, которые должны быть вычислены при
+выполнении запроса. Затем планировщик обрабатывает эти деревья, чтобы они были полностью
+готовы к выполнению.
+GetForeignPlan обычно может скопировать полученный целевой список в узел плана как есть. Пе-
+редаваемый список scan_clauses содержит те же предложения, что и baserel-&gt;baserestrictinfo,
+2103Написание обёрт-
+ки сторонних данных
+но, возможно, в другом порядке для более эффективного выполнения. В простых случаях
+FDW может просто убрать узлы RestrictInfo из списка scan_clauses (используя функцию
+extract_actual_clauses) и поместить все предложения в список ограничений узла плана, что бу-
+дет означать, что эти предложения будут проверяться исполнителем во время выполнения. Более
+сложные FDW могут самостоятельно проверять некоторые предложения, и в этом случае такие
+предложения можно удалить из списка ограничений узла, чтобы исполнитель не тратил время на
+их перепроверку.
+Например, FDW может распознавать некоторые предложения ограничений вида сторонняя_пере-
+менная = подвыражение, которые, по её представлению, могут выполняться на удалённом сервере
+с локально вычисленным значением подвыражения. Собственно выявление такого предложения
+должно происходить в функции GetForeignPaths, так как это влияет на оценку стоимости пути. Эта
+функция может включить в поле fdw_private конкретного пути указатель на узел RestrictInfo
+этого предложения. Затем GetForeignPlan удалит это предложение из scan_clauses, но добавит
+подвыражение в fdw_exprs, чтобы оно было приведено к исполняемой форме. Она также может по-
+местить управляющую информацию в поле fdw_private плана узла, которая скажет исполняющим
+функциям, что делать во время выполнения. Запрос, передаваемый удалённому серверу, будет со-
+держать что-то вроде WHERE сторонняя_переменная = $1, а значение параметра будет получено во
+время выполнения в результате вычисления дерева выражения fdw_exprs.
+Все предложения, удаляемые из списка условий узла плана, должны быть добавлены в
+fdw_recheck_quals или перепроверены функцией RecheckForeignScan для обеспечения коррект-
+ного поведения на уровне изоляции READ COMMITTED. Когда имеет место параллельное изменение
+в некоторой другой таблице, задействованной в запросе, исполнителю может потребоваться убе-
+диться в том, что все исходные условия по-прежнему выполняются для кортежа, возможно, с дру-
+гим набором значений параметров. Использовать fdw_recheck_quals обычно проще, чем реализо-
+вывать проверки внутри RecheckForeignScan, но этот метод недостаточен, когда внешние соеди-
+нения выносятся наружу, так как вследствие перепроверки в соединённых кортежах могут обну-
+ляться некоторые поля, но сами кортежи не будут исключаться.
+Ещё одно поле ForeignScan, которое могут заполнять FDW, это fdw_scan_tlist, описывающее кор-
+тежи, возвращаемые обёрткой для этого узла плана. Для простых сторонних таблиц в него можно
+записать NIL, из чего будет следовать, что возвращённые кортежи имеют тип, объявленный для
+сторонней таблицы. Отличное от NIL значение должно указывать на список целевых элементов
+(список структур TargetEntry), содержащий переменные и/или выражения, представляющие воз-
+вращаемые столбцы. Это можно использовать, например, чтобы показать, что FDW опустила неко-
+торые столбцы, которые по её наблюдению не нужны для запроса. Также, если FDW может вы-
+числить выражения, используемые в запросе, более эффективно, чем это можно сделать локаль-
+но, она должна добавить эти выражения в список fdw_scan_tlist. Заметьте, что планы соедине-
+ния (полученные из путей, созданных функцией GetForeignJoinPaths) должны всегда заполнять
+fdw_scan_tlist, описывая набор столбцов, которые они будут возвращать.
+FDW должна всегда строить минимум один путь, зависящий только от предложений ограниче-
+ния таблицы. В запросах с соединением она может также построить пути, зависящие от огра-
+ничения соединения, например сторонняя_переменная = локальная_переменная. Такие предложе-
+ния будут отсутствовать в baserel-&gt;baserestrictinfo; их нужно искать в списках соединений
+отношений. Путь, построенный с таким предложением, называется «параметризованным». Дру-
+гие отношения, задействованные в выбранном предложении соединения, должны связываться c
+этим путём соответствующим значением param_info; для получения этого значения используется
+get_baserel_parampathinfo. В GetForeignPlan часть локальная_переменная предложения соеди-
+нения будет добавлена в fdw_exprs, и затем, во время выполнения, это будет работать так же, как
+и обычное предложение ограничения.
+Если FDW поддерживает удалённые соединения, GetForeignJoinPaths должна выдавать пу-
+ти ForeignPath для потенциально удалённых соединений почти так же, как это делает
+GetForeignPaths для базовых таблиц. Информация о выбранном соединении может быть пере-
+дана функции GetForeignPlan так же, как было описано выше. Однако поле baserestrictinfo
+неприменимо к отношениям соединения; вместо этого соответствующие предложения соединения
+2104Написание обёрт-
+ки сторонних данных
+для конкретного соединения передаются в GetForeignJoinPaths в отдельном параметре (extra-
+restrictlist).
+FDW может дополнительно поддерживать прямое выполнение некоторых действий плана, находя-
+щихся выше уровня сканирований и соединений, например, группировки или агрегирования. Для
+реализации этой возможности FDW должна сформировать пути и вставить их в соответствующее
+верхнее отношение. Например, путь, представляющий удалённое агрегирование, должен встав-
+ляться в отношение UPPERREL_GROUP_AGG с помощью add_path. Этот путь будет сравниваться по сто-
+имости с локальным агрегированием, выполненным по результатам пути простого сканирования
+стороннего отношения (заметьте, что такой путь также должен быть сформирован, иначе во время
+планирования произойдёт ошибка). Если путь с удалённым агрегированием выигрывает, что, как
+правило, и происходит, он будет преобразован в план обычным образом, вызовом GetForeignPlan.
+Такие пути рекомендуется формировать в обработчике GetForeignUpperPaths, который вызывает-
+ся для каждого верхнего отношения (то есть на каждом шаге обработки после сканирования/со-
+единения), если все базовые отношения запроса выдаются одной обёрткой.
+PlanForeignModify и другие обработчики, описанные в Подразделе  57.2.4, рассчитаны на то,
+что стороннее отношение будет сканироваться обычным способом, а затем отдельные изменения
+строк будут обрабатываться локальным узлом плана ModifyTable. Этот подход необходим в об-
+щем случае, когда для такого изменения требуется прочитать не только сторонние, но и локаль-
+ные таблицы. Однако, если операция может быть целиком выполнена сторонним сервером, FDW
+может построить путь, представляющий эту возможность, и вставить его в верхнее отношение
+UPPERREL_FINAL, где он будет конкурировать с подходом ModifyTable. Этот подход также должен
+применяться для реализации удалённого SELECT FOR UPDATE, вместо обработчиков блокировки
+строк, описанных Подразделе 57.2.5. Учтите, что путь, вставляемый в UPPERREL_FINAL, отвечает за
+реализацию всех аспектов поведения запроса.
+При планировании запросов UPDATE или DELETE функции PlanForeignModify и PlanDirectModify
+могут обратиться к структуре RelOptInfo сторонней таблицы и воспользоваться информацией
+baserel-&gt;fdw_private, записанной ранее функциями планирования сканирования. Однако при за-
+просе INSERT целевая таблица не сканируется, так что для неё RelOptInfo не заполняется. На
+список (List), возвращаемый функцией PlanForeignModify, накладываются те же ограничения,
+что и на список fdw_private в узле плана ForeignScan, то есть он должен содержать только такие
+структуры, которые способна копировать функция copyObject.
+Команда INSERT с предложением ON CONFLICT не поддерживает указание объекта конфликта, так
+как уникальные ограничения или ограничения-исключения в удалённых таблицах неизвестны ло-
+кально. Из этого, в свою очередь, вытекает, что предложение ON CONFLICT DO UPDATE не поддер-
+живается, так как в нём это указание является обязательным.
+57.5. Блокировка строк в обёртках сторонних данных
+Если нижележащий механизм хранения FDW поддерживает концепцию блокировки отдельных
+строк, предотвращающую одновременное изменение этих строк, обычно имеет смысл реализовать
+в FDW установление блокировок на уровне строк в приближении, настолько близком к обычным
+таблицам PostgreSQL, насколько это возможно и практично. При этом нужно учитывать ряд заме-
+чаний.
+Первое важное решение, которое нужно принять — будет ли реализована ранняя блокировка или
+поздняя блокировка. С ранней блокировкой строка блокируется, когда впервые считывается из
+нижележащего хранилища, тогда как с поздней блокировкой строка блокируется, только когда
+известно, что её нужно заблокировать. (Различие возникает из-за того, что некоторые строки мо-
+гут быть отброшены локально проверяемыми условиями ограничений или соединений.) Ранняя
+блокировка гораздо проще и не требует дополнительных обращений к удалённому хранилищу, но
+может вызывать блокировку строк, которые можно было бы не блокировать, что может повлечь
+учащение конфликтов и даже неожиданные взаимоблокировки. Кроме того, поздняя блокировка
+возможна, только если блокируемая строка может быть однозначно идентифицирована позже. По-
+этому в идентификаторе строки следует идентифицировать определённую версию строки, как это
+делает TID в PostgreSQL.
+2105Написание обёрт-
+ки сторонних данных
+По умолчанию PostgreSQL игнорирует возможности блокировки, обращаясь к FDW, но FDW может
+установить ранние блокировки и без явной поддержки со стороны ядра. Функции, описанные в
+Подразделе  57.2.5, которые были добавлены в API в PostgreSQL 9.5, позволяют FDW применять
+поздние блокировки, если она этого пожелает.
+Также следует учесть, что в режиме изоляции READ COMMITTED серверу PostgreSQL может потребо-
+ваться перепроверить условия ограничений и соединения с изменённой версией некоторого целе-
+вого кортежа. Для перепроверки условий соединения требуется повторно получить копии исход-
+ных строк, которые ранее были соединены в целевой кортеж. В случае со стандартными таблицами
+PostgreSQL для этого в список столбцов, проходящих через соединение, включаются TID из исход-
+ных таблиц, а затем исходные строки извлекаются заново при необходимости. При таком подхо-
+де набор данных соединения остаётся компактным, но требуется недорогая операция повторного
+чтения строк, а также возможность однозначно идентифицировать повторно считываемую версию
+строки по TID. Поэтому по умолчанию при работе со сторонними таблицами в список столбцов,
+проходящих через соединение, включается копия всей строки, извлекаемой из сторонней табли-
+цы. Это не накладывает специальных требований на FDW, но может привести к снижению произ-
+водительности при соединении слиянием или по хешу. FDW, которая может удовлетворить требо-
+ваниям повторного чтения, может реализовать первый вариант.
+Для команд UPDATE или DELETE со сторонней таблицей рекомендуется, чтобы операция ForeignScan
+в целевой таблице выполняла раннюю блокировку строк, которые она выбирает, возможно, исполь-
+зуя аналог SELECT FOR UPDATE. FDW может определить, является ли таблица целевой таблицей
+команд UPDATE/DELETE, во время планирования, сравнив её relid с root-&gt;parse-&gt;resultRelation,
+или во время планирования, вызвав ExecRelationIsTargetRelation(). Также возможно выполнять
+позднюю блокировку в обработчике ExecForeignUpdate или ExecForeignDelete, но специальной
+поддержки для этого нет.
+Для сторонних таблиц, блокировка которых запрашивается командой SELECT FOR UPDATE/SHARE,
+операция ForeignScan так же может произвести раннюю блокировку, выбрав кортежи, используя
+аналог SELECT FOR UPDATE/SHARE. Чтобы вместо этого произвести позднюю блокировку, предо-
+ставьте подпрограммы-обработчики, описанные в Подразделе 57.2.5. В GetForeignRowMarkType вы-
+берите вариант отметки строк ROW_MARK_EXCLUSIVE, ROW_MARK_NOKEYEXCLUSIVE, ROW_MARK_SHARE или
+ROW_MARK_KEYSHARE, в зависимости от запрошенной силы блокировки. (Код ядра будет работать
+одинаково при любом из этих четырёх вариантов.) Затем вы сможете определить, должна ли сто-
+ронняя таблица блокироваться командой этого типа, вызвав функцию get_plan_rowmark во время
+планирования либо ExecFindRowMark во время выполнения; нужно проверить не только, что воз-
+вращённая структура rowmark отлична от NULL, но и что её поле strength не равно LCS_NONE.
+Наконец, для сторонних таблиц, задействованных в командах UPDATE, DELETE или SELECT
+FOR UPDATE/SHARE, но не требующих блокировки строк, можно переопределить поведение по
+умолчанию, заключающееся в копировании строк целиком, выбрав в GetForeignRowMarkType
+вариант ROW_MARK_REFERENCE, получив значение силы блокировки LCS_NONE. В результате
+RefetchForeignRow будет вызываться с таким значением markType; она должна будет за-
+ново считывать строку, не запрашивая новую блокировку. (Если вы реализуете функцию
+GetForeignRowMarkType, но не хотите повторно считывать незаблокированные строки, выберите
+для LCS_NONE вариант ROW_MARK_COPY.)
+Дополнительные сведения можно получить в src/include/nodes/lockoptions.h, в комментариях
+к RowMarkType и PlanRowMark в src/include/nodes/plannodes.h, и в комментариях к ExecRowMark
+в src/include/nodes/execnodes.h.
+2106</p>
+</blockquote>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -415,9 +1622,11 @@ Reading time ~1 minute
 
     
     
+      <li>…</li>
+    
 
     
-      <li><a href="http://localhost:4000/page10/">10</a></li>
+      <li><a href="http://localhost:4000/page35/">35</a></li>
     
 
     

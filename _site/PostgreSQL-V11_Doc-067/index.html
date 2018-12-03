@@ -1,0 +1,436 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Глава 67. Индексы BRIN &#8211; Sirius Blog</title>
+<meta name="description" content="">
+<meta name="keywords" content="PostgreSQL">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-11.jpg">
+
+<meta name="twitter:title" content="Глава 67. Индексы BRIN">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@2hotab2">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Глава 67. Индексы BRIN">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/PostgreSQL-V11_Doc-067/">
+<meta property="og:site_name" content="Sirius Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/PostgreSQL-V11_Doc-067/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.jpg">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.jpg">
+<!-- 114x72 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x72" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.jpg">
+<!-- 144x72 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x72" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.jpg">
+
+
+
+</head>
+
+<body id="page" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://localhost:4000/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://localhost:4000/images/avatar.jpg" alt="Sergey Khatsiola photo" class="author-photo">
+					<h4>Sergey Khatsiola</h4>
+					<p>Кратко обо мне ...</p>
+				</li>
+				<li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="mailto:2hotab2@gmail.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/2hotab2"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				<li>
+					<a href="https://facebook.com/sergej.ha1"><i class="fa fa-fw fa-facebook"></i> Facebook</a>
+				</li>
+				
+				
+				<li>
+					<a href="https://github.com/Sergey-sirius"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://localhost:4000/posts/">All Posts</a></li>
+				<li><a href="http://localhost:4000/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
+	  
+	    
+	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
+	  
+	    
+	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 67. Индексы BRIN">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Глава 67. Индексы BRIN</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~9 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Глава 67. Индексы BRIN</p>
+
+<p>67.1. Введение</p>
+
+<p>BRIN расшифровывается как «Block Range Index» (Индекс зон блоков). BRIN предназначается для
+обработки очень больших таблиц, в которых определённые столбцы некоторым естественным об-
+разом коррелируют с их физическим расположением в таблице. Зоной блоков называется группа
+страниц, физически расположенных в таблице рядом; для каждой зоны в индексе сохраняется
+некоторая сводная информация. Например, в таблице заказов магазина может содержаться поле
+с датой добавления заказа, и практически всегда записи более ранних заказов и в таблице будут
+размещены ближе к началу; в таблице, содержащей столбец с почтовым индексом, также есте-
+ственным образом могут группироваться записи по городам.
+Индексы BRIN могут удовлетворять запросы, выполняя обычное сканирование по битовой карте, и
+будут возвращать все кортежи во всех страницах каждой зоны, если сводные данные, сохранённые
+в индексе, соответствуют условиям запроса. Исполнитель запроса должен перепроверить эти
+кортежи и отбросить те, что не соответствуют условиям запроса — другими словами, эти индексы
+неточные. Так как индекс BRIN очень маленький, сканирование индекса влечёт мизерные издерж-
+ки по сравнению с последовательным сканированием, но может избавить от необходимости ска-
+нирования больших областей таблицы, которые определённо не содержат подходящие кортежи.
+Конкретные данные, которые будут хранится в индексе BRIN, а также запросы, которые сможет
+поддержать этот индекс, зависят от класса операторов, выбранного для каждого столбца индекса.
+Например, типы данных с линейным порядком сортировки могут иметь классы операторов, храня-
+щие минимальное и максимальное значение для каждой зоны блоков; для геометрических типов
+может храниться прямоугольник, вмещающий все объекты в зоне блоков.
+Размер зоны блоков определяется в момент создания индекса параметром хранения
+pages_per_range. Число записей в индексе будет равняться размеру отношения в страницах, де-
+лённому на установленное значение pages_per_range. Таким образом, чем меньше это число, тем
+больше становится индекс (так как в нём требуется хранить больше элементов), но в то же время
+сводные данные могут быть более точными и большее число блоков данных может быть пропущено
+при сканировании индекса.
+67.1.1. Обслуживание индекса
+Во время создания индекса сканируются все существующие страницы, и в результате в индексе
+создаётся сводный кортеж для каждой зоны, в том числе, возможно неполной зоны в конце. По
+мере того, как данными наполняются новые страницы, если они оказываются в зонах, для которых
+уже есть сводная информация, она будет обновлена с учётом данных из новых кортежей. Если же
+создаётся новая страница, которая не попадает в последнюю зону, для новой зоны автоматически
+не рассчитывается сводная запись; кортежи на таких страницах остаются неучтёнными, пока поз-
+же не будет проведён расчёт сводных данных. Эта процедура может быть вызвана вручную, с по-
+мощью функции brin_summarize_new_values(regclass), или автоматически, когда таблицу будет
+обрабатывать VACUUM или при автоочистке по мере добавления записей. (Последний метод отклю-
+чён по умолчанию и может быть включён параметром autosummarize.) И наоборот, можно удалить
+сводное значение для зоны, вызвав функцию brin_desummarize_range(regclass, bigint), что мо-
+жет быть полезно, когда этот кортеж в индексе становится не очень хорошим представлением со-
+ответствующих данных, так как они изменились.
+Когда включён режим автопересчёта сводки, при каждом заполнении зоны страниц механизму
+автоочистки передаётся запрос для пересчёта сводки только по этой зоне, и он будет выполнен в
+конце следующего прохода обработки той же базы данных. Если очередь запросов переполнена,
+запрос в неё не записывается и в журнал сервера выводится соответствующее сообщение:
+LOG: request for BRIN range summarization for index “brin_wi_idx” page 128 was not
+recorded
+2166Индексы BRIN
+В этой ситуации сводка для данной зоны будет пересчитана при выполнении следующей обычной
+очистки таблицы.
+67.2. Встроенные классы операторов
+В базовый дистрибутив PostgreSQL включены классы операторов BRIN, перечисленные в Табли-
+це 67.1.
+Классы операторов minmax хранят минимальные и максимальные значения, встречающиеся в ин-
+дексированном столбце в определённой зоне. Классы операторов inclusion хранят значение, в ко-
+тором содержатся значения индексированного столбца в определённой зоне.
+Таблица 67.1. Встроенные классы операторов BRIN
+Имя Индексируемый тип данных Индексируемые операторы
+abstime_minmax_ops abstime &lt; &lt;= = &gt;= &gt;
+int8_minmax_ops bigint &lt; &lt;= = &gt;= &gt;
+bit_minmax_ops bit &lt; &lt;= = &gt;= &gt;
+varbit_minmax_ops bit varying &lt; &lt;= = &gt;= &gt;
+box_inclusion_ops box « &amp;&lt; &amp;&amp; &amp;&gt; » ~= @&gt; &lt;@ &amp;&lt;| «| |</p>
+<blockquote>
+  <blockquote>
+    <p>|&amp;&gt;
+bytea_minmax_ops bytea &lt; &lt;= = &gt;= &gt;
+bpchar_minmax_ops character &lt; &lt;= = &gt;= &gt;
+char_minmax_ops “char” &lt; &lt;= = &gt;= &gt;
+date_minmax_ops date &lt; &lt;= = &gt;= &gt;
+float8<em>minmax_ops double precision &lt; &lt;= = &gt;= &gt;
+inet_minmax_ops inet &lt; &lt;= = &gt;= &gt;
+network_inclusion_ops inet &amp;&amp; »= «= = » «
+int4_minmax_ops integer &lt; &lt;= = &gt;= &gt;
+interval_minmax_ops interval &lt; &lt;= = &gt;= &gt;
+macaddr_minmax_ops macaddr &lt; &lt;= = &gt;= &gt;
+macaddr8_minmax_ops macaddr8 &lt; &lt;= = &gt;= &gt;
+name_minmax_ops name &lt; &lt;= = &gt;= &gt;
+numeric_minmax_ops numeric &lt; &lt;= = &gt;= &gt;
+pg_lsn_minmax_ops pg_lsn &lt; &lt;= = &gt;= &gt;
+oid_minmax_ops oid &lt; &lt;= = &gt;= &gt;
+range_inclusion_ops любой тип диапазона « &amp;&lt; &amp;&amp; &amp;&gt; » @&gt; &lt;@ -|- = &lt; &lt;= =
+=
+float4_minmax_ops real &lt; &lt;= = &gt;= &gt;
+reltime_minmax_ops reltime &lt; &lt;= = &gt;= &gt;
+int2_minmax_ops smallint &lt; &lt;= = &gt;= &gt;
+text_minmax_ops text &lt; &lt;= = &gt;= &gt;
+tid_minmax_ops tid &lt; &lt;= = &gt;= &gt;
+timestamp_minmax_ops timestamp without time zone &lt; &lt;= = &gt;= &gt;
+timestamptz_minmax_ops timestamp with time zone &lt; &lt;= = &gt;= &gt;
+time_minmax_ops time without time zone &lt; &lt;= = &gt;= &gt;
+timetz_minmax_ops time with time zone &lt; &lt;= = &gt;= &gt;
+2167Индексы BRIN
+Имя Индексируемый тип данных Индексируемые операторы
+uuid_minmax_ops uuid
+&lt; &lt;= = &gt;= &gt;
+67.3. Расширяемость
+Интерфейс BRIN характеризуется высоким уровнем абстракции и таким образом требует от раз-
+работчика метода доступа реализовать только смысловое наполнение обрабатываемого типа дан-
+ных. Уровень BRIN берёт на себя заботу о параллельном доступе, поддержке журнала и поиске в
+структуре индекса.
+Всё, что нужно, чтобы получить работающий метод доступа BRIN — это реализовать несколько
+пользовательских методов, определяющих поведение сводных значений, хранящихся в индексе, и
+их взаимоотношения с ключами сканирования. Словом, BRIN сочетает расширяемость с универ-
+сальностью, повторным использованием кода и аккуратным интерфейсом.
+Класс операторов для BRIN должен предоставлять четыре метода:
+BrinOpcInfo *opcInfo(Oid type_oid)
+Возвращает внутреннюю информацию о сводных данных индексированных столбцов. Возвра-
+щаемое значение должно указывать на BrinOpcInfo (в памяти palloc) со следующим определе-
+нием:
+typedef struct BrinOpcInfo
+{
+/* Число полей, хранящихся в столбце индекса этого класса операторов */
+uint16
+oi_nstored;
+/* Непрозрачный указатель для внутреннего использования классом операторов */
+void
+*oi_opaque;
+/* Элементы кеша типов для сохранённых столбцов */
+TypeCacheEntry *oi_typcache[FLEXIBLE_ARRAY_MEMBER];
+} BrinOpcInfo;
+Поле BrinOpcInfo.oi_opaque могут использовать подпрограммы класса операторов для пере-
+дачи информации опорным функциям при сканировании индекса.
+bool consistent(BrinDesc *bdesc, BrinValues *column, ScanKey key)
+Показывает, соответствует ли значение ScanKey заданным индексированным значениям неко-
+торой зоны. Номер целевого атрибута передаётся в составе ключа сканирования.
+bool addValue(BrinDesc *bdesc, BrinValues *column, Datum newval, bool isnull)
+Для заданного кортежа индекса и индексируемого значения изменяет выбранный атрибут кор-
+тежа, чтобы он дополнительно охватывал новое значение. Если в кортеж вносятся какие-либо
+изменения, возвращается true.
+bool unionTuples(BrinDesc *bdesc, BrinValues *a, BrinValues *b)
+Консолидирует два кортежа индекса. Получая два кортежа, изменяет выбранный атрибут пер-
+вого из них, что он охватывал оба кортежа. Второй кортеж не изменяется.
+Основной дистрибутив включает поддержку двух типов классов операторов: minmax и inclusion.
+Определения классов операторов, использующие их, представлены для встроенных типов данных,
+насколько это уместно. Пользователь может определить дополнительные классы операторов для
+других типов данных, применяя аналогичные определения, обойдясь без написания исходного ко-
+да; достаточно будет объявить нужные записи в каталоге. Заметьте, что предположения о семан-
+тике стратегий операторов зашиты в исходном коде опорных функций.
+Также возможно создать классы операторов, воплощающие полностью другую семантику, разра-
+ботав реализации четырёх основных опорных функций, описанных выше. Заметьте, что обратная
+2168Индексы BRIN
+совместимость между разными основными версиями не гарантируется: к примеру, в следующих
+выпусках могут потребоваться дополнительные опорные функции.
+При написании класса операторов для типа данных, представляющего полностью упорядоченное
+множество, можно использовать опорные функции minmax вместе с соответствующими операто-
+рами, как показано в Таблице 67.2. Все члены класса операторов (функции и операторы) являются
+обязательными.
+Таблица 67.2. Номера стратегий и опорных функций для классов операторов Minmax
+Член класса операторов Объект
+Опорная функция 1 внутренняя функция brin_minmax_opcinfo()
+Опорная функция 2 внутренняя
+value()
+Опорная функция 3 внутренняя
+consistent()
+Опорная функция 4 внутренняя функция brin_minmax_union()
+Стратегия оператора 1 оператор меньше
+Стратегия оператора 2 оператор меньше-или-равно
+Стратегия оператора 3 оператор равно
+Стратегия оператора 4 оператор больше-или-равно
+Стратегия оператора 5 оператор больше
+функция
+brin_minmax_add</em>
+функция
+brin_minmax_
+При написании класса операторов для сложного типа данных, значения которого включаются в
+другой тип, можно использовать опорные функции inclusion вместе с соответствующими операто-
+рами, как показано в Таблице 67.3. Для этого требуется одна дополнительная функция, которую
+можно написать на любом языке. Для расширенной функциональности можно определить другие
+функции. Все операторы являются необязательными. Некоторые из них требует наличия других,
+что показано в таблице как зависимости.
+Таблица 67.3. Номера стратегий и опорных функций для классов операторов Inclusion
+Член класса операторов Объект
+Зависимость
+Опорная функция 1 внутренняя
+функция
+inclusion_opcinfo()
+brin_
+Опорная функция 2 внутренняя
+функция
+inclusion_add_value()
+brin_
+Опорная функция 3 внутренняя
+функция
+brin_
+inclusion_consistent()
+Опорная функция 4 внутренняя
+функция
+inclusion_union()
+Опорная функция 11 функция для слияния двух эле-
+ментов
+Опорная функция 12 необязательная функция для
+проверки возможности слияния
+двух элементов
+Опорная функция 13 необязательная функция для
+проверки, содержится ли один
+элемент в другом
+Опорная функция 14 необязательная функция для
+проверки, является ли элемент
+пустым
+2169
+brin_Индексы BRIN
+Член класса операторов Объект Зависимость
+Стратегия оператора 1 оператор левее Стратегия оператора 4
+Стратегия оператора 2 оператор не-простирается-пра- Стратегия оператора 5
+вее
+Стратегия оператора 3 оператор перекрывается Стратегия оператора 4 оператор
+вее Стратегия оператора 5 оператор правее Стратегия оператора 2
+Стратегия оператора 6, 18 оператор то-же-или-равно Стратегия оператора 7
+не-простирается-ле- Стратегия оператора 1
+Стратегия оператора 7, 13, 16, оператор содержит-или-равно
+24, 25
+Стратегия оператора 8, 14, 26, оператор
+27
+равно
+содержится-в-или- Стратегия оператора 3
+Стратегия оператора 9 оператор
+ше
+не-простирается-вы- Стратегия оператора 11
+Стратегия оператора 10 оператор ниже Стратегия оператора 12
+Стратегия оператора 11 оператор выше Стратегия оператора 9
+Стратегия оператора 12 оператор
+же Стратегия оператора 20 оператор меньше Стратегия оператора 5
+Стратегия оператора 21 оператор меньше-или-равно Стратегия оператора 5
+Стратегия оператора 22 оператор больше Стратегия оператора 1
+Стратегия оператора 23 оператор больше-или-равно Стратегия оператора 1
+не-простирается-ни- Стратегия оператора 10
+Номера опорных функций 1-10 зарезервированы для внутренних функций BRIN, так что функции
+уровня SQL начинаются с номера 11. Опорная функция номер 11 является основной, необходимой
+для построения индекса. Она должна принимать два аргумента того же типа данных, что и целе-
+вой тип класса, и возвращать их объединение. Класс операторов inclusion может сохранять значе-
+ния объединения в различных типах данных, в зависимости от параметра STORAGE. Возвращаемое
+значение функции объединения должно соответствовать типу данных STORAGE.
+Опорные функции под номерами 12 и 14 предоставляются для поддержки нерегулярностей встро-
+енных типов данных. Функция номер 12 применяется для поддержки работы с сетевыми адресами
+из различных семейств, которые нельзя объединять. Функция номер 14 применяется для поддерж-
+ки зон с пустыми значениями. Функция номер 13 является необязательной, но рекомендуемой; она
+проверяет новое значение, прежде чем оно будет передано функции объединения. Инфраструкту-
+ра BRIN может соптимизировать некоторые операции, когда объединение не меняется, поэтому
+применение этой функции может способствовать увеличению быстродействия индекса.
+Классы операторов minmax и inclusion поддерживают операторы с разными типами, хотя с ними
+зависимости становятся более сложными. Класс minmax требует, чтобы для двух аргументов одно-
+го типа определялся полный набор операторов. Это позволяет поддерживать дополнительные ти-
+пы данных, определяя дополнительные наборы операторов. Стратегии операторов класса inclusion
+могут зависеть от других стратегий, как показано в Таблице 67.3, или от своих собственных стра-
+тегий. Для них требуется, чтобы был определён необходимый оператор с типом данных STORAGE
+для левого аргумента и другим поддерживаемым типом для правого аргумента реализуемого опе-
+ратора. См. определение float4_minmax_ops в качестве примера для minmax и box_inclusion_ops
+в качестве примера для inclusion.
+2170</p>
+  </blockquote>
+</blockquote>
+
+      <footer class="entry-meta">
+        <span>Updated on <span class="entry-date date published updated"><time datetime="2018-12-03 T15:14:43-04:00">December 03, 2018</time></span></span>
+        <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/PostgreSQL-V11_Doc-067/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/PostgreSQL-V11_Doc-067/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/PostgreSQL-V11_Doc-067/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2018 Sergey Khatsiola. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+          
+
+</body>
+</html>

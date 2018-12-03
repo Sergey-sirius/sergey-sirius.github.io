@@ -1,0 +1,346 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Глава 32. JIT-компиляция &#8211; Sirius Blog</title>
+<meta name="description" content="">
+<meta name="keywords" content="PostgreSQL">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:4000/images/abstract-11.jpg">
+
+<meta name="twitter:title" content="Глава 32. JIT-компиляция">
+<meta name="twitter:description" content="">
+<meta name="twitter:creator" content="@2hotab2">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Глава 32. JIT-компиляция">
+<meta property="og:description" content="">
+<meta property="og:url" content="http://localhost:4000/PostgreSQL-V11_Doc-032/">
+<meta property="og:site_name" content="Sirius Blog">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/PostgreSQL-V11_Doc-032/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.jpg">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.jpg">
+<!-- 114x72 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x72" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.jpg">
+<!-- 144x72 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x72" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.jpg">
+
+
+
+</head>
+
+<body id="post" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://localhost:4000/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://localhost:4000/images/avatar.jpg" alt="Sergey Khatsiola photo" class="author-photo">
+					<h4>Sergey Khatsiola</h4>
+					<p>Кратко обо мне ...</p>
+				</li>
+				<li><a href="http://localhost:4000/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="mailto:2hotab2@gmail.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/2hotab2"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				<li>
+					<a href="https://facebook.com/sergej.ha1"><i class="fa fa-fw fa-facebook"></i> Facebook</a>
+				</li>
+				
+				
+				<li>
+					<a href="https://github.com/Sergey-sirius"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://localhost:4000/posts/">All Posts</a></li>
+				<li><a href="http://localhost:4000/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
+	  
+	    
+	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
+	  
+	    
+	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  
+  <div class="entry-image">
+    <img src="http://localhost:4000/images/abstract-11.jpg" alt="Глава 32. JIT-компиляция">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="http://localhost:4000/PostgreSQL-V11_Doc-032/" rel="bookmark" title="Глава 32. JIT-компиляция">Глава 32. JIT-компиляция</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2018-12-01T00:00:00+02:00">December 01, 2018</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~4 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>Глава 32. JIT-компиляция</p>
+
+<p>В этой главе рассказывается о том, что такое JIT-компиляция, и как можно настроить её в
+PostgreSQL.
+32.1. Что такое JIT-компиляция?
+JIT-компиляция (Just-In-Time compilation, Компиляция «точно в срок») — это производимая во вре-
+мя выполнения процедура преобразования интерпретируемого варианта исполнения программы
+в программу на языке процессора. Например, вместо использования универсального кода, способ-
+ного вычислять произвольные SQL-выражения, для вычисления конкретного условия WHERE a.col
+= 3 можно сгенерировать функцию, предназначенную именно для этого выражения, которую смо-
+жет выполнять непосредственно процессор, так что она будет выполняться быстрее.
+PostgreSQL поддерживает JIT-компиляцию с использованием LLVM, если сборка PostgreSQL про-
+изводится с ключом –with-llvm.
+Дополнительные подробности можно найти в файле src/backend/jit/README.
+32.1.1. Операции, ускоряемые с применением JIT
+В настоящее время реализация JIT в PostgreSQL поддерживает ускорение вычисления выражений
+и преобразования кортежей. В будущем могут быть ускорены и некоторые другие операции.
+Вычисление выражений производится при обработке предложений WHERE, целевых списков, агре-
+гатов и проекций. Оно может быть ускорено в результате генерирования кода, предназначенного
+для каждого конкретного случая.
+Преобразование кортежей — процедура перевода кортежа с диска (см. Подраздел 68.6.1) в развёр-
+нутое представление в памяти. Его можно ускорить, создав функции, предназначенные для опре-
+делённой структуры таблицы и количества извлекаемых столбцов.
+32.1.2. Встраивание
+СУБД PostgreSQL очень гибка и позволяет определять новые типы данных, функции, операторы и
+другие объекты базы данных; см. Главу 38. В действительности встроенные объекты реализуются
+практически теми же механизмами. С этой гибкостью связаны некоторые издержки, например,
+сопутствующие вызовам функций (см. Раздел 38.3). Для сокращения этих издержек JIT-компиля-
+ция может встраивать тела маленьких функций в код выражений, использующих их. Это позволяет
+соптимизировать значительный процент подобных издержек.
+32.1.3. Оптимизация
+В LLVM поддерживается оптимизация сгенерированного кода. Некоторые оптимизации обходятся
+достаточно дёшево и могут выполняться при использовании JIT в любом случае, тогда как другие
+оправданы только при длительных запросах. Подробнее об оптимизации рассказывается в https://
+llvm.org/docs/Passes.html#transform-passes.
+32.2. Когда применять JIT?
+JIT-компиляция имеет смысл в первую очередь для длительных запросов, нагружающих процессор.
+Например, такой характер обычно имеют аналитические запросы. Для быстрых запросов наклад-
+ные расходы, связанные с выполнением JIT-компиляции, часто будут превышать выигрыш от их
+ускорения.
+Решение об использовании JIT-компиляции принимается на основании общей стоимости запроса
+(см. Главу 70 и Подраздел 19.7.2). Стоимость запроса сравнивается со значением jit_above_cost,
+и если она оказывается больше, производится JIT-компиляция. Затем принимаются ещё два реше-
+742JIT-компиляция
+ния. Во-первых, если его стоимость превышает и значение jit_inline_above_cost, тела небольших
+функций и операторов, фигурирующих в запросе, будут встраиваться в вызывающий код. Во-вто-
+рых, если стоимость запроса превышает значение jit_optimize_above_cost, при генерации кода за-
+действуются дорогостоящие оптимизации для улучшения сгенерированного кода. Обе эти опера-
+ции увеличивают накладные расходы JIT, но могут значительно сократить время выполнения за-
+проса.
+Эти решения принимаются на основе стоимости во время планирования, а не исполнения запроса.
+Это означает, что в случае использования подготовленных операторов и общего плана (см. Раздел
+«Замечания») принятие решений зависит от параметров конфигурации, действующих во время
+подготовки запроса, а не во время выполнения.
+Примечание
+Если параметр jit имеет значение off или сервер не поддерживает JIT (например, по-
+тому что он был скомпилирован без –with-llvm), JIT-компиляция выполняться не бу-
+дет, даже если она была бы выгодна, исходя из описанных выше критериев. Присво-
+енное параметру jit значение off учитывается и во время планирования, и во время
+выполнения запросов.
+EXPLAIN позволяет определить, используется ли JIT-компиляция. Например, так выглядит запрос,
+не использующий JIT:
+=# EXPLAIN ANALYZE SELECT SUM(relpages) FROM pg_class;
+QUERY PLAN
+——————————————————————————————–
+Aggregate (cost=16.27..16.29 rows=1 width=8) (actual time=0.303..0.303 rows=1
+loops=1)
+-&gt; Seq Scan on pg_class (cost=0.00..15.42 rows=342 width=4) (actual
+time=0.017..0.111 rows=356 loops=1)
+Planning Time: 0.116 ms
+Execution Time: 0.365 ms
+(4 rows)
+Учитывая стоимость планирования, отказ от использования JIT вполне обоснован, так как стои-
+мость JIT-компиляции оказалась бы больше, чем выигрыш от оптимизации. Если уменьшить огра-
+ничение стоимости, JIT будет использоваться:
+=# SET jit_above_cost = 10;
+SET
+=# EXPLAIN ANALYZE SELECT SUM(relpages) FROM pg_class;
+QUERY PLAN
+——————————————————————————————–
+Aggregate (cost=16.27..16.29 rows=1 width=8) (actual time=6.049..6.049 rows=1
+loops=1)
+-&gt; Seq Scan on pg_class (cost=0.00..15.42 rows=342 width=4) (actual
+time=0.019..0.052 rows=356 loops=1)
+Planning Time: 0.133 ms
+JIT:
+Functions: 3
+Options: Inlining false, Optimization false, Expressions true, Deforming true
+Timing: Generation 1.259 ms, Inlining 0.000 ms, Optimization 0.797 ms, Emission
+5.048 ms, Total 7.104 ms
+Execution Time: 7.416 ms
+В данном случае видно, что JIT используется, но встраивание (Inlining) и дорогостоящие оптими-
+зации (Optimization) не выполнялись. Чтобы их включить, помимо jit_above_cost нужно было также
+уменьшить jit_inline_above_cost и jit_optimize_above_cost.
+743JIT-компиляция
+32.3. Конфигурация
+Переменная конфигурации jit определяет, возможно ли использование JIT-компиляции. Если она
+включена, переменные jit_above_cost, jit_inline_above_cost и jit_optimize_above_cost определяют, бу-
+дет ли выполняться JIT-компиляция для запросов, и насколько ресурсоёмкой она может быть.
+Параметр jit_provider определяет, какая реализация JIT-компиляции должна использоваться. Из-
+менять его может потребоваться лишь в редких случаях. См. Подраздел 32.4.2.
+Для целей отладки и разработки предназначен ряд дополнительных параметров конфигурации,
+описанных в Разделе 19.17.
+32.4. Расширяемость
+32.4.1. Поддержка встраивания кода для расширений
+Механизм JIT в PostgreSQL может встраивать в код реализации функций (типа C и internal), а
+также операторов, использующих эти функции. Чтобы это встраивание выполнялось для функций
+в расширениях, должно быть доступно определение этих функций. При сборке с использованием
+PGXS расширения для сервера, скомпилированного с JIT-поддержкой LLVM, соответствующие фай-
+лы будут собираться и устанавливаться автоматически.
+Соответствующие файлы должны устанавливаться в $pkglibdir/bitcode/$extension/, а информа-
+ция о них должна вноситься в $pkglibdir/bitcode/$extension.index.bc, где $pkglibdir — ката-
+лог, который выдаёт команда pg_config –pkglibdir, а $extension — базовое имя разделяемой
+библиотеки данного расширения.
+Примечание
+Для функций, встроенных в PostgreSQL, двоичный код устанавливается в $pkglibdir/
+bitcode/postgres.
+32.4.2. Подключаемые провайдеры JIT
+PostgreSQL предоставляет реализацию JIT на базе LLVM. Интерфейс JIT предусматривает динами-
+ческое подключение провайдера и позволяет менять провайдер без перекомпиляции (хотя в на-
+стоящее время при сборке предоставляется поддержка встраивания только для LLVM). Провайдер
+выбирается параметром jit_provider.
+32.4.2.1. Интерфейс провайдера JIT
+Провайдер JIT загружается путём динамической загрузки заданной разделяемой библиотеки. Для
+поиска её используется обычный путь поиска библиотек. Чтобы предоставить требуемые функ-
+ции-обработчики провайдера JIT и показать, что библиотека является реализацией провайдера JIT,
+она должна содержать функцию, имеющую в C имя _PG_jit_provider_init. Этой функции пере-
+даётся структура, которую нужно заполнить указателями на функции-обработчики определённых
+действий.
+struct JitProviderCallbacks
+{
+JitProviderResetAfterErrorCB reset_after_error;
+JitProviderReleaseContextCB release_context;
+JitProviderCompileExprCB compile_expr;
+};
+extern void _PG_jit_provider_init(JitProviderCallbacks *cb);
+744</p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#PostgreSQL" title="Pages tagged PostgreSQL" class="tag"><span class="term">PostgreSQL</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2018-12-03 T15:14:43-04:00">December 03, 2018</time></span></span>
+        <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/PostgreSQL-V11_Doc-032/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/PostgreSQL-V11_Doc-032/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/PostgreSQL-V11_Doc-032/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://localhost:4000/PostgreSQL-V11_Doc-031/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://localhost:4000/PostgreSQL-V11_Doc-077/" title="Приложение G. Дополнительно поставляемые программы">Приложение G. Дополнительно поставляемые программы</a></h3>
+      <p> <a href="http://localhost:4000/PostgreSQL-V11_Doc-077/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-076/" title="Приложение F. Дополнительно поставляемые модули">Приложение F. Дополнительно поставляемые модули</a></h4>
+        <span>Published on December 01, 2018</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-075/" title="Приложение E. Замечания к выпуску">Приложение E. Замечания к выпуску</a></h4>
+        <span>Published on December 01, 2018</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2018 Sergey Khatsiola. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+	        
+
+</body>
+</html>
