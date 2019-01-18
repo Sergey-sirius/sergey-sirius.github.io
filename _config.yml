@@ -7,7 +7,6 @@ words_per_minute: 200
 # Your site's domain goes here (eg: https://mmistakes.github.io, etc) OR When testing locally leave blank
 url:
 
-
 # Owner/author information
 owner:
   name:           Sergey Khatsiola
