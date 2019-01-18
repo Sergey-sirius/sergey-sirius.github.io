@@ -152,6 +152,80 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_3_4/" title="103.4 Потоки, конвейеры и перенаправления"><img src="http://localhost:4000/images/matrix.jpg" alt="103.4 Потоки, конвейеры и перенаправления"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_4/" rel="bookmark" title="103.4 Потоки, конвейеры и перенаправления" itemprop="url">103.4 Потоки, конвейеры и перенаправления</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь управлять потоками для обработки текстовых данных</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>перенаправление стандартных ввода, вывода и ошибок;</li>
+  <li>передачу вывода одной команды на ввод другой;</li>
+  <li>использование вывода одной команды в качестве аргументов другой;</li>
+  <li>получение выходных данных в файл и на стандартный вывод.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>tee</li>
+  <li>
+    <p>xargs</p>
+  </li>
+  <li>stdin</li>
+  <li>stout</li>
+  <li>stderr</li>
+</ul>
+
+<p>Linux традиционно использует потоки для ввода, вывода и ошибок. Обычно ввод – это клавиатура или файлы, а вывод ошибок и результатов происходит в консоль. Но часто бывает нужно объединить последовательность команд в конвейер, или отправить результат в какой-нибудь файл.</p>
+
+<p>Для того чтобы послать на ввод программы некоторые данные используется знак " <strong>&lt;</strong>", например:</p>
+
+<p><strong>wc</strong>  <strong>&lt;</strong>  <strong>file</strong>** 1. <strong>**txt</strong>**        ** <em>(использовать в качестве ввода для программы</em> <em>wc</em> <em>файл</em> <em>file <strong>.</strong> txt__);</em></p>
+
+<p>Для того чтобы послать вывод программы куда-нибудь, кроме стандартного направления, используется знак " <strong>&gt;</strong>", например:</p>
+
+<p><strong>ls</strong>  <strong>&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(перезаписать содержимое файла</em> <em>list <strong>.</strong> txt</em> <em>результатом команды</em> <em>ls__);</em></p>
+
+<p><strong>ls</strong>  <strong>&gt;&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(дописать в файл</em> <em>list <strong>.</strong> txt</em> <em>результат команды</em> <em>ls__);</em></p>
+
+<p>Для ввода, вывода и ошибок используются следующие обозначения:</p>
+
+<ul>
+  <li><strong>Stdin</strong>         <em>– стандартный ввод программы (обозначение "0");</em></li>
+  <li><strong>Stdout</strong>         – <em>стандартный вывод программы (обозначение "1");</em></li>
+  <li><strong>Stderr</strong>          – <em>стандартные ошибки программы (обозначение "2");</em></li>
+</ul>
+
+<p>Например:</p>
+
+<p><strong>l</strong>** s bob 2&gt; error.txt**</p>
+
+<p><strong>ls</strong>** bob <strong>** &gt; **</strong> result <strong>**.</strong>** txt <strong>** 2&gt; **</strong> error <strong>**.</strong>** txt**</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_3_3/" title="103.3 Основные операции с файлами"><img src="http://localhost:4000/images/matrix.jpg" alt="103.3 Основные операции с файлами"></a>
       </div><!-- /.entry-image -->
     
@@ -422,102 +496,6 @@ Reading time ~2 minutes
 <p><strong>Sed</strong> – отдельный мощный инструмент, понимающий групповые символы, шаблоны и т.д. Будет рассмотрен немного подробнее в дальнейших урока. Работает, например, так:</p>
 
 <p>**sed –e 's/socks/people/'  1.txt       ** <em>( <strong>заменить</strong> в <strong>файле</strong> слово</em> <em>"socks"</em> <em>на</em> <em>"people");</em></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_1/" title="103.1 Работа в командной строке"><img src="http://localhost:4000/images/matrix.jpg" alt="103.1 Работа в командной строке"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_1/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_1/" rel="bookmark" title="103.1 Работа в командной строке" itemprop="url">103.1 Работа в командной строке</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь работать с командными оболочками и командами в командной строке</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>работу с оболочками и командами для выполнения основных задач;</li>
-  <li>использование и изменение среды оболочки, в том числе переменных среды;</li>
-  <li>работу с историей выполненных команд;</li>
-  <li>работу с командами исходя из текущего месторасположения.</li>
-</ul>
-
-<p><strong>Термины и утилиты:</strong>**        **</p>
-
-<ul>
-  <li>bash</li>
-  <li>echo</li>
-  <li>env</li>
-  <li>export</li>
-  <li>pwd</li>
-  <li>set</li>
-  <li>unset</li>
-  <li>man</li>
-  <li>uname</li>
-  <li>history</li>
-  <li>.bash_history</li>
-</ul>
-
-<p>Работа администратора с Linux заключается прежде всего в оперировании в командной строке. Командная строка, или консоль — это отдельная программируемая среда со своими настройками, возможностями и инструментами. Существует множество различных оболочек, в данном уроке рассматривается bash, используемая в большинстве современных ОС.</p>
-
-<p>Увидеть название оболочки, используемой пользователем по умолчанию, можно в конце каждой строки файла <strong>/</strong>** etc <strong>**/</strong>** passwd <strong>. Глобальные настройки командной строки находятся в файле</strong> / <strong>**etc</strong>** / <strong>**profile</strong> , а настройки для каждого пользователя в файлах его домашней директории.</p>
-
-<p>При этом существует несколько вариантов расположения настроек, в зависимости от семейства ОС. В общем виде поиск настроек осуществляется в следующем порядке:   <strong>~/.bash_profile, ~/.bash_login</strong> , и <strong>~/.profile</strong> (настройки берутся из первого обнаруженного файла).</p>
-
-<p>При работе в консоли используются следующие распространенные команды (их больше, но в данной теме LPI почему-то заостряет внимание на этих):</p>
-
-<ul>
-  <li><strong>cat</strong>          –  вывод содержимого файла в консоль;</li>
-  <li><strong>cd</strong>         – переход в каталог;</li>
-  <li><strong>ls</strong>         – вывод содержимого каталога;</li>
-  <li><strong>echo</strong>         – вывод текста в консоль;</li>
-  <li><strong>touch</strong>         – обновление времени редактирования файла или создание нового пустого файла;</li>
-  <li>**uname       ** – вывод имени ОС;</li>
-</ul>
-
-<p>Консоль, как отдельная рабочая среда содержит свои переменные: переменные среды (глобальные переменные, использующиеся в ОС) и обычные переменные (работают в пределах запущенного сеанса консоли). Для просмотра переменных доступны команды:</p>
-
-<ul>
-  <li><strong>env</strong> – вывод переменных среды;</li>
-  <li><strong>export</strong> – превращение переменной в переменную среды;</li>
-  <li><strong>unset</strong> – отключение переменной;</li>
-</ul>
-
-<p>Для создания переменной используется простой синтаксис <strong>имя_переменной=значение_переменной</strong>. Для обращения к переменной указывается знак <strong>$</strong> , например:</p>
-
-<p><strong>X</strong>** =12               ** <em>(задать переменной</em> <em>X</em> <em>значение 12);</em></p>
-
-<p><strong>echo</strong>   <strong>$</strong>** X <em>**</em>               ** <em>(вывести значение переменной</em> <em>X__);</em></p>
-
-<p>Для выполнения команды в текущем каталоге (его можно узнать командой <strong>pwd</strong> ), нужно указывать полный путь к команде (<em>например, / <strong>home</strong> / <strong>semaev</strong> /__script</em>), если текущий каталог не перечислен в значениях переменной среды <strong>PATH</strong>.</p>
-
-<p>Для получения справочной информации доступны команды:</p>
-
-<ul>
-  <li><strong>man</strong>         – справка по команде;</li>
-  <li><strong>file</strong>         – справка по файлу;</li>
-  <li><strong>whatis</strong> – справка по названию;</li>
-  <li><strong>history</strong> – вывод истории команд (список хранится в .bash_history);</li>
-</ul>
-
-<p>Отдельно следует упомянуть команду <strong>exec</strong> , позволяющую выполнять команду за пределами текущей оболочки, сбрасывая права суперпользователя.</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

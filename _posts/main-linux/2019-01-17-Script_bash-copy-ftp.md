@@ -2,8 +2,8 @@
 layout: post
 title: Копируем на FTP скриптом bash
 description: "Bash FTP script copy"
-modified: 2019-01-18 00:00:02
-tags: [linux, main]
+modified: 2019-01-17 00:00:02
+tags: [main]
 image:
   path: /images/matrix.jpg
   feature: matrix.jpg

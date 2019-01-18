@@ -152,6 +152,116 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_4_2/" title="104.2 Проверка целостности файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.2 Проверка целостности файловых систем."></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_2/" rel="bookmark" title="104.2 Проверка целостности файловых систем." itemprop="url">104.2 Проверка целостности файловых систем.</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен умет управлять стандартной файловой системой, и понимать принципы работы с журналируемой файловой системой.</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>проверку целостности файловой системы;</li>
+  <li>отслеживание айнодов и свободного пространства;</li>
+  <li>исправление простых проблем с файловой системой.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>du</li>
+  <li>df</li>
+  <li>fsck</li>
+  <li>e2fsck</li>
+  <li>mke2fs</li>
+  <li>debugfs</li>
+  <li>dumpe2fs</li>
+  <li>tune2fs</li>
+  <li>инструменты XFS</li>
+</ul>
+
+<p>Linuх использует умеет работать с различными файловыми системами. Для поддержки всех возможностей отдельных файловых систем необходимо устанавливать соответствующие наборы ПО, содержащие дополнительные инструменты.</p>
+
+<p>Утилита <strong>df</strong> (diskfree) показывает свободное место в файловых системах, например:</p>
+
+<p><strong>df</strong> _  (показывает в блоках килобайт)_</p>
+
+<p><strong>df –h</strong> <em>(показывает в мегабайтах и т.д.)</em></p>
+
+<p><strong>d</strong>** f –i**<em>(показывает в</em> <em>inode__)</em></p>
+
+<p>Inode (индексный дескриптор) – идентификатор файла, содержащий о нем всю необходимую информацию.</p>
+
+<p>Утилита <strong>du</strong> (diskusage) показывает занятое место в файловых системах, например:</p>
+
+<p><strong>d</strong>** u**<em>(показывает размер текущей директории в блоках килобайт)</em></p>
+
+<p><strong>d</strong>** u –h**<em>(показывает в мегабайтах и т.д., включая вложенные папки)</em></p>
+
+<p><strong>d</strong>** u –h /home/***<em>(показывает размер директории / <strong>home</strong> , отображая размер всех подкаталогов)</em></p>
+
+<p><strong>d</strong>** u –h –summarize /home/***  <em>(показывает размер директории / <strong>home</strong> , включая все подкаталоги)</em></p>
+
+<p>Утилита <strong>fsck</strong> предназначена для проверки файловых систем. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты проверки. Проверку осуществляют для демонтированных файловых систем, неактивных в данный момент, например:</p>
+
+<p><strong>f</strong>** sck /dev/sdb1** <em>(будет вызван инструмент проверки файловой системы, например для</em> <em>ext</em> <em>это будет инструмент</em> <em>e <strong>2</strong> fsck__);</em></p>
+
+<p><strong>fsck</strong>  <strong>–</strong>** t <strong>**ext</strong>** 4 / <strong>**dev</strong>** / <strong>**sdb</strong>** 1  **<em>(можно сразу указать формат файловой системы, если он известен)</em></p>
+
+<p>Утилита <strong>mkfs</strong> предназначена для создания файловых систем. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты, например:</p>
+
+<p><strong>mkfs</strong>  <strong>–</strong>** t <strong>**xfs</strong>  <strong>–</strong>** f <strong>** / **</strong>dev<strong>** / **</strong>sdb<em>**</em> 1  **<em>(создать файловую систему</em> <em>xfs</em> <em>на устройстве / <strong>dev</strong> / <strong>sdb</strong> 1);</em></p>
+
+<p><strong>mke2fs –t ext2 /dev/sdb1</strong> <em>(создать файловую систему</em> <em>ext <strong>2 на устройстве /</strong> dev <strong>/</strong> sdb__1);</em></p>
+
+<p>Для работы с файловой системой <strong>XFS</strong> (сейчас centos7 использует ее в качестве файловой системы по умолчанию), к примеру, используются следующие инструменты:</p>
+
+<ul>
+  <li><strong>xfs</strong>** _ <strong>**check</strong> <em>для проверки;</em></li>
+  <li><strong>xfs</strong>** _ <strong>**repair</strong> <em>для восстановления;</em></li>
+  <li><strong>xfs_info</strong> <em>для получения информации</em> <strong>;</strong></li>
+  <li><strong>xfs_metadump</strong> <em>для создания дампа.</em></li>
+</ul>
+
+<p>Для отладки классической файловой системы используется утилита <strong>debugfs</strong>. Этот инструмент в интерактивном режиме позволяет работать с айнодами файловой системы, например, в нем доступны следующие инструменты:</p>
+
+<ul>
+  <li><strong>ls</strong> <em>– просмотреть данные в системе;</em></li>
+  <li><strong>lsdel</strong> <em>– показать удаленные файлы;</em></li>
+  <li><strong>undel</strong> <em>– отменить удаление.</em></li>
+</ul>
+
+<p>Для вывода детальной информации о файловой системе (суперблоки, цилиндры, размер блока и т.д.) используется утилита <strong>dumpfs</strong>. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты проверки, например:</p>
+
+<p><strong>dumpe2fs /dev/sdb1 &gt;</strong>  <strong>output</strong><strong>. **</strong>txt**  ** ** <em>(вывести информацию о файловой системе</em> <em>ext</em> <em>в файл</em> <em>output <strong>.</strong> txt__)</em></p>
+
+<p>Утилита <strong>tunefs</strong> предназначена для настройки изменяемых параметров файловых систем. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты настройки. Настройку осуществляют для демонтированных файловых систем, неактивных в данный момент, например:</p>
+
+<p><strong>tune</strong>** 2 <strong>**fs</strong>  <strong>–</strong>** O <strong>**has</strong>** _ <strong>**journal</strong>  <strong>/</strong>** dev <strong>**/</strong>** sdb <strong>**1</strong> <em>(включить журналирование на устройстве / <strong>dev</strong> / <strong>sdb</strong> 1)</em></p>
+
+<p>Журналирование: опция введения журнала изменений для возможности их отката.</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_4_1/" title="104.1 Создание файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.1 Создание файловых систем."></a>
       </div><!-- /.entry-image -->
     
@@ -347,125 +457,6 @@ Reading time ~2 minutes
   <li>**ZZ       ** <em>(сохранить и выйти)__;</em></li>
   <li><strong>ZQ</strong>**        ** <em>(не сохранять и выйти);</em></li>
 </ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_7/" title="103.7 Поиск информации при помощи регулярных выражений"><img src="http://localhost:4000/images/matrix.jpg" alt="103.7 Поиск информации при помощи регулярных выражений"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_7/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_7/" rel="bookmark" title="103.7 Поиск информации при помощи регулярных выражений" itemprop="url">103.7 Поиск информации при помощи регулярных выражений</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь осуществлять поиск необходимых файлов и информации внутри них.</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>создание простых регулярных выражений;</li>
-  <li>инструменты, опирающиеся на эти выражения, для поиска файлов.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>grep</li>
-  <li>egrep</li>
-  <li>fgrep</li>
-  <li>rgrep</li>
-  <li>sed</li>
-  <li>регулярные выражения.</li>
-</ul>
-
-<p>Частой задачей в Linux является поиск необходимых файлов и сортировка информации внутри них. Для этой задачи служат регулярные выражения – специальный язык поиска и изменения информации, обладающий своим синтаксисом.</p>
-
-<p>При отборе информации можно использовать стандартные групповые символы:</p>
-
-<ul>
-  <li><strong>^</strong> _                - начало строки;_</li>
-  <li>**$       ** _        - конец строки;_</li>
-  <li>**.       ** _        - любой символ;_</li>
-  <li><strong>\&lt;</strong>** a <em>**</em>               ** <em>- слово, начинающееся с " <strong>a</strong>";</em></li>
-  <li><strong>\&gt;</strong>** a <em>**</em>               ** <em>-</em> <em>c <strong>лово, заканчивающееся на "</strong> a__";</em></li>
-  <li><strong>a</strong>** - <strong>**z</strong>** ]                <strong>** -</strong> <em>диапазон от " <strong>a</strong>" до " <strong>z</strong>";</em></li>
-  <li><strong>[^t]</strong>**                <strong>** -</strong> <em>не буква " <strong>t</strong>";</em></li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>**a</td>
-          <td>z<strong>**                 **</strong> -** <em>" <strong>a</strong>" <strong>или "</strong> z <strong>"</strong> ;</em></td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>и т.д.;</li>
-</ul>
-
-<p>Для простой сортировки набора строк используется команда <strong>grep</strong> , например:</p>
-
-<p><strong>grep</strong>** oo <strong>**file</strong><strong>. **</strong>txt**  <em>(отобразить в файле текст с двумя буквы « <strong>o</strong> » подряд);</em></p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>ls</strong>  **</td>
-      <td>**  <strong>grep</strong>** ile**   <em>(вывести названия содержимого каталога с набором символов ' <strong>ile</strong>');</em></td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>grep</strong>** ple <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(отобразить в файле</em> <em>file <strong>.</strong> txt</em> <em>строки, заканчивающиеся на ' <strong>ple</strong>');</em></p>
-
-<p>Для расширенной сортировки и поиска по сложным регулярным выражениям используется команда <strong>egrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** E**), например:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>egrep</strong> <strong>'^(</strong><strong>b **</strong></td>
-      <td><strong>** d</strong><strong>)'</strong>  <strong>file</strong><strong>. **</strong>txt**  <em>(все строки, что начинаются с " <strong>b</strong>" или " <strong>d</strong>");</em></td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>egrep</strong> <strong>'^[</strong><strong>a **</strong>-<strong>** k</strong><strong>]'</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(все строки, что начинаются с " <strong>a</strong>" по " <strong>k</strong>");</em></p>
-
-<p>Для быстрой сортировки и поиска по набору символов без регулярных выражений используется команда <strong>fgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** F**), например:</p>
-
-<p><strong>fgrep</strong>** c <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt** _ (отобразить в_ <em>file <strong>.</strong> txt</em> <em>последовательность символов " <strong>c</strong> $");</em></p>
-
-<p>Для рекурсивной (включая вложенные каталоги и файлы) сортировки и поиска по набору символов используется команда <strong>rgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** R**), например:</p>
-
-<p><strong>rgrep</strong>  ** <strong>** word</strong>_ (вывести позиции содержащие « <strong>word</strong> » в текущем и всех вложенных каталогах__);_</p>
-
-<p>Для изменения текстового потока согласно заданным правилам используется редактор sed, например:</p>
-
-<p><strong>sed</strong>  <strong>–</strong>** e <strong>**' **</strong>s<strong>** / **</strong>oo<strong>** / **</strong>aa<strong>** /'   **</strong>file<strong>**. **</strong>txt**  <em>(заменить в</em> <em>file <strong>.</strong> txt</em> <em>все " <strong>oo</strong>" на " <strong>aa</strong>" );</em></p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>sed</strong>  <strong>–</strong>** re <strong>**' **</strong>s<strong>** /^( **</strong>B<em>**</em></td>
-      <td><strong>**b</strong>** )/ <strong>**C</strong><strong>' **</strong>file<strong>**. **</strong>txt**  <strong>&gt;</strong>  <strong>newfile</strong><strong>. **</strong>txt** <em>(в строках, начинающихся с « <strong>B</strong> » или « <strong>b</strong> », заменить первую букву на «С» и сохранить результат в</em> <em>newfile <strong>.</strong> txt__);</em></td>
-    </tr>
-  </tbody>
-</table>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

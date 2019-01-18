@@ -2,8 +2,8 @@
 layout: post
 title: Монтируем папку FTP в файловую систему Bash  SCRIPT
 description: "Bash Монтируем папку FTP в файловую систему Bash  SCRIPT:"
-modified: 2019-01-18 00:00:02
-tags: [linux, main]
+modified: 2019-01-18 00:00:03
+tags: [main]
 image:
   path: /images/matrix.jpg
   feature: matrix.jpg

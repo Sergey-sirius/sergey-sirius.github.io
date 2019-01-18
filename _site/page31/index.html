@@ -152,6 +152,125 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_3_7/" title="103.7 Поиск информации при помощи регулярных выражений"><img src="http://localhost:4000/images/matrix.jpg" alt="103.7 Поиск информации при помощи регулярных выражений"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_7/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_7/" rel="bookmark" title="103.7 Поиск информации при помощи регулярных выражений" itemprop="url">103.7 Поиск информации при помощи регулярных выражений</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь осуществлять поиск необходимых файлов и информации внутри них.</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>создание простых регулярных выражений;</li>
+  <li>инструменты, опирающиеся на эти выражения, для поиска файлов.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>grep</li>
+  <li>egrep</li>
+  <li>fgrep</li>
+  <li>rgrep</li>
+  <li>sed</li>
+  <li>регулярные выражения.</li>
+</ul>
+
+<p>Частой задачей в Linux является поиск необходимых файлов и сортировка информации внутри них. Для этой задачи служат регулярные выражения – специальный язык поиска и изменения информации, обладающий своим синтаксисом.</p>
+
+<p>При отборе информации можно использовать стандартные групповые символы:</p>
+
+<ul>
+  <li><strong>^</strong> _                - начало строки;_</li>
+  <li>**$       ** _        - конец строки;_</li>
+  <li>**.       ** _        - любой символ;_</li>
+  <li><strong>\&lt;</strong>** a <em>**</em>               ** <em>- слово, начинающееся с " <strong>a</strong>";</em></li>
+  <li><strong>\&gt;</strong>** a <em>**</em>               ** <em>-</em> <em>c <strong>лово, заканчивающееся на "</strong> a__";</em></li>
+  <li><strong>a</strong>** - <strong>**z</strong>** ]                <strong>** -</strong> <em>диапазон от " <strong>a</strong>" до " <strong>z</strong>";</em></li>
+  <li><strong>[^t]</strong>**                <strong>** -</strong> <em>не буква " <strong>t</strong>";</em></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>**a</td>
+          <td>z<strong>**                 **</strong> -** <em>" <strong>a</strong>" <strong>или "</strong> z <strong>"</strong> ;</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>и т.д.;</li>
+</ul>
+
+<p>Для простой сортировки набора строк используется команда <strong>grep</strong> , например:</p>
+
+<p><strong>grep</strong>** oo <strong>**file</strong><strong>. **</strong>txt**  <em>(отобразить в файле текст с двумя буквы « <strong>o</strong> » подряд);</em></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>ls</strong>  **</td>
+      <td>**  <strong>grep</strong>** ile**   <em>(вывести названия содержимого каталога с набором символов ' <strong>ile</strong>');</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>grep</strong>** ple <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(отобразить в файле</em> <em>file <strong>.</strong> txt</em> <em>строки, заканчивающиеся на ' <strong>ple</strong>');</em></p>
+
+<p>Для расширенной сортировки и поиска по сложным регулярным выражениям используется команда <strong>egrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** E**), например:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>egrep</strong> <strong>'^(</strong><strong>b **</strong></td>
+      <td><strong>** d</strong><strong>)'</strong>  <strong>file</strong><strong>. **</strong>txt**  <em>(все строки, что начинаются с " <strong>b</strong>" или " <strong>d</strong>");</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>egrep</strong> <strong>'^[</strong><strong>a **</strong>-<strong>** k</strong><strong>]'</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(все строки, что начинаются с " <strong>a</strong>" по " <strong>k</strong>");</em></p>
+
+<p>Для быстрой сортировки и поиска по набору символов без регулярных выражений используется команда <strong>fgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** F**), например:</p>
+
+<p><strong>fgrep</strong>** c <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt** _ (отобразить в_ <em>file <strong>.</strong> txt</em> <em>последовательность символов " <strong>c</strong> $");</em></p>
+
+<p>Для рекурсивной (включая вложенные каталоги и файлы) сортировки и поиска по набору символов используется команда <strong>rgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** R**), например:</p>
+
+<p><strong>rgrep</strong>  ** <strong>** word</strong>_ (вывести позиции содержащие « <strong>word</strong> » в текущем и всех вложенных каталогах__);_</p>
+
+<p>Для изменения текстового потока согласно заданным правилам используется редактор sed, например:</p>
+
+<p><strong>sed</strong>  <strong>–</strong>** e <strong>**' **</strong>s<strong>** / **</strong>oo<strong>** / **</strong>aa<strong>** /'   **</strong>file<strong>**. **</strong>txt**  <em>(заменить в</em> <em>file <strong>.</strong> txt</em> <em>все " <strong>oo</strong>" на " <strong>aa</strong>" );</em></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>sed</strong>  <strong>–</strong>** re <strong>**' **</strong>s<strong>** /^( **</strong>B<em>**</em></td>
+      <td><strong>**b</strong>** )/ <strong>**C</strong><strong>' **</strong>file<strong>**. **</strong>txt**  <strong>&gt;</strong>  <strong>newfile</strong><strong>. **</strong>txt** <em>(в строках, начинающихся с « <strong>B</strong> » или « <strong>b</strong> », заменить первую букву на «С» и сохранить результат в</em> <em>newfile <strong>.</strong> txt__);</em></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_3_6/" title="103.6 Изменение приоритетов процессов"><img src="http://localhost:4000/images/matrix.jpg" alt="103.6 Изменение приоритетов процессов"></a>
       </div><!-- /.entry-image -->
     
@@ -311,80 +430,6 @@ Reading time ~2 minutes
 <p><strong>screen</strong>  <strong>–</strong>** ls <em>**</em>                       ** <em>(показать свернутые экраны);</em></p>
 
 <p><strong>screen</strong>  <strong>-</strong>** r <strong>**yandex</strong>**                        ** <em>(развернуть экран с именем</em> <em>yandex__).</em></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_4/" title="103.4 Потоки, конвейеры и перенаправления"><img src="http://localhost:4000/images/matrix.jpg" alt="103.4 Потоки, конвейеры и перенаправления"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_4/" rel="bookmark" title="103.4 Потоки, конвейеры и перенаправления" itemprop="url">103.4 Потоки, конвейеры и перенаправления</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь управлять потоками для обработки текстовых данных</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>перенаправление стандартных ввода, вывода и ошибок;</li>
-  <li>передачу вывода одной команды на ввод другой;</li>
-  <li>использование вывода одной команды в качестве аргументов другой;</li>
-  <li>получение выходных данных в файл и на стандартный вывод.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>tee</li>
-  <li>
-    <p>xargs</p>
-  </li>
-  <li>stdin</li>
-  <li>stout</li>
-  <li>stderr</li>
-</ul>
-
-<p>Linux традиционно использует потоки для ввода, вывода и ошибок. Обычно ввод – это клавиатура или файлы, а вывод ошибок и результатов происходит в консоль. Но часто бывает нужно объединить последовательность команд в конвейер, или отправить результат в какой-нибудь файл.</p>
-
-<p>Для того чтобы послать на ввод программы некоторые данные используется знак " <strong>&lt;</strong>", например:</p>
-
-<p><strong>wc</strong>  <strong>&lt;</strong>  <strong>file</strong>** 1. <strong>**txt</strong>**        ** <em>(использовать в качестве ввода для программы</em> <em>wc</em> <em>файл</em> <em>file <strong>.</strong> txt__);</em></p>
-
-<p>Для того чтобы послать вывод программы куда-нибудь, кроме стандартного направления, используется знак " <strong>&gt;</strong>", например:</p>
-
-<p><strong>ls</strong>  <strong>&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(перезаписать содержимое файла</em> <em>list <strong>.</strong> txt</em> <em>результатом команды</em> <em>ls__);</em></p>
-
-<p><strong>ls</strong>  <strong>&gt;&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(дописать в файл</em> <em>list <strong>.</strong> txt</em> <em>результат команды</em> <em>ls__);</em></p>
-
-<p>Для ввода, вывода и ошибок используются следующие обозначения:</p>
-
-<ul>
-  <li><strong>Stdin</strong>         <em>– стандартный ввод программы (обозначение "0");</em></li>
-  <li><strong>Stdout</strong>         – <em>стандартный вывод программы (обозначение "1");</em></li>
-  <li><strong>Stderr</strong>          – <em>стандартные ошибки программы (обозначение "2");</em></li>
-</ul>
-
-<p>Например:</p>
-
-<p><strong>l</strong>** s bob 2&gt; error.txt**</p>
-
-<p><strong>ls</strong>** bob <strong>** &gt; **</strong> result <strong>**.</strong>** txt <strong>** 2&gt; **</strong> error <strong>**.</strong>** txt**</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
