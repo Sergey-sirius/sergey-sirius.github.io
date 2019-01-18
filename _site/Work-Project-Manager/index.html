@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>104.4 Управление квотами дисков. &#8211; Sirius Blog</title>
+<title>Коротко - работа менеджера проектов &#8211; Sirius Blog</title>
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130427752-1"></script>
@@ -18,30 +18,30 @@
 </script>
 
 </head>
-<meta name="description" content="Студент должен уметь управлять квотами дисков для пользователей.">
-<meta name="keywords" content="LPIC1-101">
+<meta name="description" content="Project Manager">
+<meta name="keywords" content="ProjectManager, PM">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://localhost:4000/images/matrix.jpg">
 
-<meta name="twitter:title" content="104.4 Управление квотами дисков.">
-<meta name="twitter:description" content="Студент должен уметь управлять квотами дисков для пользователей.">
+<meta name="twitter:title" content="Коротко - работа менеджера проектов">
+<meta name="twitter:description" content="Project Manager">
 <meta name="twitter:creator" content="@2hotab2">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="104.4 Управление квотами дисков.">
-<meta property="og:description" content="Студент должен уметь управлять квотами дисков для пользователей.">
-<meta property="og:url" content="http://localhost:4000/Lesson_4_4/">
+<meta property="og:title" content="Коротко - работа менеджера проектов">
+<meta property="og:description" content="Project Manager">
+<meta property="og:url" content="http://localhost:4000/Work-Project-Manager/">
 <meta property="og:site_name" content="Sirius Blog">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/Lesson_4_4/">
+<link rel="canonical" href="http://localhost:4000/Work-Project-Manager/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -135,7 +135,7 @@
 <div class="entry-header">
   
   <div class="entry-image">
-    <img src="http://localhost:4000/images/matrix.jpg" alt="104.4 Управление квотами дисков.">
+    <img src="http://localhost:4000/images/matrix.jpg" alt="Коротко - работа менеджера проектов">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
@@ -145,9 +145,9 @@
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_4/" rel="bookmark" title="104.4 Управление квотами дисков.">104.4 Управление квотами дисков.</a></h1>
+          <h1 class="entry-title"><a href="http://localhost:4000/Work-Project-Manager/" rel="bookmark" title="Коротко - работа менеджера проектов">Коротко - работа менеджера проектов</a></h1>
         
-        <h2><span class="entry-date date published"><time datetime="2018-01-01T00:00:00+02:00">January 01, 2018</time></span></h2>
+        <h2><span class="entry-date date published"><time datetime="2018-12-04T00:00:00+02:00">December 04, 2018</time></span></h2>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
@@ -158,62 +158,67 @@ Reading time ~1 minute
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <p>Студент должен уметь управлять квотами дисков для пользователей.</p>
+      <h1 id="Короткая-аннотация-вопросов-решаемых-менеджером-проектов">Короткая аннотация вопросов решаемых менеджером проектов</h1>
 
-<p><strong>Изучаем</strong> :</p>
+<h2 id="-1--Этапы-формирования-технического-задания-на-разработку">№ 1 : Этапы формирования технического задания на разработку</h2>
 
-<ul>
-  <li>установку квоты;</li>
-  <li>работу с отчетами по квотам.</li>
-</ul>
+<p>1а. Формирование функциональных требований заказчика</p>
 
-<p>**Термины и утилиты:       **</p>
+<p>2а. Формирования задания на построение инфраструктуры - как результат разработки с поддержкой отказоустойчивости и резервного копирования.</p>
 
-<ul>
-  <li>quota</li>
-  <li>edquota</li>
-  <li>repquota</li>
-  <li>quotaon</li>
-</ul>
+<p>3а. Формирование карты взаимодействия разрабатываемой системы с другими систмами заказчика.</p>
 
-<p>Использование квот позволяет управлять использованием дискового пространства как отдельных пользователей и групп, так и всех в целом. В данном руке рассматривается квотирование классической файловой системы ext.</p>
-
-<p>Для возможности работы с квотами необходим пакет ПО <strong>quota</strong><strong>.</strong></p>
-
-<p>Для того чтобы начать использовать квоты на устройстве, необходимо в опциях его монтирования в файле <strong>/</strong>** etc <strong>**/</strong>** fstab <strong>дописать опции</strong> usrquota <strong>и</strong> grpquota**.</p>
-
-<p>Включить и выключить квоту можно командами <strong>quotaon</strong> и <strong>quotaoff</strong> , например:</p>
-
-<p><strong>quotaon</strong>  <strong>/</strong>** mnt <strong>**/</strong>** disk <em>**</em>1       ** <em>(включить квоту для устройства подключенного к / <strong>mnt</strong> / <strong>disk</strong> 1);</em></p>
-
-<p><strong>quotaoff</strong>  <strong>/</strong>** mnt <strong>**/</strong>** disk <em>**</em>1       ** <em>(выключить квоту для устройства подключенного к / <strong>mnt</strong> / <strong>disk</strong> 1);</em></p>
-
-<p>Для редактирования квоты используется команда <strong>edquota</strong> , например:</p>
-
-<p><strong>edquota</strong>  <strong>–</strong>** u <strong>**semaev</strong> <em>(изменить настройки квоты для пользователя</em> <em>semaev__);</em></p>
-
-<p><strong>edquota</strong>  <strong>–</strong>** g <strong>**users</strong> <em>(изменить настройки квоты для группы</em> <em>users__);</em></p>
-
-<p>При этом можно указать ограничение по объему занятого места, или по количеству файлов и папок. Квоты бывают следующих видов:</p>
+<p>Как итог получаем  3 задачи:</p>
 
 <ul>
-  <li>жесткая – невозможно превысить;</li>
-  <li>мягкая – можно превышать в течении недели.</li>
+  <li>функционально-техническое</li>
+  <li>ТЗ на построение инфраструктуры</li>
+  <li>ТЗ на разработку интерфейсов</li>
 </ul>
 
-<p>Для получения отчета об использовании квот предназначена команда repquota, например:</p>
+<p>Эти задачи станут чек-пойнтами контроля выполнения в процессе разработки</p>
 
-<p><strong>repquota</strong>** / <strong>**mnt</strong>** / <strong>**disk</strong>** 1       ** <em>(посмотреть отчет по квоте для устройства подключенного к / <strong>mnt</strong> / <strong>disk</strong> 1);</em></p>
+<h2 id="-2--Этапы-разработки">№ 2 : Этапы разработки</h2>
+
+<ul>
+  <li>Распределние задач по разработчикам</li>
+  <li>формирование плана приемо-сдаточных работ</li>
+  <li>комплексное тестирование</li>
+  <li>создание плана миграции и разработки этого плана</li>
+</ul>
+
+<h2 id="-3--Этапы-ввода-в-эксплуатацию-разрабатываемой-системы">№ 3 : Этапы ввода в эксплуатацию разрабатываемой системы</h2>
+
+<ul>
+  <li>нагрузочное тестирование</li>
+  <li>формирование методических материалов и документации</li>
+  <li>обучение пользователей</li>
+  <li>заполнение всех НСИ, прописывание доступов и пользователей в системе</li>
+  <li>миграция данных</li>
+  <li>сверка проведенной миграции и остатков</li>
+  <li>старт работы под контролем (пилотирование)</li>
+  <li>горячая поодержка в период первого запуска</li>
+</ul>
+
+<h2 id="-4-Как-мы-передаем-систему-на-поддержку-после-ввода-в-эксплуатацию">№ 4 Как мы передаем систему на поддержку, после ввода в эксплуатацию:</h2>
+
+<p>Уровни техподдержки системы:</p>
+<ul>
+  <li>инфраструктурная, мониторинг нагрузок на сервер</li>
+  <li>функциональная, мониторинг потоков и контроль (вдруг что то начало происходить не так как планировалось)</li>
+  <li>методологическая, ответы на вопросы, сбор новых выявленых потребностях для возможной дальнейшей эволюции.</li>
+</ul>
+
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://localhost:4000/tags/#LPIC1-101" title="Pages tagged LPIC1-101" class="tag"><span class="term">LPIC1-101</span></a></span>
-        <span>Updated on <span class="entry-date date updated"><time datetime="2014-12-24">December 24, 2014</time></span></span>
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#ProjectManager" title="Pages tagged ProjectManager" class="tag"><span class="term">ProjectManager</span></a><a href="http://localhost:4000/tags/#PM" title="Pages tagged PM" class="tag"><span class="term">PM</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2018-12-04">December 04, 2018</time></span></span>
         <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Lesson_4_4/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Lesson_4_4/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Lesson_4_4/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Work-Project-Manager/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Work-Project-Manager/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Work-Project-Manager/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
       </footer>
@@ -222,22 +227,22 @@ Reading time ~1 minute
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="http://localhost:4000/Lesson_4_3/" class="read-more-btn">Read More</a>
+      <a href="http://localhost:4000/PostgreSQL-V11_Doc-077/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="http://localhost:4000/Work-Project-Manager/" title="Коротко - работа менеджера проектов">Коротко - работа менеджера проектов</a></h3>
-      <p>Project Manager <a href="http://localhost:4000/Work-Project-Manager/">Continue reading</a></p>
+      <h3><a href="http://localhost:4000/PostgreSQL-V11_Doc-077/" title="Приложение G. Дополнительно поставляемые программы">Приложение G. Дополнительно поставляемые программы</a></h3>
+      <p> <a href="http://localhost:4000/PostgreSQL-V11_Doc-077/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-077/" title="Приложение G. Дополнительно поставляемые программы">Приложение G. Дополнительно поставляемые программы</a></h4>
+        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-076/" title="Приложение F. Дополнительно поставляемые модули">Приложение F. Дополнительно поставляемые модули</a></h4>
         <span>Published on December 01, 2018</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-076/" title="Приложение F. Дополнительно поставляемые модули">Приложение F. Дополнительно поставляемые модули</a></h4>
+        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-075/" title="Приложение E. Замечания к выпуску">Приложение E. Замечания к выпуску</a></h4>
         <span>Published on December 01, 2018</span>
       </div><!-- /.list-item -->
     

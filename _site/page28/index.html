@@ -6,6 +6,18 @@
 <head>
 <meta charset="utf-8">
 <title>Последние посты &#8211; Sirius Blog</title>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130427752-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130427752-1');
+</script>
+
+</head>
 <meta name="description" content="Describtion ..">
 <meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
 
@@ -113,10 +125,7 @@
 	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
 	  
 	    
-	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
-	  
-	    
-	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	    <li><a href="https://github.com/Sergey-sirius" target="_blank">Main Link</a></li>
 	  
 	</ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
@@ -139,6 +148,89 @@
 
 <div id="main" role="main">
   
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_4_6/" title="104.6 Жесткие и мягкие (символические) ссылки."><img src="http://localhost:4000/images/matrix.jpg" alt="104.6 Жесткие и мягкие (символические) ссылки."></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_6/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_6/" rel="bookmark" title="104.6 Жесткие и мягкие (символические) ссылки." itemprop="url">104.6 Жесткие и мягкие (символические) ссылки.</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь создавать и управлять ссылками на файлы.</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>создание ссылок;</li>
+  <li>разницу между мягкими и жесткими ссылками;</li>
+  <li>разницу между копированием и созданием ссылок;</li>
+  <li>использование ссылок для выполнения административных задач.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>ln</li>
+  <li>ls</li>
+</ul>
+
+<p>Существует множество файловых систем, с различными принципами работы. В данном уроке будет рассмотрена классическая линуксовая файловая система ext, позволяющая прозрачно работать с адресацией диска.</p>
+
+<p>Ключевым понятием при работе с ссылками является <strong>айнод</strong> (inode – индексный дескриптор): набор информации об объекте файловой системы. Айнод может содержать информацию о:</p>
+
+<ul>
+  <li>размер объекта;</li>
+  <li>id устройства, на котором расположен объект;</li>
+  <li>id владельца объекта;</li>
+  <li>id группы владельцев;</li>
+  <li>права доступа;</li>
+  <li>временные метки доступа;</li>
+  <li>указатель на месторасположение на диске;</li>
+  <li>размер блока;</li>
+  <li>количество блоков;</li>
+  <li>счетчик ссылок на объект и т.д.</li>
+</ul>
+
+<p>Посмотреть айноды в текущем каталоге можно при помощи команды <strong>ls</strong>  <strong>–</strong>** li**</p>
+
+<p>На объекты файловой системы можно создавать ссылки:</p>
+
+<ul>
+  <li><strong>жесткие</strong> – указывают на расположение файла на физическом устройстве (работают в пределах одного раздела носителя информации, но всегда указывают на файл, даже если он переименован, или перемещен внутри файловой системы носителя в другие каталоги);</li>
+  <li><strong>мягкие</strong> – указывают на расположение файла в файловой системе (работают между файловыми системами, но если исходный объект переместить или переименовать, ссылка работать перестает).</li>
+</ul>
+
+<p>Создать жесткую ссылку можно командой <strong>ln</strong> , например:</p>
+
+<p><strong>ln file.txt hard.txt</strong></p>
+
+<p>Создать мягкую ссылку можно командой <strong>ln</strong>  <strong>-</strong>** s**, например:</p>
+
+<p>** ln –s file.txt soft.txt  **</p>
+
+<p>Жесткие ссылки нельзя создавать для каталогов.</p>
+
+<p>Если создать жесткую ссылку на файл, и удалить файл, то к нему все еще можно получить доступ по созданной жесткой ссылке. То есть для удаления файла необходимо удаление всех жестких ссылок на него.</p>
+
+<p>Созданная жесткая ссылка на файл выглядит в файловой системе как копия исходного файла. Чтобы увидеть разницу между скопированным файлом и жесткой ссылкой на него необходимо посмотреть их айноды (жесткая ссылка и оригинал будут иметь одинаковые).</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
 <article class="hentry">
   <header>
     
@@ -378,92 +470,6 @@ Reading time ~1 minute
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_4_3/" title="104.3 Монтирование файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.3 Монтирование файловых систем."></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_3/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_3/" rel="bookmark" title="104.3 Монтирование файловых систем." itemprop="url">104.3 Монтирование файловых систем.</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь настраивать подключение файловых систем.</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>ручное подключение и отключение файловых систем;</li>
-  <li>автоматическое монтирование при загрузке;</li>
-  <li>настройку подключаемых портативных файловых систем.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>/etc/fstab</li>
-  <li>/media</li>
-  <li>mount</li>
-  <li>umount</li>
-</ul>
-
-<p>Linuх использует файловую систему с единым корнем (в отличии от Windows, где каждый носитель информации имеет свой корень). Таким образом каждое отдельно устройство хранения информации подключается в единую корневую файловую систему через точки монтирования в иерархической древовидной структуре.</p>
-
-<p>Для подключения устройства необходимо создать точку монтирования – любой пустой каталог. Традиционно такие точки монтирования создаются в каталоге <strong>/</strong>** mnt<strong>(для временного монтирования пользовательских файловых систем) или</strong>/ <strong>**media</strong> (для подключения портативных устройств), например:</p>
-
-<p>**mkdir /mnt/hard_drive       ** <em>( <strong>создать</strong> каталог</em> <em>/mnt/hard_drive)</em></p>
-
-<p>Для подключения файловой системы с носителя информации используется команда <strong>mount</strong> , например:</p>
-
-<p><strong>mount</strong>  <strong>–</strong>** t <strong>**ext</strong>** 3 / <strong>**dev</strong>** / <strong>**sdb</strong>** 1 / <strong>**mnt</strong>** / <strong>**hard</strong>** _ <strong>**drive</strong>  <em>(подключить устройство / <strong>dev</strong> / <strong>sdb</strong> 1 с типом файловой системы</em> <em>ext <strong>3 в каталог /</strong> mnt <strong>/</strong> hard <strong>_</strong> drive__)</em></p>
-
-<p>Команда <strong>mount</strong> , используемая без аргументов, выводит перечень смонтированных файловых систем (в том числе и виртуальных).</p>
-
-<p>Для отключения файловой системы используется команда <strong>umount</strong> , например:</p>
-
-<p><strong>umount</strong>  <strong>/</strong>** mnt <strong>**/</strong>** hard <strong>**_</strong>** drive <em>**</em>       ** <em>(в качестве аргумента можно указывать имя устройства или точку монтирования)</em></p>
-
-<p><em>___</em></p>
-
-<p>Для автоматического подключения файловых систем используется файл /etc/fstab, в котором на каждой строке указаны id или имя устройства, точка монтирования, файловая система и дополнительные опции, например:</p>
-
-<p><strong>/</strong>** dev <strong>**/</strong>** sdb <strong>**1</strong> <em>(имя устройства)</em> <strong>/</strong>** mnt <strong>**/</strong>** hard <strong>**_</strong>** drive<strong><em>(точка подключения)</em></strong>ext <strong>**3</strong> <em>(файловая система)</em> <strong>defaults</strong> <em>(опции по умолчанию)</em> <strong>0</strong> <em>(выключение дампа)</em> <strong>2</strong> <em>(порядок проверки)</em></p>
-
-<p>Часто используемые опции монтирования:</p>
-
-<ul>
-  <li>auto / noauto        <em>(подключение при загрузке ОС);</em></li>
-  <li>exec / noexec        <em>(разрешение выполнения двоичных файлов с устройства);</em></li>
-  <li>ro                        <em>(только для чтения);</em></li>
-  <li>rw                        <em>(чтение и запись);</em></li>
-  <li>user / nouser        <em>(разрешение подключения всем пользователям).</em></li>
-</ul>
-
-<p>Наборопций <strong>defaults</strong> <em>:</em> <strong>rw,suid,dev,exec,auto,nouser,async</strong> <em>.</em></p>
-
-<p>Дамп (значения 1 и 0), говорит о включенном или выключенном резервном копировании устройства при помощи команды dump.</p>
-
-<p>Порядок проверки указывает последовательность проверки файловых систем (0 – не проверять, 1 – корневая файловая система, 2 – все остальные).</p>
-
-<p>После добавление записи в файл <strong>/</strong>** etc <strong>**/</strong>** fstab <strong>указанное устройство можно монтировать при помощи команды</strong> mount**, указывая только один аргумент – устройство или точку монтирования (так как все остальные опции уже указаны в /etc/fstab).</p>
-
-<p>Часто вместо указания тома по адресу подключения (/dev/sda1 и т.д.) используется указание на том по UUID. Адресация /dev/sda1 и т.д. зависит от того, на какой порт какого контроллера жестких дисков подключен носитель информации, соответственно при переподключении дисков на другие порты – все может слететь. UUID же уникален, узнать его можно при помощи команды <strong>blkid</strong></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -531,7 +537,7 @@ Reading time ~2 minutes
     
 
     
-      <li><a href="http://localhost:4000/page35/">35</a></li>
+      <li><a href="http://localhost:4000/page36/">36</a></li>
     
 
     
@@ -553,6 +559,18 @@ Reading time ~2 minutes
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
 
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-130427752-1', 'auto');  
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
 
           

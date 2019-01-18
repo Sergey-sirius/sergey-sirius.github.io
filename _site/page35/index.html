@@ -6,6 +6,18 @@
 <head>
 <meta charset="utf-8">
 <title>Последние посты &#8211; Sirius Blog</title>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130427752-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130427752-1');
+</script>
+
+</head>
 <meta name="description" content="Describtion ..">
 <meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
 
@@ -113,10 +125,7 @@
 	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
 	  
 	    
-	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
-	  
-	    
-	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	    <li><a href="https://github.com/Sergey-sirius" target="_blank">Main Link</a></li>
 	  
 	</ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
@@ -139,6 +148,99 @@
 
 <div id="main" role="main">
   
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_1_1/" title="101.1 Определение и настройка аппаратной части"><img src="http://localhost:4000/images/matrix.jpg" alt="101.1 Определение и настройка аппаратной части"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_1_1/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_1_1/" rel="bookmark" title="101.1 Определение и настройка аппаратной части" itemprop="url">101.1 Определение и настройка аппаратной части</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><strong>Изучаем:</strong>
+•	получение информации об оборудовании;
+•	управление устройствами;
+•	понятия sysfs, udev, dbus, udevadm.</p>
+
+<p><strong>Термины и утилиты:</strong>
+•	/sys/
+•	/proc/
+•	/dev/
+•	modprobe
+•	lsmod
+•	lspci
+•	lsusb
+•	udevadm</p>
+
+<p>Аппаратная часть современных компьютерных устройств — это отдельный полноценный курс. В данном уроке поверхностно рассматриваются базовые манипуляции с комплектующими ПК из ОС Linux.</p>
+
+<p>При работе с устройствами Linux можно столкнуться со следующими понятиями:
+•	<strong>HAL</strong> – демон, представляющий слой абстрагирования от конкретной АЧ, благодаря которому ОС может обращаться к устройствам через их абстрактные представления (конкретную инструкцию устройству будет передавать драйвер), на данный момент является устаревшим;
+•	<strong>Dbus</strong> - шина, через которую процессы обмениваются информацией, в частности  приложения получают через нее информацию об оборудовании из ядра;
+•	<strong>udev</strong> - менеджер устройств, пришедший на смену HAL.</p>
+
+<p><em>Преимущества udev:</em></p>
+<ul>
+  <li>работает на уровне пользователя (больше свободы действий);</li>
+  <li>событийно-управляемый (а не опрашивает ядро по расписанию как HAL);</li>
+  <li>удобные файлы конфигурации (а не xml как у HAL);</li>
+  <li>содержит в системе только файлы активных устройств (а не всех устройств как HAL);</li>
+  <li>содержит имена устройств неизменными (в HAL имя зависит от порядка подключения).</li>
+</ul>
+
+<p>В директории <strong>/dev</strong> находится информация об интерфейсах работы с драйверами ядра, например:
+<strong>/dev/sda</strong>	 - первый жесткий диск;
+<strong>/dev/sr0</strong>	 - CD-ROM;
+<em>Примечание: в каталоге /dev, как правило, отсутствует информация о сетевых картах и видеокартах, так как работа с ними немного сложнее чем простые операции чтения-записи.</em>
+В /dev лежат специальные файлы устройств, которые можно считать указателями на драйверы. При помощи этих файлов происходит обращение к устройствам.</p>
+
+<p>База данных подключенных устройств хранится в директории <strong>/sys</strong>, где они расположены по каталогам и именуются автоматически согласно идентификаторам, например:
+<strong>/sys/block</strong> - перечень блочных устройств;
+<strong>/sys/bus</strong>	 - перечень шин;
+Если /dev содержит файлы устройств для работы с приложениями, то /sys содержит информацию об этих устройствах.
+<em><strong>Метафора: /sys это упаковка, а /dev – содержимое.</strong></em></p>
+
+<p>Информация о состоянии ОС и всех запущенных процессах находится в директории <strong>/proc</strong>, например:
+<strong>/proc/cpuinfo</strong> - информация о процессоре;
+<strong>/proc/mounts</strong> - подключенные файловые системы;
+Самая интересная директория - <strong>/proc/sys</strong>, так как она не только содержит информацию о системе, но и позволяет ее редактировать «на лету».</p>
+
+<hr />
+
+<p>Для работы с модулями ядра, например, с драйверами устройств, предназначены следующие команды:
+•	<strong>lsmod</strong> – информация о модулях ядра;
+•	<strong>lspci</strong> – информация об устройствах PCI;
+•	<strong>lspcmciа</strong> – информация об устройствах PCMCIA;
+•	<strong>lsusb</strong> – информация о шине USB;
+•	<strong>rmmod</strong>	– удалить модуль;
+•	<strong>insmod</strong>	– установить модуль;
+•	<strong>modprobe</strong> – деликатно выполнить действия с модулем.</p>
+
+<p>Отдельного внимания заслуживает инструменты работы с <strong>udev – udevadm</strong>, который может запускаться со следующими опциями:
+•	<strong>info</strong>	 	– получение информации из БД;
+•	<strong>trigger</strong>		– запросить события для устройства;
+•	<strong>settle</strong>		– дождаться завершения обработки;
+•	<strong>control</strong> 	– управление демоном;
+•	<strong>monitor</strong> 	– следить за событиями;
+•	<strong>test</strong> 		– симулировать запуск события.
+<em>Примечание: мы не рассматриваем на данном этапе такие продвинутые действия, как создания собственных правил обработки событий оборудования, тем не менее вы сам можете их изучить.</em></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
 <article class="hentry">
   <header>
     
@@ -540,255 +642,6 @@ bundle <span class="nb">exec </span>jekyll serve
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/aaa/" title="Настройка темы"><img src="http://localhost:4000/images/abstract-11.jpg" alt="Настройка темы"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2011-11-11T00:00:00+02:00"><a href="http://localhost:4000/aaa/">November 11, 2011</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~7 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/aaa/" rel="bookmark" title="Настройка темы" itemprop="url">Настройка темы</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Общие замечания и предложения по настройке HPSTR.</p>
-
-<p>HPSTR теперь работает под Jekyll 3.0. Обязательно запустите <code class="highlighter-rouge">bundle update</code>, чтобы обновить все зависимости gem.</p>
-
-<h2 id="Базовая-установка-для-нового-сайта-jekyll">Базовая установка для нового сайта Jekyll</h2>
-
-<ol>
-  <li><a href="http://bundler.io">Инсталируйте Bundler</a> <code class="highlighter-rouge">gem install bundler</code>, а также
- установите <a href="http://jekyllrb.com">Jekyll</a> и все зависимости <code class="highlighter-rouge">bundle install</code>.</li>
-  <li>Сделайте fork репозитория <a href="https://github.com/mmistakes/hpstr-jekyll-theme/fork">HPSTR Jekyll Theme repo</a>.</li>
-  <li>Клонируйте и переименуйте репозиторий.</li>
-  <li>Отредактируйте файл <code class="highlighter-rouge">_config.yml</code> под Ваши персональные данные.</li>
-  <li>Просмотрите примеры сообщений в <code class="highlighter-rouge">_posts</code>, чтобы увидеть примеры работы для вытягивания больших образов, назначения категорий и тегов и других данных YAML.</li>
-  <li>Прочтите приведенную ниже документацию для дальнейших настройки.</li>
-</ol>
-
-<div><a href="https://github.com/mmistakes/hpstr-jekyll-theme/archive/master.zip" class="btn">Download the Theme</a></div>
-
-<p class="notice"><strong>Pro-tip:</strong> Удалите <code class="highlighter-rouge">gh-pages</code> ветку после клонирования репозитория и создайте <code class="highlighter-rouge">master</code> ветку.
-В gh-страницах, используемой для демонстрационного сайта темы, есть куча мусора, который я предполагаю, что вы не хотите видеть на своем сайте.</p>
-
-<hr />
-
-<h2 id="Настройка-существующего-сайта-jekyll">Настройка существующего сайта Jekyll</h2>
-
-<ol>
-  <li>Клонируем папки: <code class="highlighter-rouge">_includes</code>, <code class="highlighter-rouge">_layouts</code>, <code class="highlighter-rouge">_sass</code>, <code class="highlighter-rouge">assets</code>, and <code class="highlighter-rouge">images</code>.</li>
-  <li>Клонировать следующие папки / файлы и персонализировать контент по мере необходимости.: <code class="highlighter-rouge">about/</code>, <code class="highlighter-rouge">posts/</code>, <code class="highlighter-rouge">tags/</code>, <code class="highlighter-rouge">feed.xml</code> and <code class="highlighter-rouge">index.html</code>.</li>
-  <li>Редактируем <code class="highlighter-rouge">_config.yml</code> чтобы персонализировать ваш сайт.</li>
-</ol>
-
-<hr />
-
-<h2 id="Запуск-jekyll">Запуск Jekyll</h2>
-
-<p>Предпочтительным методом запуска Jekyll является <code class="highlighter-rouge">bundle exec</code>, но если вы готовы решать проблемы, связанные с драгоценными камнями, не стесняйтесь <code class="highlighter-rouge">jekyll build</code> or <code class="highlighter-rouge">jekyll serve</code>.</p>
-
-<blockquote>
-  <p>В некоторых случаях запуск исполняемых файлов без bundle exec работает, если не будет конфликтовать с вашим bundle.</p>
-
-  <p>Однако это ненадежно и является источником значительной боли. Даже если он выглядит так, как будто он работает, он может не работать в будущем или на другой машине.</p>
-</blockquote>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll build
-
-bundle <span class="nb">exec </span>jekyll serve
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="Структура-папок">Структура папок</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hpstr-jekyll-theme/
-├── _includes
-|    ├── browser-upgrade.html       <span class="c"># запрос на обновление браузера &lt; IE8</span>
-|    ├── footer.html                <span class="c"># Нижний колонтитул сайта</span>
-|    ├── head.html                  <span class="c"># заголовок сайта</span>
-|    ├── navigation.html            <span class="c"># Навигация по сайту</span>
-|    └── scripts.html               <span class="c"># jQuery, плагины, Google Analitics, etc</span>
-├── _layouts
-|    ├── page.html                  <span class="c"># макет страницы</span>
-|    ├── page.html                  <span class="c"># пост-индексный макет, используемый на домашней странице</span>
-|    └── post.html                  <span class="c"># макет постов</span>
-├── _posts
-├── _sass                           <span class="c"># Sass partials</span>
-├── assets
-|    ├── css                        <span class="c"># скомпилированные таблицы стилей</span>
-|    ├── js
-|    |   ├── _main.js               <span class="c"># плагин опции</span>
-|    |   ├── scripts.min.js         <span class="c"># объединить и минимизировать сценарии сайта</span>
-|    |   ├── plugins                <span class="c"># plugin scripts</span>
-|    └── └── vendor                 <span class="c"># jQuery and Modernizr scripts</span>
-├── images                          <span class="c"># изображения для сообщений и страниц</span>
-├── _config.yml                     <span class="c"># Jekyll опции</span>
-├── about/                          <span class="c"># about страница</span>
-├── posts/                          <span class="c"># все посты</span>
-├── tags/                           <span class="c"># все посты групированные по тегам</span>
-└── index.html                      <span class="c"># главная страница с пагинацией</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="Настройка">Настройка</h2>
-
-<p>Большинство найденных здесь переменных используются в файлах .html, найденных в <code class="highlighter-rouge">_includes</code> если вам нужно добавить или удалить что-либо. Хорошим местом для начала было бы добавить <code class="highlighter-rouge">title</code>, <code class="highlighter-rouge">description</code>, and <code class="highlighter-rouge">url</code> для вашего сайта. Ссылки являются абсолютными и имеют префикс <code class="highlighter-rouge">{{ site.url }}</code> в различных <code class="highlighter-rouge">_includes</code> и <code class="highlighter-rouge">_layouts</code>, поэтому не забудьте правильно установить <code class="highlighter-rouge">url</code><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> to <code class="highlighter-rouge">http://localhost:4000</code> при локальной разработке.</p>
-
-<h3 id="Комментарии-disqus">Комментарии Disqus</h3>
-
-<p>Создайте <a href="http://disqus.com">Disqus</a> учетку и измените <code class="highlighter-rouge">disqus_shortname</code> в <code class="highlighter-rouge">_config.yml</code> к короткому имени Disqus, который вы только что установили. По умолчанию комментарии появляются на всех страницах и страницах, если вы назначили короткое имя. Чтобы отключить комментирование сообщения или страницы, добавьте следующее в его функцию YAML Front Matter:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">comments</span><span class="pi">:</span> <span class="no">false</span>
-</code></pre></div></div>
-
-<h3 id="Ссылки-на-социальные-сети">Ссылки на социальные сети</h3>
-
-<p>Чтобы отключить ссылки на Facebook, Twitter и Google+ на странице или странице, добавьте следующее к своему первому вопросу:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">share</span><span class="pi">:</span> <span class="no">false</span>
-</code></pre></div></div>
-
-<h3 id="Владелец--Информация-об-авторе">Владелец / Информация об авторе</h3>
-
-<p>Измените имя и фото на аватарку (200x200 pixels или больше), email, и ссылки на соцсети. Если вы хотите ссылаться на внешний образ на Gravatar или что-то подобное, вам нужно будет отредактировать путь в <code class="highlighter-rouge">navigation.html</code> так как предполагается, что он расположен в <code class="highlighter-rouge">/images</code>.</p>
-
-<h3 id="google-analytics-and-webmaster-tools">Google Analytics and Webmaster Tools</h3>
-
-<p>Ваш идентификатор Google Analytics отправляется сюда вместе с метатегами для проверки в <a href="http://support.google.com/webmasters/bin/answer.py?hl=en&amp;answer=35179">Google Webmaster Tools</a> и <a href="https://ssl.bing.com/webmaster/configure/verify/ownershi">Bing Webmaster Tools</a> верификация сайта.</p>
-
-<h3 id="Ссылки-навигации">Ссылки навигации</h3>
-
-<p>Чтобы добавить дополнительные ссылки в выпадающем меню, отредактируйте <code class="highlighter-rouge">_data/navigation.yml</code>. Используйте следующий формат, чтобы установить URL-адрес и заголовок для как можно большего количества ссылок. <em>Внешние ссылки откроются в новом окне.</em></p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Portfolio</span>
-  <span class="na">url</span><span class="pi">:</span> <span class="s">/portfolio/</span>
-
-<span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Made Mistakes</span>
-  <span class="na">url</span><span class="pi">:</span> <span class="s">http://mademistakes.com</span>  
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="Добавление-нового-контента">Добавление нового контента</h2>
-
-<p>Ваши посты хранятся в <code class="highlighter-rouge">_posts</code> папке и названный в соответствии с <code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code> <a href="https://jekyllrb.com/docs/posts/">обычным форматом</a>.</p>
-
-<p>Чтобы упростить создание сообщений и страниц, <a href="https://github.com/jekyll/jekyll-compose">Jekyll::Compose</a> и <a href="https://github.com/octopress/octopress">Octopress</a> это отличные плагины, которые вы можете установить для автоматизации этого процесса.</p>
-
-<hr />
-
-<h3 id="jekyll-_includes">Jekyll _includes</h3>
-
-<p>По большей части вы можете оставить их как есть, так как данные автора / владельца вытягиваются из <code class="highlighter-rouge">_config.yml</code>. Тем не менее, вы, вероятно, захотите настроить <code class="highlighter-rouge">footer.html</code> на ваш вкус.</p>
-
-<h3 id="Время-чтения">Время чтения</h3>
-
-<p>По умолчанию,но  можно отключить <code class="highlighter-rouge">reading_time</code> в файле <code class="highlighter-rouge">_config.yml</code>. Слова по умолчанию в минуту устанавливаются в 200 и могут быть изменены путем обновления <code class="highlighter-rouge">words_per_minute</code> in <code class="highlighter-rouge">_config.yml</code>.</p>
-
-<h3 id="feature-images">Feature Images</h3>
-
-<p>Хорошее эмпирическое правило состоит в том, чтобы сохранить изображения объектов красивыми и широкими, чтобы вы не слишком сильно удаляли текст тела. Изображение, обрезанное вокруг 1024 x 256 пикселей, будет поддерживать размер файла с приемлемым разрешением для большинства устройств. Если вы хотите быстро реагировать на эти изображения, я бы предложил посмотреть плагин <a href="https://github.com/scottjehl/picturefill">Jekyll Picture Tag</a><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> плагин.</p>
-
-<p>Два макета делают предположение, что изображения лежат в <em>images</em> папке. Чтобы добавить изображение объекта в сообщение или страницу, просто укажите имя файла	.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span>
-  <span class="na">feature</span><span class="pi">:</span> <span class="s">feature-image-filename.jpg</span>
-  <span class="na">thumb</span><span class="pi">:</span> <span class="s">thumbnail-image.jpg</span> <span class="c1">#keep it square 200x200 px is good</span>
-</code></pre></div></div>
-
-<p>Если вы хотите применить атрибуцию к изображению элемента, используйте следующие элементы управления YAML на сообщениях или страницах. Описание изображения с описанием непосредственно под изображением объекта со ссылкой на исходный источник.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span>
-  <span class="na">feature</span><span class="pi">:</span> <span class="s">feature-image-filename.jpg</span>
-  <span class="na">credit</span><span class="pi">:</span> <span class="s">Michael Rose</span> <span class="c1">#name of the person or site you want to credit</span>
-  <span class="na">creditlink</span><span class="pi">:</span> <span class="s">http://mademistakes.com</span> <span class="c1">#url to their site or licensing</span>
-</code></pre></div></div>
-
-<p>По умолчанию <code class="highlighter-rouge">&lt;div&gt;</code> минимальная высота 400px с CSS. Все, что выше, скрыто с <code class="highlighter-rouge">overflow: hidden</code> объявлением. Вы можете настроить высоту изображения главной страницы и отображения на posts/pages путем изменения следующих переменных в <code class="highlighter-rouge">/_sass/_variables.scss</code>.</p>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$feature-image-height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span> <span class="c1">// min 150px recommended</span>
-<span class="nv">$front-page-feature-image-height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span> <span class="c1">// min 150px recommended</span>
-</code></pre></div></div>
-
-<h4 id="postpage-thumbnails-for-og-and-twitter-cards">Post/Page Thumbnails for OG and Twitter Cards</h4>
-
-<p>Post and page thumbnails work the same way. These are used by <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> meta tags found in <code class="highlighter-rouge">head.html</code>. If you don’t assign a thumbnail the image you assigned to <code class="highlighter-rouge">site.owner.avatar</code> in <code class="highlighter-rouge">_config.yml</code> will be used.</p>
-
-<p>Here’s an example of what a tweet to your site could look like if you activate Twitter Cards and include all the metas in your post’s YAML.</p>
-
-<p><img src="http://localhost:4000/images/twitter-card-summary-large-image.jpg" alt="Twitter Card summary large image screenshot" /></p>
-
-<h3 id="videos">Videos</h3>
-
-<p>Video embeds are responsive and scale with the width of the main content block with the help of <a href="http://fitvidsjs.com/">FitVids</a>.</p>
-
-<h3 id="twitter-cards">Twitter Cards</h3>
-
-<p>Twitter cards make it possible to attach images and post summaries to Tweets that link to your content. Summary Card meta tags have been added to <code class="highlighter-rouge">head.html</code> to support this, you just need to <a href="https://dev.twitter.com/docs/cards">validate and apply your domain</a> to turn it on.</p>
-
-<h3 id="link-post-type">Link Post Type</h3>
-
-<p>Link blog like a champ by adding <code class="highlighter-rouge">link: http://url-you-want-linked</code> to a post’s YAML front matter. Arrow glyph links to the post’s permalink and the the <code class="highlighter-rouge">post-title</code> links to the source URL. Here’s an <a href="http://localhost:4000/sample-link-post/">example of a link post</a> if you need a visual.</p>
-
-<hr />
-
-<h2 id="further-customization">Further Customization</h2>
-
-<p>Jekyll 2.x added support for Sass files making it much easier to modify a theme’s fonts and colors. By editing values found in <code class="highlighter-rouge">_sass/variables.scss</code> you can fine tune the site’s colors and typography.</p>
-
-<p>For example if you wanted a red background instead of white you’d change <code class="highlighter-rouge">$bodycolor: #fff;</code> to <code class="highlighter-rouge">$bodycolor: $cc0033;</code>.</p>
-
-<p>To modify the site’s JavaScript files I setup a Grunt build script to lint/concatenate/minify all scripts into <code class="highlighter-rouge">scripts.min.js</code>. <a href="http://nodejs.org/">Install Node.js</a>, then <a href="http://gruntjs.com/getting-started">install Grunt</a>, and then finally install the dependencies for the theme contained in <code class="highlighter-rouge">package.json</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
-</code></pre></div></div>
-
-<p>From the theme’s root, use <code class="highlighter-rouge">grunt</code> to concatenate JavaScript files and optimize <code class="highlighter-rouge">.jpg</code>, <code class="highlighter-rouge">.png</code> and <code class="highlighter-rouge">.svg</code> files in the <code class="highlighter-rouge">images/</code> folder.</p>
-
-<p>You can also use <code class="highlighter-rouge">grunt dev</code> in combination with <code class="highlighter-rouge">bundle exec jekyll serve</code> to watch for updates in JS files that Grunt will then automatically re-build as you write your code, which will in turn auto-generate your Jekyll site when developing locally.</p>
-
-<hr />
-
-<h2 id="questions">Questions?</h2>
-
-<p>Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter <a href="http://twitter.com/mmistakes">@mmistakes</a> or <a href="https://github.com/mmistakes/hpstr-jekyll-theme/issues/new">file a GitHub Issue</a>. And if you make something cool with this theme feel free to let me know.</p>
-
-<hr />
-
-<h2 id="license">License</h2>
-
-<p>This theme is free and open source software, distributed under the <a href="http://localhost:4000/LICENSE">MIT License</a> version 2 or later. So feel free to to modify this theme to suit your needs.</p>
-
-<hr />
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Used to generate absolute URLs in <code class="highlighter-rouge">feed.xml</code>, and for canonical URLs in <code class="highlighter-rouge">head.html</code>. Don’t include a trailing <code class="highlighter-rouge">/</code> in your base url ie: http://mademistakes.com. When developing locally I suggest using http://localhost:4000 or whatever localhost you’re using to properly load all theme stylesheets, scripts, and image assets. If you leave this variable blank all links will resolve correctly except those pointing to home. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>If you’re using GitHub Pages to host your site be aware that plugins are disabled. So you’ll need to build your site locally and then manually deploy if you want to use this sweet plugin. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -831,15 +684,21 @@ bundle <span class="nb">exec </span>jekyll serve
         <li><a href="http://localhost:4000/page34/">34</a></li>
       
     
-
-    
-    
-
-    
-      <li><strong class="current-page">35</strong></li>
+      
+        <li><strong class="current-page">35</strong></li>
+      
     
 
     
+    
+
+    
+      <li><a href="http://localhost:4000/page36/">36</a></li>
+    
+
+    
+    
+      <li><a href="http://localhost:4000/page36/" class="btn">Next</a></li>
     
   </ul>
 </div>
@@ -856,6 +715,18 @@ bundle <span class="nb">exec </span>jekyll serve
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
 
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-130427752-1', 'auto');  
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
 
           

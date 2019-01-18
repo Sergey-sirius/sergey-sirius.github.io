@@ -6,6 +6,18 @@
 <head>
 <meta charset="utf-8">
 <title>Последние посты &#8211; Sirius Blog</title>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130427752-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130427752-1');
+</script>
+
+</head>
 <meta name="description" content="Describtion ..">
 <meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
 
@@ -113,10 +125,7 @@
 	    <li><a href="http://localhost:4000/handbook/" >HandBook</a></li>
 	  
 	    
-	    <li><a href="http://localhost:4000/postgres/" >PostgreSQL_11</a></li>
-	  
-	    
-	    <li><a href="http://mademistakes.com" target="_blank">Main Link</a></li>
+	    <li><a href="https://github.com/Sergey-sirius" target="_blank">Main Link</a></li>
 	  
 	</ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
@@ -139,6 +148,107 @@
 
 <div id="main" role="main">
   
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_3_5/" title="103.5 Управление процессами в Linux"><img src="http://localhost:4000/images/matrix.jpg" alt="103.5 Управление процессами в Linux"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_5/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_5/" rel="bookmark" title="103.5 Управление процессами в Linux" itemprop="url">103.5 Управление процессами в Linux</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь создавать, отслеживать и завершать процессы</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>запуск задач в активном и фоновом режимах;</li>
+  <li>настройку выполнения задачи после выхода из системы;</li>
+  <li>способы отслеживания и сортировки активных процессов;</li>
+  <li>завершение процессов.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>&amp;</li>
+  <li>bg</li>
+  <li>fg</li>
+  <li>jobs</li>
+  <li>kill</li>
+  <li>nohup</li>
+  <li>ps</li>
+  <li>top</li>
+  <li>free</li>
+  <li>uptime</li>
+  <li>pgrep</li>
+  <li>pkill</li>
+  <li>killall</li>
+  <li>screen</li>
+</ul>
+
+<p>Linux содержит в себе множество инструментов для управления запущенными процессами: от сортировки, отслеживания состояния и загрузки системы до перевода процессов в фоновый режим и обратно.</p>
+
+<p>Посмотреть запущенные процессы в текущей консоли можно при помощи команды <strong>jobs</strong>. Для вывода всех запущенных в данный момент процессов (независимо от консоли) используется команда ps с различным набором ключей, например:</p>
+
+<p><strong>Ps</strong>** aux** <em>(вывести процессы всех пользователей);</em></p>
+
+<p>Можно вывести процессы в консоль, отображая иерархию из взаимосвязи командой <strong>pstree</strong>.</p>
+
+<p>Для отображения идентификаторов процессов по определенному критерию можно использовать команду <strong>pgrep</strong> , например:</p>
+
+<p><strong>pgrep</strong>  <strong>-</strong>** l <strong>** - **</strong>u<strong>** root **</strong>       ** <em>(отобразить все процессы пользователя</em> <em>root__)</em></p>
+
+<p>Чтобы запустить процесс в фоновом режиме необходимо указать ключ <strong>&amp;</strong> , например:</p>
+
+<p><strong>Sleep</strong>  **999 &amp;       ** <em>(запустить задачу</em> <em>sleep</em> <em>999 в фоновом режиме);</em></p>
+
+<p>Для перевода процесса из фонового режима в активный используется команда <strong>fg</strong> , обратно – <strong>bg</strong>. В качестве аргумента команды следует указать номер процесса (<em>его можно увидеть на выводе команды</em> <em>jobs</em>).</p>
+
+<p>Для того чтобы процесс продолжал выполняться после выхода пользователя из системы, его следует запускать командой <strong>nohup</strong> , например:</p>
+
+<p><strong>nohup</strong>  ** <strong>** sleep **</strong> 1000 &amp;       ** <em>(запустить процесс "__sleep</em> <em>1000" в фоновом режиме, и выполнять его даже в случае выхода пользователя из системы);</em></p>
+
+<p>Для остановки процесса используется команда <strong>kill</strong> , например:</p>
+
+<p><strong>kill</strong>  <strong>2625</strong> _                (выключить процесс с_ <em>PID__=2625);</em></p>
+
+<p><strong>killall</strong>** sleep <strong>**       ** <em>(выключить все процессы с именем</em> <em>sleep</em> <em>для текущего пользователя)</em> **;</strong></p>
+
+<p>Для остановки процессов по указанному критерию можно использовать команду <strong>pkill</strong> , например:</p>
+
+<p><strong>pkill</strong>** refox <em>**</em>       ** <em>(остановить процесс, в имени которого есть символы " <strong>refox</strong>");</em></p>
+
+<p>Для просмотра информации о работающих процессах в режиме реального времени используется диспетчер задача <strong>top</strong>. Используя его можно сортировать запущенные задачи по различным критериям и останавливать их <em>(клавиша</em> <em>K__)</em> мягко <em>(<strong>sigterm</strong>)</em> и жестко <em>(<strong>sigkill</strong>)</em>.</p>
+
+<p>Для отображения информации о времени работы системы и среднем времени загрузки АЧ используется команда <strong>uptime</strong>.</p>
+
+<p>Для отображения информации о загрузке ОЗУ и раздела подкачки используется команда <strong>free</strong>.</p>
+
+<p>Кроме того, Linux поддерживает работу с несколькими «экранами» при помощи команды <strong>screen</strong>. Она позволяет, в числе всего прочего, сворачивать запущенные приложения в консоли, в рамках той же консоли, например:</p>
+
+<p><strong>screen</strong>  <strong>-</strong>** S <strong>**yandex</strong>** ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(создать экран с именем</em> <em>yandex</em> <em>для команды</em> <em>ping <strong>ya</strong>. <strong>ru</strong> );</em></p>
+
+<p><strong>screen</strong>  <strong>–</strong>** ls <em>**</em>                       ** <em>(показать свернутые экраны);</em></p>
+
+<p><strong>screen</strong>  <strong>-</strong>** r <strong>**yandex</strong>**                        ** <em>(развернуть экран с именем</em> <em>yandex__).</em></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
 <article class="hentry">
   <header>
     
@@ -359,138 +469,6 @@ Reading time ~3 minutes
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_2/" title="103.2 Управление текстовым потоком"><img src="http://localhost:4000/images/matrix.jpg" alt="103.2 Управление текстовым потоком"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_2/" rel="bookmark" title="103.2 Управление текстовым потоком" itemprop="url">103.2 Управление текстовым потоком</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь управлять фильтровать текстовый поток</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>применение текстовых фильтров с использованием встроенных команд UNIX</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>cat</li>
-  <li>cut</li>
-  <li>expand</li>
-  <li>fmt</li>
-  <li>head</li>
-  <li>join</li>
-  <li>less</li>
-  <li>nl</li>
-  <li>od</li>
-  <li>paste</li>
-  <li>pr</li>
-  <li>sed</li>
-  <li>sort</li>
-  <li>split</li>
-  <li>tail</li>
-  <li>tr</li>
-  <li>unexpand</li>
-  <li>uniq</li>
-  <li>wc</li>
-</ul>
-
-<p>Множество файлов в Linux неудобны для восприятия без предварительного форматирования, кроме того процесс обработки текстовой информации часто требует ее форматирования, обрезания, сортировки и т.д. Linux предлагает широкий набор инструментов редактирования текстового вывода, при этом следует заметить что указанные инструменты не затрагивают исходный файл (или текстовый поток), а форматируют его, выдавая полученный результат в консоль или другой файл.</p>
-
-<p>Простой вывод текста (без корректировки содержимого):</p>
-
-<p>Для вывода содержимого файла или объединения нескольких файлов на выводе используется команда <strong>cat</strong> , например:</p>
-
-<p><strong>с</strong>** at <strong>** 1. **</strong>txt**  <strong>2.</strong>** txt <strong>** &gt; 3. **</strong>txt<em>**</em>        ** <em>(передать содержимое двух файлов в третий);</em></p>
-
-<p>Команда <strong>join</strong> объединяет строки нескольких файлов по общему полю и отправляет их на стандартный вывод.</p>
-
-<p>Команда <strong>less</strong> загружает файл постепенно и также отправляет его на вывод (удобно для больших файлов).</p>
-
-<p>Команда <strong>nl</strong> нумерует строки.</p>
-
-<p>Команда <strong>pr</strong> показывает, как содержимое файла будет выглядеть при выводе его на печать.</p>
-
-<p>Команда <strong>paste</strong> вставляет строки из одного файла в другой и отправляет результат на стандартный вывод.</p>
-
-<p>Команда <strong>head</strong> показывает первые строки файла, а <strong>tail</strong> – последние.</p>
-
-<p>Например:</p>
-
-<p><strong>head</strong>  <strong>–</strong>** n <strong>** 2 / **</strong>var<strong>** / **</strong>log<strong>** / **</strong>syslog<em>**</em>        ** <em>(вывести первые две строчки файла);</em></p>
-
-<p><strong>tail</strong>  <strong>–</strong>** f <strong>** / **</strong>var<strong>** / **</strong>log<strong>** / **</strong>syslog<em>**</em>                ** <em>(показывать последние строки файла, отображая содержимое в реальный момент времени);</em></p>
-
-<p>Команда <strong>sort</strong> может отсортировать содержимое файла по какому-нибудь признаку, например:</p>
-
-<p><strong>sort</strong>  <strong>1.</strong>** txt <em>**</em>               ** <em>(отсортировать строки по алфавиту);</em></p>
-
-<p>Команда <strong>wc</strong> позволяет посчитать количество символов и т.д. в текстовом потоке, например:</p>
-
-<p><strong>wc</strong>  <strong>1.</strong>** txt**    <em>(посчитать количество строк, символов, слов);</em></p>
-
-<p>Вывод  форматированного текста (с корректировкой содержимого):</p>
-
-<p>Команда <strong>cut</strong> используется для обрезания содержимого файлов на выводе, например:</p>
-
-<p><strong>с</strong>** ut <strong>** – **</strong>c**  <strong>2,3,4,5,10 1.</strong>** txt <em>**</em>       ** <em>(показывать только символы на указанных позициях: 2,3,4,5,10);</em></p>
-
-<p>Команда <strong>expand</strong> превращает символы табуляции в несколько пробелов, а <strong>unexpand</strong> наоборот – пробелы в символы табуляции.</p>
-
-<p>Команда <strong>fmt</strong> предназначена для форматирования текста различными способами, например:</p>
-
-<p><strong>fmt</strong>  <strong>1.</strong>** txt <em>**</em>               ** <em>(вывести содержимое файла в одну строку);</em></p>
-
-<p><strong>fmt</strong>  <strong>–</strong>** w <strong>** 10 1. **</strong>txt<em>**</em>        ** <em>(вывести содержимое файла в строки не больше 10 символов каждая);</em></p>
-
-<p>Команда <strong>od</strong> предназначена для конвертации текста в другой формат, например:</p>
-
-<p><strong>od</strong>  <strong>–</strong>** c <strong>** 1. **</strong>txt<em>**</em>        ** <em>(отобразить в кодировке</em> <em>ASCI__);</em></p>
-
-<p>Команда <strong>tr</strong> предназначена для замены и удаления символов в текстовом потоке, например:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>echo</strong>  <strong>"</strong>** HELLO <em>**</em>"</td>
-      <td>**  <strong>tr</strong>  <strong>–</strong>** t <strong>**L</strong>** l <em>**</em>       ** <em>(заменить " <strong>L</strong>" на " <strong>l</strong>" в полученном на вводе тексте);</em></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Команда <strong>split</strong> может разбить файла по каким-либо критериям, например:</p>
-
-<p><strong>split</strong>  <strong>–</strong>** l <strong>** 2 1. **</strong>txt**  <em>(разбить содержимое файла по две строчки);</em></p>
-
-<p>Команда <strong>uniq</strong> предназначена для поиска повторяющихся строк, например:</p>
-
-<p><strong>uniq</strong>  <strong>–</strong>** u <strong>** 1. **</strong>txt**  <em>(показать только уникальные строки);</em></p>
-
-<p><strong>Sed</strong> – отдельный мощный инструмент, понимающий групповые символы, шаблоны и т.д. Будет рассмотрен немного подробнее в дальнейших урока. Работает, например, так:</p>
-
-<p>**sed –e 's/socks/people/'  1.txt       ** <em>( <strong>заменить</strong> в <strong>файле</strong> слово</em> <em>"socks"</em> <em>на</em> <em>"people");</em></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -551,13 +529,6 @@ Reading time ~2 minutes
         <li><a href="http://localhost:4000/page33/">33</a></li>
       
     
-      
-        
-        
-        
-        <li><a href="http://localhost:4000/page34/">34</a></li>
-      
-    
 
     
     
@@ -565,7 +536,7 @@ Reading time ~2 minutes
     
 
     
-      <li><a href="http://localhost:4000/page35/">35</a></li>
+      <li><a href="http://localhost:4000/page36/">36</a></li>
     
 
     
@@ -587,6 +558,18 @@ Reading time ~2 minutes
 <script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://localhost:4000/assets/js/scripts.min.js"></script>
 
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-130427752-1', 'auto');  
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
 
           
