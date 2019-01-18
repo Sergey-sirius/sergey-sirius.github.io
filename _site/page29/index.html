@@ -152,6 +152,78 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_4_4/" title="104.4 Управление квотами дисков."><img src="http://localhost:4000/images/matrix.jpg" alt="104.4 Управление квотами дисков."></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_4/" rel="bookmark" title="104.4 Управление квотами дисков." itemprop="url">104.4 Управление квотами дисков.</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь управлять квотами дисков для пользователей.</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>установку квоты;</li>
+  <li>работу с отчетами по квотам.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>quota</li>
+  <li>edquota</li>
+  <li>repquota</li>
+  <li>quotaon</li>
+</ul>
+
+<p>Использование квот позволяет управлять использованием дискового пространства как отдельных пользователей и групп, так и всех в целом. В данном руке рассматривается квотирование классической файловой системы ext.</p>
+
+<p>Для возможности работы с квотами необходим пакет ПО <strong>quota</strong><strong>.</strong></p>
+
+<p>Для того чтобы начать использовать квоты на устройстве, необходимо в опциях его монтирования в файле <strong>/</strong>** etc <strong>**/</strong>** fstab <strong>дописать опции</strong> usrquota <strong>и</strong> grpquota**.</p>
+
+<p>Включить и выключить квоту можно командами <strong>quotaon</strong> и <strong>quotaoff</strong> , например:</p>
+
+<p><strong>quotaon</strong>  <strong>/</strong>** mnt <strong>**/</strong>** disk <em>**</em>1       ** <em>(включить квоту для устройства подключенного к / <strong>mnt</strong> / <strong>disk</strong> 1);</em></p>
+
+<p><strong>quotaoff</strong>  <strong>/</strong>** mnt <strong>**/</strong>** disk <em>**</em>1       ** <em>(выключить квоту для устройства подключенного к / <strong>mnt</strong> / <strong>disk</strong> 1);</em></p>
+
+<p>Для редактирования квоты используется команда <strong>edquota</strong> , например:</p>
+
+<p><strong>edquota</strong>  <strong>–</strong>** u <strong>**semaev</strong> <em>(изменить настройки квоты для пользователя</em> <em>semaev__);</em></p>
+
+<p><strong>edquota</strong>  <strong>–</strong>** g <strong>**users</strong> <em>(изменить настройки квоты для группы</em> <em>users__);</em></p>
+
+<p>При этом можно указать ограничение по объему занятого места, или по количеству файлов и папок. Квоты бывают следующих видов:</p>
+
+<ul>
+  <li>жесткая – невозможно превысить;</li>
+  <li>мягкая – можно превышать в течении недели.</li>
+</ul>
+
+<p>Для получения отчета об использовании квот предназначена команда repquota, например:</p>
+
+<p><strong>repquota</strong>** / <strong>**mnt</strong>** / <strong>**disk</strong>** 1       ** <em>(посмотреть отчет по квоте для устройства подключенного к / <strong>mnt</strong> / <strong>disk</strong> 1);</em></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_4_3/" title="104.3 Монтирование файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.3 Монтирование файловых систем."></a>
       </div><!-- /.entry-image -->
     
@@ -340,80 +412,6 @@ Reading time ~2 minutes
 <p><strong>tune</strong>** 2 <strong>**fs</strong>  <strong>–</strong>** O <strong>**has</strong>** _ <strong>**journal</strong>  <strong>/</strong>** dev <strong>**/</strong>** sdb <strong>**1</strong> <em>(включить журналирование на устройстве / <strong>dev</strong> / <strong>sdb</strong> 1)</em></p>
 
 <p>Журналирование: опция введения журнала изменений для возможности их отката.</p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_4_1/" title="104.1 Создание файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.1 Создание файловых систем."></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_1/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_1/" rel="bookmark" title="104.1 Создание файловых систем." itemprop="url">104.1 Создание файловых систем.</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен научиться разбивать диск на разделы, создавать на них файловые системы и управлять разделом подкачки.</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>управление таблицами разделов MBR;</li>
-  <li>создание файловых систем mkfs (ext, XFS, VFAT);</li>
-  <li>знакомство с ReiserFS и Btrfs;</li>
-  <li>базовые навыки работы с GPT.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>fdisk</li>
-  <li>gdisk</li>
-  <li>parted</li>
-  <li>mkfs</li>
-  <li>mkswap</li>
-</ul>
-
-<p>Linuх поддерживает работу с различными файловыми системами. Для возможности работы с файловыми системами, кроме классической ext, необходим набор соответствующих инструментов, устанавливаемых вместе с набором ПО для каждой файловой системы.</p>
-
-<p>Утилита <strong>fdisk</strong> предназначена для работы с носителями информации, использующими классическую таблицу разделов MBR (последние версии умеют работать и с GUID). Используя эту утилиту можно в интерактивном режиме создавать, удалять и изменять разделы жесткого диска, например:</p>
-
-<p><strong>fdisk</strong>  <strong>–</strong>** l**<em>(вывести информацию о текущих разделах дисков);</em></p>
-
-<p>Утилита <strong>gdisk</strong> предназначена для работы с носителями информации, использующими таблицу разделов GUID. Используя эту утилиту можно в интерактивном режиме создавать, удалять, изменять и конвертировать разделы жесткого диска, например:</p>
-
-<p><strong>gdisk</strong>  <strong>/</strong>** dev <strong>**/</strong>** sdb**<em>(начать работу с носителем / <strong>dev</strong>. <strong>sdb</strong> );</em></p>
-
-<p>Для создания файловой системы используется утилита <strong>mkfs</strong> , вызывающая специализированные инструменты для каждой отдельной файловой системы, например:</p>
-
-<p><strong>mkfs</strong>  <strong>–</strong>** t <strong>**ext</strong>** 2 / <strong>**dev</strong>** / <strong>**sdb</strong>** 1**  <em>(отформатировать раздел /dev/sdb1 в</em> <em>ext__2);</em></p>
-
-<p><strong>mkfs</strong><strong>. **</strong>ext<strong>** 2 / **</strong>dev<strong>** / **</strong>sdb<strong>** 1</strong>  <em>(отформатировать раздел /dev/sdb1 в</em> <em>ext__2);</em></p>
-
-<p>Для расширенных возможностей управления различными файловыми системами (сжатие, расширение, перенос, копирование и т.д.) используется утилита <strong>parted</strong> , или ее релиз с графическим интерфейсом – <strong>gparted</strong>.</p>
-
-<p>Для работы с нестандартными файловыми системами нужно ставить соответствующие им наборы ПО, например <strong>xfsprogs</strong> (для файловой системы XFS), <strong>reiserfsprogs</strong> (для файловой системы ReiserFS) или <strong>btrfs</strong>** - <strong>**tools</strong> (для файловой системы BTRFS)<em>.</em> После установки этих пакетов ПО стандартные инструменты Linux смогут создавать и редактировать разделы с указанными файловыми системами.</p>
-
-<p>Также следует отметить, что в Linux используется отдельный раздел подкачки, используемый в качестве временного хранилища информации в том случае, если оперативная память ПК заполнена. Для работы с ним используются следующие инструменты:</p>
-
-<p><strong>mkswap</strong> <em>(создать файловую систему для раздела подкачки);</em></p>
-
-<p><strong>swapon</strong> <em>(включить раздел подкачки);</em></p>
-
-<p><strong>swapoff</strong> <em>(выключить раздел подкачки).</em></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Анализ скорости загрузки сайта PageSpeed &#8211; Sirius Blog</title>
+<title>Копируем на FTP скриптом bash &#8211; Sirius Blog</title>
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130427752-1"></script>
@@ -18,30 +18,30 @@
 </script>
 
 </head>
-<meta name="description" content="">
-<meta name="keywords" content="SEO">
+<meta name="description" content="Bash FTP script copy">
+<meta name="keywords" content="linux, main">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://localhost:4000/images/matrix.jpg">
 
-<meta name="twitter:title" content="Анализ скорости загрузки сайта PageSpeed">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Копируем на FTP скриптом bash">
+<meta name="twitter:description" content="Bash FTP script copy">
 <meta name="twitter:creator" content="@2hotab2">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Анализ скорости загрузки сайта PageSpeed">
-<meta property="og:description" content="">
-<meta property="og:url" content="http://localhost:4000/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0/">
+<meta property="og:title" content="Копируем на FTP скриптом bash">
+<meta property="og:description" content="Bash FTP script copy">
+<meta property="og:url" content="http://localhost:4000/Script_bash-copy-ftp/">
 <meta property="og:site_name" content="Sirius Blog">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0/">
+<link rel="canonical" href="http://localhost:4000/Script_bash-copy-ftp/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Sirius Blog Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -135,7 +135,7 @@
 <div class="entry-header">
   
   <div class="entry-image">
-    <img src="http://localhost:4000/images/matrix.jpg" alt="Анализ скорости загрузки сайта PageSpeed">
+    <img src="http://localhost:4000/images/matrix.jpg" alt="Копируем на FTP скриптом bash">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
@@ -145,9 +145,9 @@
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="http://localhost:4000/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0/" rel="bookmark" title="Анализ скорости загрузки сайта PageSpeed">Анализ скорости загрузки сайта PageSpeed</a></h1>
+          <h1 class="entry-title"><a href="http://localhost:4000/Script_bash-copy-ftp/" rel="bookmark" title="Копируем на FTP скриптом bash">Копируем на FTP скриптом bash</a></h1>
         
-        <h2><span class="entry-date date published"><time datetime="2018-11-26T00:00:00+02:00">November 26, 2018</time></span></h2>
+        <h2><span class="entry-date date published"><time datetime="2019-01-18T00:00:00+02:00">January 18, 2019</time></span></h2>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
@@ -158,22 +158,38 @@ Reading time ~1 minute
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <p>PageSpeed Insights анализирует содержание веб-страницы и предлагает решения, которые позволят ускорить ее загрузку.
-Пример анализа <strong><a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fblog.fzona.com.ua">blog.fzona.com.ua</a></strong></p>
+      <p><strong>FTP COPY Bash  SCRIPT:</strong></p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">ссылки</span>
-<span class="nt">https</span><span class="o">://</span><span class="nt">developers</span><span class="nc">.google.com</span><span class="o">/</span><span class="nt">speed</span><span class="o">/</span><span class="nt">pagespeed</span><span class="o">/</span><span class="nt">insights</span><span class="o">/</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="err">#</span><span class="o">!/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">sh</span>
+
+<span class="nt">SERVER</span><span class="o">=</span><span class="nt">192</span><span class="nc">.168.0.1</span>
+<span class="nt">USER</span><span class="o">=</span><span class="nt">sergey-novikov</span>
+<span class="nt">SOURCE_DIRS</span><span class="o">=</span><span class="s1">"/bin /boot /dev /etc /home /lib64 /opt /root /sbin /usr /var"</span>
+<span class="nt">BACKUP_DIR</span><span class="o">=</span><span class="nt">Backups</span>
+
+<span class="nt">ftp</span> <span class="nt">-n</span> <span class="err">$</span><span class="nt">SERVER</span> <span class="o">&lt;&lt;</span> <span class="nt">EOS</span>
+<span class="nt">user</span> <span class="err">$</span><span class="nt">USER</span>
+<span class="nt">verbose</span>
+<span class="nt">prompt</span>
+<span class="nt">cd</span> <span class="err">$</span><span class="nt">BACKUP_DIR</span>
+<span class="nt">mdelete</span> <span class="o">*</span><span class="nc">.tar.gz</span>
+<span class="nt">binary</span>
+<span class="nt">put</span> <span class="s1">"| tar cvzf - $SOURCE_DIRS"</span> <span class="err">`</span><span class="nt">date</span> <span class="o">+%</span><span class="nt">y</span><span class="o">%</span><span class="nt">m</span><span class="o">%</span><span class="nt">d</span><span class="err">`</span><span class="nc">.tar.gz</span>
+<span class="nt">quit</span>
+<span class="nt">EOS</span>
+
 </code></pre></div></div>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://localhost:4000/tags/#SEO" title="Pages tagged SEO" class="tag"><span class="term">SEO</span></a></span>
-        <span>Updated on <span class="entry-date date updated"><time datetime="2018-11-26">November 26, 2018</time></span></span>
+        <span class="entry-tags"><a href="http://localhost:4000/tags/#linux" title="Pages tagged linux" class="tag"><span class="term">linux</span></a><a href="http://localhost:4000/tags/#main" title="Pages tagged main" class="tag"><span class="term">main</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2019-01-18 02:00:02 +0200">January 18, 2019</time></span></span>
         <span class="author vcard"><span class="fn">Sergey Khatsiola</span></span>
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%81%D1%82%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8-%D1%81%D0%B0%D0%B9%D1%82%D0%B0/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Script_bash-copy-ftp/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Script_bash-copy-ftp/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Script_bash-copy-ftp/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
       </footer>
@@ -182,22 +198,22 @@ Reading time ~1 minute
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="http://localhost:4000/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-PostgreSql-%D0%B8%D0%B7-sources/" class="read-more-btn">Read More</a>
+      <a href="http://localhost:4000/Work-Project-Manager/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="http://localhost:4000/Script_bash-copy-ftp/" title="Копируем на FTP скриптом bash">Копируем на FTP скриптом bash</a></h3>
-      <p>Bash FTP script copy <a href="http://localhost:4000/Script_bash-copy-ftp/">Continue reading</a></p>
+      <h3><a href="http://localhost:4000/Work-Project-Manager/" title="Коротко - работа менеджера проектов">Коротко - работа менеджера проектов</a></h3>
+      <p>Project Manager <a href="http://localhost:4000/Work-Project-Manager/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/Work-Project-Manager/" title="Коротко - работа менеджера проектов">Коротко - работа менеджера проектов</a></h4>
-        <span>Published on December 04, 2018</span>
+        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-077/" title="Приложение G. Дополнительно поставляемые программы">Приложение G. Дополнительно поставляемые программы</a></h4>
+        <span>Published on December 01, 2018</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-077/" title="Приложение G. Дополнительно поставляемые программы">Приложение G. Дополнительно поставляемые программы</a></h4>
+        <h4><a href="http://localhost:4000/PostgreSQL-V11_Doc-076/" title="Приложение F. Дополнительно поставляемые модули">Приложение F. Дополнительно поставляемые модули</a></h4>
         <span>Published on December 01, 2018</span>
       </div><!-- /.list-item -->
     

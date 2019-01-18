@@ -152,6 +152,72 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_3_6/" title="103.6 Изменение приоритетов процессов"><img src="http://localhost:4000/images/matrix.jpg" alt="103.6 Изменение приоритетов процессов"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_6/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_6/" rel="bookmark" title="103.6 Изменение приоритетов процессов" itemprop="url">103.6 Изменение приоритетов процессов</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь менять приоритеты выполняющихся процессов</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>приоритеты по умолчанию создаваемых процессов;</li>
+  <li>запуск программ с повышенным и пониженным приоритетом;</li>
+  <li>изменение приоритета уже запущенной программы.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>nice</li>
+  <li>ps</li>
+  <li>renice</li>
+  <li>top</li>
+</ul>
+
+<p>Несмотря на то, что Linux является довольно стабильной системой, которая умеет автоматически подстраиваться под текущие условия работы, иногда приходится вручную управлять приоритетами процессов, для контроля над ресурсами ПК.</p>
+
+<p>Для просмотра текущих процессов используется команда <strong>ps</strong> , например:</p>
+
+<p><strong>p</strong>** s aux**  <em>(отобразить процессы по всем пользователям);</em></p>
+
+<p><strong>ps</strong>  <strong>–</strong>** eo <strong>**user</strong>** , <strong>**pid</strong>** , <strong>**pcpu</strong>** , <strong>**nice</strong>** , <strong>**comm</strong>  <em>(отобразить процессы, выводя указанные данные);</em></p>
+
+<p>Приоритет процесса определяется параметром <strong>nice</strong> (в Ubuntu может принимать значения от -20 до +19): чем ниже значение, тем выше приоритет. По умолчанию значение nice для каждого процесса равно "-10".</p>
+
+<p>Для запуска процесса с указанным приоритетом используется команда <strong>nice</strong> , например:</p>
+
+<p><strong>nice</strong>  <strong>–</strong>** n <strong>** -20 **</strong> ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(запустить процесс с приоритетом "-20");</em></p>
+
+<p>Для изменения приоритета запущенного процесса используется команда <strong>renice</strong> , например:</p>
+
+<p>**renice 15 –p 10241       ** <em>(изменить приоритет процесса с</em> <em>PID</em> <em>"10421");</em></p>
+
+<p><strong>renice</strong>  <strong>-15 –</strong>** u <strong>**semaev</strong>**        ** <em>(изменить приоритет процессов пользователя " <strong>semaev</strong>");</em></p>
+
+<p>Также для использования доступен диспетчер задач <strong>top</strong> , выводящий сведения о запущенных процессах в реальном режиме в консоль. Для изменения критерия сортировки процессов используются символы "&lt;" и "&gt;".</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_3_5/" title="103.5 Управление процессами в Linux"><img src="http://localhost:4000/images/matrix.jpg" alt="103.5 Управление процессами в Linux"></a>
       </div><!-- /.entry-image -->
     
@@ -319,152 +385,6 @@ Reading time ~1 minute
 <p><strong>l</strong>** s bob 2&gt; error.txt**</p>
 
 <p><strong>ls</strong>** bob <strong>** &gt; **</strong> result <strong>**.</strong>** txt <strong>** 2&gt; **</strong> error <strong>**.</strong>** txt**</p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_3/" title="103.3 Основные операции с файлами"><img src="http://localhost:4000/images/matrix.jpg" alt="103.3 Основные операции с файлами"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_3/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_3/" rel="bookmark" title="103.3 Основные операции с файлами" itemprop="url">103.3 Основные операции с файлами</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь управлять файлами и каталогами при помощи основных команд Linux</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>копирование, перенос и удаление файлов и каталогов;</li>
-  <li>копирование нескольких файлов и каталогов, в том числе рекурсивно;</li>
-  <li>удаление файлов и каталогов, в том числе рекурсивно;</li>
-  <li>групповые символы (wildcard);</li>
-  <li>отбор файлов по типу, размеру, датам и т.д.;</li>
-  <li>работу с tar, cpio и dd.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>cp</li>
-  <li>find</li>
-  <li>mkdir</li>
-  <li>mv</li>
-  <li>ls</li>
-  <li>rm</li>
-  <li>rmdir</li>
-  <li>touch</li>
-  <li>tar</li>
-  <li>cpio</li>
-  <li>dd</li>
-  <li>file</li>
-  <li>gzip</li>
-  <li>gunzip</li>
-  <li>bzip2</li>
-  <li>xz</li>
-  <li>групповые символы</li>
-</ul>
-
-<p>Частой задачей администратора в Linux является работа с файлами и каталогами: создание, копирование, перемещение и удаление. Использование групповых символов вместе с инструментами консоли позволяют осуществлять эти действия с максимальной эффективностью.</p>
-
-<p>Для создания директорий используется команда <strong>mkdir</strong>** имя_каталога <strong>, для удаления пустого каталога -</strong> rmdir <strong>**имя_каталога</strong>. Просмотр содержимого текущей директории – <strong>ls</strong>. Например:</p>
-
-<p><strong>ls</strong>  <strong>–</strong>** l**_        (просмотреть содержимое текущего каталога);_</p>
-
-<p><strong>ls</strong>** fol <strong>***</strong> _        (посмотреть содержимого каталогов, имена которых начинаются с " <strong>fol</strong>");_</p>
-
-<p>Для копирования используется команда <strong>cp</strong>  <strong>что_копировать куда_копировать</strong> , например:</p>
-
-<p><strong>cp</strong>  <strong>–</strong>** R <strong>**Folder</strong>** NewFolder**_        (скопировать директорию " <strong>Folder</strong>" со всем содержимым в текущий каталог с именем новой директории " <strong>NewFolder</strong>");_</p>
-
-<p>Для переноса используется команда <strong>mv</strong>  <strong>что_переносить куда_переносить</strong> , например:</p>
-
-<p><strong>mv</strong>** file <strong>**.</strong>** txt <strong>**folder</strong>** 1/**  <em>(перенести " <strong>file</strong>. <strong>txt</strong>" в каталог " <strong>folder</strong> 1" в текущей директории);</em></p>
-
-<p>Для удаления используется команда <strong>rm</strong>** что_удалить**, например:</p>
-
-<p><strong>rm</strong>  <strong>–</strong>** rf <strong>**folder</strong>** 1       ** <em>(удалить каталог</em> <em>folder__1 вместе с содержимым);</em></p>
-
-<p>Для создания пустого файла, или обновления метки доступа существующего, используется команда <strong>touch</strong>  <strong>имя_файла,</strong> а для получения информации о файле – команда <strong>file</strong>** имя_файла**.</p>
-
-<p>Групповые символы, использующиеся при работе с текстовыми данными:</p>
-
-<ul>
-  <li><em>*                – любое количество любых символов;</em></li>
-  <li>**?       ** _        – любой символ;_</li>
-  <li>**!                ** <em>– не (любой символ кроме указанных);</em></li>
-  <li><strong>[</strong><strong>ac</strong>**]       ** <em>– <strong>a_ _или_ _c</strong> ;</em></li>
-  <li><strong>[</strong><strong>a **</strong>-<strong>** c</strong><strong>]</strong> _        –_ <em>a <strong>,_ _b</strong> ,</em> <em>c__.</em></li>
-</ul>
-
-<p>Например:</p>
-
-<p><strong>ls</strong>  ***               ** <em>(вывести содержимое всех каталогов);</em></p>
-
-<p><strong>ls</strong>  <strong>?</strong>** at <strong>**.</strong>** txt <em>**</em>       ** <em>(вывести содержимое файла с именем: любая первая буква, остальная часть имени " <strong>at</strong>. <strong>txt</strong>");</em></p>
-
-<p><strong>ls</strong>  <strong>*</strong>** at <strong>**.</strong>** txt <em>**</em>       ** <em>(вывести содержимое файла с именем, оканчивающимся на " <strong>at</strong>. <strong>txt</strong>");</em></p>
-
-<p><strong>ls</strong> <strong>![</strong><strong>ab</strong>**]*       ** <em>(вывести содержимое файла или каталога с именем, начинающимся с любых символов, кроме " <strong>a</strong>" и " <strong>b</strong>");</em></p>
-
-<p>Для поиска информации используется команда <strong>find</strong> , например:</p>
-
-<p><strong>find</strong>  <strong>. –</strong>** name <strong>**"\ **</strong><em>A</em>*** *"       ** <em>(искать в текущей директории объекты, имеющие в имени символ " <strong>A</strong>");</em></p>
-
-<p><strong>find</strong>  <strong>/</strong>** etc <strong>** – **</strong>size**  ** -5<strong>** M **</strong>       ** <em>(искать в директории "/ <strong>etc</strong>" объекты размером менее 5 Мб);</em></p>
-
-<p><strong>find</strong>  ** .  –<strong>** type **</strong>l**   <em>(искать в текущей директории ссылки);</em></p>
-
-<p>В среде Linux существует несколько распространённых архиваторов, использующихся для распаковки и упаковки объектов в единый файл:</p>
-
-<ul>
-  <li><strong>с</strong>** pio**                - двоичный архиватор, копирующий информацию в архив и обратно;</li>
-  <li><strong>dd</strong>                 - копирование по блокам;</li>
-  <li><strong>gzip</strong> и <strong>gunzip</strong>         - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
-  <li>bzip2 и bunzip2        - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
-  <li>xz и unxz                - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
-  <li>tar                - архиватор (работает с набором файлов и каталогов).</li>
-</ul>
-
-<p>Например:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>find</strong>  <strong>.  –</strong>** name <strong>**"*. **</strong>txt<em>**</em>"</td>
-      <td><strong>** cpio **</strong> – <strong>**o</strong>  <strong>&gt; ../</strong>** test <strong>**.</strong>** cpio**   <em>(найти в текущей папке все файлы с расширением ". <strong>txt</strong>" и упаковать их в архив</em> <em>test <strong>.</strong> cpio__, расположив его на уровень выше текущей</em> <em>директории);</em></td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>cpio</strong>  <strong>-</strong>** id <strong>** &lt; **</strong> test <strong>**.</strong>** cpio**_        (распаковать в текущий каталог архив " <strong>test</strong>. <strong>cpio</strong>", создавая при необходимости структуру директорий);_</p>
-
-<p><strong>dd</strong>** if <strong>**=/</strong>** dev <strong>**/</strong>** sdb <strong>**of</strong>** = <strong>**drive</strong><strong>. **</strong>img<em>**</em>        ** <em>(скопировать носитель / <strong>dev</strong> / <strong>sdb_ _в образ_ _drive</strong>. <strong>img</strong> , располагающийся в текущей директории);</em></p>
-
-<p><strong>gzip</strong>** drive <strong>**.</strong>** img <em>**</em>       ** <em>(сжать образ " <strong>drive</strong>. <strong>img</strong>" до " <strong>drive</strong>. <strong>img</strong>. <strong>gz</strong>", удалив исходный файл);</em></p>
-
-<p><strong>bunzip</strong>** 2 <strong>** drive **</strong>.<strong>** img **</strong>.<strong>** bz **</strong>2       ** <em>(распаковать архив " <strong>drive</strong>. <strong>img</strong>. <strong>bz</strong> 2" в текущий каталог);</em></p>
-
-<p><strong>unxz</strong>** drive <strong>**.</strong>** img <strong>**.</strong>** xz <em>**</em>       ** <em>(распаковать архив " <strong>drive</strong>. <strong>img</strong>. <strong>xz</strong>" в текущий каталог);</em></p>
-
-<p><strong>tar</strong>** cvf <strong>**arch</strong><strong>. **</strong>tar**  ** <strong>** folder</strong>   <em>(упаковать каталог " <strong>folder</strong>" в архив " <strong>arch</strong>. <strong>tar</strong>").</em></p>
-
-<p><strong>tar</strong>  <strong>–</strong>** xvf <strong>**archive</strong><strong>. **</strong>tar<em>**</em>        ** <em>(распаковать архив " <strong>archive</strong>. <strong>tar</strong>").</em></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

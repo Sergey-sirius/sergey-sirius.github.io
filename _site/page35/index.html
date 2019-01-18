@@ -152,6 +152,110 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_1_2/" title="101.2 Загрузка системы"><img src="http://localhost:4000/images/matrix.jpg" alt="101.2 Загрузка системы"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_1_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_1_2/" rel="bookmark" title="101.2 Загрузка системы" itemprop="url">101.2 Загрузка системы</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>команды и опции загрузчика;</li>
+  <li>настройку последовательности загрузки в BIOS;</li>
+  <li>включение и выключение ПК;</li>
+  <li>стили инициализации системы;</li>
+  <li>журналы загрузки системы.</li>
+</ul>
+
+<p><strong>Термины и утилиты:</strong>**        **</p>
+
+<ul>
+  <li>dmesg</li>
+  <li>BIOS</li>
+  <li>bootloader</li>
+  <li>kernel</li>
+  <li>initramfs</li>
+  <li>init</li>
+  <li>SysVinit</li>
+  <li>systemd</li>
+</ul>
+
+<p>Процесс загрузки любой операционной системы, представляющий собой последовательную работу ряда программных и аппаратных компонентов ПК, будет рассмотрен в этом уроке.</p>
+
+<p>Вкратце процесс загрузки выглядит так:</p>
+
+<ul>
+  <li>
+    <p>при старте ПК процессор переходит на адрес BIOS (UEFI) и загружает его;</p>
+  </li>
+  <li>
+    <p>BIOS (или современный UEFI) проводит необходимые проверки, выбирает согласно своим настройкам носитель информации;</p>
+  </li>
+  <li>
+    <p>на носителе находит MBR (или GPT для UEFI) в которой находится загрузчик;</p>
+  </li>
+  <li>
+    <p>дальше по обстоятельствам: загрузчик может загружать ОС, может передать управление следующему загрузчику по цепочке;</p>
+  </li>
+  <li>
+    <p>в любом случае загрузчик знает где лежит ядро ОС, грузит его и InitialRamDisk (там конфигурационные файлы и модули необходимые для загрузки ядра) в оперативную память;</p>
+  </li>
+  <li>
+    <p>загруженное ядро берет дальнейший процесс запуска на себя (инициализация устройств, конфигурирование процессора, памяти и т.д.)</p>
+  </li>
+  <li>
+    <p>после всех инициализационных процедур ядро запускает процедуры инициализации всех необходимых служб ОС.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/*;base64,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" alt="" /></p>
+
+<p><em>Рисунок 1. Порядок загрузки ОС</em></p>
+
+<p>Существуют различные загрузчик ОС, например Lilo и Grub для Linux, NTLDR для Windows и т.д. Все они, как правило, имеют файл конфигурации самого загрузчика (<em>формат диалога загрузки, таймауты для выбора варианта загрузки, поле для ввода дополнительных опций и т.д</em>.) и секцию доступных для загрузки образов ОС.</p>
+
+<p>Подробно стили инициализации и загрузчики рассматриваются в дальнейших уроках. Для успешного освоения данной темы необходимо знать, что в момент загрузки можно нажать выделенные клавиши (<em>как, правило, отличающиеся у разных загрузчиков</em>), и выбрать ОС для запуска или указать дополнительные опции загрузки.</p>
+
+<p>При работе с загрузчиком можно увидеть следующие понятия:</p>
+
+<ul>
+  <li><strong>uuid</strong> – идентификатор носителя информации с установленной ОС;</li>
+  <li><strong>kernel</strong> – путь к ядру ОС;</li>
+  <li><strong>initrd</strong> – путь к минимальному образу ядра для загрузки в оперативную память;</li>
+  <li><strong>quiet</strong> – не показывать процесс загрузки;</li>
+  <li><strong>splash</strong> – показать заставку при загрузке.</li>
+</ul>
+
+<p>Вся информация о загрузке хранится в журнале <strong>/</strong>** var <strong>**/</strong>** log <strong>**/</strong>** dmesg<strong><em>(журнал событий ядра)</em>, при этом данные о последней загрузке можно получить, выполнив команду</strong>dmesg <strong>**.</strong> Также события загрузки могут располагаться в журнале <strong>/</strong>** var <strong>**/</strong>** log <strong>**/</strong>** boot <strong>**.</strong>** log <strong>. В современных ОС события загрузки можно увидеть при помощи утилиты</strong> journalctl <strong>, например командой</strong> journalctl -b0 SYSLOG_PID=1**</p>
+
+<p>Процесс инициализации системы будет рассмотрен подробно в дальнейших уроках, на данном этапе нужно знать о существование трех стилей инициализации:</p>
+
+<ul>
+  <li><strong>SysV</strong> – родительский процесс инициализации системы на одном из заданных уровней запуска (runlevel);</li>
+  <li><strong>systemd</strong> – родительский процесс инициализацию системы в ускоренном режиме, за счёт параллельного запуска задач;</li>
+  <li><strong>upstart</strong> – родительский процесс инициализации системы на основе отслеживания событий.</li>
+</ul>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_1_1/" title="101.1 Определение и настройка аппаратной части"><img src="http://localhost:4000/images/matrix.jpg" alt="101.1 Определение и настройка аппаратной части"></a>
       </div><!-- /.entry-image -->
     
@@ -389,255 +493,6 @@ Reading time ~1 minute
 <div><a href="#" class="btn btn-warning">Warning Button</a></div>
 <div><a href="#" class="btn btn-danger">Danger Button</a></div>
 <div><a href="#" class="btn btn-info">Info Button</a></div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%82%D0%B5%D0%BC%D1%8B-HPSTR/" title="Настройка темы"><img src="http://localhost:4000/images/abstract-11.jpg" alt="Настройка темы"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2011-11-11T00:00:00+02:00"><a href="http://localhost:4000/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%82%D0%B5%D0%BC%D1%8B-HPSTR/">November 11, 2011</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~7 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%82%D0%B5%D0%BC%D1%8B-HPSTR/" rel="bookmark" title="Настройка темы" itemprop="url">Настройка темы</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Общие замечания и предложения по настройке HPSTR.</p>
-
-<p>HPSTR теперь работает под Jekyll 3.0. Обязательно запустите <code class="highlighter-rouge">bundle update</code>, чтобы обновить все зависимости gem.</p>
-
-<h2 id="Базовая-установка-для-нового-сайта-jekyll">Базовая установка для нового сайта Jekyll</h2>
-
-<ol>
-  <li><a href="http://bundler.io">Инсталируйте Bundler</a> <code class="highlighter-rouge">gem install bundler</code>, а также
- установите <a href="http://jekyllrb.com">Jekyll</a> и все зависимости <code class="highlighter-rouge">bundle install</code>.</li>
-  <li>Сделайте fork репозитория <a href="https://github.com/mmistakes/hpstr-jekyll-theme/fork">HPSTR Jekyll Theme repo</a>.</li>
-  <li>Клонируйте и переименуйте репозиторий.</li>
-  <li>Отредактируйте файл <code class="highlighter-rouge">_config.yml</code> под Ваши персональные данные.</li>
-  <li>Просмотрите примеры сообщений в <code class="highlighter-rouge">_posts</code>, чтобы увидеть примеры работы для вытягивания больших образов, назначения категорий и тегов и других данных YAML.</li>
-  <li>Прочтите приведенную ниже документацию для дальнейших настройки.</li>
-</ol>
-
-<div><a href="https://github.com/mmistakes/hpstr-jekyll-theme/archive/master.zip" class="btn">Download the Theme</a></div>
-
-<p class="notice"><strong>Pro-tip:</strong> Удалите <code class="highlighter-rouge">gh-pages</code> ветку после клонирования репозитория и создайте <code class="highlighter-rouge">master</code> ветку.
-В gh-страницах, используемой для демонстрационного сайта темы, есть куча мусора, который я предполагаю, что вы не хотите видеть на своем сайте.</p>
-
-<hr />
-
-<h2 id="Настройка-существующего-сайта-jekyll">Настройка существующего сайта Jekyll</h2>
-
-<ol>
-  <li>Клонируем папки: <code class="highlighter-rouge">_includes</code>, <code class="highlighter-rouge">_layouts</code>, <code class="highlighter-rouge">_sass</code>, <code class="highlighter-rouge">assets</code>, and <code class="highlighter-rouge">images</code>.</li>
-  <li>Клонировать следующие папки / файлы и персонализировать контент по мере необходимости.: <code class="highlighter-rouge">about/</code>, <code class="highlighter-rouge">posts/</code>, <code class="highlighter-rouge">tags/</code>, <code class="highlighter-rouge">feed.xml</code> and <code class="highlighter-rouge">index.html</code>.</li>
-  <li>Редактируем <code class="highlighter-rouge">_config.yml</code> чтобы персонализировать ваш сайт.</li>
-</ol>
-
-<hr />
-
-<h2 id="Запуск-jekyll">Запуск Jekyll</h2>
-
-<p>Предпочтительным методом запуска Jekyll является <code class="highlighter-rouge">bundle exec</code>, но если вы готовы решать проблемы, связанные с драгоценными камнями, не стесняйтесь <code class="highlighter-rouge">jekyll build</code> or <code class="highlighter-rouge">jekyll serve</code>.</p>
-
-<blockquote>
-  <p>В некоторых случаях запуск исполняемых файлов без bundle exec работает, если не будет конфликтовать с вашим bundle.</p>
-
-  <p>Однако это ненадежно и является источником значительной боли. Даже если он выглядит так, как будто он работает, он может не работать в будущем или на другой машине.</p>
-</blockquote>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll build
-
-bundle <span class="nb">exec </span>jekyll serve
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="Структура-папок">Структура папок</h2>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hpstr-jekyll-theme/
-├── _includes
-|    ├── browser-upgrade.html       <span class="c"># запрос на обновление браузера &lt; IE8</span>
-|    ├── footer.html                <span class="c"># Нижний колонтитул сайта</span>
-|    ├── head.html                  <span class="c"># заголовок сайта</span>
-|    ├── navigation.html            <span class="c"># Навигация по сайту</span>
-|    └── scripts.html               <span class="c"># jQuery, плагины, Google Analitics, etc</span>
-├── _layouts
-|    ├── page.html                  <span class="c"># макет страницы</span>
-|    ├── page.html                  <span class="c"># пост-индексный макет, используемый на домашней странице</span>
-|    └── post.html                  <span class="c"># макет постов</span>
-├── _posts
-├── _sass                           <span class="c"># Sass partials</span>
-├── assets
-|    ├── css                        <span class="c"># скомпилированные таблицы стилей</span>
-|    ├── js
-|    |   ├── _main.js               <span class="c"># плагин опции</span>
-|    |   ├── scripts.min.js         <span class="c"># объединить и минимизировать сценарии сайта</span>
-|    |   ├── plugins                <span class="c"># plugin scripts</span>
-|    └── └── vendor                 <span class="c"># jQuery and Modernizr scripts</span>
-├── images                          <span class="c"># изображения для сообщений и страниц</span>
-├── _config.yml                     <span class="c"># Jekyll опции</span>
-├── about/                          <span class="c"># about страница</span>
-├── posts/                          <span class="c"># все посты</span>
-├── tags/                           <span class="c"># все посты групированные по тегам</span>
-└── index.html                      <span class="c"># главная страница с пагинацией</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="Настройка">Настройка</h2>
-
-<p>Большинство найденных здесь переменных используются в файлах .html, найденных в <code class="highlighter-rouge">_includes</code> если вам нужно добавить или удалить что-либо. Хорошим местом для начала было бы добавить <code class="highlighter-rouge">title</code>, <code class="highlighter-rouge">description</code>, and <code class="highlighter-rouge">url</code> для вашего сайта. Ссылки являются абсолютными и имеют префикс <code class="highlighter-rouge">{{ site.url }}</code> в различных <code class="highlighter-rouge">_includes</code> и <code class="highlighter-rouge">_layouts</code>, поэтому не забудьте правильно установить <code class="highlighter-rouge">url</code><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> to <code class="highlighter-rouge">http://localhost:4000</code> при локальной разработке.</p>
-
-<h3 id="Комментарии-disqus">Комментарии Disqus</h3>
-
-<p>Создайте <a href="http://disqus.com">Disqus</a> учетку и измените <code class="highlighter-rouge">disqus_shortname</code> в <code class="highlighter-rouge">_config.yml</code> к короткому имени Disqus, который вы только что установили. По умолчанию комментарии появляются на всех страницах и страницах, если вы назначили короткое имя. Чтобы отключить комментирование сообщения или страницы, добавьте следующее в его функцию YAML Front Matter:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">comments</span><span class="pi">:</span> <span class="no">false</span>
-</code></pre></div></div>
-
-<h3 id="Ссылки-на-социальные-сети">Ссылки на социальные сети</h3>
-
-<p>Чтобы отключить ссылки на Facebook, Twitter и Google+ на странице или странице, добавьте следующее к своему первому вопросу:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">share</span><span class="pi">:</span> <span class="no">false</span>
-</code></pre></div></div>
-
-<h3 id="Владелец--Информация-об-авторе">Владелец / Информация об авторе</h3>
-
-<p>Измените имя и фото на аватарку (200x200 pixels или больше), email, и ссылки на соцсети. Если вы хотите ссылаться на внешний образ на Gravatar или что-то подобное, вам нужно будет отредактировать путь в <code class="highlighter-rouge">navigation.html</code> так как предполагается, что он расположен в <code class="highlighter-rouge">/images</code>.</p>
-
-<h3 id="google-analytics-and-webmaster-tools">Google Analytics and Webmaster Tools</h3>
-
-<p>Ваш идентификатор Google Analytics отправляется сюда вместе с метатегами для проверки в <a href="http://support.google.com/webmasters/bin/answer.py?hl=en&amp;answer=35179">Google Webmaster Tools</a> и <a href="https://ssl.bing.com/webmaster/configure/verify/ownershi">Bing Webmaster Tools</a> верификация сайта.</p>
-
-<h3 id="Ссылки-навигации">Ссылки навигации</h3>
-
-<p>Чтобы добавить дополнительные ссылки в выпадающем меню, отредактируйте <code class="highlighter-rouge">_data/navigation.yml</code>. Используйте следующий формат, чтобы установить URL-адрес и заголовок для как можно большего количества ссылок. <em>Внешние ссылки откроются в новом окне.</em></p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Portfolio</span>
-  <span class="na">url</span><span class="pi">:</span> <span class="s">/portfolio/</span>
-
-<span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Made Mistakes</span>
-  <span class="na">url</span><span class="pi">:</span> <span class="s">http://mademistakes.com</span>  
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="Добавление-нового-контента">Добавление нового контента</h2>
-
-<p>Ваши посты хранятся в <code class="highlighter-rouge">_posts</code> папке и названный в соответствии с <code class="highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code> <a href="https://jekyllrb.com/docs/posts/">обычным форматом</a>.</p>
-
-<p>Чтобы упростить создание сообщений и страниц, <a href="https://github.com/jekyll/jekyll-compose">Jekyll::Compose</a> и <a href="https://github.com/octopress/octopress">Octopress</a> это отличные плагины, которые вы можете установить для автоматизации этого процесса.</p>
-
-<hr />
-
-<h3 id="jekyll-_includes">Jekyll _includes</h3>
-
-<p>По большей части вы можете оставить их как есть, так как данные автора / владельца вытягиваются из <code class="highlighter-rouge">_config.yml</code>. Тем не менее, вы, вероятно, захотите настроить <code class="highlighter-rouge">footer.html</code> на ваш вкус.</p>
-
-<h3 id="Время-чтения">Время чтения</h3>
-
-<p>По умолчанию,но  можно отключить <code class="highlighter-rouge">reading_time</code> в файле <code class="highlighter-rouge">_config.yml</code>. Слова по умолчанию в минуту устанавливаются в 200 и могут быть изменены путем обновления <code class="highlighter-rouge">words_per_minute</code> in <code class="highlighter-rouge">_config.yml</code>.</p>
-
-<h3 id="feature-images">Feature Images</h3>
-
-<p>Хорошее эмпирическое правило состоит в том, чтобы сохранить изображения объектов красивыми и широкими, чтобы вы не слишком сильно удаляли текст тела. Изображение, обрезанное вокруг 1024 x 256 пикселей, будет поддерживать размер файла с приемлемым разрешением для большинства устройств. Если вы хотите быстро реагировать на эти изображения, я бы предложил посмотреть плагин <a href="https://github.com/scottjehl/picturefill">Jekyll Picture Tag</a><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> плагин.</p>
-
-<p>Два макета делают предположение, что изображения лежат в <em>images</em> папке. Чтобы добавить изображение объекта в сообщение или страницу, просто укажите имя файла	.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span>
-  <span class="na">feature</span><span class="pi">:</span> <span class="s">feature-image-filename.jpg</span>
-  <span class="na">thumb</span><span class="pi">:</span> <span class="s">thumbnail-image.jpg</span> <span class="c1">#keep it square 200x200 px is good</span>
-</code></pre></div></div>
-
-<p>Если вы хотите применить атрибуцию к изображению элемента, используйте следующие элементы управления YAML на сообщениях или страницах. Описание изображения с описанием непосредственно под изображением объекта со ссылкой на исходный источник.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span>
-  <span class="na">feature</span><span class="pi">:</span> <span class="s">feature-image-filename.jpg</span>
-  <span class="na">credit</span><span class="pi">:</span> <span class="s">Michael Rose</span> <span class="c1">#name of the person or site you want to credit</span>
-  <span class="na">creditlink</span><span class="pi">:</span> <span class="s">http://mademistakes.com</span> <span class="c1">#url to their site or licensing</span>
-</code></pre></div></div>
-
-<p>По умолчанию <code class="highlighter-rouge">&lt;div&gt;</code> минимальная высота 400px с CSS. Все, что выше, скрыто с <code class="highlighter-rouge">overflow: hidden</code> объявлением. Вы можете настроить высоту изображения главной страницы и отображения на posts/pages путем изменения следующих переменных в <code class="highlighter-rouge">/_sass/_variables.scss</code>.</p>
-
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$feature-image-height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span> <span class="c1">// min 150px recommended</span>
-<span class="nv">$front-page-feature-image-height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span> <span class="c1">// min 150px recommended</span>
-</code></pre></div></div>
-
-<h4 id="postpage-thumbnails-for-og-and-twitter-cards">Post/Page Thumbnails for OG and Twitter Cards</h4>
-
-<p>Post and page thumbnails work the same way. These are used by <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> meta tags found in <code class="highlighter-rouge">head.html</code>. If you don’t assign a thumbnail the image you assigned to <code class="highlighter-rouge">site.owner.avatar</code> in <code class="highlighter-rouge">_config.yml</code> will be used.</p>
-
-<p>Here’s an example of what a tweet to your site could look like if you activate Twitter Cards and include all the metas in your post’s YAML.</p>
-
-<p><img src="http://localhost:4000/images/twitter-card-summary-large-image.jpg" alt="Twitter Card summary large image screenshot" /></p>
-
-<h3 id="videos">Videos</h3>
-
-<p>Video embeds are responsive and scale with the width of the main content block with the help of <a href="http://fitvidsjs.com/">FitVids</a>.</p>
-
-<h3 id="twitter-cards">Twitter Cards</h3>
-
-<p>Twitter cards make it possible to attach images and post summaries to Tweets that link to your content. Summary Card meta tags have been added to <code class="highlighter-rouge">head.html</code> to support this, you just need to <a href="https://dev.twitter.com/docs/cards">validate and apply your domain</a> to turn it on.</p>
-
-<h3 id="link-post-type">Link Post Type</h3>
-
-<p>Link blog like a champ by adding <code class="highlighter-rouge">link: http://url-you-want-linked</code> to a post’s YAML front matter. Arrow glyph links to the post’s permalink and the the <code class="highlighter-rouge">post-title</code> links to the source URL. Here’s an <a href="http://localhost:4000/sample-link-post/">example of a link post</a> if you need a visual.</p>
-
-<hr />
-
-<h2 id="further-customization">Further Customization</h2>
-
-<p>Jekyll 2.x added support for Sass files making it much easier to modify a theme’s fonts and colors. By editing values found in <code class="highlighter-rouge">_sass/variables.scss</code> you can fine tune the site’s colors and typography.</p>
-
-<p>For example if you wanted a red background instead of white you’d change <code class="highlighter-rouge">$bodycolor: #fff;</code> to <code class="highlighter-rouge">$bodycolor: $cc0033;</code>.</p>
-
-<p>To modify the site’s JavaScript files I setup a Grunt build script to lint/concatenate/minify all scripts into <code class="highlighter-rouge">scripts.min.js</code>. <a href="http://nodejs.org/">Install Node.js</a>, then <a href="http://gruntjs.com/getting-started">install Grunt</a>, and then finally install the dependencies for the theme contained in <code class="highlighter-rouge">package.json</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
-</code></pre></div></div>
-
-<p>From the theme’s root, use <code class="highlighter-rouge">grunt</code> to concatenate JavaScript files and optimize <code class="highlighter-rouge">.jpg</code>, <code class="highlighter-rouge">.png</code> and <code class="highlighter-rouge">.svg</code> files in the <code class="highlighter-rouge">images/</code> folder.</p>
-
-<p>You can also use <code class="highlighter-rouge">grunt dev</code> in combination with <code class="highlighter-rouge">bundle exec jekyll serve</code> to watch for updates in JS files that Grunt will then automatically re-build as you write your code, which will in turn auto-generate your Jekyll site when developing locally.</p>
-
-<hr />
-
-<h2 id="questions">Questions?</h2>
-
-<p>Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter <a href="http://twitter.com/mmistakes">@mmistakes</a> or <a href="https://github.com/mmistakes/hpstr-jekyll-theme/issues/new">file a GitHub Issue</a>. And if you make something cool with this theme feel free to let me know.</p>
-
-<hr />
-
-<h2 id="license">License</h2>
-
-<p>This theme is free and open source software, distributed under the <a href="http://localhost:4000/LICENSE">MIT License</a> version 2 or later. So feel free to to modify this theme to suit your needs.</p>
-
-<hr />
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Used to generate absolute URLs in <code class="highlighter-rouge">feed.xml</code>, and for canonical URLs in <code class="highlighter-rouge">head.html</code>. Don’t include a trailing <code class="highlighter-rouge">/</code> in your base url ie: http://mademistakes.com. When developing locally I suggest using http://localhost:4000 or whatever localhost you’re using to properly load all theme stylesheets, scripts, and image assets. If you leave this variable blank all links will resolve correctly except those pointing to home. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>If you’re using GitHub Pages to host your site be aware that plugins are disabled. So you’ll need to build your site locally and then manually deploy if you want to use this sweet plugin. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

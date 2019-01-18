@@ -152,6 +152,80 @@
   <header>
     
       <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_4_1/" title="104.1 Создание файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.1 Создание файловых систем."></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_1/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_1/" rel="bookmark" title="104.1 Создание файловых систем." itemprop="url">104.1 Создание файловых систем.</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен научиться разбивать диск на разделы, создавать на них файловые системы и управлять разделом подкачки.</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>управление таблицами разделов MBR;</li>
+  <li>создание файловых систем mkfs (ext, XFS, VFAT);</li>
+  <li>знакомство с ReiserFS и Btrfs;</li>
+  <li>базовые навыки работы с GPT.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>fdisk</li>
+  <li>gdisk</li>
+  <li>parted</li>
+  <li>mkfs</li>
+  <li>mkswap</li>
+</ul>
+
+<p>Linuх поддерживает работу с различными файловыми системами. Для возможности работы с файловыми системами, кроме классической ext, необходим набор соответствующих инструментов, устанавливаемых вместе с набором ПО для каждой файловой системы.</p>
+
+<p>Утилита <strong>fdisk</strong> предназначена для работы с носителями информации, использующими классическую таблицу разделов MBR (последние версии умеют работать и с GUID). Используя эту утилиту можно в интерактивном режиме создавать, удалять и изменять разделы жесткого диска, например:</p>
+
+<p><strong>fdisk</strong>  <strong>–</strong>** l**<em>(вывести информацию о текущих разделах дисков);</em></p>
+
+<p>Утилита <strong>gdisk</strong> предназначена для работы с носителями информации, использующими таблицу разделов GUID. Используя эту утилиту можно в интерактивном режиме создавать, удалять, изменять и конвертировать разделы жесткого диска, например:</p>
+
+<p><strong>gdisk</strong>  <strong>/</strong>** dev <strong>**/</strong>** sdb**<em>(начать работу с носителем / <strong>dev</strong>. <strong>sdb</strong> );</em></p>
+
+<p>Для создания файловой системы используется утилита <strong>mkfs</strong> , вызывающая специализированные инструменты для каждой отдельной файловой системы, например:</p>
+
+<p><strong>mkfs</strong>  <strong>–</strong>** t <strong>**ext</strong>** 2 / <strong>**dev</strong>** / <strong>**sdb</strong>** 1**  <em>(отформатировать раздел /dev/sdb1 в</em> <em>ext__2);</em></p>
+
+<p><strong>mkfs</strong><strong>. **</strong>ext<strong>** 2 / **</strong>dev<strong>** / **</strong>sdb<strong>** 1</strong>  <em>(отформатировать раздел /dev/sdb1 в</em> <em>ext__2);</em></p>
+
+<p>Для расширенных возможностей управления различными файловыми системами (сжатие, расширение, перенос, копирование и т.д.) используется утилита <strong>parted</strong> , или ее релиз с графическим интерфейсом – <strong>gparted</strong>.</p>
+
+<p>Для работы с нестандартными файловыми системами нужно ставить соответствующие им наборы ПО, например <strong>xfsprogs</strong> (для файловой системы XFS), <strong>reiserfsprogs</strong> (для файловой системы ReiserFS) или <strong>btrfs</strong>** - <strong>**tools</strong> (для файловой системы BTRFS)<em>.</em> После установки этих пакетов ПО стандартные инструменты Linux смогут создавать и редактировать разделы с указанными файловыми системами.</p>
+
+<p>Также следует отметить, что в Linux используется отдельный раздел подкачки, используемый в качестве временного хранилища информации в том случае, если оперативная память ПК заполнена. Для работы с ним используются следующие инструменты:</p>
+
+<p><strong>mkswap</strong> <em>(создать файловую систему для раздела подкачки);</em></p>
+
+<p><strong>swapon</strong> <em>(включить раздел подкачки);</em></p>
+
+<p><strong>swapoff</strong> <em>(выключить раздел подкачки).</em></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
         <a href="http://localhost:4000/Lesson_3_8/" title="103.8 Текстовый редактор Vi."><img src="http://localhost:4000/images/matrix.jpg" alt="103.8 Текстовый редактор Vi."></a>
       </div><!-- /.entry-image -->
     
@@ -392,72 +466,6 @@ Reading time ~2 minutes
     </tr>
   </tbody>
 </table>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_6/" title="103.6 Изменение приоритетов процессов"><img src="http://localhost:4000/images/matrix.jpg" alt="103.6 Изменение приоритетов процессов"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_6/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_6/" rel="bookmark" title="103.6 Изменение приоритетов процессов" itemprop="url">103.6 Изменение приоритетов процессов</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь менять приоритеты выполняющихся процессов</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>приоритеты по умолчанию создаваемых процессов;</li>
-  <li>запуск программ с повышенным и пониженным приоритетом;</li>
-  <li>изменение приоритета уже запущенной программы.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>nice</li>
-  <li>ps</li>
-  <li>renice</li>
-  <li>top</li>
-</ul>
-
-<p>Несмотря на то, что Linux является довольно стабильной системой, которая умеет автоматически подстраиваться под текущие условия работы, иногда приходится вручную управлять приоритетами процессов, для контроля над ресурсами ПК.</p>
-
-<p>Для просмотра текущих процессов используется команда <strong>ps</strong> , например:</p>
-
-<p><strong>p</strong>** s aux**  <em>(отобразить процессы по всем пользователям);</em></p>
-
-<p><strong>ps</strong>  <strong>–</strong>** eo <strong>**user</strong>** , <strong>**pid</strong>** , <strong>**pcpu</strong>** , <strong>**nice</strong>** , <strong>**comm</strong>  <em>(отобразить процессы, выводя указанные данные);</em></p>
-
-<p>Приоритет процесса определяется параметром <strong>nice</strong> (в Ubuntu может принимать значения от -20 до +19): чем ниже значение, тем выше приоритет. По умолчанию значение nice для каждого процесса равно "-10".</p>
-
-<p>Для запуска процесса с указанным приоритетом используется команда <strong>nice</strong> , например:</p>
-
-<p><strong>nice</strong>  <strong>–</strong>** n <strong>** -20 **</strong> ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(запустить процесс с приоритетом "-20");</em></p>
-
-<p>Для изменения приоритета запущенного процесса используется команда <strong>renice</strong> , например:</p>
-
-<p>**renice 15 –p 10241       ** <em>(изменить приоритет процесса с</em> <em>PID</em> <em>"10421");</em></p>
-
-<p><strong>renice</strong>  <strong>-15 –</strong>** u <strong>**semaev</strong>**        ** <em>(изменить приоритет процессов пользователя " <strong>semaev</strong>");</em></p>
-
-<p>Также для использования доступен диспетчер задач <strong>top</strong> , выводящий сведения о запущенных процессах в реальном режиме в консоль. Для изменения критерия сортировки процессов используются символы "&lt;" и "&gt;".</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
