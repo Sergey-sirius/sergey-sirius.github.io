@@ -152,11 +152,11 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Script_Mount_FTP_Folder/" title="Монтируем папку FTP в файловую систему Bash  SCRIPT"><img src="http://localhost:4000/images/matrix.jpg" alt="Монтируем папку FTP в файловую систему Bash  SCRIPT"></a>
+        <a href="http://localhost:4000/Mount_new_HardDisk/" title="Монтирование новых жестких дисков в системе Ubuntu"><img src="http://localhost:4000/images/matrix.jpg" alt="Монтирование новых жестких дисков в системе Ubuntu"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-18T00:00:00+02:00"><a href="http://localhost:4000/Script_Mount_FTP_Folder/">January 18, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+02:00"><a href="http://localhost:4000/Mount_new_HardDisk/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -166,22 +166,106 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Script_Mount_FTP_Folder/" rel="bookmark" title="Монтируем папку FTP в файловую систему Bash  SCRIPT" itemprop="url">Монтируем папку FTP в файловую систему Bash  SCRIPT</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Mount_new_HardDisk/" rel="bookmark" title="Монтирование новых жестких дисков в системе Ubuntu" itemprop="url">Монтирование новых жестких дисков в системе Ubuntu</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>** Монтируем папку FTP в файловую систему Bash  SCRIPT **</p>
+    <p>** Подключаем новые диски в систему Ubuntu **</p>
 
-<p>Для начала установим пакет:</p>
+<ol>
+  <li>Список доступных дисков
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">fdisk</span> <span class="nt">-l</span> <span class="o">|</span> <span class="nt">grep</span> <span class="s2">'Disk /dev/sd'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Если требуется провести разметку воспользуйтесб командой fdisk
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">fdisk</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Форматирование раздела #1 (цифра конечно может быть и другой, в зависимости от структуры Ваших разделов
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mkfs</span><span class="nc">.ext4</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb1</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Создадим точку монтирования – каталог /hdd в директории /media
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mkdir</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">hdd</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Монтируем раздел в созданный каталог:
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mount</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb1</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">hdd</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Проверяем
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">df</span> <span class="nt">-h</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Для автоматизации монтирования при старте операционной системы в Ubuntu отвечает файл /etc/fstab.
+В него то мы и добавим команду на монтирование раздела. Открываем файл /etc/fstab в редакторе
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">nano</span> <span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">fstab</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">apt</span> <span class="nt">install</span> <span class="nt">curlftpfs</span>
+<p>вставляем строку</p>
+
+<p>/dev/sdb1 /media/hdd ext4 defaults 1 2</p>
+
+<p>сохраняем (Ctrl+O) и закрываем редактор</p>
+
+<ol>
+  <li>Проверка</li>
+</ol>
+
+<p>8а. 1 способ. – Перезагрузить Ubuntu и команда df -h покажет что раздел /dev/sdb1 был смонтирован.
+8б. 2 способ. – Нужно отмонтировать раздел</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="err">$</span> <span class="nt">sudo</span> <span class="nt">umount</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">hdd</span> 
+    <span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mount</span> <span class="nt">-a</span>
 </code></pre></div></div>
 
-<p>Затем подмонтируем интересующий нас ftp-ресурс:</p>
+<p>команда df -h покажет что раздел /dev/sdb1 был смонтирован</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">mkdir</span> <span class="nt">temp-ftpfs</span>
-<span class="err">$</span> <span class="nt">curlftpfs</span> <span class="nt">ftp</span><span class="o">://</span><span class="err">$</span><span class="nt">USER</span><span class="o">:</span><span class="err">$</span><span class="nt">PASSWD</span><span class="o">@</span><span class="err">$</span><span class="nt">HOST</span><span class="o">/</span> <span class="nt">temp-ftpfs</span>
-<span class="err">$</span> <span class="nt">cd</span> <span class="nt">temp-ftpfs</span>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/Installed_Docker_Ubuntu/" title="Установка Docker"><img src="http://localhost:4000/images/matrix.jpg" alt="Установка Docker"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+02:00"><a href="http://localhost:4000/Installed_Docker_Ubuntu/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Installed_Docker_Ubuntu/" rel="bookmark" title="Установка Docker" itemprop="url">Установка Docker</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>** Ставим Docker ubuntu **</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">install</span> <span class="nt">apt-transport-https</span> <span class="nt">ca-certificates</span> <span class="nt">curl</span> <span class="nt">gnupg2</span> <span class="nt">software-properties-common</span>
+
+<span class="nt">curl</span> <span class="nt">-fsSL</span> <span class="nt">https</span><span class="o">://</span><span class="nt">download</span><span class="nc">.docker.com</span><span class="o">/</span><span class="nt">linux</span><span class="o">/</span><span class="nt">ubuntu</span><span class="o">/</span><span class="nt">gpg</span> <span class="o">|</span> <span class="nt">sudo</span> <span class="nt">apt-key</span> <span class="nt">add</span> <span class="nt">-</span>
+
+<span class="nt">sudo</span> <span class="nt">apt-key</span> <span class="nt">fingerprint</span> <span class="nt">0EBFCD88</span>
+
+<span class="nt">sudo</span> <span class="nt">add-apt-repository</span> <span class="s1">"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
+
+<span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">update</span>
+
+<span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">install</span> <span class="nt">docker-ce</span>
+
+<span class="nt">apt-cache</span> <span class="nt">madison</span> <span class="nt">docker-ce</span>
+
+<span class="nt">sudo</span> <span class="nt">docker</span> <span class="nt">run</span> <span class="nt">hello-world</span>
+
 </code></pre></div></div>
 
   </div><!-- /.entry-content -->
@@ -191,11 +275,11 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Script_bash-copy-ftp/" title="Копируем на FTP скриптом bash"><img src="http://localhost:4000/images/matrix.jpg" alt="Копируем на FTP скриптом bash"></a>
+        <a href="http://localhost:4000/Entered_in_to_Docker/" title="Как Войти В Docker-Контейнер"><img src="http://localhost:4000/images/matrix.jpg" alt="Как Войти В Docker-Контейнер"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-17T00:00:00+02:00"><a href="http://localhost:4000/Script_bash-copy-ftp/">January 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+02:00"><a href="http://localhost:4000/Entered_in_to_Docker/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -205,109 +289,30 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Script_bash-copy-ftp/" rel="bookmark" title="Копируем на FTP скриптом bash" itemprop="url">Копируем на FTP скриптом bash</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Entered_in_to_Docker/" rel="bookmark" title="Как Войти В Docker-Контейнер" itemprop="url">Как Войти В Docker-Контейнер</a></h1>
     
   </header>
   <div class="entry-content">
-    <p><strong>FTP COPY Bash  SCRIPT:</strong></p>
+    <p>** Как Войти В Docker-Контейнер **</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="err">#</span><span class="o">!/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">sh</span>
+<p>Чтобы войти в контейнер, нужно узнать имя или ID контейнера, выполните команду:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">docker</span> <span class="nt">ps</span>
 
-<span class="nt">SERVER</span><span class="o">=</span><span class="nt">192</span><span class="nc">.168.0.1</span>
-<span class="nt">USER</span><span class="o">=</span><span class="nt">sergey-novikov</span>
-<span class="nt">SOURCE_DIRS</span><span class="o">=</span><span class="s1">"/bin /boot /dev /etc /home /lib64 /opt /root /sbin /usr /var"</span>
-<span class="nt">BACKUP_DIR</span><span class="o">=</span><span class="nt">Backups</span>
-
-<span class="nt">ftp</span> <span class="nt">-n</span> <span class="err">$</span><span class="nt">SERVER</span> <span class="o">&lt;&lt;</span> <span class="nt">EOS</span>
-<span class="nt">user</span> <span class="err">$</span><span class="nt">USER</span>
-<span class="nt">verbose</span>
-<span class="nt">prompt</span>
-<span class="nt">cd</span> <span class="err">$</span><span class="nt">BACKUP_DIR</span>
-<span class="nt">mdelete</span> <span class="o">*</span><span class="nc">.tar.gz</span>
-<span class="nt">binary</span>
-<span class="nt">put</span> <span class="s1">"| tar cvzf - $SOURCE_DIRS"</span> <span class="err">`</span><span class="nt">date</span> <span class="o">+%</span><span class="nt">y</span><span class="o">%</span><span class="nt">m</span><span class="o">%</span><span class="nt">d</span><span class="err">`</span><span class="nc">.tar.gz</span>
-<span class="nt">quit</span>
-<span class="nt">EOS</span>
-
+<span class="nt">CONTAINER</span> <span class="nt">ID</span>  <span class="nt">IMAGE</span>    <span class="nt">COMMAND</span>  <span class="nt">CREATED</span>      <span class="nt">STATUS</span>      <span class="nt">PORTS</span>  <span class="nt">NAMES</span>
+<span class="nt">72ca2488b353</span>  <span class="nt">my_image</span>          <span class="nt">X</span> <span class="nt">hours</span> <span class="nt">ago</span>  <span class="nt">Up</span> <span class="nt">X</span> <span class="nt">hours</span>         <span class="nt">my_container</span>
 </code></pre></div></div>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
+<p>Войдите в Docker-контейнер по имени или ID контейнера и запустите интерактивную оболочку bash:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">docker</span> <span class="nt">exec</span> <span class="nt">-it</span> <span class="nt">72ca2488b353</span> <span class="nt">bash</span>
+</code></pre></div></div>
 
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Work-Project-Manager/" title="Коротко - работа менеджера проектов"><img src="http://localhost:4000/images/matrix.jpg" alt="Коротко - работа менеджера проектов"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-12-04T00:00:00+02:00"><a href="http://localhost:4000/Work-Project-Manager/">December 04, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Work-Project-Manager/" rel="bookmark" title="Коротко - работа менеджера проектов" itemprop="url">Коротко - работа менеджера проектов</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h1 id="Короткая-аннотация-вопросов-решаемых-менеджером-проектов">Короткая аннотация вопросов решаемых менеджером проектов</h1>
+<p>Если внутри контейнера не удастся найти оболочку bash, вы увидите что-то вроде следующего сообщения:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">oci</span> <span class="nt">runtime</span> <span class="nt">error</span><span class="o">:</span> <span class="nt">exec</span> <span class="nt">failed</span><span class="o">:</span> <span class="nt">container_linux</span><span class="nc">.go</span><span class="nd">:265</span><span class="o">:</span> <span class="nt">starting</span> <span class="nt">container</span> <span class="nt">process</span> <span class="nt">caused</span> <span class="err">«</span><span class="nt">exec</span><span class="o">:</span> <span class="err">\»</span><span class="nt">bash</span><span class="err">\»</span><span class="o">:</span> <span class="nt">executable</span> <span class="nt">file</span> <span class="nt">not</span> <span class="nt">found</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">PATH</span><span class="err">»</span>
+</code></pre></div></div>
 
-<h2 id="-1--Этапы-формирования-технического-задания-на-разработку">№ 1 : Этапы формирования технического задания на разработку</h2>
-
-<p>1а. Формирование функциональных требований заказчика</p>
-
-<p>2а. Формирования задания на построение инфраструктуры - как результат разработки с поддержкой отказоустойчивости и резервного копирования.</p>
-
-<p>3а. Формирование карты взаимодействия разрабатываемой системы с другими систмами заказчика.</p>
-
-<p>Как итог получаем  3 задачи:</p>
-
-<ul>
-  <li>функционально-техническое</li>
-  <li>ТЗ на построение инфраструктуры</li>
-  <li>ТЗ на разработку интерфейсов</li>
-</ul>
-
-<p>Эти задачи станут чек-пойнтами контроля выполнения в процессе разработки</p>
-
-<h2 id="-2--Этапы-разработки">№ 2 : Этапы разработки</h2>
-
-<ul>
-  <li>Распределние задач по разработчикам</li>
-  <li>формирование плана приемо-сдаточных работ</li>
-  <li>комплексное тестирование</li>
-  <li>создание плана миграции и разработки этого плана</li>
-</ul>
-
-<h2 id="-3--Этапы-ввода-в-эксплуатацию-разрабатываемой-системы">№ 3 : Этапы ввода в эксплуатацию разрабатываемой системы</h2>
-
-<ul>
-  <li>нагрузочное тестирование</li>
-  <li>формирование методических материалов и документации</li>
-  <li>обучение пользователей</li>
-  <li>заполнение всех НСИ, прописывание доступов и пользователей в системе</li>
-  <li>миграция данных</li>
-  <li>сверка проведенной миграции и остатков</li>
-  <li>старт работы под контролем (пилотирование)</li>
-  <li>горячая поодержка в период первого запуска</li>
-</ul>
-
-<h2 id="-4-Как-мы-передаем-систему-на-поддержку-после-ввода-в-эксплуатацию">№ 4 Как мы передаем систему на поддержку, после ввода в эксплуатацию:</h2>
-
-<p>Уровни техподдержки системы:</p>
-<ul>
-  <li>инфраструктурная, мониторинг нагрузок на сервер</li>
-  <li>функциональная, мониторинг потоков и контроль (вдруг что то начало происходить не так как планировалось)</li>
-  <li>методологическая, ответы на вопросы, сбор новых выявленых потребностях для возможной дальнейшей эволюции.</li>
-</ul>
-
+<p>В этом случае вы можете войти в Docker-контейнер и затупить простую оболочку sh:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">docker</span> <span class="nt">exec</span> <span class="nt">-it</span> <span class="nt">72ca2488b353</span> <span class="nt">sh</span>
+</code></pre></div></div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -353,7 +358,7 @@ Reading time ~1 minute
     
 
     
-      <li><a href="http://localhost:4000/page36/">36</a></li>
+      <li><a href="http://localhost:4000/page37/">37</a></li>
     
 
     

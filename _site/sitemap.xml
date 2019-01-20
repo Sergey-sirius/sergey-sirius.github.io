@@ -433,6 +433,18 @@
 <lastmod>2019-01-18T00:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/Entered_in_to_Docker/</loc>
+<lastmod>2019-01-20T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/Installed_Docker_Ubuntu/</loc>
+<lastmod>2019-01-20T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/Mount_new_HardDisk/</loc>
+<lastmod>2019-01-20T00:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/postgres/1/</loc>
 </url>
 <url>
@@ -554,5 +566,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/page36/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page37/</loc>
 </url>
 </urlset>

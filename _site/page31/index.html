@@ -152,11 +152,11 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_7/" title="103.7 Поиск информации при помощи регулярных выражений"><img src="http://localhost:4000/images/matrix.jpg" alt="103.7 Поиск информации при помощи регулярных выражений"></a>
+        <a href="http://localhost:4000/Lesson_4_2/" title="104.2 Проверка целостности файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.2 Проверка целостности файловых систем."></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_7/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -166,103 +166,94 @@ Reading time ~2 minutes
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_7/" rel="bookmark" title="103.7 Поиск информации при помощи регулярных выражений" itemprop="url">103.7 Поиск информации при помощи регулярных выражений</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_2/" rel="bookmark" title="104.2 Проверка целостности файловых систем." itemprop="url">104.2 Проверка целостности файловых систем.</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь осуществлять поиск необходимых файлов и информации внутри них.</p>
+    <p>Студент должен умет управлять стандартной файловой системой, и понимать принципы работы с журналируемой файловой системой.</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>создание простых регулярных выражений;</li>
-  <li>инструменты, опирающиеся на эти выражения, для поиска файлов.</li>
+  <li>проверку целостности файловой системы;</li>
+  <li>отслеживание айнодов и свободного пространства;</li>
+  <li>исправление простых проблем с файловой системой.</li>
 </ul>
 
 <p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>grep</li>
-  <li>egrep</li>
-  <li>fgrep</li>
-  <li>rgrep</li>
-  <li>sed</li>
-  <li>регулярные выражения.</li>
+  <li>du</li>
+  <li>df</li>
+  <li>fsck</li>
+  <li>e2fsck</li>
+  <li>mke2fs</li>
+  <li>debugfs</li>
+  <li>dumpe2fs</li>
+  <li>tune2fs</li>
+  <li>инструменты XFS</li>
 </ul>
 
-<p>Частой задачей в Linux является поиск необходимых файлов и сортировка информации внутри них. Для этой задачи служат регулярные выражения – специальный язык поиска и изменения информации, обладающий своим синтаксисом.</p>
+<p>Linuх использует умеет работать с различными файловыми системами. Для поддержки всех возможностей отдельных файловых систем необходимо устанавливать соответствующие наборы ПО, содержащие дополнительные инструменты.</p>
 
-<p>При отборе информации можно использовать стандартные групповые символы:</p>
+<p>Утилита <strong>df</strong> (diskfree) показывает свободное место в файловых системах, например:</p>
+
+<p><strong>df</strong> _  (показывает в блоках килобайт)_</p>
+
+<p><strong>df –h</strong> <em>(показывает в мегабайтах и т.д.)</em></p>
+
+<p><strong>d</strong>** f –i**<em>(показывает в</em> <em>inode__)</em></p>
+
+<p>Inode (индексный дескриптор) – идентификатор файла, содержащий о нем всю необходимую информацию.</p>
+
+<p>Утилита <strong>du</strong> (diskusage) показывает занятое место в файловых системах, например:</p>
+
+<p><strong>d</strong>** u**<em>(показывает размер текущей директории в блоках килобайт)</em></p>
+
+<p><strong>d</strong>** u –h**<em>(показывает в мегабайтах и т.д., включая вложенные папки)</em></p>
+
+<p><strong>d</strong>** u –h /home/***<em>(показывает размер директории / <strong>home</strong> , отображая размер всех подкаталогов)</em></p>
+
+<p><strong>d</strong>** u –h –summarize /home/***  <em>(показывает размер директории / <strong>home</strong> , включая все подкаталоги)</em></p>
+
+<p>Утилита <strong>fsck</strong> предназначена для проверки файловых систем. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты проверки. Проверку осуществляют для демонтированных файловых систем, неактивных в данный момент, например:</p>
+
+<p><strong>f</strong>** sck /dev/sdb1** <em>(будет вызван инструмент проверки файловой системы, например для</em> <em>ext</em> <em>это будет инструмент</em> <em>e <strong>2</strong> fsck__);</em></p>
+
+<p><strong>fsck</strong>  <strong>–</strong>** t <strong>**ext</strong>** 4 / <strong>**dev</strong>** / <strong>**sdb</strong>** 1  **<em>(можно сразу указать формат файловой системы, если он известен)</em></p>
+
+<p>Утилита <strong>mkfs</strong> предназначена для создания файловых систем. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты, например:</p>
+
+<p><strong>mkfs</strong>  <strong>–</strong>** t <strong>**xfs</strong>  <strong>–</strong>** f <strong>** / **</strong>dev<strong>** / **</strong>sdb<em>**</em> 1  **<em>(создать файловую систему</em> <em>xfs</em> <em>на устройстве / <strong>dev</strong> / <strong>sdb</strong> 1);</em></p>
+
+<p><strong>mke2fs –t ext2 /dev/sdb1</strong> <em>(создать файловую систему</em> <em>ext <strong>2 на устройстве /</strong> dev <strong>/</strong> sdb__1);</em></p>
+
+<p>Для работы с файловой системой <strong>XFS</strong> (сейчас centos7 использует ее в качестве файловой системы по умолчанию), к примеру, используются следующие инструменты:</p>
 
 <ul>
-  <li><strong>^</strong> _                - начало строки;_</li>
-  <li>**$       ** _        - конец строки;_</li>
-  <li>**.       ** _        - любой символ;_</li>
-  <li><strong>\&lt;</strong>** a <em>**</em>               ** <em>- слово, начинающееся с " <strong>a</strong>";</em></li>
-  <li><strong>\&gt;</strong>** a <em>**</em>               ** <em>-</em> <em>c <strong>лово, заканчивающееся на "</strong> a__";</em></li>
-  <li><strong>a</strong>** - <strong>**z</strong>** ]                <strong>** -</strong> <em>диапазон от " <strong>a</strong>" до " <strong>z</strong>";</em></li>
-  <li><strong>[^t]</strong>**                <strong>** -</strong> <em>не буква " <strong>t</strong>";</em></li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>**a</td>
-          <td>z<strong>**                 **</strong> -** <em>" <strong>a</strong>" <strong>или "</strong> z <strong>"</strong> ;</em></td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>и т.д.;</li>
+  <li><strong>xfs</strong>** _ <strong>**check</strong> <em>для проверки;</em></li>
+  <li><strong>xfs</strong>** _ <strong>**repair</strong> <em>для восстановления;</em></li>
+  <li><strong>xfs_info</strong> <em>для получения информации</em> <strong>;</strong></li>
+  <li><strong>xfs_metadump</strong> <em>для создания дампа.</em></li>
 </ul>
 
-<p>Для простой сортировки набора строк используется команда <strong>grep</strong> , например:</p>
+<p>Для отладки классической файловой системы используется утилита <strong>debugfs</strong>. Этот инструмент в интерактивном режиме позволяет работать с айнодами файловой системы, например, в нем доступны следующие инструменты:</p>
 
-<p><strong>grep</strong>** oo <strong>**file</strong><strong>. **</strong>txt**  <em>(отобразить в файле текст с двумя буквы « <strong>o</strong> » подряд);</em></p>
+<ul>
+  <li><strong>ls</strong> <em>– просмотреть данные в системе;</em></li>
+  <li><strong>lsdel</strong> <em>– показать удаленные файлы;</em></li>
+  <li><strong>undel</strong> <em>– отменить удаление.</em></li>
+</ul>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>ls</strong>  **</td>
-      <td>**  <strong>grep</strong>** ile**   <em>(вывести названия содержимого каталога с набором символов ' <strong>ile</strong>');</em></td>
-    </tr>
-  </tbody>
-</table>
+<p>Для вывода детальной информации о файловой системе (суперблоки, цилиндры, размер блока и т.д.) используется утилита <strong>dumpfs</strong>. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты проверки, например:</p>
 
-<p><strong>grep</strong>** ple <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(отобразить в файле</em> <em>file <strong>.</strong> txt</em> <em>строки, заканчивающиеся на ' <strong>ple</strong>');</em></p>
+<p><strong>dumpe2fs /dev/sdb1 &gt;</strong>  <strong>output</strong><strong>. **</strong>txt**  ** ** <em>(вывести информацию о файловой системе</em> <em>ext</em> <em>в файл</em> <em>output <strong>.</strong> txt__)</em></p>
 
-<p>Для расширенной сортировки и поиска по сложным регулярным выражениям используется команда <strong>egrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** E**), например:</p>
+<p>Утилита <strong>tunefs</strong> предназначена для настройки изменяемых параметров файловых систем. Для работы с разными файловыми системами утилита запускает соответствующие им инструменты настройки. Настройку осуществляют для демонтированных файловых систем, неактивных в данный момент, например:</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>egrep</strong> <strong>'^(</strong><strong>b **</strong></td>
-      <td><strong>** d</strong><strong>)'</strong>  <strong>file</strong><strong>. **</strong>txt**  <em>(все строки, что начинаются с " <strong>b</strong>" или " <strong>d</strong>");</em></td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>tune</strong>** 2 <strong>**fs</strong>  <strong>–</strong>** O <strong>**has</strong>** _ <strong>**journal</strong>  <strong>/</strong>** dev <strong>**/</strong>** sdb <strong>**1</strong> <em>(включить журналирование на устройстве / <strong>dev</strong> / <strong>sdb</strong> 1)</em></p>
 
-<p><strong>egrep</strong> <strong>'^[</strong><strong>a **</strong>-<strong>** k</strong><strong>]'</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(все строки, что начинаются с " <strong>a</strong>" по " <strong>k</strong>");</em></p>
-
-<p>Для быстрой сортировки и поиска по набору символов без регулярных выражений используется команда <strong>fgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** F**), например:</p>
-
-<p><strong>fgrep</strong>** c <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt** _ (отобразить в_ <em>file <strong>.</strong> txt</em> <em>последовательность символов " <strong>c</strong> $");</em></p>
-
-<p>Для рекурсивной (включая вложенные каталоги и файлы) сортировки и поиска по набору символов используется команда <strong>rgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** R**), например:</p>
-
-<p><strong>rgrep</strong>  ** <strong>** word</strong>_ (вывести позиции содержащие « <strong>word</strong> » в текущем и всех вложенных каталогах__);_</p>
-
-<p>Для изменения текстового потока согласно заданным правилам используется редактор sed, например:</p>
-
-<p><strong>sed</strong>  <strong>–</strong>** e <strong>**' **</strong>s<strong>** / **</strong>oo<strong>** / **</strong>aa<strong>** /'   **</strong>file<strong>**. **</strong>txt**  <em>(заменить в</em> <em>file <strong>.</strong> txt</em> <em>все " <strong>oo</strong>" на " <strong>aa</strong>" );</em></p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>sed</strong>  <strong>–</strong>** re <strong>**' **</strong>s<strong>** /^( **</strong>B<em>**</em></td>
-      <td><strong>**b</strong>** )/ <strong>**C</strong><strong>' **</strong>file<strong>**. **</strong>txt**  <strong>&gt;</strong>  <strong>newfile</strong><strong>. **</strong>txt** <em>(в строках, начинающихся с « <strong>B</strong> » или « <strong>b</strong> », заменить первую букву на «С» и сохранить результат в</em> <em>newfile <strong>.</strong> txt__);</em></td>
-    </tr>
-  </tbody>
-</table>
+<p>Журналирование: опция введения журнала изменений для возможности их отката.</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -271,11 +262,11 @@ Reading time ~2 minutes
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_6/" title="103.6 Изменение приоритетов процессов"><img src="http://localhost:4000/images/matrix.jpg" alt="103.6 Изменение приоритетов процессов"></a>
+        <a href="http://localhost:4000/Lesson_4_1/" title="104.1 Создание файловых систем."><img src="http://localhost:4000/images/matrix.jpg" alt="104.1 Создание файловых систем."></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_6/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_4_1/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -285,50 +276,58 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_6/" rel="bookmark" title="103.6 Изменение приоритетов процессов" itemprop="url">103.6 Изменение приоритетов процессов</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_4_1/" rel="bookmark" title="104.1 Создание файловых систем." itemprop="url">104.1 Создание файловых систем.</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь менять приоритеты выполняющихся процессов</p>
+    <p>Студент должен научиться разбивать диск на разделы, создавать на них файловые системы и управлять разделом подкачки.</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>приоритеты по умолчанию создаваемых процессов;</li>
-  <li>запуск программ с повышенным и пониженным приоритетом;</li>
-  <li>изменение приоритета уже запущенной программы.</li>
+  <li>управление таблицами разделов MBR;</li>
+  <li>создание файловых систем mkfs (ext, XFS, VFAT);</li>
+  <li>знакомство с ReiserFS и Btrfs;</li>
+  <li>базовые навыки работы с GPT.</li>
 </ul>
 
 <p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>nice</li>
-  <li>ps</li>
-  <li>renice</li>
-  <li>top</li>
+  <li>fdisk</li>
+  <li>gdisk</li>
+  <li>parted</li>
+  <li>mkfs</li>
+  <li>mkswap</li>
 </ul>
 
-<p>Несмотря на то, что Linux является довольно стабильной системой, которая умеет автоматически подстраиваться под текущие условия работы, иногда приходится вручную управлять приоритетами процессов, для контроля над ресурсами ПК.</p>
+<p>Linuх поддерживает работу с различными файловыми системами. Для возможности работы с файловыми системами, кроме классической ext, необходим набор соответствующих инструментов, устанавливаемых вместе с набором ПО для каждой файловой системы.</p>
 
-<p>Для просмотра текущих процессов используется команда <strong>ps</strong> , например:</p>
+<p>Утилита <strong>fdisk</strong> предназначена для работы с носителями информации, использующими классическую таблицу разделов MBR (последние версии умеют работать и с GUID). Используя эту утилиту можно в интерактивном режиме создавать, удалять и изменять разделы жесткого диска, например:</p>
 
-<p><strong>p</strong>** s aux**  <em>(отобразить процессы по всем пользователям);</em></p>
+<p><strong>fdisk</strong>  <strong>–</strong>** l**<em>(вывести информацию о текущих разделах дисков);</em></p>
 
-<p><strong>ps</strong>  <strong>–</strong>** eo <strong>**user</strong>** , <strong>**pid</strong>** , <strong>**pcpu</strong>** , <strong>**nice</strong>** , <strong>**comm</strong>  <em>(отобразить процессы, выводя указанные данные);</em></p>
+<p>Утилита <strong>gdisk</strong> предназначена для работы с носителями информации, использующими таблицу разделов GUID. Используя эту утилиту можно в интерактивном режиме создавать, удалять, изменять и конвертировать разделы жесткого диска, например:</p>
 
-<p>Приоритет процесса определяется параметром <strong>nice</strong> (в Ubuntu может принимать значения от -20 до +19): чем ниже значение, тем выше приоритет. По умолчанию значение nice для каждого процесса равно "-10".</p>
+<p><strong>gdisk</strong>  <strong>/</strong>** dev <strong>**/</strong>** sdb**<em>(начать работу с носителем / <strong>dev</strong>. <strong>sdb</strong> );</em></p>
 
-<p>Для запуска процесса с указанным приоритетом используется команда <strong>nice</strong> , например:</p>
+<p>Для создания файловой системы используется утилита <strong>mkfs</strong> , вызывающая специализированные инструменты для каждой отдельной файловой системы, например:</p>
 
-<p><strong>nice</strong>  <strong>–</strong>** n <strong>** -20 **</strong> ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(запустить процесс с приоритетом "-20");</em></p>
+<p><strong>mkfs</strong>  <strong>–</strong>** t <strong>**ext</strong>** 2 / <strong>**dev</strong>** / <strong>**sdb</strong>** 1**  <em>(отформатировать раздел /dev/sdb1 в</em> <em>ext__2);</em></p>
 
-<p>Для изменения приоритета запущенного процесса используется команда <strong>renice</strong> , например:</p>
+<p><strong>mkfs</strong><strong>. **</strong>ext<strong>** 2 / **</strong>dev<strong>** / **</strong>sdb<strong>** 1</strong>  <em>(отформатировать раздел /dev/sdb1 в</em> <em>ext__2);</em></p>
 
-<p>**renice 15 –p 10241       ** <em>(изменить приоритет процесса с</em> <em>PID</em> <em>"10421");</em></p>
+<p>Для расширенных возможностей управления различными файловыми системами (сжатие, расширение, перенос, копирование и т.д.) используется утилита <strong>parted</strong> , или ее релиз с графическим интерфейсом – <strong>gparted</strong>.</p>
 
-<p><strong>renice</strong>  <strong>-15 –</strong>** u <strong>**semaev</strong>**        ** <em>(изменить приоритет процессов пользователя " <strong>semaev</strong>");</em></p>
+<p>Для работы с нестандартными файловыми системами нужно ставить соответствующие им наборы ПО, например <strong>xfsprogs</strong> (для файловой системы XFS), <strong>reiserfsprogs</strong> (для файловой системы ReiserFS) или <strong>btrfs</strong>** - <strong>**tools</strong> (для файловой системы BTRFS)<em>.</em> После установки этих пакетов ПО стандартные инструменты Linux смогут создавать и редактировать разделы с указанными файловыми системами.</p>
 
-<p>Также для использования доступен диспетчер задач <strong>top</strong> , выводящий сведения о запущенных процессах в реальном режиме в консоль. Для изменения критерия сортировки процессов используются символы "&lt;" и "&gt;".</p>
+<p>Также следует отметить, что в Linux используется отдельный раздел подкачки, используемый в качестве временного хранилища информации в том случае, если оперативная память ПК заполнена. Для работы с ним используются следующие инструменты:</p>
+
+<p><strong>mkswap</strong> <em>(создать файловую систему для раздела подкачки);</em></p>
+
+<p><strong>swapon</strong> <em>(включить раздел подкачки);</em></p>
+
+<p><strong>swapoff</strong> <em>(выключить раздел подкачки).</em></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -337,11 +336,11 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_5/" title="103.5 Управление процессами в Linux"><img src="http://localhost:4000/images/matrix.jpg" alt="103.5 Управление процессами в Linux"></a>
+        <a href="http://localhost:4000/Lesson_3_8/" title="103.8 Текстовый редактор Vi."><img src="http://localhost:4000/images/matrix.jpg" alt="103.8 Текстовый редактор Vi."></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_5/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_8/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -351,85 +350,113 @@ Reading time ~2 minutes
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_5/" rel="bookmark" title="103.5 Управление процессами в Linux" itemprop="url">103.5 Управление процессами в Linux</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_8/" rel="bookmark" title="103.8 Текстовый редактор Vi." itemprop="url">103.8 Текстовый редактор Vi.</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь создавать, отслеживать и завершать процессы</p>
+    <p>Студент должен уметь редактировать файлы в vi, и ориентироваться в нем.</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>запуск задач в активном и фоновом режимах;</li>
-  <li>настройку выполнения задачи после выхода из системы;</li>
-  <li>способы отслеживания и сортировки активных процессов;</li>
-  <li>завершение процессов.</li>
+  <li>навигацию по документу с использованием vi;</li>
+  <li>использование основных режимов работы vi;</li>
+  <li>вставку, редактирование, удаление, копирование и поиск текста.</li>
 </ul>
 
 <p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>&amp;</li>
-  <li>bg</li>
-  <li>fg</li>
-  <li>jobs</li>
-  <li>kill</li>
-  <li>nohup</li>
-  <li>ps</li>
-  <li>top</li>
-  <li>free</li>
-  <li>uptime</li>
-  <li>pgrep</li>
-  <li>pkill</li>
-  <li>killall</li>
-  <li>screen</li>
+  <li>vi</li>
+  <li>/, ?</li>
+  <li>h,j,k,l</li>
+  <li>i, o, a</li>
+  <li>c, d, p, y, dd, yy</li>
+  <li>ZZ, :w!, :q!, :e!</li>
 </ul>
 
-<p>Linux содержит в себе множество инструментов для управления запущенными процессами: от сортировки, отслеживания состояния и загрузки системы до перевода процессов в фоновый режим и обратно.</p>
+<p>Так как все основные настройки в Linux выполняются редактированием файлов, все журналы, устройства, демоны и т.д. тоже по сути являются файлами, то текстовый редактор является одним из важнейших инструментов управления ОС. Существует множество редакторов с различными возможностями, здесь же будет рассмотрен редактор Vi.</p>
 
-<p>Посмотреть запущенные процессы в текущей консоли можно при помощи команды <strong>jobs</strong>. Для вывода всех запущенных в данный момент процессов (независимо от консоли) используется команда ps с различным набором ключей, например:</p>
+<p><strong>Vi</strong> имеет <strong>модальный</strong> интерфейс и одни и те же клавиши в разных режимах выполняют разные действия. По умолчанию работа начинается в <strong>командном режиме</strong>.</p>
 
-<p><strong>Ps</strong>** aux** <em>(вывести процессы всех пользователей);</em></p>
+<p>Для перемещения по документу используются следующие символы:</p>
 
-<p>Можно вывести процессы в консоль, отображая иерархию из взаимосвязи командой <strong>pstree</strong>.</p>
+<ul>
+  <li><strong>h</strong> <em>или</em> <strong>←</strong>         <em>(перемещение на символ влево);</em></li>
+  <li><strong>j</strong> <em>или</em> <strong>↓</strong>         <em>(перемещение на символ вниз);</em></li>
+  <li><strong>k</strong> <em>или</em> <strong>↑</strong>         <em>(перемещение на символ вверх);</em></li>
+  <li><strong>l</strong> <em>или</em> <strong>→</strong>         <em>(перемещение на символ вправо);</em></li>
+  <li><strong>b</strong>**                ** <em>(перемещение в начало слова);</em></li>
+  <li><strong>e</strong>**                ** <em>(перемещение в конец слова);</em></li>
+  <li>**(               ** <em>(перемещение в начало предложения);</em></li>
+  <li>**)               ** <em>(перемещение в конец предложения);</em></li>
+  <li>**{               ** <em>(перемещение в начало абзаца);</em></li>
+  <li>**}               ** <em>(перемещение в конец абзаца);</em></li>
+  <li>**^               ** <em>(перемещение в начало строки);</em></li>
+  <li>**$               ** <em>(перемещение в конец строки);</em></li>
+  <li><strong>1</strong>** G <em>**</em>               ** <em>(перемещение в начало файла);</em></li>
+  <li><strong>G</strong>**                ** <em>(перемещение в конец файла).</em></li>
+</ul>
 
-<p>Для отображения идентификаторов процессов по определенному критерию можно использовать команду <strong>pgrep</strong> , например:</p>
+<p>Для перехода в режим вставки можно воспользоваться следующими символами:</p>
 
-<p><strong>pgrep</strong>  <strong>-</strong>** l <strong>** - **</strong>u<strong>** root **</strong>       ** <em>(отобразить все процессы пользователя</em> <em>root__)</em></p>
+<ul>
+  <li><strong>I</strong>**        ** <em>(режим вставки перед текущим символом);</em></li>
+  <li><strong>a</strong>**         ** <em>(режим вставки после текущего символа);</em></li>
+  <li><strong>o</strong>**        ** <em>(вставить новую строчку);</em></li>
+  <li>**s       ** <em>(стереть символ и вставить).</em></li>
+</ul>
 
-<p>Чтобы запустить процесс в фоновом режиме необходимо указать ключ <strong>&amp;</strong> , например:</p>
+<p>Для возврата в командный режим можно использовать клавишу <strong>Esc</strong> или сочетание <strong>Ctrl</strong>** + <strong>**C</strong></p>
 
-<p><strong>Sleep</strong>  **999 &amp;       ** <em>(запустить задачу</em> <em>sleep</em> <em>999 в фоновом режиме);</em></p>
+<p>Находясь в режиме редактирования можно использовать буфер обмена:</p>
 
-<p>Для перевода процесса из фонового режима в активный используется команда <strong>fg</strong> , обратно – <strong>bg</strong>. В качестве аргумента команды следует указать номер процесса (<em>его можно увидеть на выводе команды</em> <em>jobs</em>).</p>
+<ul>
+  <li><strong>y</strong> _        (скопировать)<em>_;</em></li>
+  <li><strong>d</strong> _        ( <strong>вырезать</strong> )<em>_;</em></li>
+  <li><strong>c</strong> _        ( <strong>изменить</strong> )<em>_;</em></li>
+  <li><strong>p</strong> _        (вставить)._</li>
+</ul>
 
-<p>Для того чтобы процесс продолжал выполняться после выхода пользователя из системы, его следует запускать командой <strong>nohup</strong> , например:</p>
+<p>Также возможны комбинации с символами перемещения по тексту и обозначениями <strong>d</strong> (строка), <strong>w</strong> (слово) и <strong>l</strong> (символ); например</p>
 
-<p><strong>nohup</strong>  ** <strong>** sleep **</strong> 1000 &amp;       ** <em>(запустить процесс "__sleep</em> <em>1000" в фоновом режиме, и выполнять его даже в случае выхода пользователя из системы);</em></p>
+<p><strong>yw</strong> _        (скопировать слово);_</p>
 
-<p>Для остановки процесса используется команда <strong>kill</strong> , например:</p>
+<p><strong>dd</strong> _        (вырезать строку);_</p>
 
-<p><strong>kill</strong>  <strong>2625</strong> _                (выключить процесс с_ <em>PID__=2625);</em></p>
+<p><strong>cl</strong> _        (изменить символ);_</p>
 
-<p><strong>killall</strong>** sleep <strong>**       ** <em>(выключить все процессы с именем</em> <em>sleep</em> <em>для текущего пользователя)</em> **;</strong></p>
+<p><strong>d</strong>** $**_        (удалить с текущего места до конца строки);_</p>
 
-<p>Для остановки процессов по указанному критерию можно использовать команду <strong>pkill</strong> , например:</p>
+<p><strong>y</strong>** }**_        (скопировать с текущего места до конца абазца);_</p>
 
-<p><strong>pkill</strong>** refox <em>**</em>       ** <em>(остановить процесс, в имени которого есть символы " <strong>refox</strong>");</em></p>
+<p>Для поиска информации доступны символы:</p>
 
-<p>Для просмотра информации о работающих процессах в режиме реального времени используется диспетчер задача <strong>top</strong>. Используя его можно сортировать запущенные задачи по различным критериям и останавливать их <em>(клавиша</em> <em>K__)</em> мягко <em>(<strong>sigterm</strong>)</em> и жестко <em>(<strong>sigkill</strong>)</em>.</p>
+<ul>
+  <li>**/       ** _        (искать ниже по тексту набор символов, указанных после «/»);_</li>
+  <li>**?       ** _        (искать выше по тексту набор символов, указанных после «?»);_</li>
+  <li><strong>n</strong>**        ** _        (показать следующий результат поиска);_</li>
+  <li><strong>N</strong>**        ** _        (показать предыдущий результат поиска)._</li>
+</ul>
 
-<p>Для отображения информации о времени работы системы и среднем времени загрузки АЧ используется команда <strong>uptime</strong>.</p>
+<p>Для завершения работы с файлом:</p>
 
-<p>Для отображения информации о загрузке ОЗУ и раздела подкачки используется команда <strong>free</strong>.</p>
+<ul>
+  <li><strong>:e!</strong> _        (отменить все изменения, где «!» - игнорировать все предупреждения);_</li>
+  <li><strong>:</strong>** w <strong>**!</strong> _        (записать изменения);_</li>
+  <li>**:q       ** <em>(выйти из файла);</em></li>
+</ul>
 
-<p>Кроме того, Linux поддерживает работу с несколькими «экранами» при помощи команды <strong>screen</strong>. Она позволяет, в числе всего прочего, сворачивать запущенные приложения в консоли, в рамках той же консоли, например:</p>
+<p>Как всегда, возможны комбинации, например:</p>
 
-<p><strong>screen</strong>  <strong>-</strong>** S <strong>**yandex</strong>** ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(создать экран с именем</em> <em>yandex</em> <em>для команды</em> <em>ping <strong>ya</strong>. <strong>ru</strong> );</em></p>
+<p><strong>:</strong>** wq <em>**</em>! newfile.txt       ** <em>(сохранить под именем</em> <em>newfile <strong>.</strong> txt</em> <em>и выйти);</em></p>
 
-<p><strong>screen</strong>  <strong>–</strong>** ls <em>**</em>                       ** <em>(показать свернутые экраны);</em></p>
+<p>Также доступны сокращенные команды:</p>
 
-<p><strong>screen</strong>  <strong>-</strong>** r <strong>**yandex</strong>**                        ** <em>(развернуть экран с именем</em> <em>yandex__).</em></p>
+<ul>
+  <li>**ZZ       ** <em>(сохранить и выйти)__;</em></li>
+  <li><strong>ZQ</strong>**        ** <em>(не сохранять и выйти);</em></li>
+</ul>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -501,7 +528,7 @@ Reading time ~2 minutes
     
 
     
-      <li><a href="http://localhost:4000/page36/">36</a></li>
+      <li><a href="http://localhost:4000/page37/">37</a></li>
     
 
     

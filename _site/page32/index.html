@@ -152,231 +152,11 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_4/" title="103.4 Потоки, конвейеры и перенаправления"><img src="http://localhost:4000/images/matrix.jpg" alt="103.4 Потоки, конвейеры и перенаправления"></a>
+        <a href="http://localhost:4000/Lesson_3_7/" title="103.7 Поиск информации при помощи регулярных выражений"><img src="http://localhost:4000/images/matrix.jpg" alt="103.7 Поиск информации при помощи регулярных выражений"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_4/" rel="bookmark" title="103.4 Потоки, конвейеры и перенаправления" itemprop="url">103.4 Потоки, конвейеры и перенаправления</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь управлять потоками для обработки текстовых данных</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>перенаправление стандартных ввода, вывода и ошибок;</li>
-  <li>передачу вывода одной команды на ввод другой;</li>
-  <li>использование вывода одной команды в качестве аргументов другой;</li>
-  <li>получение выходных данных в файл и на стандартный вывод.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>tee</li>
-  <li>
-    <p>xargs</p>
-  </li>
-  <li>stdin</li>
-  <li>stout</li>
-  <li>stderr</li>
-</ul>
-
-<p>Linux традиционно использует потоки для ввода, вывода и ошибок. Обычно ввод – это клавиатура или файлы, а вывод ошибок и результатов происходит в консоль. Но часто бывает нужно объединить последовательность команд в конвейер, или отправить результат в какой-нибудь файл.</p>
-
-<p>Для того чтобы послать на ввод программы некоторые данные используется знак " <strong>&lt;</strong>", например:</p>
-
-<p><strong>wc</strong>  <strong>&lt;</strong>  <strong>file</strong>** 1. <strong>**txt</strong>**        ** <em>(использовать в качестве ввода для программы</em> <em>wc</em> <em>файл</em> <em>file <strong>.</strong> txt__);</em></p>
-
-<p>Для того чтобы послать вывод программы куда-нибудь, кроме стандартного направления, используется знак " <strong>&gt;</strong>", например:</p>
-
-<p><strong>ls</strong>  <strong>&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(перезаписать содержимое файла</em> <em>list <strong>.</strong> txt</em> <em>результатом команды</em> <em>ls__);</em></p>
-
-<p><strong>ls</strong>  <strong>&gt;&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(дописать в файл</em> <em>list <strong>.</strong> txt</em> <em>результат команды</em> <em>ls__);</em></p>
-
-<p>Для ввода, вывода и ошибок используются следующие обозначения:</p>
-
-<ul>
-  <li><strong>Stdin</strong>         <em>– стандартный ввод программы (обозначение "0");</em></li>
-  <li><strong>Stdout</strong>         – <em>стандартный вывод программы (обозначение "1");</em></li>
-  <li><strong>Stderr</strong>          – <em>стандартные ошибки программы (обозначение "2");</em></li>
-</ul>
-
-<p>Например:</p>
-
-<p><strong>l</strong>** s bob 2&gt; error.txt**</p>
-
-<p><strong>ls</strong>** bob <strong>** &gt; **</strong> result <strong>**.</strong>** txt <strong>** 2&gt; **</strong> error <strong>**.</strong>** txt**</p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_3/" title="103.3 Основные операции с файлами"><img src="http://localhost:4000/images/matrix.jpg" alt="103.3 Основные операции с файлами"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_3/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_3/" rel="bookmark" title="103.3 Основные операции с файлами" itemprop="url">103.3 Основные операции с файлами</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>Студент должен уметь управлять файлами и каталогами при помощи основных команд Linux</p>
-
-<p><strong>Изучаем</strong> :</p>
-
-<ul>
-  <li>копирование, перенос и удаление файлов и каталогов;</li>
-  <li>копирование нескольких файлов и каталогов, в том числе рекурсивно;</li>
-  <li>удаление файлов и каталогов, в том числе рекурсивно;</li>
-  <li>групповые символы (wildcard);</li>
-  <li>отбор файлов по типу, размеру, датам и т.д.;</li>
-  <li>работу с tar, cpio и dd.</li>
-</ul>
-
-<p>**Термины и утилиты:       **</p>
-
-<ul>
-  <li>cp</li>
-  <li>find</li>
-  <li>mkdir</li>
-  <li>mv</li>
-  <li>ls</li>
-  <li>rm</li>
-  <li>rmdir</li>
-  <li>touch</li>
-  <li>tar</li>
-  <li>cpio</li>
-  <li>dd</li>
-  <li>file</li>
-  <li>gzip</li>
-  <li>gunzip</li>
-  <li>bzip2</li>
-  <li>xz</li>
-  <li>групповые символы</li>
-</ul>
-
-<p>Частой задачей администратора в Linux является работа с файлами и каталогами: создание, копирование, перемещение и удаление. Использование групповых символов вместе с инструментами консоли позволяют осуществлять эти действия с максимальной эффективностью.</p>
-
-<p>Для создания директорий используется команда <strong>mkdir</strong>** имя_каталога <strong>, для удаления пустого каталога -</strong> rmdir <strong>**имя_каталога</strong>. Просмотр содержимого текущей директории – <strong>ls</strong>. Например:</p>
-
-<p><strong>ls</strong>  <strong>–</strong>** l**_        (просмотреть содержимое текущего каталога);_</p>
-
-<p><strong>ls</strong>** fol <strong>***</strong> _        (посмотреть содержимого каталогов, имена которых начинаются с " <strong>fol</strong>");_</p>
-
-<p>Для копирования используется команда <strong>cp</strong>  <strong>что_копировать куда_копировать</strong> , например:</p>
-
-<p><strong>cp</strong>  <strong>–</strong>** R <strong>**Folder</strong>** NewFolder**_        (скопировать директорию " <strong>Folder</strong>" со всем содержимым в текущий каталог с именем новой директории " <strong>NewFolder</strong>");_</p>
-
-<p>Для переноса используется команда <strong>mv</strong>  <strong>что_переносить куда_переносить</strong> , например:</p>
-
-<p><strong>mv</strong>** file <strong>**.</strong>** txt <strong>**folder</strong>** 1/**  <em>(перенести " <strong>file</strong>. <strong>txt</strong>" в каталог " <strong>folder</strong> 1" в текущей директории);</em></p>
-
-<p>Для удаления используется команда <strong>rm</strong>** что_удалить**, например:</p>
-
-<p><strong>rm</strong>  <strong>–</strong>** rf <strong>**folder</strong>** 1       ** <em>(удалить каталог</em> <em>folder__1 вместе с содержимым);</em></p>
-
-<p>Для создания пустого файла, или обновления метки доступа существующего, используется команда <strong>touch</strong>  <strong>имя_файла,</strong> а для получения информации о файле – команда <strong>file</strong>** имя_файла**.</p>
-
-<p>Групповые символы, использующиеся при работе с текстовыми данными:</p>
-
-<ul>
-  <li><em>*                – любое количество любых символов;</em></li>
-  <li>**?       ** _        – любой символ;_</li>
-  <li>**!                ** <em>– не (любой символ кроме указанных);</em></li>
-  <li><strong>[</strong><strong>ac</strong>**]       ** <em>– <strong>a_ _или_ _c</strong> ;</em></li>
-  <li><strong>[</strong><strong>a **</strong>-<strong>** c</strong><strong>]</strong> _        –_ <em>a <strong>,_ _b</strong> ,</em> <em>c__.</em></li>
-</ul>
-
-<p>Например:</p>
-
-<p><strong>ls</strong>  ***               ** <em>(вывести содержимое всех каталогов);</em></p>
-
-<p><strong>ls</strong>  <strong>?</strong>** at <strong>**.</strong>** txt <em>**</em>       ** <em>(вывести содержимое файла с именем: любая первая буква, остальная часть имени " <strong>at</strong>. <strong>txt</strong>");</em></p>
-
-<p><strong>ls</strong>  <strong>*</strong>** at <strong>**.</strong>** txt <em>**</em>       ** <em>(вывести содержимое файла с именем, оканчивающимся на " <strong>at</strong>. <strong>txt</strong>");</em></p>
-
-<p><strong>ls</strong> <strong>![</strong><strong>ab</strong>**]*       ** <em>(вывести содержимое файла или каталога с именем, начинающимся с любых символов, кроме " <strong>a</strong>" и " <strong>b</strong>");</em></p>
-
-<p>Для поиска информации используется команда <strong>find</strong> , например:</p>
-
-<p><strong>find</strong>  <strong>. –</strong>** name <strong>**"\ **</strong><em>A</em>*** *"       ** <em>(искать в текущей директории объекты, имеющие в имени символ " <strong>A</strong>");</em></p>
-
-<p><strong>find</strong>  <strong>/</strong>** etc <strong>** – **</strong>size**  ** -5<strong>** M **</strong>       ** <em>(искать в директории "/ <strong>etc</strong>" объекты размером менее 5 Мб);</em></p>
-
-<p><strong>find</strong>  ** .  –<strong>** type **</strong>l**   <em>(искать в текущей директории ссылки);</em></p>
-
-<p>В среде Linux существует несколько распространённых архиваторов, использующихся для распаковки и упаковки объектов в единый файл:</p>
-
-<ul>
-  <li><strong>с</strong>** pio**                - двоичный архиватор, копирующий информацию в архив и обратно;</li>
-  <li><strong>dd</strong>                 - копирование по блокам;</li>
-  <li><strong>gzip</strong> и <strong>gunzip</strong>         - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
-  <li>bzip2 и bunzip2        - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
-  <li>xz и unxz                - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
-  <li>tar                - архиватор (работает с набором файлов и каталогов).</li>
-</ul>
-
-<p>Например:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td><strong>find</strong>  <strong>.  –</strong>** name <strong>**"*. **</strong>txt<em>**</em>"</td>
-      <td><strong>** cpio **</strong> – <strong>**o</strong>  <strong>&gt; ../</strong>** test <strong>**.</strong>** cpio**   <em>(найти в текущей папке все файлы с расширением ". <strong>txt</strong>" и упаковать их в архив</em> <em>test <strong>.</strong> cpio__, расположив его на уровень выше текущей</em> <em>директории);</em></td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>cpio</strong>  <strong>-</strong>** id <strong>** &lt; **</strong> test <strong>**.</strong>** cpio**_        (распаковать в текущий каталог архив " <strong>test</strong>. <strong>cpio</strong>", создавая при необходимости структуру директорий);_</p>
-
-<p><strong>dd</strong>** if <strong>**=/</strong>** dev <strong>**/</strong>** sdb <strong>**of</strong>** = <strong>**drive</strong><strong>. **</strong>img<em>**</em>        ** <em>(скопировать носитель / <strong>dev</strong> / <strong>sdb_ _в образ_ _drive</strong>. <strong>img</strong> , располагающийся в текущей директории);</em></p>
-
-<p><strong>gzip</strong>** drive <strong>**.</strong>** img <em>**</em>       ** <em>(сжать образ " <strong>drive</strong>. <strong>img</strong>" до " <strong>drive</strong>. <strong>img</strong>. <strong>gz</strong>", удалив исходный файл);</em></p>
-
-<p><strong>bunzip</strong>** 2 <strong>** drive **</strong>.<strong>** img **</strong>.<strong>** bz **</strong>2       ** <em>(распаковать архив " <strong>drive</strong>. <strong>img</strong>. <strong>bz</strong> 2" в текущий каталог);</em></p>
-
-<p><strong>unxz</strong>** drive <strong>**.</strong>** img <strong>**.</strong>** xz <em>**</em>       ** <em>(распаковать архив " <strong>drive</strong>. <strong>img</strong>. <strong>xz</strong>" в текущий каталог);</em></p>
-
-<p><strong>tar</strong>** cvf <strong>**arch</strong><strong>. **</strong>tar**  ** <strong>** folder</strong>   <em>(упаковать каталог " <strong>folder</strong>" в архив " <strong>arch</strong>. <strong>tar</strong>").</em></p>
-
-<p><strong>tar</strong>  <strong>–</strong>** xvf <strong>**archive</strong><strong>. **</strong>tar<em>**</em>        ** <em>(распаковать архив " <strong>archive</strong>. <strong>tar</strong>").</em></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_2/" title="103.2 Управление текстовым потоком"><img src="http://localhost:4000/images/matrix.jpg" alt="103.2 Управление текстовым потоком"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_7/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -386,116 +166,270 @@ Reading time ~2 minutes
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_2/" rel="bookmark" title="103.2 Управление текстовым потоком" itemprop="url">103.2 Управление текстовым потоком</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_7/" rel="bookmark" title="103.7 Поиск информации при помощи регулярных выражений" itemprop="url">103.7 Поиск информации при помощи регулярных выражений</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь управлять фильтровать текстовый поток</p>
+    <p>Студент должен уметь осуществлять поиск необходимых файлов и информации внутри них.</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>применение текстовых фильтров с использованием встроенных команд UNIX</li>
+  <li>создание простых регулярных выражений;</li>
+  <li>инструменты, опирающиеся на эти выражения, для поиска файлов.</li>
 </ul>
 
 <p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>cat</li>
-  <li>cut</li>
-  <li>expand</li>
-  <li>fmt</li>
-  <li>head</li>
-  <li>join</li>
-  <li>less</li>
-  <li>nl</li>
-  <li>od</li>
-  <li>paste</li>
-  <li>pr</li>
+  <li>grep</li>
+  <li>egrep</li>
+  <li>fgrep</li>
+  <li>rgrep</li>
   <li>sed</li>
-  <li>sort</li>
-  <li>split</li>
-  <li>tail</li>
-  <li>tr</li>
-  <li>unexpand</li>
-  <li>uniq</li>
-  <li>wc</li>
+  <li>регулярные выражения.</li>
 </ul>
 
-<p>Множество файлов в Linux неудобны для восприятия без предварительного форматирования, кроме того процесс обработки текстовой информации часто требует ее форматирования, обрезания, сортировки и т.д. Linux предлагает широкий набор инструментов редактирования текстового вывода, при этом следует заметить что указанные инструменты не затрагивают исходный файл (или текстовый поток), а форматируют его, выдавая полученный результат в консоль или другой файл.</p>
+<p>Частой задачей в Linux является поиск необходимых файлов и сортировка информации внутри них. Для этой задачи служат регулярные выражения – специальный язык поиска и изменения информации, обладающий своим синтаксисом.</p>
 
-<p>Простой вывод текста (без корректировки содержимого):</p>
+<p>При отборе информации можно использовать стандартные групповые символы:</p>
 
-<p>Для вывода содержимого файла или объединения нескольких файлов на выводе используется команда <strong>cat</strong> , например:</p>
+<ul>
+  <li><strong>^</strong> _                - начало строки;_</li>
+  <li>**$       ** _        - конец строки;_</li>
+  <li>**.       ** _        - любой символ;_</li>
+  <li><strong>\&lt;</strong>** a <em>**</em>               ** <em>- слово, начинающееся с " <strong>a</strong>";</em></li>
+  <li><strong>\&gt;</strong>** a <em>**</em>               ** <em>-</em> <em>c <strong>лово, заканчивающееся на "</strong> a__";</em></li>
+  <li><strong>a</strong>** - <strong>**z</strong>** ]                <strong>** -</strong> <em>диапазон от " <strong>a</strong>" до " <strong>z</strong>";</em></li>
+  <li><strong>[^t]</strong>**                <strong>** -</strong> <em>не буква " <strong>t</strong>";</em></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>**a</td>
+          <td>z<strong>**                 **</strong> -** <em>" <strong>a</strong>" <strong>или "</strong> z <strong>"</strong> ;</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>и т.д.;</li>
+</ul>
 
-<p><strong>с</strong>** at <strong>** 1. **</strong>txt**  <strong>2.</strong>** txt <strong>** &gt; 3. **</strong>txt<em>**</em>        ** <em>(передать содержимое двух файлов в третий);</em></p>
+<p>Для простой сортировки набора строк используется команда <strong>grep</strong> , например:</p>
 
-<p>Команда <strong>join</strong> объединяет строки нескольких файлов по общему полю и отправляет их на стандартный вывод.</p>
-
-<p>Команда <strong>less</strong> загружает файл постепенно и также отправляет его на вывод (удобно для больших файлов).</p>
-
-<p>Команда <strong>nl</strong> нумерует строки.</p>
-
-<p>Команда <strong>pr</strong> показывает, как содержимое файла будет выглядеть при выводе его на печать.</p>
-
-<p>Команда <strong>paste</strong> вставляет строки из одного файла в другой и отправляет результат на стандартный вывод.</p>
-
-<p>Команда <strong>head</strong> показывает первые строки файла, а <strong>tail</strong> – последние.</p>
-
-<p>Например:</p>
-
-<p><strong>head</strong>  <strong>–</strong>** n <strong>** 2 / **</strong>var<strong>** / **</strong>log<strong>** / **</strong>syslog<em>**</em>        ** <em>(вывести первые две строчки файла);</em></p>
-
-<p><strong>tail</strong>  <strong>–</strong>** f <strong>** / **</strong>var<strong>** / **</strong>log<strong>** / **</strong>syslog<em>**</em>                ** <em>(показывать последние строки файла, отображая содержимое в реальный момент времени);</em></p>
-
-<p>Команда <strong>sort</strong> может отсортировать содержимое файла по какому-нибудь признаку, например:</p>
-
-<p><strong>sort</strong>  <strong>1.</strong>** txt <em>**</em>               ** <em>(отсортировать строки по алфавиту);</em></p>
-
-<p>Команда <strong>wc</strong> позволяет посчитать количество символов и т.д. в текстовом потоке, например:</p>
-
-<p><strong>wc</strong>  <strong>1.</strong>** txt**    <em>(посчитать количество строк, символов, слов);</em></p>
-
-<p>Вывод  форматированного текста (с корректировкой содержимого):</p>
-
-<p>Команда <strong>cut</strong> используется для обрезания содержимого файлов на выводе, например:</p>
-
-<p><strong>с</strong>** ut <strong>** – **</strong>c**  <strong>2,3,4,5,10 1.</strong>** txt <em>**</em>       ** <em>(показывать только символы на указанных позициях: 2,3,4,5,10);</em></p>
-
-<p>Команда <strong>expand</strong> превращает символы табуляции в несколько пробелов, а <strong>unexpand</strong> наоборот – пробелы в символы табуляции.</p>
-
-<p>Команда <strong>fmt</strong> предназначена для форматирования текста различными способами, например:</p>
-
-<p><strong>fmt</strong>  <strong>1.</strong>** txt <em>**</em>               ** <em>(вывести содержимое файла в одну строку);</em></p>
-
-<p><strong>fmt</strong>  <strong>–</strong>** w <strong>** 10 1. **</strong>txt<em>**</em>        ** <em>(вывести содержимое файла в строки не больше 10 символов каждая);</em></p>
-
-<p>Команда <strong>od</strong> предназначена для конвертации текста в другой формат, например:</p>
-
-<p><strong>od</strong>  <strong>–</strong>** c <strong>** 1. **</strong>txt<em>**</em>        ** <em>(отобразить в кодировке</em> <em>ASCI__);</em></p>
-
-<p>Команда <strong>tr</strong> предназначена для замены и удаления символов в текстовом потоке, например:</p>
+<p><strong>grep</strong>** oo <strong>**file</strong><strong>. **</strong>txt**  <em>(отобразить в файле текст с двумя буквы « <strong>o</strong> » подряд);</em></p>
 
 <table>
   <tbody>
     <tr>
-      <td><strong>echo</strong>  <strong>"</strong>** HELLO <em>**</em>"</td>
-      <td>**  <strong>tr</strong>  <strong>–</strong>** t <strong>**L</strong>** l <em>**</em>       ** <em>(заменить " <strong>L</strong>" на " <strong>l</strong>" в полученном на вводе тексте);</em></td>
+      <td><strong>ls</strong>  **</td>
+      <td>**  <strong>grep</strong>** ile**   <em>(вывести названия содержимого каталога с набором символов ' <strong>ile</strong>');</em></td>
     </tr>
   </tbody>
 </table>
 
-<p>Команда <strong>split</strong> может разбить файла по каким-либо критериям, например:</p>
+<p><strong>grep</strong>** ple <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(отобразить в файле</em> <em>file <strong>.</strong> txt</em> <em>строки, заканчивающиеся на ' <strong>ple</strong>');</em></p>
 
-<p><strong>split</strong>  <strong>–</strong>** l <strong>** 2 1. **</strong>txt**  <em>(разбить содержимое файла по две строчки);</em></p>
+<p>Для расширенной сортировки и поиска по сложным регулярным выражениям используется команда <strong>egrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** E**), например:</p>
 
-<p>Команда <strong>uniq</strong> предназначена для поиска повторяющихся строк, например:</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>egrep</strong> <strong>'^(</strong><strong>b **</strong></td>
+      <td><strong>** d</strong><strong>)'</strong>  <strong>file</strong><strong>. **</strong>txt**  <em>(все строки, что начинаются с " <strong>b</strong>" или " <strong>d</strong>");</em></td>
+    </tr>
+  </tbody>
+</table>
 
-<p><strong>uniq</strong>  <strong>–</strong>** u <strong>** 1. **</strong>txt**  <em>(показать только уникальные строки);</em></p>
+<p><strong>egrep</strong> <strong>'^[</strong><strong>a **</strong>-<strong>** k</strong><strong>]'</strong>  <strong>file</strong><strong>. **</strong>txt**   <em>(все строки, что начинаются с " <strong>a</strong>" по " <strong>k</strong>");</em></p>
 
-<p><strong>Sed</strong> – отдельный мощный инструмент, понимающий групповые символы, шаблоны и т.д. Будет рассмотрен немного подробнее в дальнейших урока. Работает, например, так:</p>
+<p>Для быстрой сортировки и поиска по набору символов без регулярных выражений используется команда <strong>fgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** F**), например:</p>
 
-<p>**sed –e 's/socks/people/'  1.txt       ** <em>( <strong>заменить</strong> в <strong>файле</strong> слово</em> <em>"socks"</em> <em>на</em> <em>"people");</em></p>
+<p><strong>fgrep</strong>** c <strong>**$</strong>  <strong>file</strong><strong>. **</strong>txt** _ (отобразить в_ <em>file <strong>.</strong> txt</em> <em>последовательность символов " <strong>c</strong> $");</em></p>
+
+<p>Для рекурсивной (включая вложенные каталоги и файлы) сортировки и поиска по набору символов используется команда <strong>rgrep</strong> (также можно использовать <strong>grep</strong>  <strong>-</strong>** R**), например:</p>
+
+<p><strong>rgrep</strong>  ** <strong>** word</strong>_ (вывести позиции содержащие « <strong>word</strong> » в текущем и всех вложенных каталогах__);_</p>
+
+<p>Для изменения текстового потока согласно заданным правилам используется редактор sed, например:</p>
+
+<p><strong>sed</strong>  <strong>–</strong>** e <strong>**' **</strong>s<strong>** / **</strong>oo<strong>** / **</strong>aa<strong>** /'   **</strong>file<strong>**. **</strong>txt**  <em>(заменить в</em> <em>file <strong>.</strong> txt</em> <em>все " <strong>oo</strong>" на " <strong>aa</strong>" );</em></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>sed</strong>  <strong>–</strong>** re <strong>**' **</strong>s<strong>** /^( **</strong>B<em>**</em></td>
+      <td><strong>**b</strong>** )/ <strong>**C</strong><strong>' **</strong>file<strong>**. **</strong>txt**  <strong>&gt;</strong>  <strong>newfile</strong><strong>. **</strong>txt** <em>(в строках, начинающихся с « <strong>B</strong> » или « <strong>b</strong> », заменить первую букву на «С» и сохранить результат в</em> <em>newfile <strong>.</strong> txt__);</em></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_3_6/" title="103.6 Изменение приоритетов процессов"><img src="http://localhost:4000/images/matrix.jpg" alt="103.6 Изменение приоритетов процессов"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_6/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_6/" rel="bookmark" title="103.6 Изменение приоритетов процессов" itemprop="url">103.6 Изменение приоритетов процессов</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь менять приоритеты выполняющихся процессов</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>приоритеты по умолчанию создаваемых процессов;</li>
+  <li>запуск программ с повышенным и пониженным приоритетом;</li>
+  <li>изменение приоритета уже запущенной программы.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>nice</li>
+  <li>ps</li>
+  <li>renice</li>
+  <li>top</li>
+</ul>
+
+<p>Несмотря на то, что Linux является довольно стабильной системой, которая умеет автоматически подстраиваться под текущие условия работы, иногда приходится вручную управлять приоритетами процессов, для контроля над ресурсами ПК.</p>
+
+<p>Для просмотра текущих процессов используется команда <strong>ps</strong> , например:</p>
+
+<p><strong>p</strong>** s aux**  <em>(отобразить процессы по всем пользователям);</em></p>
+
+<p><strong>ps</strong>  <strong>–</strong>** eo <strong>**user</strong>** , <strong>**pid</strong>** , <strong>**pcpu</strong>** , <strong>**nice</strong>** , <strong>**comm</strong>  <em>(отобразить процессы, выводя указанные данные);</em></p>
+
+<p>Приоритет процесса определяется параметром <strong>nice</strong> (в Ubuntu может принимать значения от -20 до +19): чем ниже значение, тем выше приоритет. По умолчанию значение nice для каждого процесса равно "-10".</p>
+
+<p>Для запуска процесса с указанным приоритетом используется команда <strong>nice</strong> , например:</p>
+
+<p><strong>nice</strong>  <strong>–</strong>** n <strong>** -20 **</strong> ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(запустить процесс с приоритетом "-20");</em></p>
+
+<p>Для изменения приоритета запущенного процесса используется команда <strong>renice</strong> , например:</p>
+
+<p>**renice 15 –p 10241       ** <em>(изменить приоритет процесса с</em> <em>PID</em> <em>"10421");</em></p>
+
+<p><strong>renice</strong>  <strong>-15 –</strong>** u <strong>**semaev</strong>**        ** <em>(изменить приоритет процессов пользователя " <strong>semaev</strong>");</em></p>
+
+<p>Также для использования доступен диспетчер задач <strong>top</strong> , выводящий сведения о запущенных процессах в реальном режиме в консоль. Для изменения критерия сортировки процессов используются символы "&lt;" и "&gt;".</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/Lesson_3_5/" title="103.5 Управление процессами в Linux"><img src="http://localhost:4000/images/matrix.jpg" alt="103.5 Управление процессами в Linux"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_5/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_5/" rel="bookmark" title="103.5 Управление процессами в Linux" itemprop="url">103.5 Управление процессами в Linux</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>Студент должен уметь создавать, отслеживать и завершать процессы</p>
+
+<p><strong>Изучаем</strong> :</p>
+
+<ul>
+  <li>запуск задач в активном и фоновом режимах;</li>
+  <li>настройку выполнения задачи после выхода из системы;</li>
+  <li>способы отслеживания и сортировки активных процессов;</li>
+  <li>завершение процессов.</li>
+</ul>
+
+<p>**Термины и утилиты:       **</p>
+
+<ul>
+  <li>&amp;</li>
+  <li>bg</li>
+  <li>fg</li>
+  <li>jobs</li>
+  <li>kill</li>
+  <li>nohup</li>
+  <li>ps</li>
+  <li>top</li>
+  <li>free</li>
+  <li>uptime</li>
+  <li>pgrep</li>
+  <li>pkill</li>
+  <li>killall</li>
+  <li>screen</li>
+</ul>
+
+<p>Linux содержит в себе множество инструментов для управления запущенными процессами: от сортировки, отслеживания состояния и загрузки системы до перевода процессов в фоновый режим и обратно.</p>
+
+<p>Посмотреть запущенные процессы в текущей консоли можно при помощи команды <strong>jobs</strong>. Для вывода всех запущенных в данный момент процессов (независимо от консоли) используется команда ps с различным набором ключей, например:</p>
+
+<p><strong>Ps</strong>** aux** <em>(вывести процессы всех пользователей);</em></p>
+
+<p>Можно вывести процессы в консоль, отображая иерархию из взаимосвязи командой <strong>pstree</strong>.</p>
+
+<p>Для отображения идентификаторов процессов по определенному критерию можно использовать команду <strong>pgrep</strong> , например:</p>
+
+<p><strong>pgrep</strong>  <strong>-</strong>** l <strong>** - **</strong>u<strong>** root **</strong>       ** <em>(отобразить все процессы пользователя</em> <em>root__)</em></p>
+
+<p>Чтобы запустить процесс в фоновом режиме необходимо указать ключ <strong>&amp;</strong> , например:</p>
+
+<p><strong>Sleep</strong>  **999 &amp;       ** <em>(запустить задачу</em> <em>sleep</em> <em>999 в фоновом режиме);</em></p>
+
+<p>Для перевода процесса из фонового режима в активный используется команда <strong>fg</strong> , обратно – <strong>bg</strong>. В качестве аргумента команды следует указать номер процесса (<em>его можно увидеть на выводе команды</em> <em>jobs</em>).</p>
+
+<p>Для того чтобы процесс продолжал выполняться после выхода пользователя из системы, его следует запускать командой <strong>nohup</strong> , например:</p>
+
+<p><strong>nohup</strong>  ** <strong>** sleep **</strong> 1000 &amp;       ** <em>(запустить процесс "__sleep</em> <em>1000" в фоновом режиме, и выполнять его даже в случае выхода пользователя из системы);</em></p>
+
+<p>Для остановки процесса используется команда <strong>kill</strong> , например:</p>
+
+<p><strong>kill</strong>  <strong>2625</strong> _                (выключить процесс с_ <em>PID__=2625);</em></p>
+
+<p><strong>killall</strong>** sleep <strong>**       ** <em>(выключить все процессы с именем</em> <em>sleep</em> <em>для текущего пользователя)</em> **;</strong></p>
+
+<p>Для остановки процессов по указанному критерию можно использовать команду <strong>pkill</strong> , например:</p>
+
+<p><strong>pkill</strong>** refox <em>**</em>       ** <em>(остановить процесс, в имени которого есть символы " <strong>refox</strong>");</em></p>
+
+<p>Для просмотра информации о работающих процессах в режиме реального времени используется диспетчер задача <strong>top</strong>. Используя его можно сортировать запущенные задачи по различным критериям и останавливать их <em>(клавиша</em> <em>K__)</em> мягко <em>(<strong>sigterm</strong>)</em> и жестко <em>(<strong>sigkill</strong>)</em>.</p>
+
+<p>Для отображения информации о времени работы системы и среднем времени загрузки АЧ используется команда <strong>uptime</strong>.</p>
+
+<p>Для отображения информации о загрузке ОЗУ и раздела подкачки используется команда <strong>free</strong>.</p>
+
+<p>Кроме того, Linux поддерживает работу с несколькими «экранами» при помощи команды <strong>screen</strong>. Она позволяет, в числе всего прочего, сворачивать запущенные приложения в консоли, в рамках той же консоли, например:</p>
+
+<p><strong>screen</strong>  <strong>-</strong>** S <strong>**yandex</strong>** ping <strong>**ya</strong><strong>. **</strong>ru<em>**</em>        ** <em>(создать экран с именем</em> <em>yandex</em> <em>для команды</em> <em>ping <strong>ya</strong>. <strong>ru</strong> );</em></p>
+
+<p><strong>screen</strong>  <strong>–</strong>** ls <em>**</em>                       ** <em>(показать свернутые экраны);</em></p>
+
+<p><strong>screen</strong>  <strong>-</strong>** r <strong>**yandex</strong>**                        ** <em>(развернуть экран с именем</em> <em>yandex__).</em></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -560,13 +494,6 @@ Reading time ~2 minutes
         <li><a href="http://localhost:4000/page34/">34</a></li>
       
     
-      
-        
-        
-        
-        <li><a href="http://localhost:4000/page35/">35</a></li>
-      
-    
 
     
     
@@ -574,7 +501,7 @@ Reading time ~2 minutes
     
 
     
-      <li><a href="http://localhost:4000/page36/">36</a></li>
+      <li><a href="http://localhost:4000/page37/">37</a></li>
     
 
     

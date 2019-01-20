@@ -152,11 +152,11 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_3_1/" title="103.1 Работа в командной строке"><img src="http://localhost:4000/images/matrix.jpg" alt="103.1 Работа в командной строке"></a>
+        <a href="http://localhost:4000/Lesson_3_4/" title="103.4 Потоки, конвейеры и перенаправления"><img src="http://localhost:4000/images/matrix.jpg" alt="103.4 Потоки, конвейеры и перенаправления"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_1/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -166,80 +166,58 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_1/" rel="bookmark" title="103.1 Работа в командной строке" itemprop="url">103.1 Работа в командной строке</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_4/" rel="bookmark" title="103.4 Потоки, конвейеры и перенаправления" itemprop="url">103.4 Потоки, конвейеры и перенаправления</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь работать с командными оболочками и командами в командной строке</p>
+    <p>Студент должен уметь управлять потоками для обработки текстовых данных</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>работу с оболочками и командами для выполнения основных задач;</li>
-  <li>использование и изменение среды оболочки, в том числе переменных среды;</li>
-  <li>работу с историей выполненных команд;</li>
-  <li>работу с командами исходя из текущего месторасположения.</li>
+  <li>перенаправление стандартных ввода, вывода и ошибок;</li>
+  <li>передачу вывода одной команды на ввод другой;</li>
+  <li>использование вывода одной команды в качестве аргументов другой;</li>
+  <li>получение выходных данных в файл и на стандартный вывод.</li>
 </ul>
 
-<p><strong>Термины и утилиты:</strong>**        **</p>
+<p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>bash</li>
-  <li>echo</li>
-  <li>env</li>
-  <li>export</li>
-  <li>pwd</li>
-  <li>set</li>
-  <li>unset</li>
-  <li>man</li>
-  <li>uname</li>
-  <li>history</li>
-  <li>.bash_history</li>
+  <li>tee</li>
+  <li>
+    <p>xargs</p>
+  </li>
+  <li>stdin</li>
+  <li>stout</li>
+  <li>stderr</li>
 </ul>
 
-<p>Работа администратора с Linux заключается прежде всего в оперировании в командной строке. Командная строка, или консоль — это отдельная программируемая среда со своими настройками, возможностями и инструментами. Существует множество различных оболочек, в данном уроке рассматривается bash, используемая в большинстве современных ОС.</p>
+<p>Linux традиционно использует потоки для ввода, вывода и ошибок. Обычно ввод – это клавиатура или файлы, а вывод ошибок и результатов происходит в консоль. Но часто бывает нужно объединить последовательность команд в конвейер, или отправить результат в какой-нибудь файл.</p>
 
-<p>Увидеть название оболочки, используемой пользователем по умолчанию, можно в конце каждой строки файла <strong>/</strong>** etc <strong>**/</strong>** passwd <strong>. Глобальные настройки командной строки находятся в файле</strong> / <strong>**etc</strong>** / <strong>**profile</strong> , а настройки для каждого пользователя в файлах его домашней директории.</p>
+<p>Для того чтобы послать на ввод программы некоторые данные используется знак " <strong>&lt;</strong>", например:</p>
 
-<p>При этом существует несколько вариантов расположения настроек, в зависимости от семейства ОС. В общем виде поиск настроек осуществляется в следующем порядке:   <strong>~/.bash_profile, ~/.bash_login</strong> , и <strong>~/.profile</strong> (настройки берутся из первого обнаруженного файла).</p>
+<p><strong>wc</strong>  <strong>&lt;</strong>  <strong>file</strong>** 1. <strong>**txt</strong>**        ** <em>(использовать в качестве ввода для программы</em> <em>wc</em> <em>файл</em> <em>file <strong>.</strong> txt__);</em></p>
 
-<p>При работе в консоли используются следующие распространенные команды (их больше, но в данной теме LPI почему-то заостряет внимание на этих):</p>
+<p>Для того чтобы послать вывод программы куда-нибудь, кроме стандартного направления, используется знак " <strong>&gt;</strong>", например:</p>
+
+<p><strong>ls</strong>  <strong>&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(перезаписать содержимое файла</em> <em>list <strong>.</strong> txt</em> <em>результатом команды</em> <em>ls__);</em></p>
+
+<p><strong>ls</strong>  <strong>&gt;&gt;</strong>  <strong>list</strong><strong>. **</strong>txt**  <em>(дописать в файл</em> <em>list <strong>.</strong> txt</em> <em>результат команды</em> <em>ls__);</em></p>
+
+<p>Для ввода, вывода и ошибок используются следующие обозначения:</p>
 
 <ul>
-  <li><strong>cat</strong>          –  вывод содержимого файла в консоль;</li>
-  <li><strong>cd</strong>         – переход в каталог;</li>
-  <li><strong>ls</strong>         – вывод содержимого каталога;</li>
-  <li><strong>echo</strong>         – вывод текста в консоль;</li>
-  <li><strong>touch</strong>         – обновление времени редактирования файла или создание нового пустого файла;</li>
-  <li>**uname       ** – вывод имени ОС;</li>
+  <li><strong>Stdin</strong>         <em>– стандартный ввод программы (обозначение "0");</em></li>
+  <li><strong>Stdout</strong>         – <em>стандартный вывод программы (обозначение "1");</em></li>
+  <li><strong>Stderr</strong>          – <em>стандартные ошибки программы (обозначение "2");</em></li>
 </ul>
 
-<p>Консоль, как отдельная рабочая среда содержит свои переменные: переменные среды (глобальные переменные, использующиеся в ОС) и обычные переменные (работают в пределах запущенного сеанса консоли). Для просмотра переменных доступны команды:</p>
+<p>Например:</p>
 
-<ul>
-  <li><strong>env</strong> – вывод переменных среды;</li>
-  <li><strong>export</strong> – превращение переменной в переменную среды;</li>
-  <li><strong>unset</strong> – отключение переменной;</li>
-</ul>
+<p><strong>l</strong>** s bob 2&gt; error.txt**</p>
 
-<p>Для создания переменной используется простой синтаксис <strong>имя_переменной=значение_переменной</strong>. Для обращения к переменной указывается знак <strong>$</strong> , например:</p>
-
-<p><strong>X</strong>** =12               ** <em>(задать переменной</em> <em>X</em> <em>значение 12);</em></p>
-
-<p><strong>echo</strong>   <strong>$</strong>** X <em>**</em>               ** <em>(вывести значение переменной</em> <em>X__);</em></p>
-
-<p>Для выполнения команды в текущем каталоге (его можно узнать командой <strong>pwd</strong> ), нужно указывать полный путь к команде (<em>например, / <strong>home</strong> / <strong>semaev</strong> /__script</em>), если текущий каталог не перечислен в значениях переменной среды <strong>PATH</strong>.</p>
-
-<p>Для получения справочной информации доступны команды:</p>
-
-<ul>
-  <li><strong>man</strong>         – справка по команде;</li>
-  <li><strong>file</strong>         – справка по файлу;</li>
-  <li><strong>whatis</strong> – справка по названию;</li>
-  <li><strong>history</strong> – вывод истории команд (список хранится в .bash_history);</li>
-</ul>
-
-<p>Отдельно следует упомянуть команду <strong>exec</strong> , позволяющую выполнять команду за пределами текущей оболочки, сбрасывая права суперпользователя.</p>
+<p><strong>ls</strong>** bob <strong>** &gt; **</strong> result <strong>**.</strong>** txt <strong>** 2&gt; **</strong> error <strong>**.</strong>** txt**</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -248,78 +226,144 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_2_5/" title="102.5 Управление пакетами ПО в RedHat"><img src="http://localhost:4000/images/matrix.jpg" alt="102.5 Управление пакетами ПО в RedHat"></a>
+        <a href="http://localhost:4000/Lesson_3_3/" title="103.3 Основные операции с файлами"><img src="http://localhost:4000/images/matrix.jpg" alt="103.3 Основные операции с файлами"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_2_5/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_3/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~3 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_2_5/" rel="bookmark" title="102.5 Управление пакетами ПО в RedHat" itemprop="url">102.5 Управление пакетами ПО в RedHat</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_3/" rel="bookmark" title="103.3 Основные операции с файлами" itemprop="url">103.3 Основные операции с файлами</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь управлять ПО в RedHat системах.</p>
+    <p>Студент должен уметь управлять файлами и каталогами при помощи основных команд Linux</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>установку, обновление и удаление пакетов ПО;</li>
-  <li>получение информации о пакете ПО;</li>
-  <li>состав и расположение файлов в пакетах ПО.</li>
+  <li>копирование, перенос и удаление файлов и каталогов;</li>
+  <li>копирование нескольких файлов и каталогов, в том числе рекурсивно;</li>
+  <li>удаление файлов и каталогов, в том числе рекурсивно;</li>
+  <li>групповые символы (wildcard);</li>
+  <li>отбор файлов по типу, размеру, датам и т.д.;</li>
+  <li>работу с tar, cpio и dd.</li>
 </ul>
 
-<p><strong>Термины и утилиты:</strong>**        **</p>
+<p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>rpm</li>
-  <li>rpm2cpio</li>
-  <li>/etc/yum.conf</li>
-  <li>/etc/yum.repos.d/</li>
-  <li>yum</li>
-  <li>yumdownloader</li>
+  <li>cp</li>
+  <li>find</li>
+  <li>mkdir</li>
+  <li>mv</li>
+  <li>ls</li>
+  <li>rm</li>
+  <li>rmdir</li>
+  <li>touch</li>
+  <li>tar</li>
+  <li>cpio</li>
+  <li>dd</li>
+  <li>file</li>
+  <li>gzip</li>
+  <li>gunzip</li>
+  <li>bzip2</li>
+  <li>xz</li>
+  <li>групповые символы</li>
 </ul>
 
-<p>Семейство RedHat обладает своими инструментами для работы с пакетами программного обеспечения (и свой формат этих пакетов: rpm). Как и у прочих Linux систем, RedHat предлагает мощный инструмент для работы с пакетами и несколько облегченных, предлагающих простые варианты решения наиболее частых задач.</p>
+<p>Частой задачей администратора в Linux является работа с файлами и каталогами: создание, копирование, перемещение и удаление. Использование групповых символов вместе с инструментами консоли позволяют осуществлять эти действия с максимальной эффективностью.</p>
 
-<p>Для работы с пакетами ПО в RedHat системах предназначена утилита <strong>rpm</strong> , являющая громоздким инструментом автоматизации работы с пакетами, например:</p>
+<p>Для создания директорий используется команда <strong>mkdir</strong>** имя_каталога <strong>, для удаления пустого каталога -</strong> rmdir <strong>**имя_каталога</strong>. Просмотр содержимого текущей директории – <strong>ls</strong>. Например:</p>
 
-<p><strong>r</strong>** pm – <strong>**i</strong>** webmin <em>**</em>       ** <em>(установить пакет</em> <em>webmin__);</em></p>
+<p><strong>ls</strong>  <strong>–</strong>** l**_        (просмотреть содержимое текущего каталога);_</p>
 
-<p><strong>rpm</strong>  <strong>–</strong>** e <strong>**webmin</strong>**        ** <em>(удалить пакет</em> <em>webmin__);</em></p>
+<p><strong>ls</strong>** fol <strong>***</strong> _        (посмотреть содержимого каталогов, имена которых начинаются с " <strong>fol</strong>");_</p>
 
-<p>**       **  **rpm –V openssh-client       ** <em>( <strong>проверить</strong> пакет</em> <em>openssh-client);</em></p>
+<p>Для копирования используется команда <strong>cp</strong>  <strong>что_копировать куда_копировать</strong> , например:</p>
 
-<p>**        r<em>**</em> pm –qa       ** <em>(показать установленные пакеты);</em></p>
+<p><strong>cp</strong>  <strong>–</strong>** R <strong>**Folder</strong>** NewFolder**_        (скопировать директорию " <strong>Folder</strong>" со всем содержимым в текущий каталог с именем новой директории " <strong>NewFolder</strong>");_</p>
 
-<p>Для конвертации пакета в набор исходных двоичных файлов можно воспользоваться командой <strong>rpm</strong>** 2 <strong>**cpio</strong> , например:</p>
+<p>Для переноса используется команда <strong>mv</strong>  <strong>что_переносить куда_переносить</strong> , например:</p>
 
-<p><strong>rpm</strong>** 2 <strong>**cpio</strong>** ssh <strong>** &gt; **</strong> bin <strong>**.</strong>** cpio**<em>(достать исходники пакета</em> <em>ssh</em> <em>в архив</em> <em>bin <strong>.</strong> cpio__);</em></p>
+<p><strong>mv</strong>** file <strong>**.</strong>** txt <strong>**folder</strong>** 1/**  <em>(перенести " <strong>file</strong>. <strong>txt</strong>" в каталог " <strong>folder</strong> 1" в текущей директории);</em></p>
 
-<p>Большей популярностью, чем rpm, при работе с пакетами ПО в RedHat пользуется <strong>yum</strong>. Он умеет автоматически разрешать зависимости и работать с сетевыми репозиториями, в отличии от низкоуровневногоrpm. Примеры его использования:</p>
+<p>Для удаления используется команда <strong>rm</strong>** что_удалить**, например:</p>
 
-<p><strong>yum</strong>** install <strong>**vim</strong> _                (установить_ <em>vim__);</em></p>
+<p><strong>rm</strong>  <strong>–</strong>** rf <strong>**folder</strong>** 1       ** <em>(удалить каталог</em> <em>folder__1 вместе с содержимым);</em></p>
 
-<p><strong>yum</strong>** remove <strong>**vim</strong> _                (удалить_ <em>vim__);</em></p>
+<p>Для создания пустого файла, или обновления метки доступа существующего, используется команда <strong>touch</strong>  <strong>имя_файла,</strong> а для получения информации о файле – команда <strong>file</strong>** имя_файла**.</p>
 
-<p>**yum search vim       ** _        (<em>_найти</em> <em>vim);</em></p>
+<p>Групповые символы, использующиеся при работе с текстовыми данными:</p>
 
-<p><strong>yum</strong>** upgrade <em>**</em>               ** <em>(обновить пакеты ПО);</em></p>
+<ul>
+  <li><em>*                – любое количество любых символов;</em></li>
+  <li>**?       ** _        – любой символ;_</li>
+  <li>**!                ** <em>– не (любой символ кроме указанных);</em></li>
+  <li><strong>[</strong><strong>ac</strong>**]       ** <em>– <strong>a_ _или_ _c</strong> ;</em></li>
+  <li><strong>[</strong><strong>a **</strong>-<strong>** c</strong><strong>]</strong> _        –_ <em>a <strong>,_ _b</strong> ,</em> <em>c__.</em></li>
+</ul>
 
-<p>Для поиска информации о пакетах yum пользуется репозиториями, конфигурация которых расположена в виде отдельных файлов в директории <strong>/</strong>** etc <strong>**/</strong>** yum <strong>**.</strong>** repos <strong>**.</strong>** d <strong>**/</strong> <em>,</em> например файл <strong>CentOS</strong>** - <strong>**Base</strong><strong>. **</strong>repo** содержит несколько абзацев, указывающих на имя хранилища пакетов, его адрес и ключи для проверки.</p>
+<p>Например:</p>
 
-<p>Настройки самого менеджера пакетов yum хранятся в файле <strong>/</strong>** etc <strong>**/</strong>** yum <strong>**.</strong>** conf**</p>
+<p><strong>ls</strong>  ***               ** <em>(вывести содержимое всех каталогов);</em></p>
 
-<p>Для скачивания пакетов можно воспользоваться утилитой <strong>yumdownloader</strong> , например:</p>
+<p><strong>ls</strong>  <strong>?</strong>** at <strong>**.</strong>** txt <em>**</em>       ** <em>(вывести содержимое файла с именем: любая первая буква, остальная часть имени " <strong>at</strong>. <strong>txt</strong>");</em></p>
 
-<p><strong>yumdownloader</strong>** resolve <strong>**openssh</strong>**        ** <em>(скачать пакет</em> <em>openssh</em> <em>и все его зависимости).</em></p>
+<p><strong>ls</strong>  <strong>*</strong>** at <strong>**.</strong>** txt <em>**</em>       ** <em>(вывести содержимое файла с именем, оканчивающимся на " <strong>at</strong>. <strong>txt</strong>");</em></p>
+
+<p><strong>ls</strong> <strong>![</strong><strong>ab</strong>**]*       ** <em>(вывести содержимое файла или каталога с именем, начинающимся с любых символов, кроме " <strong>a</strong>" и " <strong>b</strong>");</em></p>
+
+<p>Для поиска информации используется команда <strong>find</strong> , например:</p>
+
+<p><strong>find</strong>  <strong>. –</strong>** name <strong>**"\ **</strong><em>A</em>*** *"       ** <em>(искать в текущей директории объекты, имеющие в имени символ " <strong>A</strong>");</em></p>
+
+<p><strong>find</strong>  <strong>/</strong>** etc <strong>** – **</strong>size**  ** -5<strong>** M **</strong>       ** <em>(искать в директории "/ <strong>etc</strong>" объекты размером менее 5 Мб);</em></p>
+
+<p><strong>find</strong>  ** .  –<strong>** type **</strong>l**   <em>(искать в текущей директории ссылки);</em></p>
+
+<p>В среде Linux существует несколько распространённых архиваторов, использующихся для распаковки и упаковки объектов в единый файл:</p>
+
+<ul>
+  <li><strong>с</strong>** pio**                - двоичный архиватор, копирующий информацию в архив и обратно;</li>
+  <li><strong>dd</strong>                 - копирование по блокам;</li>
+  <li><strong>gzip</strong> и <strong>gunzip</strong>         - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
+  <li>bzip2 и bunzip2        - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
+  <li>xz и unxz                - утилита сжатия и восстановления файлов (контейнер одного файла);</li>
+  <li>tar                - архиватор (работает с набором файлов и каталогов).</li>
+</ul>
+
+<p>Например:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>find</strong>  <strong>.  –</strong>** name <strong>**"*. **</strong>txt<em>**</em>"</td>
+      <td><strong>** cpio **</strong> – <strong>**o</strong>  <strong>&gt; ../</strong>** test <strong>**.</strong>** cpio**   <em>(найти в текущей папке все файлы с расширением ". <strong>txt</strong>" и упаковать их в архив</em> <em>test <strong>.</strong> cpio__, расположив его на уровень выше текущей</em> <em>директории);</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>cpio</strong>  <strong>-</strong>** id <strong>** &lt; **</strong> test <strong>**.</strong>** cpio**_        (распаковать в текущий каталог архив " <strong>test</strong>. <strong>cpio</strong>", создавая при необходимости структуру директорий);_</p>
+
+<p><strong>dd</strong>** if <strong>**=/</strong>** dev <strong>**/</strong>** sdb <strong>**of</strong>** = <strong>**drive</strong><strong>. **</strong>img<em>**</em>        ** <em>(скопировать носитель / <strong>dev</strong> / <strong>sdb_ _в образ_ _drive</strong>. <strong>img</strong> , располагающийся в текущей директории);</em></p>
+
+<p><strong>gzip</strong>** drive <strong>**.</strong>** img <em>**</em>       ** <em>(сжать образ " <strong>drive</strong>. <strong>img</strong>" до " <strong>drive</strong>. <strong>img</strong>. <strong>gz</strong>", удалив исходный файл);</em></p>
+
+<p><strong>bunzip</strong>** 2 <strong>** drive **</strong>.<strong>** img **</strong>.<strong>** bz **</strong>2       ** <em>(распаковать архив " <strong>drive</strong>. <strong>img</strong>. <strong>bz</strong> 2" в текущий каталог);</em></p>
+
+<p><strong>unxz</strong>** drive <strong>**.</strong>** img <strong>**.</strong>** xz <em>**</em>       ** <em>(распаковать архив " <strong>drive</strong>. <strong>img</strong>. <strong>xz</strong>" в текущий каталог);</em></p>
+
+<p><strong>tar</strong>** cvf <strong>**arch</strong><strong>. **</strong>tar**  ** <strong>** folder</strong>   <em>(упаковать каталог " <strong>folder</strong>" в архив " <strong>arch</strong>. <strong>tar</strong>").</em></p>
+
+<p><strong>tar</strong>  <strong>–</strong>** xvf <strong>**archive</strong><strong>. **</strong>tar<em>**</em>        ** <em>(распаковать архив " <strong>archive</strong>. <strong>tar</strong>").</em></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -328,80 +372,130 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Lesson_2_4/" title="102.4 Управление пакетами ПО в Debian"><img src="http://localhost:4000/images/matrix.jpg" alt="102.4 Управление пакетами ПО в Debian"></a>
+        <a href="http://localhost:4000/Lesson_3_2/" title="103.2 Управление текстовым потоком"><img src="http://localhost:4000/images/matrix.jpg" alt="103.2 Управление текстовым потоком"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_2_4/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-01-01T00:00:00+02:00"><a href="http://localhost:4000/Lesson_3_2/">January 01, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~2 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_2_4/" rel="bookmark" title="102.4 Управление пакетами ПО в Debian" itemprop="url">102.4 Управление пакетами ПО в Debian</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Lesson_3_2/" rel="bookmark" title="103.2 Управление текстовым потоком" itemprop="url">103.2 Управление текстовым потоком</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>Студент должен уметь управлять ПО в Debian системах.</p>
+    <p>Студент должен уметь управлять фильтровать текстовый поток</p>
 
 <p><strong>Изучаем</strong> :</p>
 
 <ul>
-  <li>установку, обновление и удаление пакетов ПО;</li>
-  <li>получение информации о пакете ПО;</li>
-  <li>состав и расположение файлов в пакетах ПО.</li>
+  <li>применение текстовых фильтров с использованием встроенных команд UNIX</li>
 </ul>
 
-<p><strong>Термины и утилиты:</strong>**        **</p>
+<p>**Термины и утилиты:       **</p>
 
 <ul>
-  <li>/etc/apt/sources.list</li>
-  <li>dpkg</li>
-  <li>dpkg-reconfigure</li>
-  <li>apt-get</li>
-  <li>apt-cache</li>
-  <li>aptitude</li>
+  <li>cat</li>
+  <li>cut</li>
+  <li>expand</li>
+  <li>fmt</li>
+  <li>head</li>
+  <li>join</li>
+  <li>less</li>
+  <li>nl</li>
+  <li>od</li>
+  <li>paste</li>
+  <li>pr</li>
+  <li>sed</li>
+  <li>sort</li>
+  <li>split</li>
+  <li>tail</li>
+  <li>tr</li>
+  <li>unexpand</li>
+  <li>uniq</li>
+  <li>wc</li>
 </ul>
 
-<p>Семейство Debian обладает своими инструментами для работы с пакетами программного обеспечения (и свой формат этих пакетов: deb). Как и у прочих Linux систем, Debian предлагает мощный инструмент для работы с пакетами и несколько облегченных, предлагающих простые варианты решения наиболее частых задач.</p>
+<p>Множество файлов в Linux неудобны для восприятия без предварительного форматирования, кроме того процесс обработки текстовой информации часто требует ее форматирования, обрезания, сортировки и т.д. Linux предлагает широкий набор инструментов редактирования текстового вывода, при этом следует заметить что указанные инструменты не затрагивают исходный файл (или текстовый поток), а форматируют его, выдавая полученный результат в консоль или другой файл.</p>
 
-<p>Для работы с пакетами ПО в Debian системах предназначена утилита <strong>dpkg</strong> , являющая громоздким инструментом автоматизации работы с пакетами. Файл конфигурации менеджера пакетов располагается в файле <strong>/</strong>** etc <strong>**/</strong>** dpkg <strong>**/</strong>** dpkg <strong>**.</strong>** cfg**. Примеры использования:</p>
+<p>Простой вывод текста (без корректировки содержимого):</p>
 
-<p>**dpkg –l                 ** <em>(вывести информацию об установленных пакетах);</em></p>
+<p>Для вывода содержимого файла или объединения нескольких файлов на выводе используется команда <strong>cat</strong> , например:</p>
 
-<p>**dpkg –s firefox       ** <em>( <strong>статус</strong> пакета</em> <em>firefox);</em></p>
+<p><strong>с</strong>** at <strong>** 1. **</strong>txt**  <strong>2.</strong>** txt <strong>** &gt; 3. **</strong>txt<em>**</em>        ** <em>(передать содержимое двух файлов в третий);</em></p>
 
-<p><strong>dpkg</strong>  <strong>–</strong>** i <strong>**webmin</strong>**        ** <em>(установить пакет</em> <em>webmin__);</em></p>
+<p>Команда <strong>join</strong> объединяет строки нескольких файлов по общему полю и отправляет их на стандартный вывод.</p>
 
-<p><strong>dpkg</strong>  <strong>–</strong>** r <strong>**webmin</strong>**        ** <em>(удалить пакет</em> <em>webmin__);</em></p>
+<p>Команда <strong>less</strong> загружает файл постепенно и также отправляет его на вывод (удобно для больших файлов).</p>
 
-<p><strong>dpkg</strong>** - <strong>**reconfigure</strong>** webmin <em>**</em>       ** <em>(переустановить пакет</em> <em>webmin__);</em></p>
+<p>Команда <strong>nl</strong> нумерует строки.</p>
 
-<p>Большей популярностью, чем dpkg, при работе с пакетами ПО в Debian пользуется <strong>apt</strong>. Он умеет автоматически разрешать зависимости и работать с сетевыми репозиториями, в отличии от низкоуровневого dpkg. Примеры ее использования:</p>
+<p>Команда <strong>pr</strong> показывает, как содержимое файла будет выглядеть при выводе его на печать.</p>
 
-<p><strong>apt</strong>** - <strong>**get</strong>** update** <em>(обновить информацию о репозиториях);</em></p>
+<p>Команда <strong>paste</strong> вставляет строки из одного файла в другой и отправляет результат на стандартный вывод.</p>
 
-<p><strong>apt</strong>** - <strong>**get</strong>** upgrade**<em>(обновить пакеты);</em></p>
+<p>Команда <strong>head</strong> показывает первые строки файла, а <strong>tail</strong> – последние.</p>
 
-<p><strong>apt-get install webmin</strong>  <em>( <strong>установить</strong> пакет</em> <em>webmin);</em></p>
+<p>Например:</p>
 
-<p><strong>apt-get remove webmin</strong> <em>( <strong>удалить</strong> пакет</em> <em>webmin);</em></p>
+<p><strong>head</strong>  <strong>–</strong>** n <strong>** 2 / **</strong>var<strong>** / **</strong>log<strong>** / **</strong>syslog<em>**</em>        ** <em>(вывести первые две строчки файла);</em></p>
 
-<p>Для поиска пакетов используется команда apt-cache, например:</p>
+<p><strong>tail</strong>  <strong>–</strong>** f <strong>** / **</strong>var<strong>** / **</strong>log<strong>** / **</strong>syslog<em>**</em>                ** <em>(показывать последние строки файла, отображая содержимое в реальный момент времени);</em></p>
 
-<p>**apt-cache search webmin       ** <em>( <strong>найти</strong> пакет</em> <em>webmin);</em></p>
+<p>Команда <strong>sort</strong> может отсортировать содержимое файла по какому-нибудь признаку, например:</p>
 
-<p><strong>apt</strong>** - <strong>**cache</strong>** show <strong>**webmin</strong>  **               ** <em>(показать информацию о пакете</em> <em>webmin__);</em></p>
+<p><strong>sort</strong>  <strong>1.</strong>** txt <em>**</em>               ** <em>(отсортировать строки по алфавиту);</em></p>
 
-<p><strong>apt</strong>** - <strong>**cache</strong>** depends <strong>**webmin</strong>**        ** <em>(показать зависимости пакета</em> <em>webmin__);</em></p>
+<p>Команда <strong>wc</strong> позволяет посчитать количество символов и т.д. в текстовом потоке, например:</p>
 
-<p>Настройки менеджера пакетов apt находятся в файле <strong>/</strong>** etc <strong>**/</strong>** apt <strong>**/</strong>** apt <strong>**.</strong>** conf <strong>, а перечень репозиториев в файле</strong> / <strong>**etc</strong>** / <strong>**apt</strong>** / <strong>**sources</strong><strong>. **</strong>list<strong>**.</strong></p>
+<p><strong>wc</strong>  <strong>1.</strong>** txt**    <em>(посчитать количество строк, символов, слов);</em></p>
 
-<p>Также для работы с пакетами в Debian системах можно использовать менеджер <strong>aptitude</strong> , имеющий диалоговой псевдографический интерфейс.</p>
+<p>Вывод  форматированного текста (с корректировкой содержимого):</p>
+
+<p>Команда <strong>cut</strong> используется для обрезания содержимого файлов на выводе, например:</p>
+
+<p><strong>с</strong>** ut <strong>** – **</strong>c**  <strong>2,3,4,5,10 1.</strong>** txt <em>**</em>       ** <em>(показывать только символы на указанных позициях: 2,3,4,5,10);</em></p>
+
+<p>Команда <strong>expand</strong> превращает символы табуляции в несколько пробелов, а <strong>unexpand</strong> наоборот – пробелы в символы табуляции.</p>
+
+<p>Команда <strong>fmt</strong> предназначена для форматирования текста различными способами, например:</p>
+
+<p><strong>fmt</strong>  <strong>1.</strong>** txt <em>**</em>               ** <em>(вывести содержимое файла в одну строку);</em></p>
+
+<p><strong>fmt</strong>  <strong>–</strong>** w <strong>** 10 1. **</strong>txt<em>**</em>        ** <em>(вывести содержимое файла в строки не больше 10 символов каждая);</em></p>
+
+<p>Команда <strong>od</strong> предназначена для конвертации текста в другой формат, например:</p>
+
+<p><strong>od</strong>  <strong>–</strong>** c <strong>** 1. **</strong>txt<em>**</em>        ** <em>(отобразить в кодировке</em> <em>ASCI__);</em></p>
+
+<p>Команда <strong>tr</strong> предназначена для замены и удаления символов в текстовом потоке, например:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>echo</strong>  <strong>"</strong>** HELLO <em>**</em>"</td>
+      <td>**  <strong>tr</strong>  <strong>–</strong>** t <strong>**L</strong>** l <em>**</em>       ** <em>(заменить " <strong>L</strong>" на " <strong>l</strong>" в полученном на вводе тексте);</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Команда <strong>split</strong> может разбить файла по каким-либо критериям, например:</p>
+
+<p><strong>split</strong>  <strong>–</strong>** l <strong>** 2 1. **</strong>txt**  <em>(разбить содержимое файла по две строчки);</em></p>
+
+<p>Команда <strong>uniq</strong> предназначена для поиска повторяющихся строк, например:</p>
+
+<p><strong>uniq</strong>  <strong>–</strong>** u <strong>** 1. **</strong>txt**  <em>(показать только уникальные строки);</em></p>
+
+<p><strong>Sed</strong> – отдельный мощный инструмент, понимающий групповые символы, шаблоны и т.д. Будет рассмотрен немного подробнее в дальнейших урока. Работает, например, так:</p>
+
+<p>**sed –e 's/socks/people/'  1.txt       ** <em>( <strong>заменить</strong> в <strong>файле</strong> слово</em> <em>"socks"</em> <em>на</em> <em>"people");</em></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -466,12 +560,21 @@ Reading time ~1 minute
         <li><a href="http://localhost:4000/page35/">35</a></li>
       
     
+      
+        
+        
+        
+        <li><a href="http://localhost:4000/page36/">36</a></li>
+      
+    
 
     
     
+      <li>…</li>
+    
 
     
-      <li><a href="http://localhost:4000/page36/">36</a></li>
+      <li><a href="http://localhost:4000/page37/">37</a></li>
     
 
     
