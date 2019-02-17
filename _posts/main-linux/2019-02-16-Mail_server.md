@@ -16,7 +16,7 @@ image:
 
 Пробежимся по основным настройкам 
 
-1. Хосты hostname and FQDN
+*1. Хосты hostname and FQDN
 
 resolv.conf "забывает" настройки nameservers
 Можно ввести атрибут запрета на изменение установка 
