@@ -40,6 +40,7 @@ Now update the grub using the following command
 sudo update-grub
 ```
 
+
 Вам необходимо установить пакет ifupdown
 
 ```css
@@ -48,3 +49,4 @@ sudo apt install ifupdown
 
 Теперь вы можете добавить все детали интерфейса в /etc/network/interfaces 
 файл и перезагрузите компьютер / сервер Ubuntu.
+

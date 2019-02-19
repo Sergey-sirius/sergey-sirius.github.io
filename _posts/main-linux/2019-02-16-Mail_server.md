@@ -235,8 +235,7 @@ MySQL database setup
 
 Создайте новую базу данных с именем «vmail»:
 ```css
-create database vmail
-    CHARACTER SET 'utf8';
+create database vmail CHARACTER SET 'utf8';
 
 grant select on vmail.* to 'vmail'@'localhost' identified by 'vmaildbpass';
 
