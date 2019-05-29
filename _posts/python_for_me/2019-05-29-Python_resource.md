@@ -2,7 +2,7 @@
 layout: post
 title: Python ресурсы для самостоятельного изучения
 description: "Подборка ссылок на ресурсы по Python"
-modified: 2019-06-01
+modified: 2019-05-29
 tags: [PYTHON-FOR-ME]
 image:
   path: /images/pythonfeatured.jpg
