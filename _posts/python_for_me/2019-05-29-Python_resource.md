@@ -13,7 +13,6 @@ image:
 
 ## Видео подборки тренингов Python
 
-** Уроки Python для начинающих Гоша Дударь **
-[![Уроки Python для начинающих Гоша Дударь](https://img.youtube.com/vi/n0xtO0x81cg/0.jpg)](https://www.youtube.com/watch?v=n0xtO0x81cg&list=PL0lO_mIqDDFXgfuxOEDTCwsWmKezOaDTu)
+1. #### Уроки Python для начинающих Гоша Дударь
 
-4
+[![Уроки Python для начинающих Гоша Дударь](https://img.youtube.com/vi/n0xtO0x81cg/0.jpg)](https://www.youtube.com/watch?v=n0xtO0x81cg&list=PL0lO_mIqDDFXgfuxOEDTCwsWmKezOaDTu)
