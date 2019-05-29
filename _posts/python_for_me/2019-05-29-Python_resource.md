@@ -9,6 +9,12 @@ image:
   feature: pythonfeatured.jpg
 ---
 
-#Первая подборка на ресурсы по Python
+###Первая подборка на ресурсы по Python
 
-## Видео подборки тренингов Python
+# Видео подборки тренингов Python
+
+<https://www.youtube.com/watch?v=n0xtO0x81cg&list=PL0lO_mIqDDFXgfuxOEDTCwsWmKezOaDTu>
+
+A-----
+
+![main text](https://img.youtube.com/vi/<insert-youtube-video-id-here>/1.jpg)
