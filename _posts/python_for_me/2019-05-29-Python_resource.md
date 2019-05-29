@@ -9,7 +9,7 @@ image:
   feature: pythonfeatured.jpg
 ---
 
-###Первая подборка на ресурсы по Python
+### Первая подборка на ресурсы по Python
 
 # Видео подборки тренингов Python
 
