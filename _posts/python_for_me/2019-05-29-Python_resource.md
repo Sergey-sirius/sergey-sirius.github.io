@@ -17,4 +17,4 @@ image:
 
 A-----
 
-![main text](https://img.youtube.com/vi/n0xtO0x81cg>/0.jpg)
+![main text](https://img.youtube.com/vi/n0xtO0x81cg/0.jpg)
