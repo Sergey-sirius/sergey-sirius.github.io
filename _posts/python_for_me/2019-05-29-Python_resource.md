@@ -9,9 +9,9 @@ image:
   feature: pythonfeatured.jpg
 ---
 
-### Первая подборка на ресурсы по Python
+# Первая подборка на ресурсы по Python
 
-# Видео подборки тренингов Python
+## Видео подборки тренингов Python
 
 [Уроки Python для начинающих Гоша Дударь](https://www.youtube.com/watch?v=n0xtO0x81cg&list=PL0lO_mIqDDFXgfuxOEDTCwsWmKezOaDTu)
 
