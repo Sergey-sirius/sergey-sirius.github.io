@@ -13,8 +13,8 @@ image:
 
 # Видео подборки тренингов Python
 
-<https://www.youtube.com/watch?v=n0xtO0x81cg&list=PL0lO_mIqDDFXgfuxOEDTCwsWmKezOaDTu>
+[Уроки Python для начинающих Гоша Дударь](https://www.youtube.com/watch?v=n0xtO0x81cg&list=PL0lO_mIqDDFXgfuxOEDTCwsWmKezOaDTu)
 
 A-----
 
-![main text](https://img.youtube.com/vi/n0xtO0x81cg/0.jpg)
+[main text](https://img.youtube.com/vi/n0xtO0x81cg/0.jpg)
