@@ -16,4 +16,4 @@ modified: 2018-11-17T15:14:43-04:00
 Все статьи по курсу Lpic1-101 **[Курс Lpic 1-101](/tags/#LPIC1-101)**
 
 ## "Python"
-Материалы и доки по изучению Python **[Python for me](/tags/#PYTHON-FOR-ME)**
+Материалы и доки по изучению Python. **[подборка Python for me](/tags/#PYTHON-FOR-ME)**
