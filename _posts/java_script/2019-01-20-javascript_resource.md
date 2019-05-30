@@ -9,10 +9,9 @@ image:
   feature: javascript.jpeg
 ---
 
-# Повторное введение в Java Script 
-(JS учебник)
+# Ресурсы по Java Script
 
-[JS учебник](https://developer.mozilla.org/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+- [Повторное введение JS учебник](https://developer.mozilla.org/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 
-[REACT JavaScript-библиотека для создания пользовательских интерфейсов](https://ru.reactjs.org/)
+- [REACT JavaScript-библиотека для создания пользовательских интерфейсов](https://ru.reactjs.org/)
 
