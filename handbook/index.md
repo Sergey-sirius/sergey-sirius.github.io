@@ -17,3 +17,7 @@ modified: 2018-11-17T15:14:43-04:00
 
 ## "Python"
 Материалы и доки по изучению Python. **[подборка => Python for me](/tags/#PYTHON-FOR-ME)**
+
+## "JavaScript"
+Материалы и доки по изучению JS. **[подборка => JS for me](/tags/#JavaScript-FOR-ME)**
+
