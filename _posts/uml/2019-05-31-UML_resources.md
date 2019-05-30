@@ -3,7 +3,7 @@ layout: post
 title: UML средство проектирования и разработки
 description: "Используем UML"
 modified: 2019-05-31
-tags: [Model,UML]
+tags: [Model, UML]
 image:
   path: /images/matrix.jpg
   feature: matrix.jpg
