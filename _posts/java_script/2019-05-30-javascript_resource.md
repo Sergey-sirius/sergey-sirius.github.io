@@ -2,7 +2,7 @@
 layout: post
 title: Java script ресурсы для самостоятельного изучения
 description: "Подборка ссылок на ресурсы по Java script"
-modified: 2019-06-01
+modified: 2019-05-30
 tags: [JavaScript-FOR-ME]
 image:
   path: /images/javascript.jpeg
