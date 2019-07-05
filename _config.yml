@@ -49,6 +49,7 @@ plugins:
   - jekyll-feed
   - jekyll-admin
   - jekyll-mermaid
+  - jekyll-seo-tag
 sass:
   sass_dir: _sass
   style: compressed

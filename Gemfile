@@ -8,7 +8,8 @@ group :development do
   gem "jekyll-paginate"
   gem "jekyll-gist"
   gem "jekyll-assets"
-
+  gem "jekyll-seo-tag"
+  
   gem "rake", "~> 10.0"
   gem "octopress", "~> 3.0.0.rc.12"
 end

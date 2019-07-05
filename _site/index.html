@@ -152,11 +152,11 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Mount_new_HardDisk/" title="Монтирование новых жестких дисков в системе Ubuntu"><img src="http://localhost:4000/images/matrix.jpg" alt="Монтирование новых жестких дисков в системе Ubuntu"></a>
+        <a href="http://localhost:4000/Git/" title="Просто о GIT"><img src="http://localhost:4000/images/matrix.jpg" alt="Просто о GIT"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+02:00"><a href="http://localhost:4000/Mount_new_HardDisk/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-07-05T00:00:00+03:00"><a href="http://localhost:4000/Git/">July 05, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -166,61 +166,60 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Mount_new_HardDisk/" rel="bookmark" title="Монтирование новых жестких дисков в системе Ubuntu" itemprop="url">Монтирование новых жестких дисков в системе Ubuntu</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Git/" rel="bookmark" title="Просто о GIT" itemprop="url">Просто о GIT</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>** Подключаем новые диски в систему Ubuntu **</p>
+    <p>** Шпаргалка Git **</p>
 
-<ol>
-  <li>Список доступных дисков
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">fdisk</span> <span class="nt">-l</span> <span class="o">|</span> <span class="nt">grep</span> <span class="s2">'Disk /dev/sd'</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Если требуется провести разметку воспользуйтесб командой fdisk
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">fdisk</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Форматирование раздела #1 (цифра конечно может быть и другой, в зависимости от структуры Ваших разделов
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mkfs</span><span class="nc">.ext4</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb1</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Создадим точку монтирования – каталог /hdd в директории /media
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mkdir</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">hdd</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Монтируем раздел в созданный каталог:
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mount</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">sdb1</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">hdd</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Проверяем
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">df</span> <span class="nt">-h</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Для автоматизации монтирования при старте операционной системы в Ubuntu отвечает файл /etc/fstab.
-В него то мы и добавим команду на монтирование раздела. Открываем файл /etc/fstab в редакторе
-    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">nano</span> <span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">fstab</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
+<p class="image-center"><img src="http://localhost:4000/images/git-process.png" alt="git process image" /></p>
 
-<p>вставляем строку</p>
+<p>git commit -a, –all  закоммитить все измененные файлы
+git commit</p>
 
-<p>/dev/sdb1 /media/hdd ext4 defaults 1 2</p>
+<p>git add -u, –update  обновить отслеживаемые файлы
+git add –all         добавить изменения из всех отслеживаемых и неотслеживаемых файлов</p>
 
-<p>сохраняем (Ctrl+O) и закрываем редактор</p>
+<p>git push
+git pull</p>
 
-<ol>
-  <li>Проверка</li>
-</ol>
+<p>git rebase
+git fetch</p>
 
-<p>8а. 1 способ. – Перезагрузить Ubuntu и команда df -h покажет что раздел /dev/sdb1 был смонтирован.
-8б. 2 способ. – Нужно отмонтировать раздел</p>
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="err">$</span> <span class="nt">sudo</span> <span class="nt">umount</span> <span class="o">/</span><span class="nt">media</span><span class="o">/</span><span class="nt">hdd</span> 
-    <span class="err">$</span> <span class="nt">sudo</span> <span class="nt">mount</span> <span class="nt">-a</span>
-</code></pre></div></div>
+<p>git checkout HEAD     копирует файлы текущего коммита на сцену, и в рабочую директорию.
+git checkout</p>
 
-<p>команда df -h покажет что раздел /dev/sdb1 был смонтирован</p>
+<p>git diff HEAD
+git diff              посмотреть изменения между коммитами</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+      <div class="entry-image-index">
+        <a href="http://localhost:4000/UML_resources/" title="UML средство проектирования и разработки"><img src="http://localhost:4000/images/matrix.jpg" alt="UML средство проектирования и разработки"></a>
+      </div><!-- /.entry-image -->
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2019-05-31T00:00:00+03:00"><a href="http://localhost:4000/UML_resources/">May 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="http://localhost:4000/UML_resources/" rel="bookmark" title="UML средство проектирования и разработки" itemprop="url">UML средство проектирования и разработки</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p><a href="/files/uml/uml_user_guide.pdf">Руководство пользователя UML. перевод Летуновского 2007</a></p>
+
+<p><a href="/files/uml/uml_lection1.pdf">UML лекции</a></p>
 
 
   </div><!-- /.entry-content -->
@@ -230,11 +229,11 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Installed_Docker_Ubuntu/" title="Установка Docker"><img src="http://localhost:4000/images/matrix.jpg" alt="Установка Docker"></a>
+        <a href="http://localhost:4000/Oracle_RESOURCE/" title="Базы данных. Oracle"><img src="http://localhost:4000/images/matrix.jpg" alt="Базы данных. Oracle"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+02:00"><a href="http://localhost:4000/Installed_Docker_Ubuntu/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-05-31T00:00:00+03:00"><a href="http://localhost:4000/Oracle_RESOURCE/">May 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -244,75 +243,12 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Installed_Docker_Ubuntu/" rel="bookmark" title="Установка Docker" itemprop="url">Установка Docker</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Oracle_RESOURCE/" rel="bookmark" title="Базы данных. Oracle" itemprop="url">Базы данных. Oracle</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>** Ставим Docker ubuntu **</p>
+    <p><a href="/files/sql/DBA_Oracle_Database_11g_2010.pdf">Руководство администратора Oracle 11g</a></p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">install</span> <span class="nt">apt-transport-https</span> <span class="nt">ca-certificates</span> <span class="nt">curl</span> <span class="nt">gnupg2</span> <span class="nt">software-properties-common</span>
-
-<span class="nt">curl</span> <span class="nt">-fsSL</span> <span class="nt">https</span><span class="o">://</span><span class="nt">download</span><span class="nc">.docker.com</span><span class="o">/</span><span class="nt">linux</span><span class="o">/</span><span class="nt">ubuntu</span><span class="o">/</span><span class="nt">gpg</span> <span class="o">|</span> <span class="nt">sudo</span> <span class="nt">apt-key</span> <span class="nt">add</span> <span class="nt">-</span>
-
-<span class="nt">sudo</span> <span class="nt">apt-key</span> <span class="nt">fingerprint</span> <span class="nt">0EBFCD88</span>
-
-<span class="nt">sudo</span> <span class="nt">add-apt-repository</span> <span class="s1">"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
-
-<span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">update</span>
-
-<span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">install</span> <span class="nt">docker-ce</span>
-
-<span class="nt">apt-cache</span> <span class="nt">madison</span> <span class="nt">docker-ce</span>
-
-<span class="nt">sudo</span> <span class="nt">docker</span> <span class="nt">run</span> <span class="nt">hello-world</span>
-
-</code></pre></div></div>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-      <div class="entry-image-index">
-        <a href="http://localhost:4000/Entered_in_to_Docker/" title="Как Войти В Docker-Контейнер"><img src="http://localhost:4000/images/matrix.jpg" alt="Как Войти В Docker-Контейнер"></a>
-      </div><!-- /.entry-image -->
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-20T00:00:00+02:00"><a href="http://localhost:4000/Entered_in_to_Docker/">January 20, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="http://localhost:4000/Entered_in_to_Docker/" rel="bookmark" title="Как Войти В Docker-Контейнер" itemprop="url">Как Войти В Docker-Контейнер</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>** Как Войти В Docker-Контейнер **</p>
-
-<p>Чтобы войти в контейнер, нужно узнать имя или ID контейнера, выполните команду:</p>
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">docker</span> <span class="nt">ps</span>
-
-<span class="nt">CONTAINER</span> <span class="nt">ID</span>  <span class="nt">IMAGE</span>    <span class="nt">COMMAND</span>  <span class="nt">CREATED</span>      <span class="nt">STATUS</span>      <span class="nt">PORTS</span>  <span class="nt">NAMES</span>
-<span class="nt">72ca2488b353</span>  <span class="nt">my_image</span>          <span class="nt">X</span> <span class="nt">hours</span> <span class="nt">ago</span>  <span class="nt">Up</span> <span class="nt">X</span> <span class="nt">hours</span>         <span class="nt">my_container</span>
-</code></pre></div></div>
-
-<p>Войдите в Docker-контейнер по имени или ID контейнера и запустите интерактивную оболочку bash:</p>
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">docker</span> <span class="nt">exec</span> <span class="nt">-it</span> <span class="nt">72ca2488b353</span> <span class="nt">bash</span>
-</code></pre></div></div>
-
-<p>Если внутри контейнера не удастся найти оболочку bash, вы увидите что-то вроде следующего сообщения:</p>
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">oci</span> <span class="nt">runtime</span> <span class="nt">error</span><span class="o">:</span> <span class="nt">exec</span> <span class="nt">failed</span><span class="o">:</span> <span class="nt">container_linux</span><span class="nc">.go</span><span class="nd">:265</span><span class="o">:</span> <span class="nt">starting</span> <span class="nt">container</span> <span class="nt">process</span> <span class="nt">caused</span> <span class="err">«</span><span class="nt">exec</span><span class="o">:</span> <span class="err">\»</span><span class="nt">bash</span><span class="err">\»</span><span class="o">:</span> <span class="nt">executable</span> <span class="nt">file</span> <span class="nt">not</span> <span class="nt">found</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">PATH</span><span class="err">»</span>
-</code></pre></div></div>
-
-<p>В этом случае вы можете войти в Docker-контейнер и затупить простую оболочку sh:</p>
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">docker</span> <span class="nt">exec</span> <span class="nt">-it</span> <span class="nt">72ca2488b353</span> <span class="nt">sh</span>
-</code></pre></div></div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -358,7 +294,7 @@ Reading time ~1 minute
     
 
     
-      <li><a href="http://localhost:4000/page37/">37</a></li>
+      <li><a href="http://localhost:4000/page40/">40</a></li>
     
 
     

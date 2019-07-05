@@ -152,37 +152,158 @@
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Script_Mount_FTP_Folder/" title="Монтируем папку FTP в файловую систему Bash  SCRIPT"><img src="http://localhost:4000/images/matrix.jpg" alt="Монтируем папку FTP в файловую систему Bash  SCRIPT"></a>
+        <a href="http://localhost:4000/Monitoring_TICK_Stack/" title="Мониторинг серверов система Tick Stack"><img src="http://localhost:4000/images/matrix.jpg" alt="Мониторинг серверов система Tick Stack"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-18T00:00:00+02:00"><a href="http://localhost:4000/Script_Mount_FTP_Folder/">January 18, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-05-31T00:00:00+03:00"><a href="http://localhost:4000/Monitoring_TICK_Stack/">May 31, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~2 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Script_Mount_FTP_Folder/" rel="bookmark" title="Монтируем папку FTP в файловую систему Bash  SCRIPT" itemprop="url">Монтируем папку FTP в файловую систему Bash  SCRIPT</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Monitoring_TICK_Stack/" rel="bookmark" title="Мониторинг серверов система Tick Stack" itemprop="url">Мониторинг серверов система Tick Stack</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>** Монтируем папку FTP в файловую систему Bash  SCRIPT **</p>
+    <p>** Мониторинг серверов система Tick Stack **</p>
 
-<p>Для начала установим пакет:</p>
+<p><a href="/files/main-linux/tick_stack.png"></a></p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">sudo</span> <span class="nt">apt</span> <span class="nt">install</span> <span class="nt">curlftpfs</span>
-</code></pre></div></div>
+<ol>
+  <li>
+    <p>Telegraf
+Telegraf — управляемый плагином сервер для сбора показателей и отчетности. Telegraf интегрируется с разнообразными метриками, событиями и логами, обращаясь непосредственно к контейнерам и системам, в которых он работает, достает метрики из сторонних API или даже прослушивает показатели через сервисы ConsumerD и Kafka. Он также имеет выходные плагины для отправки показателей во множество других хранилищ данных, служб и query-сообщений, включая InfluxDB, Graphite, OpenTSDB, Datadog, Librato, Kafka, MQTT, NSQ.</p>
+  </li>
+  <li>
+    <p>InfluxDB
+InfluxDB — Time Series Database, построенная с нуля, для обработки высоких нагрузок на запись и запрос. InfluxDB — это специализированное высокопроизводительное хранилище данных, написанное специально для временных данных (мониторинг DevOps, метрики приложений, данные датчика IoT и аналитика в реальном времени). Оно позволяет сохранять пространство на своем компьютере, настраивая InfluxDB для хранения данных в течение определенного периода времени и по его истечению — автоматического удаления любых нежелательных данных из системы. InfluxDB использует язык запросов, подобный SQL, для взаимодействия с данными.</p>
+  </li>
+  <li>
+    <p>Chronograf
+Chronograf — это административный интерфейс пользователя и механизм визуализации платформы. Он упрощает настройку и обслуживание системы мониторинга и оповещения. Простой в использовании, он включает в себя шаблоны и библиотеки, позволяющие быстро создавать информационные борды с визуализацией данных в режиме реального времени и генерировать правила для алертов и автоматизации.</p>
+  </li>
+  <li>
+    <p>Kapacitor
+Kapacitor — собственный механизм обработки данных. Он может обрабатывать как потоковые, так и пакетные данные от InfluxDB. Kapacitor позволяет подключать собственную пользовательскую логику или пользовательские функции для обработки предупреждений с динамическими порогами, сопоставления показателей для шаблонов, вычисления статистических аномалий и выполнения определенных действий на основе этих предупреждений, таких как динамическая перебалансировка нагрузки. Kapacitor интегрируется с HipChat, OpsGenie, Alerta, Sensu, PagerDuty, Slack и т. д.</p>
+  </li>
+</ol>
 
-<p>Затем подмонтируем интересующий нас ftp-ресурс:</p>
+<p>Инсталяция
+https://portal.influxdata.com/downloads</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="nt">mkdir</span> <span class="nt">temp-ftpfs</span>
-<span class="err">$</span> <span class="nt">curlftpfs</span> <span class="nt">ftp</span><span class="o">://</span><span class="err">$</span><span class="nt">USER</span><span class="o">:</span><span class="err">$</span><span class="nt">PASSWD</span><span class="o">@</span><span class="err">$</span><span class="nt">HOST</span><span class="o">/</span> <span class="nt">temp-ftpfs</span>
-<span class="err">$</span> <span class="nt">cd</span> <span class="nt">temp-ftpfs</span>
-</code></pre></div></div>
+<p>1 Telegraf v1.8.3
+a) Docker
+    docker pull telegraf</p>
+
+<p>b) ubuntu
+  wget https://dl.influxdata.com/telegraf/releases/telegraf_1.8.3-1_amd64.deb
+  sudo dpkg -i telegraf_1.8.3-1_amd64.deb</p>
+
+<p>c) RedHat &amp; CentOS
+    wget https://dl.influxdata.com/telegraf/releases/telegraf-1.8.3-1.x86_64.rpm
+    sudo yum localinstall telegraf-1.8.3-1.x86_64.rpm</p>
+
+<p>d) Windows Binaries (64-bit)
+    wget https://dl.influxdata.com/telegraf/releases/telegraf-1.8.3_windows_amd64.zip
+    unzip telegraf-1.8.3_windows_amd64.zip</p>
+
+<p>e) Linux Binaries (64-bit)
+    wget https://dl.influxdata.com/telegraf/releases/telegraf-1.8.3_linux_amd64.tar.gz
+    tar xf telegraf-1.8.3_linux_amd64.tar.gz</p>
+
+<p>f) Linux Binaries (32-bit)
+    wget https://dl.influxdata.com/telegraf/releases/telegraf-1.8.3_linux_i386.tar.gz
+    tar xf telegraf-1.8.3_linux_i386.tar.gz</p>
+
+<p>g) Linux Binaries (ARM)
+    wget https://dl.influxdata.com/telegraf/releases/telegraf-1.8.3_linux_armhf.tar.gz
+    tar xf telegraf-1.8.3_linux_armhf.tar.gz</p>
+
+<ol>
+  <li>InfluxDB v1.7.1
+a) Docker
+ docker pull influxdb</li>
+</ol>
+
+<p>b) ubuntu
+    wget https://dl.influxdata.com/influxdb/releases/influxdb_1.7.1_amd64.deb
+    sudo dpkg -i influxdb_1.7.1_amd64.deb</p>
+
+<p>c) RedHat &amp; CentOS
+    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.7.1.x86_64.rpm
+    sudo yum localinstall influxdb-1.7.1.x86_64.rpm</p>
+
+<p>d) Windows Binaries (64-bit)
+    https://dl.influxdata.com/influxdb/releases/influxdb-1.7.1_windows_amd64.zip
+    unzip influxdb-1.7.1_windows_amd64.zip</p>
+
+<p>e) Linux Binaries (64-bit)
+    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.7.1_linux_amd64.tar.gz
+    tar xvfz influxdb-1.7.1_linux_amd64.tar.gz</p>
+
+<p>f) Linux Binaries (32-bit)
+    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.7.1_linux_i386.tar.gz
+    tar xvfz influxdb-1.7.1_linux_i386.tar.gz</p>
+
+<p>g) Linux Binaries (ARM)
+    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.7.1_linux_armhf.tar.gz
+    tar xvfz influxdb-1.7.1_linux_armhf.tar.gz</p>
+
+<ol>
+  <li>Chronograf v1.7.3</li>
+</ol>
+
+<p>a) Docker
+    docker pull quay.io/influxdb/chronograf:1.7.3
+b) ubuntu<br />
+    wget https://dl.influxdata.com/chronograf/releases/chronograf_1.7.3_amd64.deb
+    sudo dpkg -i chronograf_1.7.3_amd64.deb
+c) RedHat &amp; CentOS
+    wget https://dl.influxdata.com/chronograf/releases/chronograf-1.7.3.x86_64.rpm
+    sudo yum localinstall chronograf-1.7.3.x86_64.rpm
+d) Windows Binaries (64-bit)
+    https://dl.influxdata.com/chronograf/releases/chronograf-1.7.3_windows_amd64.zip
+    unzip chronograf-1.7.3_windows_amd64.zip
+e) Linux Binaries (64-bit)
+    wget https://dl.influxdata.com/chronograf/releases/chronograf-1.7.3_linux_amd64.tar.gz
+    tar xvfz chronograf-1.7.3_linux_amd64.tar.gz
+f) Linux Binaries (32-bit)
+    wget https://dl.influxdata.com/chronograf/releases/chronograf-1.7.3_linux_i386.tar.gz
+    tar xvfz chronograf-1.7.3_linux_i386.tar.gz
+g) Linux Binaries (ARM)
+    wget https://dl.influxdata.com/chronograf/releases/chronograf-1.7.3_linux_armhf.tar.gz
+    tar xvfz chronograf-1.7.3_linux_armhf.tar.gz</p>
+
+<ol>
+  <li>Kapacitor v1.5.1</li>
+</ol>
+
+<p>a) Docker
+    docker pull kapacitor
+b) ubuntu<br />
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor_1.5.1_amd64.deb
+    sudo dpkg -i kapacitor_1.5.1_amd64.deb
+c) RedHat &amp; CentOS
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor-1.5.1.x86_64.rpm
+    sudo yum localinstall kapacitor-1.5.1.x86_64.rpm
+d) Windows Binaries (64-bit)
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor-1.5.1_windows_amd64.zip
+    unzip kapacitor-1.5.1_windows_amd64.zip
+e) Linux Binaries (64-bit)
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor-1.5.1_linux_amd64.tar.gz
+    tar xvfz kapacitor-1.5.1_linux_amd64.tar.gz
+f) Linux Binaries (32-bit)
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor-1.5.1_linux_i386.tar.gz
+    tar xvfz kapacitor-1.5.1_linux_i386.tar.gz
+g) Linux Binaries (ARM)
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor-1.5.1_linux_armhf.tar.gz
+    tar xvfz kapacitor-1.5.1_linux_armhf.tar.gz</p>
+
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -191,11 +312,11 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Script_bash-copy-ftp/" title="Копируем на FTP скриптом bash"><img src="http://localhost:4000/images/matrix.jpg" alt="Копируем на FTP скриптом bash"></a>
+        <a href="http://localhost:4000/javascript_resource/" title="Java script ресурсы для самостоятельного изучения"><img src="http://localhost:4000/images/javascript.jpeg" alt="Java script ресурсы для самостоятельного изучения"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2019-01-17T00:00:00+02:00"><a href="http://localhost:4000/Script_bash-copy-ftp/">January 17, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-05-30T00:00:00+03:00"><a href="http://localhost:4000/javascript_resource/">May 30, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -205,32 +326,21 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Script_bash-copy-ftp/" rel="bookmark" title="Копируем на FTP скриптом bash" itemprop="url">Копируем на FTP скриптом bash</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/javascript_resource/" rel="bookmark" title="Java script ресурсы для самостоятельного изучения" itemprop="url">Java script ресурсы для самостоятельного изучения</a></h1>
     
   </header>
   <div class="entry-content">
-    <p><strong>FTP COPY Bash  SCRIPT:</strong></p>
+    <h1 id="Ресурсы-по-java-script">Ресурсы по Java Script</h1>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="err">#</span><span class="o">!/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">sh</span>
+<ul>
+  <li>
+    <p><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript">Повторное введение JS учебник</a></p>
+  </li>
+  <li>
+    <p><a href="https://ru.reactjs.org/">REACT JavaScript-библиотека для создания пользовательских интерфейсов</a></p>
+  </li>
+</ul>
 
-<span class="nt">SERVER</span><span class="o">=</span><span class="nt">192</span><span class="nc">.168.0.1</span>
-<span class="nt">USER</span><span class="o">=</span><span class="nt">sergey-novikov</span>
-<span class="nt">SOURCE_DIRS</span><span class="o">=</span><span class="s1">"/bin /boot /dev /etc /home /lib64 /opt /root /sbin /usr /var"</span>
-<span class="nt">BACKUP_DIR</span><span class="o">=</span><span class="nt">Backups</span>
-
-<span class="nt">ftp</span> <span class="nt">-n</span> <span class="err">$</span><span class="nt">SERVER</span> <span class="o">&lt;&lt;</span> <span class="nt">EOS</span>
-<span class="nt">user</span> <span class="err">$</span><span class="nt">USER</span>
-<span class="nt">verbose</span>
-<span class="nt">prompt</span>
-<span class="nt">cd</span> <span class="err">$</span><span class="nt">BACKUP_DIR</span>
-<span class="nt">mdelete</span> <span class="o">*</span><span class="nc">.tar.gz</span>
-<span class="nt">binary</span>
-<span class="nt">put</span> <span class="s1">"| tar cvzf - $SOURCE_DIRS"</span> <span class="err">`</span><span class="nt">date</span> <span class="o">+%</span><span class="nt">y</span><span class="o">%</span><span class="nt">m</span><span class="o">%</span><span class="nt">d</span><span class="err">`</span><span class="nc">.tar.gz</span>
-<span class="nt">quit</span>
-<span class="nt">EOS</span>
-
-</code></pre></div></div>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -239,11 +349,11 @@ Reading time ~1 minute
   <header>
     
       <div class="entry-image-index">
-        <a href="http://localhost:4000/Work-Project-Manager/" title="Коротко - работа менеджера проектов"><img src="http://localhost:4000/images/matrix.jpg" alt="Коротко - работа менеджера проектов"></a>
+        <a href="http://localhost:4000/Jekyll_install/" title="Установка Jekyll"><img src="http://localhost:4000/images/matrix.jpg" alt="Установка Jekyll"></a>
       </div><!-- /.entry-image -->
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-12-04T00:00:00+02:00"><a href="http://localhost:4000/Work-Project-Manager/">December 04, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2019-05-30T00:00:00+03:00"><a href="http://localhost:4000/Jekyll_install/">May 30, 2019</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About Sergey Khatsiola">Sergey Khatsiola</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -253,60 +363,45 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Work-Project-Manager/" rel="bookmark" title="Коротко - работа менеджера проектов" itemprop="url">Коротко - работа менеджера проектов</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/Jekyll_install/" rel="bookmark" title="Установка Jekyll" itemprop="url">Установка Jekyll</a></h1>
     
   </header>
   <div class="entry-content">
-    <h1 id="Короткая-аннотация-вопросов-решаемых-менеджером-проектов">Короткая аннотация вопросов решаемых менеджером проектов</h1>
+    <p>Прежде чем мы установим Jekyll, нам нужно убедиться, что у нас есть все необходимые зависимости.</p>
 
-<h2 id="-1--Этапы-формирования-технического-задания-на-разработку">№ 1 : Этапы формирования технического задания на разработку</h2>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sudo</span> <span class="nt">apt-get</span> <span class="nt">install</span> <span class="nt">ruby</span> <span class="nt">ruby-dev</span> <span class="nt">build-essential</span>
+</code></pre></div></div>
 
-<p>1а. Формирование функциональных требований заказчика</p>
+<ol>
+  <li>Ставим jekyll</li>
+</ol>
 
-<p>2а. Формирования задания на построение инфраструктуры - как результат разработки с поддержкой отказоустойчивости и резервного копирования.</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">gem</span> <span class="nt">install</span> <span class="nt">jekyll</span>
+</code></pre></div></div>
 
-<p>3а. Формирование карты взаимодействия разрабатываемой системы с другими систмами заказчика.</p>
+<ol>
+  <li>создаем проект</li>
+</ol>
 
-<p>Как итог получаем  3 задачи:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">jekyll</span> <span class="nt">new</span> <span class="nt">siriusblog</span>
+</code></pre></div></div>
 
-<ul>
-  <li>функционально-техническое</li>
-  <li>ТЗ на построение инфраструктуры</li>
-  <li>ТЗ на разработку интерфейсов</li>
-</ul>
+<ol>
+  <li>bundle install</li>
+</ol>
 
-<p>Эти задачи станут чек-пойнтами контроля выполнения в процессе разработки</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sudo</span> <span class="nt">apt</span> <span class="nt">install</span> <span class="nt">ruby-bundler</span>
+<span class="nt">bundle</span> <span class="nt">install</span>
+</code></pre></div></div>
 
-<h2 id="-2--Этапы-разработки">№ 2 : Этапы разработки</h2>
+<ol>
+  <li>запуск сервиса</li>
+</ol>
 
-<ul>
-  <li>Распределние задач по разработчикам</li>
-  <li>формирование плана приемо-сдаточных работ</li>
-  <li>комплексное тестирование</li>
-  <li>создание плана миграции и разработки этого плана</li>
-</ul>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">bundle</span> <span class="nt">exec</span> <span class="nt">jekyll</span> <span class="nt">serve</span>
+</code></pre></div></div>
 
-<h2 id="-3--Этапы-ввода-в-эксплуатацию-разрабатываемой-системы">№ 3 : Этапы ввода в эксплуатацию разрабатываемой системы</h2>
-
-<ul>
-  <li>нагрузочное тестирование</li>
-  <li>формирование методических материалов и документации</li>
-  <li>обучение пользователей</li>
-  <li>заполнение всех НСИ, прописывание доступов и пользователей в системе</li>
-  <li>миграция данных</li>
-  <li>сверка проведенной миграции и остатков</li>
-  <li>старт работы под контролем (пилотирование)</li>
-  <li>горячая поодержка в период первого запуска</li>
-</ul>
-
-<h2 id="-4-Как-мы-передаем-систему-на-поддержку-после-ввода-в-эксплуатацию">№ 4 Как мы передаем систему на поддержку, после ввода в эксплуатацию:</h2>
-
-<p>Уровни техподдержки системы:</p>
-<ul>
-  <li>инфраструктурная, мониторинг нагрузок на сервер</li>
-  <li>функциональная, мониторинг потоков и контроль (вдруг что то начало происходить не так как планировалось)</li>
-  <li>методологическая, ответы на вопросы, сбор новых выявленых потребностях для возможной дальнейшей эволюции.</li>
-</ul>
+<p>проверяем http://127.0.0.1:4000/</p>
 
 
   </div><!-- /.entry-content -->
@@ -361,7 +456,7 @@ Reading time ~1 minute
     
 
     
-      <li><a href="http://localhost:4000/page37/">37</a></li>
+      <li><a href="http://localhost:4000/page40/">40</a></li>
     
 
     
