@@ -10,7 +10,7 @@ group :development do
   gem "jekyll-assets"
   gem "jekyll-seo-tag"
   
-  gem "rake", "~> 10.0"
+  gem "rake", "~> 12.3"
   gem "octopress", "~> 3.0.0.rc.12"
 end
 
